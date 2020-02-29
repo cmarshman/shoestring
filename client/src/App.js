@@ -4,7 +4,7 @@ import logo from './logo.svg';
 import Navbar from './components/navbar/Navbar';
 import './App.css';
 import './components/footer/footer.css'
-import Footer from './components/footer/footer.js';
+import Footer from './components/footer/footer.js.js';
 
 function App() {
   return (
