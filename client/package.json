@@ -2,13 +2,18 @@
   "name": "shoestring",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3000/",
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.4.1",
-    "@testing-library/user-event": "^7.2.1",
+    "axios": "^0.19.2",
+    "moment": "^2.24.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
-    "react-scripts": "3.4.0"
+    "react-scripts": "^3.4.0",
+    "react-helmet": "^5.2.1",
+    "react-media": "^1.10.0",
+    "react-moment": "^0.9.7",
+    "react-router-dom": "^5.1.2"
+
   },
   "scripts": {
     "start": "react-scripts start",
