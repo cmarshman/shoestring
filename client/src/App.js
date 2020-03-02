@@ -1,53 +1,36 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+// import Navbar from './components/navbar';
+// import Footer from './components/footer/index';
+import Home from './pages/Home';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import Login from './pages/Login';
+import ReportAnIssue from './pages/ReportAnIssue';
+import Security from './pages/Security';
+import SignUp from './pages/SignUp';
+import Wrapper from './components/wrapper';
 
-import logo from './logo.svg';
-import Navbar from './components/navbar/Navbar';
-import './App.css';
-import './components/footer/footer.css'
-import Footer from './components/footer/footer.js.js';
 
 function App() {
   return (
-    <div className="App">
-      <Navbar/>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Router>
+    <div>
+      <Wrapper>
+        <Route exact path="/" component={Home}/>
+        <Route exact path="/about" component={About}/>
+        <Route exact path="/contact" component={Contact}/>
+        <Route exact path="/report-an-issue" component={ReportAnIssue}/>
+        <Route exact path="/login" component={Login}/>
+        <Route exact path="/security" component={Security}/>
+        <Route exact path="/sign-up" component={SignUp}/>
+      </Wrapper>
     </div>
+    </Router>
+
   );
 
 }
-
-
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
 
 export default App;
 

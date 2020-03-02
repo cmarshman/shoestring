@@ -13,7 +13,6 @@
     "react-media": "^1.10.0",
     "react-moment": "^0.9.7",
     "react-router-dom": "^5.1.2"
-
   },
   "scripts": {
     "start": "react-scripts start",
