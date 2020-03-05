@@ -2,132 +2,168 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no" , />
-    <meta name="theme-color" content="#000000">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-    <link rel="shortcut icon" href="client/src/images/Logos/profile.png">
-    <link rel="stylesheet" href="frontEndTest.css" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>shoestring</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no" , />
+  <meta name="theme-color" content="#000000">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+  <link rel="shortcut icon" href="client/src/images/Logos/profile.png">
+  <link rel="stylesheet" href="frontEndTest.css" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <title>shoestring</title>
 </head>
 
 <body>
-    <nav class="navbar" role="navigation" aria-label="main navigation" id="opening-nav">
-        <div class="navbar-brand">
-          <a class="navbar-item" href="frontEndTest.html">
-            <img src="client/src/images/Logos/vector/default-monochrome-black.svg" width="200" height="200">
+  <nav class="navbar" role="navigation" aria-label="main navigation" id="opening-nav">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="frontEndTest.html">
+        <img src="client/src/images/Logos/vector/default-monochrome-black.svg" width="112" height="28">
+      </a>
+
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+        data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item">
+          Home
+        </a>
+
+        <a class="navbar-item">
+          Security
+        </a>
+        <a class="navbar-item">
+          About
+        </a>
+        <a class="navbar-item">
+          Contact
+        </a>
+
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" id="navitems">
+            More
           </a>
-      
-          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
-        </div>
-      
-        <div id="navbarBasicExample" class="navbar-menu">
-          <div class="navbar-start">
+
+          <div class="navbar-dropdown">
+
+            <hr class="navbar-divider">
             <a class="navbar-item">
-              Home
+              Report an issue
             </a>
-      
-            <a class="navbar-item">
-              Security
-            </a>
-            <a class="navbar-item">
-                About
-              </a>
-              <a class="navbar-item">
-                Contact
-              </a>
-      
-            <div class="navbar-item has-dropdown is-hoverable" >
-              <a class="navbar-link" id="navitems">
-                More
-              </a>
-      
-              <div class="navbar-dropdown">
-                
-                <hr class="navbar-divider">
-                <a class="navbar-item">
-                  Report an issue
-                </a>
-              </div>
-            </div>
-          </div>
-      
-          <div class="navbar-end">
-            <div class="navbar-item">
-              <div class="buttons">
-                <a class="button is-light" id="text-theme">
-                  Sign up
-                </a>
-                <a class="button is-light" id="text-theme">
-                  Log in
-                </a>
-              </div>
-            </div>
           </div>
         </div>
-      </nav>
-      <br>
-      <br>
-      <div class="tile is-ancestor">
-        <div class="tile is vertical is-10 is-clearfix columns" id="tile">
-                <div class="column is-three-fifths">
-                    <br>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tristique tempus volutpat. Vivamus nibh mi, vestibulum sed eleifend sed, finibus non lectus. Mauris lobortis, dui et cursus scelerisque, tellus lectus efficitur augue, in pellentesque ipsum nunc eget odio. Nullam vel lacus ut est malesuada tincidunt. Quisque sapien arcu, dictum non tincidunt vitae, fringilla non lectus. Vivamus nibh felis, consectetur molestie elit et, hendrerit tincidunt dolor.
-                    </p>
-                    <br>
-                    <p class="subtitle"><strong>Download our app</strong></p>
-                <div class="columns">
-                    <div class="column is-full">
-                        <img id="playstore" src="client/src/images/playstore.png"  alt="playstore"/>
-                    </div>
-                </div>
-                <div class="columns">
-                    <div class="column is-full">
-                            <a class="button is-light" id="signup">
-                            <p class="title">Sign Up</p></a>
-                    </div>
-                </div>
-                </div>
-                <div class="column">
-                  <div class="column is-pulled-right">
-                    <img id="apple_gif" src="apple_gif.gif" alt="apple_gif"/>
-                  </div>
-                </div>
-              </div>                     
       </div>
 
-      <footer class="footer">
-        <div class="content has-text-centered">
-          <p>
-            © 2020 Shoestring
-          </p>
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <a class="button is-light" id="text-theme">
+              Sign up
+            </a>
+            <a class="button is-light" id="text-theme">
+              Log in
+            </a>
+          </div>
         </div>
-      </footer>
-            
+      </div>
+    </div>
+  </nav>
+  <br>
+  <br>
+  <div class="tile is-ancestor">
+    <div class="tile is vertical is-10 is-clearfix columns" id="tile">
+      <div class="column is-one-fifths">
+        <img src="./client/src/images/AppScreens/user-wallet.png" alt="screens"/>
+      </div>
+      <div class="column is-four-fifths">
+        <br>
+        <br>
+        <br>
+        <p class="title">About shoestring</p>
+        <br>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tristique tempus volutpat. Vivamus nibh mi,
+          vestibulum sed eleifend sed, finibus non lectus. Mauris lobortis, dui et cursus scelerisque, tellus lectus
+          efficitur augue, in pellentesque ipsum nunc eget odio. Nullam vel lacus ut est malesuada tincidunt. Quisque
+          sapien arcu, dictum non tincidunt vitae, fringilla non lectus. Vivamus nibh felis, consectetur molestie elit
+          et, hendrerit tincidunt dolor.
+        </p>
+        <br>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="tile is-ancestor">
+    <div class="tile is vertical is-10 is-clearfix columns" id="tile">
+      <p class="title">Meet the Team</p>
+    </div>
+  </div>
+  <br>
+  <div class="tile is-ancestor">
+    <div class="tile is vertical is-10 is-clearfix columns" id="tile">
+      <div class="column is-one-quarter">
+        <a href="https://github.com/javierturner" id="github" target="_blank">
+          <p class="subtitle has-text-centered" id="team">
+            <img src="./client/src/images/JT.png" alt="JT" /><br>JT</p>
+        </a>
+        <p class="has-text-centered">Lead Product Designer</p>
+      </div>
+      <div class="column is-one-quarter">
+        <a href="https://github.com/Sile-Kiman" id="github" target="_blank">
+          <img src="./client/src/images/Sile.png" alt="Sile" /><br>
+          <p class="subtitle has-text-centered" id="team">Sile</p>
+        </a>
+        <p class="has-text-centered">Lead Database Developer</p>
+      </div>
+      <div class="column is-one-quarter">
+        <a href="https://github.com/DrBailey13" id="github" target="_blank">
+          <img src="./client/src/images/DeVante.png" alt="DeVante" /><br>
+          <p class="subtitle has-text-centered" id="team">DeVante</p>
+        </a>
+        <p class="has-text-centered">Lead API Developer</p>
+      </div>
+      <div class="column is-one-quarter">
+        <a href="https://github.com/cmarshman" id="github" target="_blank">
+          <img src="./client/src/images/Cory.png" alt="Cory" /><br>
+          <p class="subtitle has-text-centered" id="team">Cory</p>
+        </a>
+        <p class="has-text-centered">Lead UI/UX Designer</p>
+      </div>
+    </div>
+  </div>
 
-      <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        © 2020 Shoestring
+      </p>
+    </div>
+  </footer>
 
-            const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-            if ($navbarBurgers.length > 0) {
-                $navbarBurgers.forEach(el => {
-                    el.addEventListener('click', () => {
-                        const target = el.dataset.target;
-                        const $target = document.getElementById(target);                        el.classList.toggle('is-active');
-                        $target.classList.toggle('is-active');
 
-                    });
-                });
-            }
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
 
+      const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+      if ($navbarBurgers.length > 0) {
+        $navbarBurgers.forEach(el => {
+          el.addEventListener('click', () => {
+            const target = el.dataset.target;
+            const $target = document.getElementById(target);
+            el.classList.toggle('is-active');
+            $target.classList.toggle('is-active');
+
+          });
         });
-    </script>
+      }
+
+    });
+  </script>
 
 
 </body>

@@ -13,7 +13,7 @@ function Navbar() {
       <nav className="navbar" role="navigation" aria-label="main navigation" id="opening-nav">
         <div className="navbar-brand">
           <Link to="/" className="navbar-item">
-            <img src={Image} alt="logo" width="200" height="200" />
+            <img src={Image} alt="logo" width="112" height="28"/>
           </Link>
 
           <Link role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
