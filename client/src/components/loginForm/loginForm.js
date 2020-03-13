@@ -30,6 +30,7 @@ export default function loginForm() {
                             Login
                         </button>
                     </p>
+                    <h5><a href="#">Forgot Password?</a></h5>
                 </div>
     </div>
 

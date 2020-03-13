@@ -1,10 +1,14 @@
 .container{
-
     width: 40%;
-    margin: 0 auto;
+    margin: 40px auto;     
 }
 
 .loginbtn{
    background: #3bd389!important;
    color: white;
 }
+
+.control{
+    margin-bottom:25px
+}
+ 
