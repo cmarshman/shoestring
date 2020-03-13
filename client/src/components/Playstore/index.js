@@ -10,13 +10,13 @@ function Playstore() {
             <div className="column is-one-fifth is-1">
             </div>
             <div className="column is-two-fifths">
-                <a href="https://www.apple.com/ios/app-store/" target="_blank">
-                    <img id="playstore" src={Apple} alt="playstore" rel="noopener noreferrer"/>
+                <a href="https://www.apple.com/ios/app-store/" target="_blank" rel="noopener noreferrer">
+                    <img id="playstore" src={Apple} alt="playstore"/>
                 </a>
             </div>
             <div className="column is-two-fifths ">
-                <a href="https://play.google.com/store" target="_blank">
-                    <img id="playstore" src={Google} alt="playstore" rel="noopener noreferrer"/>
+                <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer">
+                    <img id="playstore" src={Google} alt="playstore"/>
                 </a>
             </div>
         </>

@@ -16,7 +16,7 @@ function Navbar() {
             <img src={Image} alt="logo" width="112" height="28"/>
           </Link>
 
-          <Link role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <Link to="#" role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
@@ -42,7 +42,7 @@ function Navbar() {
             </Link>
 
             <div className="navbar-item has-dropdown is-hoverable" >
-              <Link className="navbar-link" id="navitems">
+              <Link to="#" className="navbar-link" id="navitems">
                 More
               </Link>
 
