@@ -1,13 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Navbar from './../components/navbar';
 import Footer from './../components/footer';
+import ContactForm from '../components/contactForm';
 
-function Contact(){
+function Contact() {
     return (
         <>
-        <Navbar />
-        <Footer/>
+            <Navbar />
+            <ContactForm/>
+            <Footer />
         </>
     );
 }
