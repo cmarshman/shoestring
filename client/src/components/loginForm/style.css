@@ -1,0 +1,10 @@
+.container{
+
+    width: 40%;
+    margin: 0 auto;
+}
+
+.loginbtn{
+   background: #3bd389!important;
+   color: white;
+}
