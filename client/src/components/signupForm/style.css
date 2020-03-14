@@ -1,0 +1,15 @@
+.container{
+    width: 40%;
+    margin: 0 auto;     
+}
+
+.loginbtn{
+   background: #3bd389!important;
+   color: white;
+}
+
+.control{
+    margin-bottom:15px;
+    display: block;
+}
+ 
