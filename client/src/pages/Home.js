@@ -3,7 +3,6 @@ import './design/Home.css';
 import Gif from './../gifs/index.gif'
 import Playstore from './../components/Playstore';
 import Navbar from './../components/navbar';
-import Footer from './../components/footer';
 import SignUpBtnLarge from './../components/SignUpBtnLarge';
 
 function Home () {
@@ -38,7 +37,6 @@ function Home () {
           </div>
         </div>
       </div>
-      <Footer/>
     </>
   );
 }

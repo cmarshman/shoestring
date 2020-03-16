@@ -1,6 +1,5 @@
 import React from 'react';
 import Navbar from './../components/navbar';
-import Footer from './../components/footer';
 import ContactForm from '../components/contactForm';
 
 function Contact() {
@@ -8,7 +7,7 @@ function Contact() {
         <>
             <Navbar />
             <ContactForm/>
-            <Footer />
+
         </>
     );
 }

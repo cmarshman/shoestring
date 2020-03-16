@@ -1,21 +1,19 @@
 .footer {
-    background-color: #3bd389;
-    padding: 1.5rem!important;
+    /* background-color: #3bd389;
+    padding: 20px!important;
     width: 100%;
     position: absolute;
-    bottom: 0;
-    margin-top: 0px;
-    
-}
-
-/* .footer{
-    background: #3bd389;
+    margin-top: 100px;
+    margin-bottom: 0px;
     padding: 20px;
-    border-top: 8px solid #666666;
-    text-align: center;
-    flex-shrink: 0;
-    margin-top: 0px;
+    border-top: 3px solid #363636;
+    bottom: 0px; */
     position: absolute;
     width: 100%;
-    color: #ffffff;
-} */
+    bottom: 0px;
+    overflow:hidden;
+    border-top: 3px solid #363636;
+    background-color: #3bd389;
+    padding: 30px;
+
+}
