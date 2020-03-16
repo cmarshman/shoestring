@@ -1,6 +1,7 @@
 .container{
     width: 40%;
-    margin: 40px auto;     
+    margin: 0 auto;   
+    margin-bottom: 0px;  
 }
 
 .loginbtn{
@@ -9,6 +10,7 @@
 }
 
 .control{
-    margin-bottom:25px
+    margin-bottom:15px
 }
+ 
  
