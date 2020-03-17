@@ -1,6 +1,5 @@
 import React from 'react';
 import Navbar from './../components/navbar';
-import Footer from './../components/footer';
 import AppScreens from './../images/AppScreens/user-wallet.png';
 import TheTeam from './../components/TheTeam';
 import Playstore from './../components/Playstore';
@@ -39,7 +38,7 @@ function About() {
             </div>
             <br />
             <TheTeam />
-            <Footer />
+
         </>
     );
 }
