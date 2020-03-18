@@ -9,6 +9,7 @@ import Security from './pages/Security';
 import SignUp from './pages/SignUp';
 import Wrapper from './components/wrapper';
 import Footer from './components/footer';
+import Landing from './pages/Landing';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route exact path="/login" component={Login}/>
         <Route exact path="/security" component={Security}/>
         <Route exact path="/sign-up" component={SignUp}/>
+        <Route exact path="/home" component={Landing}/>
       </Wrapper>
       <Footer/>
     </div>
