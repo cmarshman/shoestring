@@ -8,44 +8,68 @@ export default function signupForm() {
             <div className="field">
                 <label className="label">First Name</label>
                 <div className="control">
-                    <input className="input" type="text" placeholder="Text input"/>
-               </div>
+                <input className="input" type="text"
+                onChange={handleInputChange}
+                name="firstName"
+                placeholder="First Name (required)"
+                value={signupObject.firstName}
+                />
+                    
             </div>
+        </div>
       
             <div className="field">
                 <label className="label">Last Name</label>
                 <div className="control">
-                    <input className="input" type="text" placeholder="Last name"/>
-               </div>
+                <input className="input" type="text"
+                onChange={handleInputChange}
+                name="lastName"
+                placeholder="Last Name (required)"
+                value={signupObject.lastName}
+                />              
             </div>
-            <div className="field">
-                <label className="label">Phone</label>
-                <div className="control">
-                    <input className="input" type="text" placeholder="555-555-5555"/>
-               </div>
+        </div>
+        <div className="field">
+            <label className="label">Phone</label>
+            <div className="control"> 
+                <input className="input" type="text"
+                onChange={handleInputChange}
+                name="phone"
+                placeholder="555-555-5555 (required)"
+                value={signupObject.phone}
+                /> 
+                   
             </div>
+        </div>
    
+        <div className="field">
+            <label className="label">Email</label>
+            <div className="control has-icons-left has-icons-right">
+                <input className="input " type="email" 
+                    onChange={handleInputChange}
+                    name="email"
+                    placeholder="Email (required)"
+                    value={signupObject.email}/>
+                    <span className="icon is-small is-left">
+                        <i className="fas fa-envelope"></i>
+                    </span>
+                    <span className="icon is-small is-right">
+                        <i className="fas fa-exclamation-triangle"></i>
+                    </span>
+            </div>
+                    <p className="help ">This email is invalid</p>
+        </div>
             <div className="field">
-                 <label className="label">Email</label>
-                    <div className="control has-icons-left has-icons-right">
-                         <input className="input " type="email" placeholder="Email " value=" "/>
-                            <span className="icon is-small is-left">
-                                 <i className="fas fa-envelope"></i>
-                             </span>
-                             <span className="icon is-small is-right">
-                                 <i className="fas fa-exclamation-triangle"></i>
-                             </span>
-                        </div>
-                            <p className="help ">This email is invalid</p>
-                        </div>
-                <div className="field">
                 <label className="label">Password</label>
                    <p className="control has-icons-left">
-                   
-                    <input className="input" type="password" placeholder="Password"/>
-                        <span className="icon is-small is-left">
-                            <i className="fas fa-lock"></i>
-                        </span>
+                   <input className="input " type="password" 
+                    onChange={handleInputChange}
+                    name="password"
+                    placeholder="Password (required)"
+                    value={signupObject.password}/>   
+                    <span className="icon is-small is-left">
+                        <i className="fas fa-lock"></i>
+                    </span>
                 </p>
             </div>
             <div className="field">
