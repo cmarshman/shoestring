@@ -1,7 +1,7 @@
 import React from 'react';
 import "./style.css";
 
-export default function signupForm() {
+export default function signupForm(props) {
 
     return (
         <div className='container'>
@@ -85,7 +85,7 @@ export default function signupForm() {
 
               <div className="field is-grouped">
                  <div className="control">
-                    <button className="button is-link loginbtn">Submit</button>
+                    <button className="button is-link loginbtn" onClick={handleFormOnsubmit}>Submit</button>
                   </div>
                <div className="control">
                   <button className="button is-link is-light">Cancel</button>

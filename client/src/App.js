@@ -26,7 +26,7 @@ function App() {
         <Route exact path="/sign-up" component={SignUp}/>
         <Route exact path="/home" component={Landing}/>
       </Wrapper>
-      <Footer/>
+      {/* <Footer/> */}
     </div>
     </Router>
 

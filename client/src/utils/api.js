@@ -3,7 +3,7 @@ import axios from "axios";
 export default {
   // Gets all users
   getSignUpData: function() {
-    return axios.get("/api/books");
+    return axios.get("/api/signup");
   },
   // Gets a user with the given id
   getSignUpData: function(id) {
