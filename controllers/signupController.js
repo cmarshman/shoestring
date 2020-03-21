@@ -1,6 +1,6 @@
 const db = require("../models");
 
-// Defining methods for the booksController
+// Defining methods for the signUpController
 module.exports = {
   findAll: function(req, res) {
     db.SignUp
@@ -20,6 +20,7 @@ module.exports = {
       .create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+      console.log("from controller", req.body)
   },
   update: function(req, res) {
     db.SignUp
