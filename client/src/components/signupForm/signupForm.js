@@ -4,7 +4,7 @@ import "./style.css";
 export default function signupForm(props) {
 
     return (
-        <div className='container'>
+        <div className='container box'>
             <div className="field">
                 <label className="label">First Name</label>
                 <div className="control">
@@ -67,21 +67,22 @@ export default function signupForm(props) {
                     name="password"
                     placeholder="Password (required)"
                     value={signupObject.password}/>   
+
                     <span className="icon is-small is-left">
                         <i className="fas fa-lock"></i>
                     </span>
                 </p>
             </div>
             <div className="field">
-               <div className="control">
-                 <label className="checkbox">
-                    <input type="checkbox" />
-                      I agree to the <a href="#"> terms and conditions</a>
-                 </label>
-                     </div>
+                <div className="control">
+                    <label className="checkbox">
+                        <input type="checkbox" />
+                        I agree to the <a href="#"> terms and conditions</a>
+                    </label>
+                </div>
             </div>
 
-            
+
 
               <div className="field is-grouped">
                  <div className="control">
@@ -90,8 +91,8 @@ export default function signupForm(props) {
                <div className="control">
                   <button className="button is-link is-light">Cancel</button>
                </div>
-            </div>
-      </div>
 
+            </div>
+        </div>
     )
 }
