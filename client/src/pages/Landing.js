@@ -9,7 +9,7 @@ function Landing() {
                 <div className="tile is-7 is-vertical is-parent">
                     <div className="tile is-child box">
                         <figure className="image is-128x128">
-                            <img id="userPic" src="https://bulma.io/images/placeholders/128x128.png" />
+                            <img id="userPic" src="https://bulma.io/images/placeholders/128x128.png" alt="userImage"/>
                             <button id="addImage">Add profile picture</button>
                         </figure>
                         <br/>
@@ -29,7 +29,7 @@ function Landing() {
                         <article className="media">
                             <figure className="media-left">
                                 <p className="image is-48x48">
-                                    <img src="https://bulma.io/images/placeholders/96x96.png" />
+                                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="userImage"/>
                                 </p>
                             </figure>
                             <div className="media-content">
@@ -44,7 +44,7 @@ function Landing() {
                         <article className="media">
                             <figure className="media-left">
                                 <p className="image is-48x48">
-                                    <img src="https://bulma.io/images/placeholders/96x96.png" />
+                                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="userImage"/>
                                 </p>
                             </figure>
                             <div className="media-content">
@@ -59,7 +59,7 @@ function Landing() {
                         <article className="media">
                             <figure className="media-left">
                                 <p className="image is-48x48">
-                                    <img src="https://bulma.io/images/placeholders/96x96.png" />
+                                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="userImage"/>
                                 </p>
                             </figure>
                             <div className="media-content">
@@ -74,7 +74,7 @@ function Landing() {
                         <article className="media">
                             <figure className="media-left">
                                 <p className="image is-48x48">
-                                    <img src="https://bulma.io/images/placeholders/96x96.png" />
+                                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="userImage"/>
                                 </p>
                             </figure>
                             <div className="media-content">
@@ -89,7 +89,7 @@ function Landing() {
                         <article className="media">
                             <figure className="media-left">
                                 <p className="image is-48x48">
-                                    <img src="https://bulma.io/images/placeholders/96x96.png" />
+                                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="userImage"/>
                                 </p>
                             </figure>
                             <div className="media-content">
@@ -104,7 +104,7 @@ function Landing() {
                         <article className="media">
                             <figure className="media-left">
                                 <p className="image is-48x48">
-                                    <img src="https://bulma.io/images/placeholders/96x96.png" />
+                                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="userImage"/>
                                 </p>
                             </figure>
                             <div className="media-content">

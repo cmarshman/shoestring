@@ -38,8 +38,8 @@ function About() {
             </div>
             <br />
             <TheTeam />
-
         </>
+
     );
 }
 

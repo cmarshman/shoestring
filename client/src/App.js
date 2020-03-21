@@ -14,6 +14,7 @@ import Landing from './pages/Landing';
 
 function App() {
   return (
+    <>
     <Router>
     <div>
       <Wrapper>
@@ -26,10 +27,10 @@ function App() {
         <Route exact path="/sign-up" component={SignUp}/>
         <Route exact path="/home" component={Landing}/>
       </Wrapper>
-      <Footer/>
     </div>
     </Router>
-
+    <Footer/>
+    </>
   );
 
 }
