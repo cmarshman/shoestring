@@ -2,18 +2,16 @@
     /* background-color: #3bd389;
     padding: 20px!important;
     width: 100%;
-    position: absolute;
     margin-top: 100px;
     margin-bottom: 0px;
     padding: 20px;
     border-top: 3px solid #363636;
     bottom: 0px; */
-    position: absolute;
+    position: relative;
     width: 100%;
     bottom: 0px;
     overflow:hidden;
     border-top: 3px solid #363636;
     background-color: #3bd389;
     padding: 30px;
-
 }
