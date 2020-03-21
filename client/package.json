@@ -2,7 +2,7 @@
   "name": "shoestring",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3000/",
+  "proxy": "http://localhost:3001/",
   "dependencies": {
     "axios": "^0.19.2",
     "moment": "^2.24.0",

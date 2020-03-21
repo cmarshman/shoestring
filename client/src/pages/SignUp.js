@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 //import SignupForm from '../components/signupForm/signupForm';
-import API from "../utils/api.js";
- 
+import API from "../utils/api";
+import Navbar from './../components/navbar';
 
 function SignUp(){
 // Setting our component's initial state
@@ -32,7 +32,8 @@ function handleInputChange(event) {
   //Handle the form subission- save it to the database on submit
 function handleFormOnsubmit(event){
     event.preventDefault();
-    if(signupObject && setSignupObject){
+    console.log(signupObject.firstName)
+    if({...signupObject} !==""){
         API.saveSignUpData({
           firstName: signupObject.firstName,
           lastName: signupObject.author,
@@ -46,17 +47,12 @@ function handleFormOnsubmit(event){
           phone: "",
           email: "",
           password: ""
-          }))
-           
+          }))   
       }
     };
 
-    // return (
-    //     <>
-    //     <SignupForm/>
-    //     </>
-    // );
     return (
+
         <div className='container'>
             <div className="field">
                 <label className="label">First Name</label>
@@ -145,7 +141,7 @@ function handleFormOnsubmit(event){
                </div>
             </div>
       </div>
-
+   
     )
 //}//
 
