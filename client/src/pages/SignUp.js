@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 //import SignupForm from '../components/signupForm/signupForm';
-import API from "../utils/api";
+import API from "../utils/Api";
 import Navbar from './../components/navbar';
 
 function SignUp(){
@@ -36,7 +36,7 @@ function handleFormOnsubmit(event){
     if({...signupObject} !==""){
         API.saveSignUpData({
           firstName: signupObject.firstName,
-          lastName: signupObject.author,
+          lastName: signupObject.lastName,
           phone: signupObject.phone,
           email: signupObject.email,
           password: signupObject.password
@@ -48,6 +48,9 @@ function handleFormOnsubmit(event){
           email: "",
           password: ""
           }))   
+      }
+      else{
+        
       }
     };
 
