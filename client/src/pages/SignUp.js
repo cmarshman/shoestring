@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 //import SignupForm from '../components/signupForm/signupForm';
 import API from "../utils/Api";
 import Navbar from './../components/navbar';
+import Alert from "../components/Alert/alert"
 
 function SignUp(){
 // Setting our component's initial state
@@ -11,7 +12,8 @@ function SignUp(){
     lastName: "",
     phone: "",
     email:"",
-    password:""
+    password:"",
+    checked : false
 
   })
 
@@ -28,31 +30,38 @@ function handleInputChange(event) {
     console.log("input ", { name, value } )
   };
 
+  //Function to reset the form to empty fields
+  const clearForm = () =>{
+     setSignupObject({
+      firstName: "",
+      lastName: "",
+      phone: "",
+      email: "",
+      password: "",
+      checked: false
+    })   
+  }
 
   //Handle the form subission- save it to the database on submit
 function handleFormOnsubmit(event){
     event.preventDefault();
-    console.log(signupObject.firstName)
-    if({...signupObject} !==""){
+    console.log(signupObject.firstName, signupObject.checked)
+    if({...signupObject} !=="" && signupObject.checked !== true){
         API.saveSignUpData({
           firstName: signupObject.firstName,
           lastName: signupObject.lastName,
           phone: signupObject.phone,
           email: signupObject.email,
-          password: signupObject.password
+          password: signupObject.password,
+          checked: true
         })
-          .then(() => setSignupObject({
-          firstName: "",
-          lastName: "",
-          phone: "",
-          email: "",
-          password: ""
-          }))   
-      }
-      else{
-        
-      }
-    };
+        .then (clearForm())
+        .catch(err => console.log(err))
+        }
+    else{
+
+    }   
+};
 
     return (
 
@@ -65,8 +74,8 @@ function handleFormOnsubmit(event){
                 name="firstName"
                 placeholder="First Name (required)"
                 value={signupObject.firstName}
-                />
-                    
+                 />
+                     
             </div>
         </div>
       
@@ -78,8 +87,8 @@ function handleFormOnsubmit(event){
                 name="lastName"
                 placeholder="Last Name (required)"
                 value={signupObject.lastName}
-                />              
-            </div>
+                />  
+             </div>
         </div>
         <div className="field">
             <label className="label">Phone</label>
@@ -109,7 +118,6 @@ function handleFormOnsubmit(event){
                         <i className="fas fa-exclamation-triangle"></i>
                     </span>
             </div>
-                    <p className="help ">This email is invalid</p>
         </div>
             <div className="field">
                 <label className="label">Password</label>
@@ -127,20 +135,22 @@ function handleFormOnsubmit(event){
             <div className="field">
                <div className="control">
                  <label className="checkbox">
-                    <input type="checkbox" />
+                    <input type="checkbox"
+                    onChange={handleInputChange}
+                    name="checked"
+                    value={signupObject.checked}
+                    />
                       I agree to the <a href="#"> terms and conditions</a>
-                 </label>
-                     </div>
+                </label>
+              </div>
             </div>
-
-            
 
               <div className="field is-grouped">
                  <div className="control">
                     <button className="button is-link loginbtn" onClick={handleFormOnsubmit}>Submit</button>
                   </div>
                <div className="control">
-                  <button className="button is-link is-light">Cancel</button>
+                  <button className="button is-link is-light" onClick = {clearForm}>Cancel</button>
                </div>
             </div>
       </div>
