@@ -52,7 +52,7 @@ const [errorData, setErrorData]= useState({
   // password: true,
   // checked : true
   
-        firstName: signupObject.firstName.length===0,
+        firstName: signupObject.firstName.length===0 ? "error" : "",
         lastName: signupObject.lastName.length===0,
         phone: signupObject.phone.length ===0,
         email: signupObject.email.length===0,
@@ -80,7 +80,8 @@ function handleInputChange(event) {
     const { name, value } = event.target;
     setSignupObject({...signupObject, [name]: value})
     console.log("input ", { name, value } )
-  };
+    errorValidation()
+   };
 
   //Function to reset the form to empty fields
   const clearForm = () =>{
@@ -110,7 +111,9 @@ function handleInputChange(event) {
           password: signupObject.password.length === 0 ? true : false,
           checked: signupObject.checked.length=== 0 ? true : false,
         })
+
     console.log("error", errorData);
+    
      //)
 //       // return{
 //       //   firstName: signupObject.firstName.length===0,
@@ -149,13 +152,14 @@ function handleFormOnsubmit(event){
             <div className="field">
                 <label className="label">First Name</label>
                 <div className="control">
-                <input className= "input" 
+                <input className="input error"  
+                className = {signupObject.firstName === '' ? "input error" : " input" }
                 type="text" 
                 onChange={handleInputChange}
                 name="firstName"
                 placeholder="First Name (required)"
                 value={signupObject.firstName}
-                 
+                  
                 />
                      
             </div>
@@ -165,6 +169,7 @@ function handleFormOnsubmit(event){
                 <label className="label">Last Name</label>
                 <div className="control">
                 <input className="input" type="text"
+                className = {signupObject.lastName === "" ? "input error" : " input" }
                 onChange={handleInputChange}
                 name="lastName"
                 placeholder="Last Name (required)"
@@ -176,6 +181,7 @@ function handleFormOnsubmit(event){
             <label className="label">Phone</label>
             <div className="control"> 
                 <input className="input" type="text"
+                className = {signupObject.phone === '' ? "input error" : " input" }
                 onChange={handleInputChange}
                 name="phone"
                 placeholder="555-555-5555 (required)"
@@ -189,6 +195,7 @@ function handleFormOnsubmit(event){
             <label className="label">Email</label>
             <div className="control has-icons-left has-icons-right">
                 <input className="input " type="email" 
+                className = {signupObject.email === '' ? "input error" : " input" }
                     onChange={handleInputChange}
                     name="email"
                     placeholder="Email (required)"
@@ -205,6 +212,7 @@ function handleFormOnsubmit(event){
                 <label className="label">Password</label>
                    <p className="control has-icons-left">
                    <input className="input " type="password" 
+                   className = {signupObject.password === '' ? "input error" : " input" }
                     onChange={handleInputChange}
                     name="password"
                     placeholder="Password (required)"
@@ -218,6 +226,7 @@ function handleFormOnsubmit(event){
                <div className="control">
                  <label className="checkbox">
                     <input type="checkbox"
+                    className = {signupObject.checked === ' ' ? "error" : " " }
                     onChange={handleInputChange}
                     name="checked"
                     value={signupObject.checked}
