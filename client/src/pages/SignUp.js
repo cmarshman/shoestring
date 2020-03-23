@@ -3,11 +3,30 @@ import React, { useState, useEffect } from "react";
 import API from "../utils/Api";
 import Navbar from './../components/navbar';
 import Alert from "../components/Alert/alert"
+import './signup.css'
 
 function SignUp(){
+
+  
 // Setting our component's initial state
-  //const [signupData, setSignupData]= useState([]),
-  const [signupObject, setSignupObject] = useState({
+ //const [errorData, setErrorData]= useState({
+  // firstName: true,
+  // lastName: true,
+  // phone: true,
+  // email: true,
+  // password: true,
+  // checked : true
+//    return:{
+//     firstName: signupObject.firstName.length===0,
+//     lastName: signupObject.lastName.length===0,
+//     phone: signupObject.phone.length < 13,
+//     email: signupObject.email.length===0,
+//     password: signupObject.password.length >=8,
+//     checked: signupObject.checked.length===false
+//   }
+// })
+
+const [signupObject, setSignupObject] = useState({
     firstName: "",
     lastName: "",
     phone: "",
@@ -17,11 +36,44 @@ function SignUp(){
 
   })
 
+  //const isEnabled = signupObject.name.length > 0 && signupObject.checked === true;
  // Load all user and store them with setSignupData
 //  useEffect(() => {
 //     handleInputChange();
 //     //handleFormOnsubmit;
 //   }, []);
+
+
+const [errorData, setErrorData]= useState({
+  // firstName: true,
+  // lastName: true,
+  // phone: true,
+  // email: true,
+  // password: true,
+  // checked : true
+  
+        firstName: signupObject.firstName.length===0,
+        lastName: signupObject.lastName.length===0,
+        phone: signupObject.phone.length ===0,
+        email: signupObject.email.length===0,
+        password: signupObject.password.length ===0 ,
+        checked: signupObject.checked.length=== 0
+
+
+
+//setErrorData {
+     
+    // firstName: signupObject.firstName.length === 0 ? true : false,
+    // lastName: signupObject.lastName.length === 0 ? true : false,
+    // phone: signupObject.phone.length === 0 ? true : false,
+    // email: signupObject.email.length === 0 ? true : false,
+    // password: signupObject.password.length === 0 ? true : false,
+    // checked: signupObject.checked.length === 0 ? true : false,
+  //}
+})
+
+
+
 
 // Handles updating component state when the user types into the input field
 function handleInputChange(event) {
@@ -42,11 +94,42 @@ function handleInputChange(event) {
     })   
   }
 
+  const errorValidation =() => {
+  //function  errorValidation(event){
+    //const { name, value } = setSignupObject;
+    //setErrorData({...errorData, [name]: value})
+    //setSignupObject({...signupObject, [name]: value}
+   // const { name, value } = event.target;
+    //setSignupObject({...signupObject, [name]: value})
+    //setErrorData(
+    setErrorData ({...errorData,
+          firstName: signupObject.firstName.length === 0 ? true : false,
+          lastName: signupObject.lastName.length === 0 ? true : false,
+          phone: signupObject.phone.length === 0 ? true : false,
+          email: signupObject.email.length=== 0? true : false,
+          password: signupObject.password.length === 0 ? true : false,
+          checked: signupObject.checked.length=== 0 ? true : false,
+        })
+    console.log("error", errorData);
+     //)
+//       // return{
+//       //   firstName: signupObject.firstName.length===0,
+//       //   lastName: signupObject.lastName.length===0,
+//       //   phone: signupObject.phone.length < 13,
+//       //   email: signupObject.email.length===0,
+//       //   password: signupObject.password.length >=8,
+//       //   checked: signupObject.checked.length===false
+//      //}
+
+  }
+
+
+
   //Handle the form subission- save it to the database on submit
 function handleFormOnsubmit(event){
     event.preventDefault();
     console.log(signupObject.firstName, signupObject.checked)
-    if({...signupObject} !=="" && signupObject.checked !== true){
+    if({...signupObject} !== 0){
         API.saveSignUpData({
           firstName: signupObject.firstName,
           lastName: signupObject.lastName,
@@ -55,26 +138,25 @@ function handleFormOnsubmit(event){
           password: signupObject.password,
           checked: true
         })
-        .then (clearForm())
+        .then (clearForm()) 
         .catch(err => console.log(err))
-        }
-    else{
-
-    }   
+    } 
+ 
 };
-
     return (
 
         <div className='container'>
             <div className="field">
                 <label className="label">First Name</label>
                 <div className="control">
-                <input className="input" type="text"
+                <input className= "input" 
+                type="text" 
                 onChange={handleInputChange}
                 name="firstName"
                 placeholder="First Name (required)"
                 value={signupObject.firstName}
-                 />
+                 
+                />
                      
             </div>
         </div>
@@ -86,7 +168,7 @@ function handleFormOnsubmit(event){
                 onChange={handleInputChange}
                 name="lastName"
                 placeholder="Last Name (required)"
-                value={signupObject.lastName}
+                value={signupObject.lastName }
                 />  
              </div>
         </div>
@@ -154,9 +236,7 @@ function handleFormOnsubmit(event){
                </div>
             </div>
       </div>
-   
     )
-//}//
-
+  
 }
 export default SignUp;
