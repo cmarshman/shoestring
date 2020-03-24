@@ -16,6 +16,7 @@
 
 import React, { useState, useEffect } from "react";
 import API from "../utils/Api";
+//import DB from './../../../models'
 //import { Redirect } from 'react-router-dom';
 import './login.css'
 
@@ -49,16 +50,18 @@ function Login() {
     }
 
     //Handle the form subission- save it to the database on submit
-    function handleFormOnsubmit(event) {
+    function handleLoginOnsubmit(event) {
         event.preventDefault();
         console.log(loginObject.email, loginObject.password)
-        if (loginObject.email) {
-            API.getLoginData(res =>{
-                 
-                console.log("login sussful")
-               if(res.email === loginObject.email && res.password === loginObject.password){
-                  console.log("login susscessful")
-               }
+         if (loginObject.email) {
+            API.getLoginInfo({    
+               //console.log("login sussful" , res)
+                  email : loginObject.email,
+                  password: loginObject.password,
+
+            //   if({email ==="michelle" && password) {
+            //     console.log("login susscessful")
+            //}
                  
             })
              .then(clearForm())
@@ -102,7 +105,7 @@ function Login() {
                 <div className="field">
                     <p className="control">
                         <button className="button is-success loginbtn"
-                            onClick={handleFormOnsubmit}>
+                            onClick={handleLoginOnsubmit}>
                             Login
                         </button>
                     </p>

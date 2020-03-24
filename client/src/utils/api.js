@@ -7,8 +7,20 @@ export default {
   },
   // Gets a user with the given id
   getLoginData: function(id) {
-    return axios.get("/api/login/" + id);
+    return axios.get("/api/signup/" + id);
   },
+
+  getLoginInfo: function(logdata) {
+    console.log("logdata", logdata)
+    if(logdata.email==="jose.diplome@hotmail.com" && logdata.password ==="password1"){
+      console.log("You are logged innnn!")
+    }else{
+      console.log("Login failed")
+    }
+    
+    return axios.get("/api/login");
+  },
+  // 
   // Remove a  user with the given id
   deleteSignUpData: function(id) {
     return axios.delete("/api/signup/" + id);
