@@ -1,4 +1,5 @@
 const db = require("../models");
+//var passport = require("../config/passport");
 
 // Defining methods for the signUpController
 module.exports = {
@@ -14,6 +15,7 @@ module.exports = {
       .findById(req.params.id)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+      console.log("result id", req.params.id)
   },
   create: function(req, res) {
     db.SignUp

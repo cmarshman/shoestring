@@ -6,8 +6,8 @@ export default {
     return axios.get("/api/signup");
   },
   // Gets a user with the given id
-  getSignUpData: function(id) {
-    return axios.get("/api/signup/" + id);
+  getLoginData: function(id) {
+    return axios.get("/api/login/" + id);
   },
   // Remove a  user with the given id
   deleteSignUpData: function(id) {
