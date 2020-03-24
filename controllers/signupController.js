@@ -5,14 +5,15 @@ const db = require("../models");
 module.exports = {
   findAll: function(req, res) {
     db.SignUp
-      .find(req.query)
+      .find(res.email)
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+      //console.log("from findall", res.json())
   },
   findOne: function(req, res) {
     db.SignUp
-      .find(req.query)
+      .find({email, password})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
    },

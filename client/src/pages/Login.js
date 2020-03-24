@@ -17,7 +17,7 @@
 import React, { useState, useEffect } from "react";
 import API from "../utils/Api";
 //import DB from './../../../models'
-//import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import './login.css'
 
 function Login() {
@@ -53,17 +53,12 @@ function Login() {
     function handleLoginOnsubmit(event) {
         event.preventDefault();
         console.log(loginObject.email, loginObject.password)
-         if (loginObject.email) {
+         if ({...loginObject}) {
             API.getLoginInfo({    
-               //console.log("login sussful" , res)
                   email : loginObject.email,
                   password: loginObject.password,
-
-            //   if({email ==="michelle" && password) {
-            //     console.log("login susscessful")
-            //}
                  
-            })
+            })  
              .then(clearForm())
              .catch(err => console.log(err))
         }

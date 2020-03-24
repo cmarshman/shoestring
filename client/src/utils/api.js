@@ -1,4 +1,6 @@
 import axios from "axios";
+//import db from '../../../models'
+//import db from  '../utils/loginAPI'
 
 export default {
   // Gets all users
@@ -12,8 +14,11 @@ export default {
 
   getLoginInfo: function(logdata) {
     console.log("logdata", logdata)
-    if(logdata.email==="jose.diplome@hotmail.com" && logdata.password ==="password1"){
+    if(logdata.email=== "email" && logdata.password ==="password"){
       console.log("You are logged innnn!")
+      //res.send({redirect: '/home'})
+       
+      
     }else{
       console.log("Login failed")
     }

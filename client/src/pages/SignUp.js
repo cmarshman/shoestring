@@ -60,13 +60,7 @@ function handleInputChange(event) {
   }
 
   const errorValidation =() => {
-  //function  errorValidation(event){
-    //const { name, value } = setSignupObject;
-    //setErrorData({...errorData, [name]: value})
-    //setSignupObject({...signupObject, [name]: value}
-   // const { name, value } = event.target;
-    //setSignupObject({...signupObject, [name]: value})
-    //setErrorData(
+  
     setErrorData ({...errorData,
           firstName: signupObject.firstName.length === 0 ? true : false,
           lastName: signupObject.lastName.length === 0 ? true : false,
@@ -97,9 +91,13 @@ function handleFormOnsubmit(event){
           password: signupObject.password,
           checked: true
         })
+        //.then(API.getSignUpData(function (res) ))
+        //})
+//})}
         .then (clearForm()) 
         .catch(err => console.log(err))
-    } 
+    }
+        
  
 };
     return (
