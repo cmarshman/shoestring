@@ -15,6 +15,8 @@ const singnUpSeed = [
     phone: "7048789089",
     email: "jt.turner@gmail.com",
     password: "password1",
+    checked:  true,
+
     date: new Date(Date.now())
   },
 
