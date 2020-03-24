@@ -53,12 +53,12 @@ function Login() {
         event.preventDefault();
         console.log(loginObject.email, loginObject.password)
         if (loginObject.email) {
-            API.getLoginData({
+            API.getLoginData(res =>{
                  
-                //console.log("login sussful")
-            //    if(res.email === loginObject.email && res.password === loginObject.password){
-            //       console.log("login sussful")
-            //    }
+                console.log("login sussful")
+               if(res.email === loginObject.email && res.password === loginObject.password){
+                  console.log("login susscessful")
+               }
                  
             })
              .then(clearForm())
