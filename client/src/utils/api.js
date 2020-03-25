@@ -1,6 +1,5 @@
 import axios from "axios";
-//import db from '../../../models'
-//import db from  '../utils/loginAPI'
+ 
 
 export default {
   // Gets all users
@@ -14,16 +13,8 @@ export default {
 
   getLoginInfo: function(logdata) {
     console.log("logdata", logdata)
-    if(logdata.email=== "email" && logdata.password ==="password"){
-      console.log("You are logged innnn!")
-      //res.send({redirect: '/home'})
-       
-      
-    }else{
-      console.log("Login failed")
-    }
-    
-    return axios.get("/api/login");
+    return axios.post("/api/login");
+     //return axios.get("/api/login");
   },
   // 
   // Remove a  user with the given id

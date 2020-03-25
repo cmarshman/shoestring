@@ -4,18 +4,25 @@ const db = require("../models");
 // Defining methods for the signUpController
 module.exports = {
   findAll: function(req, res) {
+    console.log('finding all...', req.query)
     db.SignUp
-      .find(res.email)
+      .find()
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
       //console.log("from findall", res.json())
   },
   findOne: function(req, res) {
-    db.SignUp
-      .find({email, password})
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+    console.log("searching for:", req.body);
+    db.SignUp.findOne({ email: req.body.email })
+    .then(function(dbUser) {
+      if (!dbUser) {
+        res.json('User not found!');
+      } else {
+        res.json(dbUser)
+      }
+    })
+    .catch(err => res.status(422).json(err));
    },
 
   findById: function(req, res) {

@@ -1,38 +1,15 @@
-// import React from 'react';
-// import Navbar from './../components/navbar';
-// import LoginForm from '../components/loginForm/loginForm';
-
-
-// function Login(){
-//     return (
-//         <>
-//         <Navbar />
-//         <LoginForm />
-//         </>
-//     );
-// }
-
-// export default Login;
-
 import React, { useState, useEffect } from "react";
-import API from "../utils/Api";
-//import DB from './../../../models'
+import API from "../utils/api";
 import { Redirect } from 'react-router-dom';
 import './login.css'
-
+import $ from 'jquery';
 function Login() {
    const [loginObject, setLoginObject] = useState({
         email: "",
         password: "",
     })
 
-  // Load all user and store them with setSignupData
-//  useEffect(() => {
-//     handleInputChange();
-//     //handleFormOnsubmit;
-//   }, []);
-
-    //
+ //function to Handle the  input field
     function handleInputChange(event) {
         const { name, value } = event.target;
         setLoginObject({ ...loginObject, [name]: value })
@@ -54,10 +31,23 @@ function Login() {
         event.preventDefault();
         console.log(loginObject.email, loginObject.password)
          if ({...loginObject}) {
-            API.getLoginInfo({    
-                  email : loginObject.email,
-                  password: loginObject.password,
-                 
+            //API.getLoginInfo({    
+                $.ajax({
+                    url: '/api/login',
+                    type: 'post',
+                    data: { 
+                      email: loginObject.email, 
+                      password: loginObject.password,
+                    },
+                    success: (response) => {
+                      console.log('response:', response);
+                    },
+                    error: (err) => {
+                      console.log(err);
+                    }
+
+                //   email : loginObject.email,
+                //   password: loginObject.password,
             })  
              .then(clearForm())
              .catch(err => console.log(err))
