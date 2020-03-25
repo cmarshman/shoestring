@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 //import SignupForm from '../components/signupForm/signupForm';
-import API from "../utils/Api";
+import API from "../utils/api";
 import Navbar from './../components/navbar';
 
 function SignUp(){
