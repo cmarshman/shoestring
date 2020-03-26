@@ -91,9 +91,6 @@ function handleFormOnsubmit(event){
           password: signupObject.password,
           checked: true
         })
-        //.then(API.getSignUpData(function (res) ))
-        //})
-//})}
         .then (clearForm()) 
         .catch(err => console.log(err))
     }
