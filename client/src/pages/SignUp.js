@@ -91,9 +91,6 @@ function handleFormOnsubmit(event){
           password: signupObject.password,
           checked: true
         })
-        //.then(API.getSignUpData(function (res) ))
-        //})
-//})}
         .then (clearForm()) 
         .catch(err => console.log(err))
     }
@@ -101,9 +98,11 @@ function handleFormOnsubmit(event){
  
 };
     return (
-<div>
-    <Navbar/>
-        <div className='container box'>
+
+        <>
+        <Navbar/>
+
+        <div className='container'>
             <div className="field">
                 <label className="label">First Name</label>
                 <div className="control">
@@ -200,7 +199,11 @@ function handleFormOnsubmit(event){
                </div>
             </div>
       </div>
+<<<<<<< HEAD
       </div>
+=======
+      </>
+>>>>>>> 6a2941677c097d0fc2884da6dac8f8708811e3f2
     )
   
 }
