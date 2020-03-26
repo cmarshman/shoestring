@@ -91,9 +91,6 @@ function handleFormOnsubmit(event){
           password: signupObject.password,
           checked: true
         })
-        //.then(API.getSignUpData(function (res) ))
-        //})
-//})}
         .then (clearForm()) 
         .catch(err => console.log(err))
     }
@@ -101,6 +98,9 @@ function handleFormOnsubmit(event){
  
 };
     return (
+
+        <>
+        <Navbar/>
 
         <div className='container'>
             <div className="field">
@@ -199,6 +199,7 @@ function handleFormOnsubmit(event){
                </div>
             </div>
       </div>
+      </>
     )
   
 }

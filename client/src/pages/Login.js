@@ -1,24 +1,9 @@
-// import React from 'react';
-// import Navbar from './../components/navbar';
-// import LoginForm from '../components/loginForm/loginForm';
-
-
-// function Login(){
-//     return (
-//         <>
-//         <Navbar />
-//         <LoginForm />
-//         </>
-//     );
-// }
-
-// export default Login;
-
 import React, { useState, useEffect } from "react";
-import API from "../utils/Api";
-//import DB from './../../../models'
-import { Redirect } from 'react-router-dom';
 import './login.css'
+import $ from 'jquery';
+import Alert from '../components/Alert/alert'
+import Nav from '../components/navbar'
+import {BrowserRouter as Router,Route, Redirect,Switch} from 'react-router-dom';
 
 function Login() {
    const [loginObject, setLoginObject] = useState({
@@ -26,13 +11,7 @@ function Login() {
         password: "",
     })
 
-  // Load all user and store them with setSignupData
-//  useEffect(() => {
-//     handleInputChange();
-//     //handleFormOnsubmit;
-//   }, []);
-
-    //
+ //function to Handle the  input field
     function handleInputChange(event) {
         const { name, value } = event.target;
         setLoginObject({ ...loginObject, [name]: value })
@@ -49,15 +28,39 @@ function Login() {
         })
     }
 
+    const validate = (alert) =>{
+        if (!{...setLoginObject}){
+            alert("PLESE")
+
+        }
+    }
+
     //Handle the form subission- save it to the database on submit
     function handleLoginOnsubmit(event) {
         event.preventDefault();
         console.log(loginObject.email, loginObject.password)
          if ({...loginObject}) {
-            API.getLoginInfo({    
-                  email : loginObject.email,
-                  password: loginObject.password,
-                 
+            //API.getLoginInfo({    
+                $.ajax({
+                    url: '/api/login',
+                    type: 'post',
+                    data: { 
+                      email: loginObject.email, 
+                      password: loginObject.password,
+                    },
+                    success: (response) => {
+                      console.log('response:', response);
+                       if(response.email === loginObject.email){
+                          console.log("Login success")
+                          window.location.reload();
+                       }else{
+                         console.log("Login failed");
+                         return (<Redirect from='/home/' to="/login/" />)  
+                        }
+                    },
+                    error: (err) => {
+                      console.log(err);
+                     }
             })  
              .then(clearForm())
              .catch(err => console.log(err))
@@ -66,12 +69,15 @@ function Login() {
     };
 
     return (
+        <>
+        <Nav/>
+       
         <div className='container tile is-4 is-parent box'>
             <div className="tile is-child">
                 <div className="field">
                     <p className="control has-icons-left has-icons-right">
                         <input className="input" type="email" placeholder="Email"
-                            className={loginObject.email === '' ? "input error" : " input"}
+                            // className={loginObject.email === '' ? "input error" : " input"}
                             onChange={handleInputChange}
                             name="email"
                             placeholder="Email (required)"
@@ -87,7 +93,7 @@ function Login() {
                 <div className="field">
                     <p className="control has-icons-left">
                         <input className="input" type="password" placeholder="Password"
-                            className={loginObject.password === '' ? "input error" : " input"}
+                            // className={loginObject.password === '' ? "input error" : " input"}
                             onChange={handleInputChange}
                             name="password"
                             placeholder="Password (required)"
@@ -108,7 +114,7 @@ function Login() {
                 </div>
             </div>
         </div>
-
+        </>
     )
 }
 export default Login;

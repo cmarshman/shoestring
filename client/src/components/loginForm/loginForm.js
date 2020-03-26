@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import API from "../../utils/Api.js";
+import API from "../../utils/api.js";
 //import { Redirect } from 'react-router-dom';
 import "./style.css";
 
