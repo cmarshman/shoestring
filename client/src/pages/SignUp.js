@@ -199,11 +199,7 @@ function handleFormOnsubmit(event){
                </div>
             </div>
       </div>
-<<<<<<< HEAD
-      </div>
-=======
       </>
->>>>>>> 6a2941677c097d0fc2884da6dac8f8708811e3f2
     )
   
 }
