@@ -1,12 +1,13 @@
 import React from 'react';
 import Navbar from './../components/navbar';
 import './design/Landing.css'
+import FriendCard from './../components/FriendCard';
 
 function Landing() {
     return (
         <div>
             <Navbar />
-
+            <FriendCard/>
             <div className="outerTile">
                 <div className="tile is-10 container is-fluid">
                     <div className="tile is-7 is-vertical is-parent">
@@ -25,7 +26,6 @@ function Landing() {
                             <p>Lisa paid Arnold for pizza</p>
                             <p>Jeff paid Jesus for rent</p>
                         </div>
-
 
                     </div>
                     <div className="tile is-3 is-child box">
