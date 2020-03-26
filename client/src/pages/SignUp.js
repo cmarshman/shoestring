@@ -102,6 +102,9 @@ function handleFormOnsubmit(event){
 };
     return (
 
+        <>
+        <Navbar/>
+
         <div className='container'>
             <div className="field">
                 <label className="label">First Name</label>
@@ -199,6 +202,7 @@ function handleFormOnsubmit(event){
                </div>
             </div>
       </div>
+      </>
     )
   
 }

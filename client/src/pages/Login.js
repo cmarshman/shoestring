@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import API from "../utils/api";
-import { Redirect } from 'react-router-dom';
 import './login.css'
 import $ from 'jquery';
+import Alert from '../components/Alert/alert'
+import Nav from '../components/navbar'
+import {BrowserRouter as Router,Route, Redirect,Switch} from 'react-router-dom';
+
 function Login() {
    const [loginObject, setLoginObject] = useState({
         email: "",
@@ -26,6 +28,13 @@ function Login() {
         })
     }
 
+    const validate = (alert) =>{
+        if (!{...setLoginObject}){
+            alert("PLESE")
+
+        }
+    }
+
     //Handle the form subission- save it to the database on submit
     function handleLoginOnsubmit(event) {
         event.preventDefault();
@@ -41,13 +50,17 @@ function Login() {
                     },
                     success: (response) => {
                       console.log('response:', response);
+                       if(response.email === loginObject.email){
+                          console.log("Login success")
+                          window.location.reload();
+                       }else{
+                         console.log("Login failed");
+                         return (<Redirect from='/home/' to="/login/" />)  
+                        }
                     },
                     error: (err) => {
                       console.log(err);
-                    }
-
-                //   email : loginObject.email,
-                //   password: loginObject.password,
+                     }
             })  
              .then(clearForm())
              .catch(err => console.log(err))
@@ -56,12 +69,15 @@ function Login() {
     };
 
     return (
+        <>
+        <Nav/>
+       
         <div className='container tile is-4 is-parent box'>
             <div className="tile is-child">
                 <div className="field">
                     <p className="control has-icons-left has-icons-right">
                         <input className="input" type="email" placeholder="Email"
-                            className={loginObject.email === '' ? "input error" : " input"}
+                            // className={loginObject.email === '' ? "input error" : " input"}
                             onChange={handleInputChange}
                             name="email"
                             placeholder="Email (required)"
@@ -77,7 +93,7 @@ function Login() {
                 <div className="field">
                     <p className="control has-icons-left">
                         <input className="input" type="password" placeholder="Password"
-                            className={loginObject.password === '' ? "input error" : " input"}
+                            // className={loginObject.password === '' ? "input error" : " input"}
                             onChange={handleInputChange}
                             name="password"
                             placeholder="Password (required)"
@@ -98,7 +114,7 @@ function Login() {
                 </div>
             </div>
         </div>
-
+        </>
     )
 }
 export default Login;

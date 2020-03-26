@@ -25,4 +25,4 @@ const SignUp = mongoose.model("SignUp", signUpSchema);
 
 
 module.exports = SignUp;
-//return SignUp;
+ 
