@@ -15,10 +15,11 @@
 // export default Login;
 
 import React, { useState, useEffect } from "react";
-import API from "../utils/Api";
+import API from "../utils/api";
 //import DB from './../../../models'
 import { Redirect } from 'react-router-dom';
 import './login.css'
+import Navbar from './../components/navbar';
 
 function Login() {
    const [loginObject, setLoginObject] = useState({
@@ -66,6 +67,8 @@ function Login() {
     };
 
     return (
+        <div>
+            <Navbar/>
         <div className='container tile is-4 is-parent box'>
             <div className="tile is-child">
                 <div className="field">
@@ -107,6 +110,7 @@ function Login() {
                     <h5><a href="#">Forgot Password?</a></h5>
                 </div>
             </div>
+        </div>
         </div>
 
     )

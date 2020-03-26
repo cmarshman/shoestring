@@ -101,8 +101,9 @@ function handleFormOnsubmit(event){
  
 };
     return (
-
-        <div className='container'>
+<div>
+    <Navbar/>
+        <div className='container box'>
             <div className="field">
                 <label className="label">First Name</label>
                 <div className="control">
@@ -198,6 +199,7 @@ function handleFormOnsubmit(event){
                   <button className="button is-link is-light" onClick = {clearForm}>Cancel</button>
                </div>
             </div>
+      </div>
       </div>
     )
   
