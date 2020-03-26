@@ -3,14 +3,20 @@ import friends from "../../utils/friendList.json";
 
 function Card() {
     return (
-        <div className="columns is-multiline">
+        <div className="tile is-3 is-child box">
             {friends.map(item => (
-                <div key={item.id} className="column is-one-third">
-                    <article className="title is-child has-text-centered" id="block">
-                        <p className="title" id="name">{item.name}</p>
-                        <p className="subtitle" id="location">{item.location}</p>
-                    </article>
-                </div>
+                <article key={item.id} className="media">
+                    <figure className="media-left" id="block">
+                        <p className="image is-48x48" id="friendPic">
+                            <img src="https://bulma.io/images/placeholders/96x96.png" alt="userImage" />
+                        </p>
+                    </figure>
+                    <div>
+                        <h1 className="has-text-weight-semibold has-text-left" id="name">{item.name}</h1>
+                        <h3 className="has-text-left" id="location">{item.location}</h3>
+                    </div>
+
+                </article>
             ))}
         </div>
 

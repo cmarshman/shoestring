@@ -102,7 +102,7 @@ function handleFormOnsubmit(event){
         <>
         <Navbar/>
 
-        <div className='container'>
+        <div className='container box'>
             <div className="field">
                 <label className="label">First Name</label>
                 <div className="control">

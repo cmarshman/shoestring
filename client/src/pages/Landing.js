@@ -7,7 +7,6 @@ function Landing() {
     return (
         <div>
             <Navbar />
-            <FriendCard/>
             <div className="outerTile">
                 <div className="tile is-10 container is-fluid">
                     <div className="tile is-7 is-vertical is-parent">
@@ -28,7 +27,9 @@ function Landing() {
                         </div>
 
                     </div>
-                    <div className="tile is-3 is-child box">
+                    <FriendCard/>
+                    {/* /// */}
+                    {/* <div className="tile is-3 is-child box">
                         <p className="title" id="friendList">Friends</p>
                         <article className="media">
                             <figure className="media-left">
@@ -120,9 +121,9 @@ function Landing() {
                                 </div>
                             </div>
                         </article>
-                    </div>
+                    </div> */}
+                     {/* /// */}
                 </div>
-
             </div>
         </div>
 
