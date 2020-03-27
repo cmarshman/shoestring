@@ -27,8 +27,7 @@ function App() {
         <Route exact path="/sign-up" component={SignUp}/>
         <Route exact path="/home" component={Landing}/>
         <Redirect from='/login/' to="/" />
-        {/* <Redirect from='/home/' to="/login/" /> */}
-      </Wrapper>
+       </Wrapper>
     </div>
     </Router>
     <Footer/>
