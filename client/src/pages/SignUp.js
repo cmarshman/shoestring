@@ -4,9 +4,7 @@ import API from "../utils/api";
 import Navbar from './../components/navbar';
 import Alert from "../components/Alert/alert"
 import './signup.css'
-import {BrowserRouter as Router,Route, Redirect,Switch} from 'react-router-dom';
 import Login from "./Login";
-import Home from './About'
 
 
 function SignUp(){
