@@ -1,6 +1,5 @@
 import React from 'react';
-//import { BrowserRouter as Router, Route } from 'react-router-dom';
-import {BrowserRouter as Router,Route, Redirect,Switch} from 'react-router-dom';
+import {BrowserRouter as Router,Route, Redirect, Switch} from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -27,7 +26,8 @@ function App() {
         <Route exact path="/security" component={Security}/>
         <Route exact path="/sign-up" component={SignUp}/>
         <Route exact path="/home" component={Landing}/>
-        <Redirect from='/login/' to="/home/" />
+        <Redirect from='/login/' to="/" />
+        {/* <Redirect from='/home/' to="/login/" /> */}
       </Wrapper>
     </div>
     </Router>

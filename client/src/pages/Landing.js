@@ -2,7 +2,6 @@ import React from 'react';
 import Navbar from './../components/navbar';
 import './design/Landing.css'
 import FriendCard from './../components/FriendCard';
-
 function Landing() {
     return (
         <div>
