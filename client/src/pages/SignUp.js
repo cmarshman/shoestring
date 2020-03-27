@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { components, useState, useEffect } from "react";
 //import SignupForm from '../components/signupForm/signupForm';
 import API from "../utils/api";
 import Navbar from './../components/navbar';
 import Alert from "../components/Alert/alert"
 import './signup.css'
+import {BrowserRouter as Router,Route, Redirect,Switch} from 'react-router-dom';
+import Login from "./Login";
+import Home from './About'
+
 
 function SignUp(){
 
@@ -17,14 +21,6 @@ const [signupObject, setSignupObject] = useState({
     checked : false
 
   })
-
-  //const isEnabled = signupObject.name.length > 0 && signupObject.checked === true;
- // Load all user and store them with setSignupData
-//  useEffect(() => {
-//     handleInputChange();
-//     //handleFormOnsubmit;
-//   }, []);
-
 
 const [errorData, setErrorData]= useState({
   
@@ -55,7 +51,7 @@ function handleInputChange(event) {
       phone: "",
       email: "",
       password: "",
-      checked: false
+      checked: ""
     })   
   }
 
@@ -71,18 +67,14 @@ function handleInputChange(event) {
         })
 
     console.log("error", errorData);
-    
-  
 
   }
-
-
 
 //Handle the form subission- save it to the database on submit
 function handleFormOnsubmit(event){
     event.preventDefault();
     console.log(signupObject.firstName, signupObject.checked)
-    if({...signupObject} !== 0){
+    if({...signupObject}){
         API.saveSignUpData({
           firstName: signupObject.firstName,
           lastName: signupObject.lastName,
@@ -91,7 +83,10 @@ function handleFormOnsubmit(event){
           password: signupObject.password,
           checked: true
         })
-        .then (clearForm()) 
+        .then (()=>{
+          window.location.reload();
+          return(<Login/>)
+        }) 
         .catch(err => console.log(err))
     }
         
@@ -106,8 +101,8 @@ function handleFormOnsubmit(event){
             <div className="field">
                 <label className="label">First Name</label>
                 <div className="control">
-                <input className="input error"  
-                className = {signupObject.firstName === '' ? "input error" : " input" }
+                <input className="input"  
+                // className = {signupObject.firstName === '' ? "input error" : " input" }
                 type="text" 
                 onChange={handleInputChange}
                 name="firstName"
@@ -123,7 +118,7 @@ function handleFormOnsubmit(event){
                 <label className="label">Last Name</label>
                 <div className="control">
                 <input className="input" type="text"
-                className = {signupObject.lastName === "" ? "input error" : " input" }
+                // className = {signupObject.lastName === "" ? "input error" : " input" }
                 onChange={handleInputChange}
                 name="lastName"
                 placeholder="Last Name (required)"
@@ -135,7 +130,7 @@ function handleFormOnsubmit(event){
             <label className="label">Phone</label>
             <div className="control"> 
                 <input className="input" type="text"
-                className = {signupObject.phone === '' ? "input error" : " input" }
+                // className = {signupObject.phone === '' ? "input error" : " input" }
                 onChange={handleInputChange}
                 name="phone"
                 placeholder="555-555-5555 (required)"
@@ -149,7 +144,7 @@ function handleFormOnsubmit(event){
             <label className="label">Email</label>
             <div className="control has-icons-left has-icons-right">
                 <input className="input " type="email" 
-                className = {signupObject.email === '' ? "input error" : " input" }
+                // className = {signupObject.email === '' ? "input error" : " input" }
                     onChange={handleInputChange}
                     name="email"
                     placeholder="Email (required)"
@@ -166,7 +161,7 @@ function handleFormOnsubmit(event){
                 <label className="label">Password</label>
                    <p className="control has-icons-left">
                    <input className="input " type="password" 
-                    className = {signupObject.password === '' ? "input error" : " input" }
+                    // className = {signupObject.password === '' ? "input error" : " input" }
                     onChange={handleInputChange}
                     name="password"
                     placeholder="Password (required)"
@@ -180,10 +175,11 @@ function handleFormOnsubmit(event){
                <div className="control">
                  <label className="checkbox">
                     <input type="checkbox"
-                    className = {signupObject.checked === ' ' ? "error" : " " }
+                    // className = {signupObject.checked === ' ' ? "error" : " " }
                     onChange={handleInputChange}
                     name="checked"
                     value={signupObject.checked}
+                     
                     />
                       I agree to the <a href="#"> terms and conditions</a>
                 </label>

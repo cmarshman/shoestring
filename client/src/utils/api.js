@@ -1,6 +1,5 @@
 import axios from "axios";
  
-
 export default {
   // Gets all users
   getSignUpData: function() {
@@ -11,11 +10,10 @@ export default {
     return axios.get("/api/signup/" + id);
   },
 
-  getLoginInfo: function(logdata) {
-    console.log("logdata", logdata)
-    return axios.post("/api/login");
-     //return axios.get("/api/login");
-  },
+  getLoginInfo: function(logindata) {
+    console.log("logindata", logindata)
+     return axios.post("/api/login");
+   },
   // 
   // Remove a  user with the given id
   deleteSignUpData: function(id) {
