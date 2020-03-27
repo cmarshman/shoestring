@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import './login.css'
+import './design/login.css'
 import $ from 'jquery';
 import Alert from '../components/Alert/alert'
 import Nav from '../components/navbar'
