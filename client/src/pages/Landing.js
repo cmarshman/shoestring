@@ -2,13 +2,16 @@ import React from 'react';
 import Navbar from './../components/navbar';
 import './design/Landing.css'
 import FriendCard from './../components/FriendCard';
+import SubNav from '../components/SubNav'
 
 function Landing() {
     return (
         <div>
             <Navbar />
+            <SubNav/>
             <div className="outerTile">
-                <div className="tile is-10 container is-fluid">
+                <div className="is-clearfix columns is-centered">
+                <div className="tile is-10 container column is-fluid">
                     <div className="tile is-7 is-vertical is-parent">
                         <div className="tile is-child box">
                             <figure className="image is-128x128">
@@ -123,6 +126,7 @@ function Landing() {
                         </article>
                     </div> */}
                      {/* /// */}
+                </div>
                 </div>
             </div>
         </div>

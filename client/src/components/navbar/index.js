@@ -2,7 +2,7 @@ import React from "react";
 import "./style.css";
 import "./hamburger";
 import { Link, useLocation } from "react-router-dom";
-// import Image from '../../images/Logos/vector/default-monochrome-black.svg'
+import Image from '../../images/Logos/vector/default-monochrome-black.svg'
 
 function Navbar() {
 
@@ -13,7 +13,7 @@ function Navbar() {
       <nav className="navbar" role="navigation" aria-label="main navigation" id="opening-nav">
         <div className="navbar-brand">
           <Link to="/" className="navbar-item">
-            {/* <img src={Image} alt="logo" width="112" height="28"/> */}
+            <img src={Image} alt="logo" width="112" height="28"/>
           </Link>
 
           <Link to="#" role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">

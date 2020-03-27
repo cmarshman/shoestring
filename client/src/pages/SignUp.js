@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import API from "../utils/api";
 import Navbar from './../components/navbar';
 import Alert from "../components/Alert/alert"
-import './signup.css'
+import './design/signup.css'
 
 function SignUp(){
 
