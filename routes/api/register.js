@@ -4,7 +4,9 @@ const signupController = require("../../controllers/signupController");
 // Matches with "/api/books"
 router.route("/")
   .get(signupController.findAll)
-  .get(signupController.findOne)
+  //.get(signupController.findOne)
+  //.post(signupController.findOne)
+  //router.route("/signup")
   .post(signupController.create);
 
 // Matches with "/api/books/:id"
