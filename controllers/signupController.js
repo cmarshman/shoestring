@@ -13,12 +13,12 @@ module.exports = {
       //console.log("from findall", res.json())
   },
   findOne: function(req, res) {
-    console.log("searching for:", req.body);
-    db.SignUp.findOne({ email: req.body.email, password: req.body.password })
+    console.log("searching for:", req.params);
+    db.SignUp.findOne({ email: req.params.email, password: req.params.password })
     .then(function(dbUser) {
       if (!dbUser) {
         res.json('User not found!');
-        console.log("Login failed")
+        //console.log("Login failed")
       } else {
         res.json(dbUser)
         console.log("Login success")
@@ -34,8 +34,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
    },
   create: function(req, res) {
-    db.SignUp
-      .create(req.body)
+    db.SignUp.create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
       console.log("from controller", req.body)
