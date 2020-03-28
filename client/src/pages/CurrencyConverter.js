@@ -6,7 +6,6 @@ function CurrencyConverter(){
     return(
         <>
         <NavBarAuth/>
-        <SubNav/>
         </>
     );
 }

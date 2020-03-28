@@ -4,13 +4,12 @@ import FriendCard from './../components/FriendCard';
 import SubNav from '../components/SubNav'
 import NavBarAuth from '../components/NavBarAuth';
 import JT_square from '../images/Team/JT_square.png'; //to be replaced with user photo later
-import AddImage from './../components/AddImage';
+// import AddImage from './../components/AddImage';
 
 function Landing() {
     return (
         <div>
             <NavBarAuth/>
-            <SubNav/>
             <div className="outerTile">
                 <div className="is-clearfix columns is-centered">
                 <div className="tile is-10 container column is-fluid">
@@ -20,7 +19,7 @@ function Landing() {
                                 <img className="is-rounded" id="userPic" src={JT_square} />
                                 <button id="addImage">Add profile picture</button>
                             </figure>
-//                             <AddImage />
+{/* //                             <AddImage /> */}
                             <br />
                             <p className="title" id="username">JT Turner</p>
                             <p id="funds">Funds Available: $100</p>
