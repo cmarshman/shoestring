@@ -3,6 +3,7 @@ import './design/Landing.css'
 import FriendCard from './../components/FriendCard';
 import SubNav from '../components/SubNav'
 import NavBarAuth from '../components/NavBarAuth';
+import JT_square from '../images/Team/JT_square.png'; //to be replaced with user photo later
 import AddImage from './../components/AddImage';
 
 function Landing() {
@@ -16,9 +17,10 @@ function Landing() {
                     <div className="tile is-7 is-vertical is-parent">
                         <div className="tile is-child box">
                             <figure className="image is-128x128">
-                                <img id="userPic" src="https://bulma.io/images/placeholders/128x128.png" />
+                                <img className="is-rounded" id="userPic" src={JT_square} />
+                                <button id="addImage">Add profile picture</button>
                             </figure>
-                            <AddImage />
+//                             <AddImage />
                             <br />
                             <p className="title" id="username">JT Turner</p>
                             <p id="funds">Funds Available: $100</p>
