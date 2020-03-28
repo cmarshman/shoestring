@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const signupController = require("../../controllers/signupController");
+const passport = require('../../controllers/passport')
 
 // Matches with "/api/books"
 router.route("/")
@@ -15,5 +16,14 @@ router
   .get(signupController.findById)
   .put(signupController.update)
   .delete(signupController.remove);
+
+
+  // router
+  // .route('/login')
+  // .post( passport.authenticate('local', {
+  //   successRedirect: '/home',
+  //   failureRedirect: '/login',
+  //   failureFlash: true
+  // }));
 
 module.exports = router;

@@ -1,3 +1,4 @@
 module.exports = {
-  SignUp: require("./signupSchema")
+  SignUp: require("./signupSchema"),
+ // User: require("./loginSchema")
 };

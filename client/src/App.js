@@ -26,7 +26,7 @@ function App() {
         <Route exact path="/security" component={Security}/>
         <Route exact path="/sign-up" component={SignUp}/>
         <Route exact path="/home" component={Landing}/>
-        <Redirect from='/login/' to="/" />
+        {/* <Redirect from='/login/' to="/" /> */}
        </Wrapper>
     </div>
     </Router>

@@ -18,7 +18,7 @@ function Login() {
         const { name, value } = event.target;
         setLoginObject({ ...loginObject, [name]: value })
         console.log("input ", { name, value })
-        //errorValidation()
+         
     };
 
     //Function to reset the form to empty fields
@@ -30,59 +30,46 @@ function Login() {
         })
     }
 
-    const validate = (alert) =>{
-        if (!{...setLoginObject}){
-             
-
-        }
+    const validate = (err) =>{
+        $("#alert .msg").text(err.responseJSON);
+        $("#alert").fadeIn(500);
     }
 
+
+    function handleLoginErr(err) {
+        $("#alert .msg").text(err.responseJSON);
+        $("#alert").fadeIn(500);
+      }
+
+  
+  // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
+  function loginUser() {
+    $.post("/api/login", {
+        email: loginObject.email,
+        password: loginObject.password
+    })
+      .then(function(result) {
+          console.log("result", result )
+        window.location.replace("/home");
+        // If there's an error, log the error
+      })
+      .catch(validate);
+     
+  }
+ 
+
     //Handle the form subission- save it to the database on submit
-    function handleLoginOnsubmit(event) {
+ function handleLoginOnsubmit(event) {
         event.preventDefault();
         console.log(loginObject.email, loginObject.password)
-         if ({...loginObject}) {
-            //API.getLoginInfo({    
-                $.ajax({
-                    url: '/api/login',
-                    type: 'get',
-                    data: { 
-                      email: loginObject.email, 
-                      password: loginObject.password,
-                    },
-                    success: (response) => {
-                      console.log('response:', response);
-                      response.map(result => {
-                          if(result.email ===loginObject.email && result.password ===loginObject.password){
-                            console.log("Login success" )
-                            window.location.reload();
-                            return(<Redirect from='/' to="/login/" />
-                            )
-                          }//else{
-                          //console.log("bummmm" )
-                          //}
-                      })
-                    //   for (var i=0; i< response.length; i++){
-                    //     console.log("response[i].email", response[i].email)
-                    //     if(response[i].email === loginObject.email){
-                    //       console.log("Login success" )
-                    //       window.location.reload();
-                    //       //return(<Redirect from='/login/' to="/home/" />)
-                    //     }else{
-                    //      console.log("Login failed")
-                    //      return (<Redirect from='/home/' to="/login/" />)  
-                    //     }
-                    //   }
-                    },
-                    error: (err) => {
-                      console.log(err);
-                     }
-            })  
-             .then(clearForm())
-             .catch(err => console.log(err))
-        }
-
-    };
+         if (!{...loginObject}) {
+            return
+         }  
+        
+        loginUser({...loginObject});
+        clearForm();
+   }; 
+          
 
     return (
         <>

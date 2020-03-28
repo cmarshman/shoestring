@@ -13,8 +13,8 @@ module.exports = {
       //console.log("from findall", res.json())
   },
   findOne: function(req, res) {
-    console.log("searching for:", req.params);
-    db.SignUp.findOne({ email: req.params.email, password: req.params.password })
+    console.log("searching for:", req.body);
+    db.SignUp.findOne({ email: req.body.email, password: req.body.password })
     .then(function(dbUser) {
       if (!dbUser) {
         res.json('User not found!');

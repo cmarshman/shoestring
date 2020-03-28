@@ -5,6 +5,7 @@ import Navbar from './../components/navbar';
 import Alert from "../components/Alert/alert"
 import './signup.css'
 import Login from "./Login";
+import $ from 'jquery'
 
 
 function SignUp(){
@@ -68,28 +69,51 @@ function handleInputChange(event) {
 
   }
 
-//Handle the form subission- save it to the database on submit
-function handleFormOnsubmit(event){
-    event.preventDefault();
-    console.log(signupObject.firstName, signupObject.checked)
-    if({...signupObject}){
-        API.saveSignUpData({
+  function handleLoginErr(err) {
+    $("#alert .msg").text(err.responseJSON);
+    $("#alert").fadeIn(500);
+  }
+
+///////////////////////////////////////////////////
+  // Does a post to the signup route. If successful, we are redirected to the members page
+  // Otherwise we log any errors
+  function signUpUser() {
+    $.post("/api/signup", {
           firstName: signupObject.firstName,
           lastName: signupObject.lastName,
           phone: signupObject.phone,
           email: signupObject.email,
           password: signupObject.password,
           checked: true
-        })
-        .then (()=>{
-          window.location.reload();
-          return(<Login/>)
-        }) 
-        .catch(err => console.log(err))
+    })
+      .then(function(data) {
+        window.location.replace("/login");
+        // If there's an error, handle it by throwing up a bootstrap alert
+      })
+      .catch(handleLoginErr);
+  }
+
+  
+//});
+
+
+
+
+//Handle the form subission- save it to the database on submit
+function handleFormOnsubmit(event){
+    event.preventDefault();
+    console.log(signupObject.firstName, signupObject.checked)
+
+    if(!{...signupObject}){
+         return;
     }
+       signUpUser({...signupObject});
+       clearForm();
+  };   
+     
         
  
-};
+ 
     return (
 
         <>
