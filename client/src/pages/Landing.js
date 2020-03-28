@@ -3,6 +3,7 @@ import './design/Landing.css'
 import FriendCard from './../components/FriendCard';
 import SubNav from '../components/SubNav'
 import NavBarAuth from '../components/NavBarAuth';
+import AddImage from './../components/AddImage';
 
 function Landing() {
     return (
@@ -16,8 +17,8 @@ function Landing() {
                         <div className="tile is-child box">
                             <figure className="image is-128x128">
                                 <img id="userPic" src="https://bulma.io/images/placeholders/128x128.png" />
-                                <button id="addImage">Add profile picture</button>
                             </figure>
+                            <AddImage />
                             <br />
                             <p className="title" id="username">JT Turner</p>
                             <p id="funds">Funds Available: $100</p>
@@ -30,7 +31,7 @@ function Landing() {
                         </div>
 
                     </div>
-                    <FriendCard/>
+                    <FriendCard />
                     {/* /// */}
                     {/* <div className="tile is-3 is-child box">
                         <p className="title" id="friendList">Friends</p>
@@ -125,7 +126,7 @@ function Landing() {
                             </div>
                         </article>
                     </div> */}
-                     {/* /// */}
+                    {/* /// */}
                 </div>
                 </div>
             </div>
@@ -135,5 +136,6 @@ function Landing() {
 
     )
 }
+
 
 export default Landing;
