@@ -1,20 +1,18 @@
-import React, { Component } from 'react';
-import Navbar from './../components/navbar';
+import React from 'react';
 import './design/Landing.css'
 import FriendCard from './../components/FriendCard';
+import SubNav from '../components/SubNav'
+import NavBarAuth from '../components/NavBarAuth';
 import AddImage from './../components/AddImage';
 
-
-
-class Landing extends Component {
-
-    render() {
-
+function Landing() {
     return (
         <div>
-            <Navbar />
+            <NavBarAuth/>
+            <SubNav/>
             <div className="outerTile">
-                <div className="tile is-10 container is-fluid">
+                <div className="is-clearfix columns is-centered">
+                <div className="tile is-10 container column is-fluid">
                     <div className="tile is-7 is-vertical is-parent">
                         <div className="tile is-child box">
                             <figure className="image is-128x128">
@@ -130,6 +128,7 @@ class Landing extends Component {
                     </div> */}
                     {/* /// */}
                 </div>
+                </div>
             </div>
         </div>
 
@@ -137,6 +136,6 @@ class Landing extends Component {
 
     )
 }
-}
+
 
 export default Landing;

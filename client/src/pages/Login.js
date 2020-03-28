@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import './login.css'
+import './design/login.css'
 import $ from 'jquery';
 import Alert from '../components/Alert/alert'
 import Nav from '../components/navbar'
+import API from '../utils/api'
 import {BrowserRouter as Router,Route, Redirect,Switch} from 'react-router-dom';
+import Landing from "./Landing";
 
 function Login() {
    const [loginObject, setLoginObject] = useState({
@@ -30,7 +32,7 @@ function Login() {
 
     const validate = (alert) =>{
         if (!{...setLoginObject}){
-            alert("PLESE")
+             
 
         }
     }
@@ -43,20 +45,34 @@ function Login() {
             //API.getLoginInfo({    
                 $.ajax({
                     url: '/api/login',
-                    type: 'post',
+                    type: 'get',
                     data: { 
                       email: loginObject.email, 
                       password: loginObject.password,
                     },
                     success: (response) => {
                       console.log('response:', response);
-                       if(response.email === loginObject.email){
-                          console.log("Login success")
-                          window.location.reload();
-                       }else{
-                         console.log("Login failed");
-                         return (<Redirect from='/home/' to="/login/" />)  
-                        }
+                      response.map(result => {
+                          if(result.email ===loginObject.email && result.password ===loginObject.password){
+                            console.log("Login success" )
+                            window.location.reload();
+                            return(<Redirect from='/' to="/login/" />
+                            )
+                          }//else{
+                          //console.log("bummmm" )
+                          //}
+                      })
+                    //   for (var i=0; i< response.length; i++){
+                    //     console.log("response[i].email", response[i].email)
+                    //     if(response[i].email === loginObject.email){
+                    //       console.log("Login success" )
+                    //       window.location.reload();
+                    //       //return(<Redirect from='/login/' to="/home/" />)
+                    //     }else{
+                    //      console.log("Login failed")
+                    //      return (<Redirect from='/home/' to="/login/" />)  
+                    //     }
+                    //   }
                     },
                     error: (err) => {
                       console.log(err);
@@ -107,6 +123,7 @@ function Login() {
                     <p className="control">
                         <button className="button is-success loginbtn"
                             onClick={handleLoginOnsubmit}>
+                            {/* onClick={() => window.location.reload()> */}
                             Login
                         </button>
                     </p>

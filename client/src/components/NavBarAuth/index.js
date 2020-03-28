@@ -1,10 +1,10 @@
 import React from "react";
 import "./style.css";
-import "./hamburger";
+// import "./hamburger";
 import { Link, useLocation } from "react-router-dom";
 import Image from '../../images/Logos/vector/default-monochrome-black.svg'
 
-function Navbar() {
+function NavBarAuth() {
 
   const location = useLocation();
 
@@ -58,11 +58,8 @@ function Navbar() {
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
-                <Link to="/sign-up" className="button is-light" id="text-theme">
-                  Sign up
-                  </Link>
-                <Link to="/login" className="button is-light" id="text-theme">
-                  Login
+                <Link to="/" className="button is-light" id="text-theme">
+                  Logout
                 </Link>
               </div>
             </div>
@@ -75,4 +72,4 @@ function Navbar() {
   )
 }
 
-export default Navbar;
+export default NavBarAuth;
