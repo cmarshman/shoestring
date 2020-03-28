@@ -26,5 +26,6 @@ export default {
     console.log("signUpdata", signupData)
     return axios.post("/api/signup", signupData);
     
-  }
+  },
+
 };
