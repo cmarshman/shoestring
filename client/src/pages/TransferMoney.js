@@ -6,7 +6,6 @@ function TransferMoney(){
     return(
         <>
         <NavBarAuth/>
-        <SubNav/>
         </>
     );
 }

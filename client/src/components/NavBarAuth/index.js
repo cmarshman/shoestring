@@ -1,10 +1,11 @@
-import React from "react";
+import React, { Component, useState } from "react";
 import "./style.css";
-import "./hamburger.js";
 import { Link, useLocation } from "react-router-dom";
 import Image from '../../images/Logos/vector/default-monochrome-black.svg'
 
-function NavBarAuth() {
+const NavBarAuth = (props) => {
+
+  const [isActive, setisActive] = React.useState(false);
 
   const location = useLocation();
 
@@ -16,43 +17,40 @@ function NavBarAuth() {
             <img src={Image} alt="logo" width="112" height="28"/>
           </Link>
 
-          <Link to="#" role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <Link to="#" 
+          onClick={() => {setisActive(!isActive);}}
+          role="button" 
+          className={`navbar-burger burger ${isActive ? "is-active" : ""}`} 
+          aria-label="menu" 
+          aria-expanded="false" 
+          data-target="navbarBasicExample">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
           </Link>
         </div>
 
-        <div id="navbarBasicExample" className="navbar-menu">
+        <div id="navbarBasicExample" className={`navbar-menu ${isActive ? "is-active" : ""}`}>
           <div className="navbar-start">
-            <Link to="/" className={location.pathname === "/" ? "navbar-item is-active" : "navbar-item"}>
-              Home
+            <Link to="/home" className={location.pathname === "/home" ? "navbar-item is-active" : "navbar-item"}>
+              My Profile
             </Link>
 
-            <Link to="/security" className={location.pathname === "/security" ? "navbar-item is-active" : "navbar-item"}>
-              Security
+            <Link to="/findafriend" className={location.pathname === "/findafriend" ? "navbar-item is-active" : "navbar-item"}>
+              Find a Friend
             </Link>
 
-            <Link to="/about" className={location.pathname === "/about" ? "navbar-item is-active" : "navbar-item"}>
-              About
+            <Link to="/transfermoney" className={location.pathname === "/transfermoney" ? "navbar-item is-active" : "navbar-item"}>
+              Transfer Money
             </Link>
 
-            <Link to="/contact" className={location.pathname === "/contact" ? "navbar-item is-active" : "navbar-item"}>
-              Contact
+            <Link to="/mywallet" className={location.pathname === "/mywallet" ? "navbar-item is-active" : "navbar-item"}>
+              My Wallet
             </Link>
 
-            <div className="navbar-item has-dropdown is-hoverable" >
-              <Link to="#" className="navbar-link" id="navitems">
-                More
-              </Link>
-
-              <div className="navbar-dropdown">
-                <hr className="navbar-divider" />
-                <Link to="/report-an-issue" className={location.pathname === "/report-an-issue" ? "navbar-item is-active" : "navbar-item"}>
-                  Report an issue
-                </Link>
-              </div>
-            </div>
+            <Link to="/currencyconverter" className={location.pathname === "/currencyconverter" ? "navbar-item is-active" : "navbar-item"}>
+              Currency Converter
+            </Link>
           </div>
 
           <div className="navbar-end">
