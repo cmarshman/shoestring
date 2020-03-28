@@ -1,12 +1,19 @@
 import React from 'react';
-import Navbar from './../components/navbar';
-import SubNav from './../components/SubNav'
+import NavBarAuth from '../components/NavBarAuth';
+import SubNav from './../components/SubNav';
+import WalletProfileCard from './../components/WalletProfileCard';
+import WalletTransfer from './../components/WalletTransfer';
 
-function MyWallet(){
-    return(
+function MyWallet() {
+    return (
         <>
-        <Navbar/>
-        <SubNav/>
+            <NavBarAuth />
+            <SubNav />
+            <WalletProfileCard/>
+            <br/>
+            <br/>
+            <br/>
+            <WalletTransfer/>
         </>
     );
 }

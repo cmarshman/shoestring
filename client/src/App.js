@@ -14,6 +14,7 @@ import FindAFriend from './pages/FindAFriend';
 import TransferMoney from './pages/TransferMoney';
 import MyWallet from './pages/MyWallet';
 import CurrencyConverter from './pages/CurrencyConverter';
+
  
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route exact path="/transfermoney" component={TransferMoney}/>
         <Route exact path="/mywallet" component={MyWallet}/>
         <Route exact path="/currencyconverter" component={CurrencyConverter}/>
+
         <Redirect from='/login/' to="/home/"/>
       </Wrapper>
     </div>
