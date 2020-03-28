@@ -1,13 +1,13 @@
 import React from 'react';
-import Navbar from './../components/navbar';
 import './design/Landing.css'
 import FriendCard from './../components/FriendCard';
 import SubNav from '../components/SubNav'
+import NavBarAuth from '../components/NavBarAuth';
 
 function Landing() {
     return (
         <div>
-            <Navbar />
+            <NavBarAuth/>
             <SubNav/>
             <div className="outerTile">
                 <div className="is-clearfix columns is-centered">

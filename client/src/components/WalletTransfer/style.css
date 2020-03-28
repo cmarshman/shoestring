@@ -1,0 +1,14 @@
+.banana{
+    border: #3bd389 3px solid;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+
+#deposit{
+    width: 30%!important;
+
+}
+
+#deposit:hover{
+    background-color: #3bd389!important;
+}

@@ -26,20 +26,20 @@ export default {
     
   },
   // Exchange Rate Api
-  endpoint = 'convert',
-  access_key = 'API_KEY',
-  from = '',
-  to = '',
-  amount = '',
+  // endpoint = 'convert',
+  // access_key = 'API_KEY',
+  // from = '',
+  // to = '',
+  // amount = '',
 
-  latestApi: function() {
-    return axios.get('http://data.fixer.io/api/latest/6f19055bbe0aa8fb8296333561932d16');
+  // latestApi: function() {
+  //   return axios.get('http://data.fixer.io/api/latest/6f19055bbe0aa8fb8296333561932d16');
    
-  },
+  // },
 
-  exchangeApi: function() {
-    return axios.get('http://data.fixer.io/api/covert/?access_key=6f19055bbe0aa8fb8296333561932d16'+'&from=' + from + '&to=' + to + '&amount=' + amount,)
+  // exchangeApi: function() {
+  //   return axios.get('http://data.fixer.io/api/covert/?access_key=6f19055bbe0aa8fb8296333561932d16'+'&from=' + from + '&to=' + to + '&amount=' + amount,)
 
-  }
+  // }
   
 };
