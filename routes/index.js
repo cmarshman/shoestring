@@ -1,26 +1,28 @@
-const path = require("path");
-const router = require("express").Router();
-const apiRoutes = require("./api/register");
-const loginRoutes = require('./api/login_route')
 
-// Requiring our custom middleware for checking if a user is logged in
-var isAuthenticated = require('../controllers/middleware/isAuthenticated')
+const express =     require('express')
+const usersCtrl =   require('../controllers')
+const verifyToken = require('../auth').verifyToken
+// path = require("path");
 
 
-// API Routes
-router.use("/api", apiRoutes);
-//router.use("/api", loginRoutes);
+const usersRouter = new express.Router()
 
- // Here we've add our isAuthenticated middleware to this route.
-  // If a user who is not logged in tries to access this route they will be redirected to the signup page
-  // router.use("/home", isAuthenticated, function(req, res) {
-  //   res.sendFile(path.join(__dirname, "../client/build/index.html"));
-  // });
+// usersRouter.use(function(req, res) {
+//     res.sendFile(path.join(__dirname, "/client/build/index.html"));
+//   });
 
+usersRouter.route('/').get(usersCtrl.index)
 
-// If no API routes are hit, send the React app
-router.use(function(req, res) {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
-});
+usersRouter.route('/').post(usersCtrl.create)
 
-module.exports = router;
+usersRouter.post('/authenticate', usersCtrl.authenticate)
+
+usersRouter.use(verifyToken)
+
+usersRouter.route('/:id').get(usersCtrl.show)
+
+usersRouter.route('/:id').patch(usersCtrl.update)
+
+usersRouter.route('/:id').delete(usersCtrl.destroy)
+
+module.exports = usersRouter

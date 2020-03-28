@@ -1,34 +1,35 @@
-require('dotenv').config();
+require('dotenv').config()
 
-const express = require("express");
-const mongoose = require("mongoose");
-const routes = require("./routes");
-var session = require("express-session");
-// Requiring passport as we've configured it
-var passport = require("./controllers/passport");
+const express = require('express')
+const logger = require('morgan')
+const mongoose = require('mongoose')
+const usersRoutes = require('./routes')
 
-const app = express();
+const app = express()
 
-const PORT = process.env.PORT || 3000;
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/shoestring'
+const PORT = process.env.PORT || 3000
 
+mongoose.set('useCreateIndex', true)
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, (err) => {
+	console.log(err || `Connected to MongoDB.`)
+})
+
+app.use(express.static(`${__dirname}/client/build`))
+app.use(logger('dev'))
+app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 
-// We need to use sessions to keep track of our user's login status
-app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
-//app.use(passport.initialize());
-//app.use(passport.session());
+app.get('/api', (req, res) => {
+	res.json({message: "API root"})
+})
 
+app.use('/api/users', usersRoutes)
 
+app.use('*', (req, res) => {
+	res.sendFile(`${__dirname}../client/build/index.html`)
+})
 
- if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
- }
-
-app.use(routes);
-
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/shoestring");
-
-app.listen(PORT, function() {
-  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-});
+app.listen(PORT, (err) => {
+	console.log(err || `Server running on port ${PORT}.`)
+})
