@@ -25,9 +25,6 @@ export default {
     return axios.post("/api/signup", signupData);
     
   },
-<<<<<<< HEAD
-
-=======
   // Exchange Rate Api
   // endpoint = 'convert',
   // access_key = 'API_KEY',
@@ -45,5 +42,4 @@ export default {
 
   // }
   
->>>>>>> 6936ecae9a408441573bfc2bba824dffee656dbc
 };
