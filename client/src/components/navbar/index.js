@@ -1,29 +1,39 @@
-import React from "react";
+import React, { Component, useState } from "react";
 import "./style.css";
-import "./hamburger";
 import { Link, useLocation } from "react-router-dom";
-// import Image from '../../images/Logos/vector/default-monochrome-black.svg'
+import Image from '../../images/Logos/vector/default-monochrome-black.svg'
 
-function Navbar() {
 
-  const location = useLocation();
+const Navbar =(props) => {
+
+const [isActive, setisActive] = React.useState(false);
+
+const location = useLocation();
+
+
 
   return (
     <div>
       <nav className="navbar" role="navigation" aria-label="main navigation" id="opening-nav">
         <div className="navbar-brand">
           <Link to="/" className="navbar-item">
-            {/* <img src={Image} alt="logo" width="112" height="28"/> */}
+            <img src={Image} alt="logo" width="112" height="28"/>
           </Link>
 
-          <Link to="#" role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <Link to="#" 
+          onClick={() => {setisActive(!isActive);}}
+          role="button" 
+          className={`navbar-burger burger ${isActive ? "is-active" : ""}`}
+          aria-label="menu" 
+          aria-expanded="false" 
+          data-target="navbarBasicExample">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
           </Link>
         </div>
 
-        <div id="navbarBasicExample" className="navbar-menu">
+        <div id="navbarBasicExample" className={`navbar-menu ${isActive ? "is-active" : ""}`}>
           <div className="navbar-start">
             <Link to="/" className={location.pathname === "/" ? "navbar-item is-active" : "navbar-item"}>
               Home
@@ -72,7 +82,8 @@ function Navbar() {
       <br/>
       <br/>
     </div>
-  )
+  );
 }
+
 
 export default Navbar;

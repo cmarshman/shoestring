@@ -8,7 +8,7 @@ const usersRoutes = require('./routes')
 const app = express()
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/shoestring'
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3001
 
 mongoose.set('useCreateIndex', true)
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, (err) => {
@@ -27,7 +27,7 @@ app.get('/api', (req, res) => {
 app.use('/api/users', usersRoutes)
 
 app.use('*', (req, res) => {
-	res.sendFile(`${__dirname}../client/build/index.html`)
+	res.sendFile(`${__dirname}/client/build/index.html`)
 })
 
 app.listen(PORT, (err) => {

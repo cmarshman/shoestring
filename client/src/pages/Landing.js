@@ -1,19 +1,25 @@
 import React from 'react';
-import Navbar from './../components/navbar';
 import './design/Landing.css'
 import FriendCard from './../components/FriendCard';
+import SubNav from '../components/SubNav'
+import NavBarAuth from '../components/NavBarAuth';
+import JT_square from '../images/Team/JT_square.png'; //to be replaced with user photo later
+// import AddImage from './../components/AddImage';
+
 function Landing() {
     return (
         <div>
-            <Navbar />
+            <NavBarAuth/>
             <div className="outerTile">
-                <div className="tile is-10 container is-fluid">
+                <div className="is-clearfix columns is-centered">
+                <div className="tile is-10 container column is-fluid">
                     <div className="tile is-7 is-vertical is-parent">
                         <div className="tile is-child box">
                             <figure className="image is-128x128">
-                                <img id="userPic" src="https://bulma.io/images/placeholders/128x128.png" />
+                                <img className="is-rounded" id="userPic" src={JT_square} />
                                 <button id="addImage">Add profile picture</button>
                             </figure>
+{/* //                             <AddImage /> */}
                             <br />
                             <p className="title" id="username">JT Turner</p>
                             <p id="funds">Funds Available: $100</p>
@@ -26,7 +32,7 @@ function Landing() {
                         </div>
 
                     </div>
-                    <FriendCard/>
+                    <FriendCard />
                     {/* /// */}
                     {/* <div className="tile is-3 is-child box">
                         <p className="title" id="friendList">Friends</p>
@@ -121,7 +127,8 @@ function Landing() {
                             </div>
                         </article>
                     </div> */}
-                     {/* /// */}
+                    {/* /// */}
+                </div>
                 </div>
             </div>
         </div>
@@ -130,5 +137,6 @@ function Landing() {
 
     )
 }
+
 
 export default Landing;

@@ -14,7 +14,7 @@ export default {
     console.log("logindata", logindata)
      return axios.post("/api/login");
    },
-  // 
+ 
   // Remove a  user with the given id
   deleteSignUpData: function(id) {
     return axios.delete("/api/signup/" + id);
@@ -24,5 +24,22 @@ export default {
     console.log("signUpdata", signupData)
     return axios.post("/api/signup", signupData);
     
-  }
+  },
+  // Exchange Rate Api
+  // endpoint = 'convert',
+  // access_key = 'API_KEY',
+  // from = '',
+  // to = '',
+  // amount = '',
+
+  // latestApi: function() {
+  //   return axios.get('http://data.fixer.io/api/latest/6f19055bbe0aa8fb8296333561932d16');
+   
+  // },
+
+  // exchangeApi: function() {
+  //   return axios.get('http://data.fixer.io/api/covert/?access_key=6f19055bbe0aa8fb8296333561932d16'+'&from=' + from + '&to=' + to + '&amount=' + amount,)
+
+  // }
+  
 };

@@ -8,7 +8,7 @@ function Card() {
                 <article key={item.id} className="media">
                     <figure className="media-left" id="block">
                         <p className="image is-48x48" id="friendPic">
-                            <img src="https://bulma.io/images/placeholders/96x96.png" alt="userImage" />
+                            <img className="is-rounded"src="https://bulma.io/images/placeholders/96x96.png" alt="userImage" />
                         </p>
                     </figure>
                     <div>

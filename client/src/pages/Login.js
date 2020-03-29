@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import httpClient from '../httpClient'
 import $ from 'jquery';
 import Nav from '../components/navbar'
+import '../pages/design/login.css'
 
 function Login() {
 
@@ -33,59 +34,22 @@ function Login() {
         $("#alert").fadeIn(500);
     }
 
-    //setLoginObject = { currentUser: httpClient.getCurrentUser() }
-
-	const onLoginSuccess= (user) => {
-        //user: {email: loginObject.email, password: loginObject.password}
-		setLoginObject({ currentUser: httpClient.getCurrentUser(user) })
-	}
-
-  
-  // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
-//   function loginUser() {
-//     $.post("/api/login", {
-//         email: loginObject.email,
-//         password: loginObject.password
-//     })
-//       .then(function(result) {
-//           console.log("result", result )
-//         window.location.replace("/home");
-//         // If there's an error, log the error
-//       })
-//       .catch(validate);
-     
+	//Function to handle submit
     function handleLoginOnsubmit(evt) {
         evt.preventDefault()
         console.log(loginObject.email, loginObject.password)
         const alluser = {...loginObject}
 		httpClient.logIn(alluser).then(user => {
+            console.log("user", user )
 			if(user) {
-				onLoginSuccess(user)
 				window.location.history.push('/')
 			}
-        }) 
-        .then(function(result) {
-            console.log("result", result )
-                    //window.location.replace("/home");
-                    // If there's an error, log the error
-        })
-        .catch(validate);
-         clearForm();
+        }).catch(validate);
+           clearForm();
 
      
     }
     //Handle the form subission- save it to the database on submit
-//  function handleLoginOnsubmit(event) {
-//         event.preventDefault();
-//         console.log(loginObject.email, loginObject.password)
-//          if (!{...loginObject}) {
-//             return
-//          }  
-        
-//         loggedUser({...loginObject});
-//         clearForm();
-//    }; 
-          
 
     return (
         <>
