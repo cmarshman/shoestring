@@ -1,4 +1,4 @@
-import React from 'react';
+//import React from 'react';
 import './design/Landing.css'
 import FriendCard from './../components/FriendCard';
 import SubNav from '../components/SubNav'
@@ -6,15 +6,78 @@ import NavBarAuth from '../components/NavBarAuth';
 import JT_square from '../images/Team/JT_square.png'; //to be replaced with user photo later
 // import AddImage from './../components/AddImage';
 import login from './Login'
+import React, { useState, useEffect } from "react";
+import httpClient from '../httpClient'
+import Axios from 'axios';
+import { get } from 'mongoose';
 
-function Landing(props) {
+function Landing(currentUser) {
  
-    const display = login.props
-    console.log("props", display)
+    const [currentUserObj, setCurrentUserObj] = useState({
+         currentUser: httpClient.getCurrentUser()
+       
+    })
+
+    // Load the available token on pageload from local storage
+    //async 
+    useEffect(() => {
+         onLoginSuccess()
+         data :{}
+        //loadUser()
+    }, [ ])
+
+
+	const onLoginSuccess= () =>{
+        // setCurrentUserObj({ currentUser: httpClient.getCurrentUser(user) })
+        // //console.log("logged " , props.currentUser)
+        console.log("currentUserObj " , currentUserObj)
+
+        setCurrentUserObj ({
+            firstName: currentUserObj.currentUser.firstName,
+            lastName: currentUserObj.currentUser.lastName,
+            phone: currentUserObj.currentUser.phone,
+            email: currentUserObj.currentUser.email,
+            password: currentUserObj.currentUser.password,
+            checked: true
+        })
+        console.log("currentUserObj " , currentUserObj.currentUser.firstName)
+	}//
+
+    // setCurrentUserObj ({
+    //     firstName: currentUserObj.firstName,
+    //     lastName: currentUserObj.lastName,
+    //     phone: currentUserObj.phone,
+    //     email: currentUserObj.email,
+    //     password: currentUserObj.password,
+    //     checked: true
+    // })
+
+
+	const logOut =() =>{
+		httpClient.logOut()
+		setCurrentUserObj({ currentUser: null })
+	}
+	
+ 
+
+  // Loads all books and sets them to books
+      function loadUser(data) {
+        data.map(result =>{
+            return(
+            <div>
+            <p>{result.firstname}</p>
+            <p>{result.lname}</p>
+            </div>
+            )
+        })
+    };
+ 
+    // const display = login.props
+    // console.log("props", display)
 
     return (
         <div>
-            <NavBarAuth/>
+            <NavBarAuth onClick ={logOut}/>
             <div className="outerTile">
                 <div className="is-clearfix columns is-centered">
                 <div className="tile is-10 container column is-fluid">
@@ -26,7 +89,9 @@ function Landing(props) {
                             </figure>
 {/* //                             <AddImage /> */}
                             <br />
-                            <p className="title" id="username">JT</p>
+                            <p className="title" id="username"> {currentUserObj.currentUser.firstName}
+                            
+                            </p>
                             <p id="funds">Funds Available: $100</p>
                             <p id="member">Member Since: April 2019</p>
                         </div>

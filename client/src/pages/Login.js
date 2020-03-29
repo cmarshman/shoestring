@@ -13,7 +13,7 @@ function Login() {
    const [loginObject, setLoginObject] = useState({
         email: "",
         password: "",
-        user: false
+       
     })
 
  //function to Handle the  input field
@@ -33,10 +33,10 @@ function Login() {
         })
     }
 
-    const validate = () =>{
+    const validate = (user) =>{
        
         return(
-            <div> <p className = {loginObject.email ==="" ? "input error" : " input"}>
+            <div> <p className = {!(user) ? "input error" : " input"}>
             </p>
             </div>
           )
@@ -54,7 +54,7 @@ function Login() {
                 console.log('YAY' )
                 window.location.replace("/home") 
             }
-             validate()
+             validate(user)
           }).catch(validate);
              clearForm();
      
@@ -69,8 +69,7 @@ function Login() {
             <div className="tile is-child">
                 <div className="field">
                     <p className="control has-icons-left has-icons-right">
-                        <input className="input" type="email" placeholder="Email"
-                         onSubmit ={validate}
+                        <input className={!(loginObject) ? "input error" : " input"} type="email" placeholder="Email"
                             onChange={handleInputChange}
                              name="email"
                             placeholder="Email (required)"
