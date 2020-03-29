@@ -26,7 +26,7 @@ function Landing(props) {
                             </figure>
 {/* //                             <AddImage /> */}
                             <br />
-                            <p className="title" id="username">{props.firstName}</p>
+                            <p className="title" id="username">JT</p>
                             <p id="funds">Funds Available: $100</p>
                             <p id="member">Member Since: April 2019</p>
                         </div>

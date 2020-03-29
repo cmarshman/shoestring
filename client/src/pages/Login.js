@@ -3,6 +3,9 @@ import React, { useState, useEffect } from "react";
 import httpClient from '../httpClient'
 import $ from 'jquery';
 import Nav from '../components/navbar'
+import Landing from '../pages/Landing';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+
 import '../pages/design/login.css'
 
 function Login() {
@@ -10,6 +13,7 @@ function Login() {
    const [loginObject, setLoginObject] = useState({
         email: "",
         password: "",
+        user: false
     })
 
  //function to Handle the  input field
@@ -29,9 +33,13 @@ function Login() {
         })
     }
 
-    const validate = (err) =>{
-        $("#alert .msg").text(err.responseJSON);
-        $("#alert").fadeIn(500);
+    const validate = () =>{
+       
+        return(
+            <div> <p className = {loginObject.email ==="" ? "input error" : " input"}>
+            </p>
+            </div>
+          )
     }
 
 	//Function to handle submit
@@ -44,13 +52,11 @@ function Login() {
 			if(user) {
                 //this.state.history.push('/home')
                 console.log('YAY' )
-                this.props.onLoginSuccess(user)
-                this.props.history.push('/home')
-                return user
-			}
-        }).catch(validate);
-           clearForm();
-
+                window.location.replace("/home") 
+            }
+             validate()
+          }).catch(validate);
+             clearForm();
      
     }
     //Handle the form subission- save it to the database on submit
@@ -64,9 +70,9 @@ function Login() {
                 <div className="field">
                     <p className="control has-icons-left has-icons-right">
                         <input className="input" type="email" placeholder="Email"
-                            // className={loginObject.email === '' ? "input error" : " input"}
+                         onSubmit ={validate}
                             onChange={handleInputChange}
-                            name="email"
+                             name="email"
                             placeholder="Email (required)"
                             value={loginObject.email} />
                         <span className="icon is-small is-left">
@@ -94,7 +100,8 @@ function Login() {
                     <p className="control">
                         <button className="button is-success loginbtn"
                             onClick={handleLoginOnsubmit}>
-                            {/* onClick={() => window.location.reload()> */}
+                            {/* onSubmit={() => validate} */}
+                            
                             Login
                         </button>
                     </p>

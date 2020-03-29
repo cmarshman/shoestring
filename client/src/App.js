@@ -18,20 +18,17 @@ import httpClient from '../src/httpClient'
 
  
 function App() {
+  // useState = { currentUser: httpClient.getCurrentUser() }
+  // const { currentUser } = useState
 
-  const [currentUser, setNewObject] = useState({
-     currentUser: httpClient.getCurrentUser() });
 
-     //const currentUser : httpClient.getCurrentUser()
+	// function onLoginSuccess(user) {
+	// 	useState({ currentUser: httpClient.getCurrentUser(user) })
+	// }
 
-  const onLoginSuccess= (user) => {
-		setNewObject({ currentUser: httpClient.getCurrentUser(user) })
-	}
-
-	const logOut =() => {
-		httpClient.logOut()
-		this.setNewObject({ currentUser: null })
-	}
+	// function logOut() {
+	// 	httpClient.logOut()
+	// 	this.setState({ currentUser: null })
 	
   return (
     <>
@@ -46,11 +43,11 @@ function App() {
         <Route exact path="/security" component={Security}/>
         <Route exact path="/sign-up" component={SignUp}/>
         <Route exact path="/home" component={Landing}/>
-        <Route path="/login" render={() => {
-						return onLoginSuccess
+        {/* <Route path="/home" render={() => {
+						return user
 							? <Landing />
 							: <Redirect to="/login" />
-					}} />
+					}} /> */}
         {/* <Redirect from='/login/' to="/" /> */}
        </Wrapper>
     </div>
@@ -58,9 +55,6 @@ function App() {
     <Footer/>
     </>
   );
-
 }
 
 export default App;
-
-
