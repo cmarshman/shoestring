@@ -5,8 +5,13 @@ import SubNav from '../components/SubNav'
 import NavBarAuth from '../components/NavBarAuth';
 import JT_square from '../images/Team/JT_square.png'; //to be replaced with user photo later
 // import AddImage from './../components/AddImage';
+import login from './Login'
 
-function Landing() {
+function Landing(props) {
+ 
+    const display = login.props
+    console.log("props", display)
+
     return (
         <div>
             <NavBarAuth/>
@@ -21,7 +26,7 @@ function Landing() {
                             </figure>
 {/* //                             <AddImage /> */}
                             <br />
-                            <p className="title" id="username">JT Turner</p>
+                            <p className="title" id="username">{props.firstName}</p>
                             <p id="funds">Funds Available: $100</p>
                             <p id="member">Member Since: April 2019</p>
                         </div>

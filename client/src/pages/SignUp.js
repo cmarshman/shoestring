@@ -56,7 +56,9 @@ function SignUp() {
     }).then(user => {
        console.log("user", user)
       if (user) {
-         window.history.push('/')
+         //window.history.push('/')
+         this.props.onSignUpSuccess(user)
+			 	 this.props.history.push('/')
       }
     }).catch(handleLoginErr);
        clearForm()

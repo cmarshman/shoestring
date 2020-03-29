@@ -2,14 +2,9 @@
 const express =     require('express')
 const usersCtrl =   require('../controllers')
 const verifyToken = require('../auth').verifyToken
-// path = require("path");
-
+ 
 
 const usersRouter = new express.Router()
-
-// usersRouter.use(function(req, res) {
-//     res.sendFile(path.join(__dirname, "/client/build/index.html"));
-//   });
 
 usersRouter.route('/').get(usersCtrl.index)
 

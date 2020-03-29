@@ -42,7 +42,11 @@ function Login() {
 		httpClient.logIn(alluser).then(user => {
             console.log("user", user )
 			if(user) {
-				window.location.history.push('/')
+                //this.state.history.push('/home')
+                console.log('YAY' )
+                this.props.onLoginSuccess(user)
+                this.props.history.push('/home')
+                return user
 			}
         }).catch(validate);
            clearForm();

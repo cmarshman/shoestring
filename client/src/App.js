@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState  } from "react";
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -14,9 +14,25 @@ import FindAFriend from './pages/FindAFriend';
 import TransferMoney from './pages/TransferMoney';
 import MyWallet from './pages/MyWallet';
 import CurrencyConverter from './pages/CurrencyConverter';
+import httpClient from '../src/httpClient'
 
  
 function App() {
+
+  const [currentUser, setNewObject] = useState({
+     currentUser: httpClient.getCurrentUser() });
+
+     //const currentUser : httpClient.getCurrentUser()
+
+  const onLoginSuccess= (user) => {
+		setNewObject({ currentUser: httpClient.getCurrentUser(user) })
+	}
+
+	const logOut =() => {
+		httpClient.logOut()
+		this.setNewObject({ currentUser: null })
+	}
+	
   return (
     <>
     <Router>
@@ -30,6 +46,11 @@ function App() {
         <Route exact path="/security" component={Security}/>
         <Route exact path="/sign-up" component={SignUp}/>
         <Route exact path="/home" component={Landing}/>
+        <Route path="/login" render={() => {
+						return onLoginSuccess
+							? <Landing />
+							: <Redirect to="/login" />
+					}} />
         {/* <Redirect from='/login/' to="/" /> */}
        </Wrapper>
     </div>
