@@ -52,6 +52,8 @@ function Login() {
 			if(user) {
                 //this.state.history.push('/home')
                 console.log('YAY' )
+                this.props.onLoginSuccess(user)
+				this.props.history.push('/')
                 window.location.replace("/home") 
             }
              validate(user)

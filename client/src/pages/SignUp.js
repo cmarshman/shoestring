@@ -56,7 +56,9 @@ function SignUp() {
     }).then(user => {
        console.log("user", user)
       if (user) {
-          window.location.replace("/login")
+        this.props.onSignUpSuccess(user)
+				this.props.history.push('/')
+        window.location.replace("/login")
       }
       return (<div><p className ="error">User Not found</p></div>)
     }).catch(handleLoginErr);
