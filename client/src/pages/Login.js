@@ -45,16 +45,13 @@ function Login() {
 	//Function to handle submit
     function handleLoginOnsubmit(evt) {
         evt.preventDefault()
-        console.log(loginObject.email, loginObject.password)
         const alluser = {...loginObject}
 		httpClient.logIn(alluser).then(user => {
             console.log("user", user )
 			if(user) {
-                //this.state.history.push('/home')
-                console.log('YAY' )
+                window.location.replace("/home") 
                 this.props.onLoginSuccess(user)
 				this.props.history.push('/')
-                window.location.replace("/home") 
             }
              validate(user)
           }).catch(validate);

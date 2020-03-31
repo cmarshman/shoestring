@@ -5,11 +5,9 @@ import SubNav from '../components/SubNav'
 import NavBarAuth from '../components/NavBarAuth';
 import JT_square from '../images/Team/JT_square.png'; //to be replaced with user photo later
 // import AddImage from './../components/AddImage';
-import login from './Login'
-import React, { useState, useEffect } from "react";
+ import React, { useState, useEffect } from "react";
 import httpClient from '../httpClient'
-import Axios from 'axios';
-import { get } from 'mongoose';
+ 
 
 function Landing(props, currentUser) {
  
@@ -17,8 +15,7 @@ function Landing(props, currentUser) {
          currentUser: httpClient.getCurrentUser()
        
     })
-//console.log("props", props)
-
+ 
 //Restructuring the data received from history 
     currentUser =[
         {
@@ -31,12 +28,13 @@ function Landing(props, currentUser) {
 
     // Load the available token on pageload from local storage
      useEffect(() => {
-         onLoginSuccess()
+        onLoginSuccess()
           
     }, [])
 
- 	const onLoginSuccess= (currentUser) =>{
-        setCurrentUserObj({ currentUser: httpClient.getCurrentUser(currentUser) })
+ 	const onLoginSuccess= (user) =>{
+        
+        setCurrentUserObj({ currentUser: httpClient.getCurrentUser(user) })
          console.log("currentUserObj " , currentUserObj )
         console.log("user " , currentUserObj.currentUser.firstName)
 	}
@@ -60,7 +58,7 @@ function Landing(props, currentUser) {
                             </figure>
 {/* //                             <AddImage /> */}
                             <br />
-                            <p>{currentUser[0].firstName} {currentUser[0].firstName}
+                            <p>{currentUser[0].firstName} {currentUser[0].lastName}
                             </p>
                             <p id="funds">Funds Available: $100</p>
                             <p id="member">Member Since: April 2019</p>

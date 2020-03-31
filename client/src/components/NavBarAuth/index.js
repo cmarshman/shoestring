@@ -1,13 +1,33 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import "./style.css";
 import { Link, useLocation } from "react-router-dom";
 import Image from '../../images/Logos/vector/default-monochrome-black.svg'
+import httpClient from '../../httpClient'
+//import Navbar from '../../components/navbar'
+//import Login from '../../pages/'
 
-const NavBarAuth = (props) => {
+const NavBarAuth = (props, currentUser) => {
 
   const [isActive, setisActive] = React.useState(false);
 
   const location = useLocation();
+
+  const [currentUserObj, setCurrentUserObj] = useState({
+    currentUser: httpClient.getCurrentUser()
+  
+})
+ 
+// Load the available token on pageload from local storage
+// useEffect(() => {
+//   //logOut()
+     
+// }, [])
+
+  const logOut =() =>{
+		httpClient.logOut()
+    setCurrentUserObj({ currentUser: null })
+     
+	}
 
   return (
     <div>
@@ -56,7 +76,7 @@ const NavBarAuth = (props) => {
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
-                <Link to="/" className="button is-light" id="text-theme">
+                <Link to="/" className="button is-light" id="text-theme" onClick={logOut}>
                   Logout
                 </Link>
               </div>

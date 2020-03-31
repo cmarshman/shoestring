@@ -54,15 +54,16 @@ function SignUp() {
       password: signupObject.password,
       checked: true
     }).then(user => {
-       console.log("user", user)
+      console.log("user", user)
       if (user) {
-        this.props.onSignUpSuccess(user)
-				this.props.history.push('/')
         window.location.replace("/login")
+        this.props.onSignUpSuccess(user)
+        this.props.history.push('/')
+
       }
-      return (<div><p className ="error">User Not found</p></div>)
+      return (<div><p className="error">User Not found</p></div>)
     }).catch(handleLoginErr);
-       clearForm()
+    clearForm()
   }
 
 // render the Form
