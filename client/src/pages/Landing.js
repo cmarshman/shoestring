@@ -33,19 +33,16 @@ function Landing(props, currentUser) {
     }, [])
 
  	const onLoginSuccess= (user) =>{
-        
         setCurrentUserObj({ currentUser: httpClient.getCurrentUser(user) })
          console.log("currentUserObj " , currentUserObj )
         console.log("user " , currentUserObj.currentUser.firstName)
 	}
-	const logOut =() =>{
-		httpClient.logOut()
-		setCurrentUserObj({ currentUser: null })
-	}
+	 
 	
     return (
         
         <div>
+           {currentUser}? 
             <NavBarAuth/>
             <div className="outerTile">
                 <div className="is-clearfix columns is-centered">

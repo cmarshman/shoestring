@@ -15,21 +15,10 @@ import TransferMoney from './pages/TransferMoney';
 import MyWallet from './pages/MyWallet';
 import CurrencyConverter from './pages/CurrencyConverter';
 import httpClient from '../src/httpClient'
-
+import Reset from '../src/pages/ResetPwd'
  
 function App() {
-  // useState = { currentUser: httpClient.getCurrentUser() }
-  // const { currentUser } = useState
-
-
-	// function onLoginSuccess(user) {
-	// 	useState({ currentUser: httpClient.getCurrentUser(user) })
-	// }
-
-	// function logOut() {
-	// 	httpClient.logOut()
-	// 	this.setState({ currentUser: null })
-	
+   
   return (
     <>
     <Router>
@@ -43,6 +32,7 @@ function App() {
         <Route exact path="/security" component={Security}/>
         <Route exact path="/sign-up" component={SignUp}/>
         <Route exact path="/home" component={Landing}/>
+        <Route exact path="/reset" component={Reset}/>
         {/* <Route path="/home" render={() => {
 						return user
 							? <Landing />

@@ -5,11 +5,10 @@ import $ from 'jquery';
 import Nav from '../components/navbar' 
 import '../pages/design/login.css'
 
-function Login() {
+function ResetPwd() {
 
    const [loginObject, setLoginObject] = useState({
-        email: "",
-        password: "",
+        email: "", 
        
     })
 
@@ -25,7 +24,7 @@ function Login() {
     const clearForm = () => {
         setLoginObject({
             email: "",
-            password: "",
+             
 
         })
     }
@@ -40,19 +39,21 @@ function Login() {
     }
 
 	//Function to handle submit
-    function handleLoginOnsubmit(evt) {
+    function handleResetOnsubmit(evt) {
         evt.preventDefault()
-        const alluser = {...loginObject}
-		httpClient.logIn(alluser).then(user => {
-            console.log("user", user )
-			if(user) {
-                window.location.replace("/home") 
-                this.props.onLoginSuccess(user)
-				this.props.history.push('/')
-            }
-             validate(user)
-          }).catch(validate);
-             clearForm();
+             $.ajax({
+                url: 'http://data.fixer.io/api/latest/6f19055bbe0aa8fb8296333561932d16',
+                method: 'get',
+                data: { 
+                 type: JSON
+                },
+                success: (response) => {
+                  console.log('response:', response);
+                },
+                error: (err) => {
+                  console.log(err);
+                } 
+            })
      
     }
 
@@ -60,11 +61,15 @@ function Login() {
     return (
         <>
         <Nav/>
-        <div className='container tile is-4 is-parent box'>
+         <div className='container tile is-4 is-parent box'>
+       
             <div className="tile is-child">
+            <p className="reset"><em>Please Enter your Email to receive a reset password Link.</em></p>
+            <br></br>
                 <div className="field">
                 <label className="label">Email</label>
                     <p className="control has-icons-left has-icons-right">
+                        
                         <input className="input" type="email" placeholder="Email"
                             onChange={handleInputChange}
                              name="email"
@@ -78,32 +83,18 @@ function Login() {
                         </span>
                     </p>
                 </div>
-                <div className="field">
-                <label className="label">Password</label>
-                    <p className="control has-icons-left">
-                        <input className="input" type="password" placeholder="Password"
-                         
-                            onChange={handleInputChange}
-                            name="password"
-                            placeholder="Password (required)"
-                            value={loginObject.password} />
-                        <span className="icon is-small is-left">
-                            <i className="fas fa-lock"></i>
-                        </span>
-                    </p>
-                </div>
+                
                 <div className="field">
                     <p className="control">
                         <button className="button is-success loginbtn"
-                            onClick={handleLoginOnsubmit}>
-                            Login
+                            onClick={handleResetOnsubmit}>
+                            Reset Password
                         </button>
                     </p>
-                    <h5><a href="/reset">Forgot Password?</a></h5>
                 </div>
             </div>
         </div>
         </>
     )
 }
-export default Login;
+export default ResetPwd;
