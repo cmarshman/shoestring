@@ -1,14 +1,23 @@
-const path = require("path");
-const router = require("express").Router();
-const apiRoutes = require("./api");
 
-// API Routes
-router.use("/api", apiRoutes);
+const express =     require('express')
+const usersCtrl =   require('../controllers')
+const verifyToken = require('../auth').verifyToken
+ 
 
+const usersRouter = new express.Router()
 
-// If no API routes are hit, send the React app
-router.use(function(req, res) {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
-});
+usersRouter.route('/').get(usersCtrl.index)
 
-module.exports = router;
+usersRouter.route('/').post(usersCtrl.create)
+
+usersRouter.post('/authenticate', usersCtrl.authenticate)
+
+usersRouter.use(verifyToken)
+
+usersRouter.route('/:id').get(usersCtrl.show)
+
+usersRouter.route('/:id').patch(usersCtrl.update)
+
+usersRouter.route('/:id').delete(usersCtrl.destroy)
+
+module.exports = usersRouter

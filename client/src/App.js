@@ -1,4 +1,6 @@
-import React from 'react';
+
+import React, {useState  } from "react";
+
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -14,9 +16,12 @@ import FindAFriend from './pages/FindAFriend';
 import TransferMoney from './pages/TransferMoney';
 import MyWallet from './pages/MyWallet';
 import CurrencyConverter from './pages/CurrencyConverter';
+import httpClient from '../src/httpClient'
+import Reset from '../src/pages/ResetPwd'
 
  
 function App() {
+   
   return (
     <>
     <Router>
@@ -30,6 +35,7 @@ function App() {
         <Route exact path="/security" component={Security}/>
         <Route exact path="/sign-up" component={SignUp}/>
         <Route exact path="/home" component={Landing}/>
+        <Route exact path="/reset" component={Reset}/>
         <Route exact path="/findafriend" component={FindAFriend}/>
         <Route exact path="/transfermoney" component={TransferMoney}/>
         <Route exact path="/mywallet" component={MyWallet}/>
@@ -41,9 +47,6 @@ function App() {
     <Footer/>
     </>
   );
-
 }
 
 export default App;
-
-

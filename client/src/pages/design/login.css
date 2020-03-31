@@ -11,6 +11,17 @@
 .control{
     margin-bottom:25px
 }
+
+
+.reset{
+    /* padding: 3px; */
+    /* border: 1px solid black; */
+    color:black;
+    /* text-align: center; */
+    /* font-size: large; */
+    /* font-weight: bold; */
+}
+
  
 .errorMsg{
     padding: 20px;
