@@ -1,7 +1,6 @@
 import React from 'react';
 import './design/Landing.css'
 import FriendCard from './../components/FriendCard';
-import SubNav from '../components/SubNav'
 import NavBarAuth from '../components/NavBarAuth';
 import JT_square from '../images/Team/JT_square.png'; //to be replaced with user photo later
 // import AddImage from './../components/AddImage';

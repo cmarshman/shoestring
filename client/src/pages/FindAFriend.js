@@ -1,11 +1,13 @@
 import React from 'react';
 import NavBarAuth from '../components/NavBarAuth';
-import SubNav from './../components/SubNav'
+import FindFriends from '../components/FindFriends';
 
 function FindAFriend(){
     return(
         <>
         <NavBarAuth/>
+        <FindFriends/>
+        
         </>
     );
 }

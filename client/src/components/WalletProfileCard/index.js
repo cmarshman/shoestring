@@ -5,7 +5,7 @@ import './style.css';
 function WalletProfileCard() {
     return(
         <section className="hero is-medium" id="wallet">
-            <div className="hero-body">
+            <div className="hero-body"> 
                 <div className="container has-text-centered">
                     <a className="title" href=''>
                         <img src={JT} alt="JT Turner"/>

@@ -16,7 +16,7 @@ function WalletTransfer() {
                         <i class="fas fa-money-bill-wave-alt"></i>
                         </span>
                     </p>
-                    <a className="button is-dark" id="deposit">Add to Wallet</a>
+                    <a className="button is-dark" id="deposit">Add Money</a>
                 </div>
 
                 <div className="tile is-vertical is-clearfix column is-two-fifths banana" id="tile2">
@@ -30,7 +30,7 @@ function WalletTransfer() {
                         <i class="fas fa-money-bill-wave-alt"></i>
                         </span>
                     </p>
-                    <a className="button is-dark" id="deposit">Deposit</a>
+                    <a className="button is-dark" id="deposit">Deposit Money</a>
 
                 </div>
             </div>    
