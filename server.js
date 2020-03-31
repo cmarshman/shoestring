@@ -1,24 +1,37 @@
-require('dotenv').config();
+require('dotenv').config()
 
-const express = require("express");
-const mongoose = require("mongoose");
-const routes = require("./routes");
-const app = express();
+const express = require('express')
+const logger = require('morgan')
+const mongoose = require('mongoose')
+const usersRoutes = require('./routes')
 
-const PORT = process.env.PORT || 3001;
+const app = express()
 
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/shoestring'
+const PORT = process.env.PORT || 3001
+
+mongoose.set('useCreateIndex', true)
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, (err) => {
+	console.log(err || `Connected to MongoDB.`)
+})
+
+app.use(express.static(`${__dirname}/client/build`))
+app.use(logger('dev'))
+app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 
- if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
- }
+app.get('/api', (req, res) => {
+	res.json({message: "API root"})
+})
 
-app.use(routes);
+app.use('/api/users', usersRoutes)
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/shoestring");
+app.use('*', (req, res) => {
+	res.sendFile(`${__dirname}/client/build/index.html`)
+})
 
-app.listen(PORT, function() {
-  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-});
+
+app.listen(PORT, (err) => {
+	console.log(err || `Server running on port ${PORT}.`)
+})
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import NavBarAuth from '../components/NavBarAuth';
 
-
 function CurrencyConverter() {
     return (
         <>
@@ -58,6 +57,7 @@ function CurrencyConverter() {
                     </div>
                 </div>
             </div>
+
         </>
     );
 }
