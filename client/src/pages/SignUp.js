@@ -10,6 +10,7 @@ function SignUp() {
 
   // Setting our component's initial state
   const [signupObject, setSignupObject] = useState({
+
     firstName: "",
     lastName: "",
     phone: "",

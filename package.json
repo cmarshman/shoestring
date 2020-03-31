@@ -15,6 +15,7 @@
   "author": "Strategic Machines",
   "license": "MIT",
   "dependencies": {
+
     "bcrypt": "^4.0.1",
     "dotenv": "^6.1.0",
     "express": "^4.16.2",
@@ -27,5 +28,6 @@
   "devDependencies": {
     "concurrently": "^4.1.0",
     "nodemon": "^1.18.7"
+
   }
 }

@@ -1,13 +1,11 @@
-//import React from 'react';
+import React, { useState, useEffect } from "react";
+import httpClient from '../httpClient'
 import './design/Landing.css'
 import FriendCard from './../components/FriendCard';
 import SubNav from '../components/SubNav'
 import NavBarAuth from '../components/NavBarAuth';
 import JT_square from '../images/Team/JT_square.png'; //to be replaced with user photo later
 // import AddImage from './../components/AddImage';
- import React, { useState, useEffect } from "react";
-import httpClient from '../httpClient'
- 
 
 function Landing(props, currentUser) {
  
@@ -39,10 +37,10 @@ function Landing(props, currentUser) {
 	}
 	 
 	
+
     return (
         
         <div>
-           {currentUser}? 
             <NavBarAuth/>
             <div className="outerTile">
                 <div className="is-clearfix columns is-centered">
@@ -68,102 +66,10 @@ function Landing(props, currentUser) {
 
                     </div>
                     <FriendCard />
-                    {/* /// */}
-                    {/* <div className="tile is-3 is-child box">
-                        <p className="title" id="friendList">Friends</p>
-                        <article className="media">
-                            <figure className="media-left">
-                                <p className="image is-48x48">
-                                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="userImage"/>
-                                </p>
-                            </figure>
-                            <div className="media-content">
-                                <div className="content">
-                                    <p>
-                                        <strong id="friendName">Sean Brown</strong>
-                                        <br />
-                                    </p>
-                                </div>
-                            </div>
-                        </article>
-                        <article className="media">
-                            <figure className="media-left">
-                                <p className="image is-48x48">
-                                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="userImage"/>
-                                </p>
-                            </figure>
-                            <div className="media-content">
-                                <div className="content">
-                                    <p>
-                                        <strong id="friendName">Naomi Campbell</strong>
-                                        <br />
-                                    </p>
-                                </div>
-                            </div>
-                        </article>
-                        <article className="media">
-                            <figure className="media-left">
-                                <p className="image is-48x48">
-                                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="userImage"/>
-                                </p>
-                            </figure>
-                            <div className="media-content">
-                                <div className="content">
-                                    <p>
-                                        <strong id="friendName">Jhene Aiko</strong>
-                                        <br />
-                                    </p>
-                                </div>
-                            </div>
-                        </article>
-                        <article className="media">
-                            <figure className="media-left">
-                                <p className="image is-48x48">
-                                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="userImage"/>
-                                </p>
-                            </figure>
-                            <div className="media-content">
-                                <div className="content">
-                                    <p>
-                                        <strong id="friendName">Billy Rae Cyrus</strong>
-                                        <br />
-                                    </p>
-                                </div>
-                            </div>
-                        </article>
-                        <article className="media">
-                            <figure className="media-left">
-                                <p className="image is-48x48">
-                                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="userImage"/>
-                                </p>
-                            </figure>
-                            <div className="media-content">
-                                <div className="content">
-                                    <p>
-                                        <strong id="friendName">Michael Jordan</strong>
-                                        <br />
-                                    </p>
-                                </div>
-                            </div>
-                        </article>
-                        <article className="media">
-                            <figure className="media-left">
-                                <p className="image is-48x48">
-                                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="userImage"/>
-                                </p>
-                            </figure>
-                            <div className="media-content">
-                                <div className="content">
-                                    <p>
-                                        <strong id="friendName">Megan</strong>
-                                        <br />
-                                    </p>
-                                </div>
-                            </div>
-                        </article>
-                    </div> */}
-                    {/* /// */}
-                </div>
+                    
+
+                           
+
                 </div>
             </div>
         </div>
