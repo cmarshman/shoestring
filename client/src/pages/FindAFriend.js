@@ -6,9 +6,6 @@ function FindAFriend(){
     return(
         <>
         <NavBarAuth/>
-        <SubNav/>
-
-        
         </>
     );
 }
