@@ -9,12 +9,21 @@
     position: relative;
 }
 
+#newFreind{
+    margin-right: 20px;
+}
+
+.deposit{
+    width: 45%!important;
+    margin-bottom: 20px;
+}
+
 .deposit:hover{
     background-color: #3bd389!important;
 }
 
 #friend{
-    margin-right: 10px;
+    margin-right: 20px;
     width: 45%!important;
 }
 

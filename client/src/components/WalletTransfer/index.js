@@ -5,7 +5,7 @@ function WalletTransfer() {
     return (
         <section>
             <div className="tile is-ancestor columns">
-                <div className="tile is-vertical  column is-two-fifths banana" id="tile1">
+                <div className="tile is-vertical column is-two-fifths banana box" id="tile1">
                     <p className="subtitle has-text-centered">
                         Add money to my wallet
                     </p>
@@ -17,9 +17,10 @@ function WalletTransfer() {
                         </span>
                     </p>
                     <a className="button is-dark" id="deposit">Add Money</a>
+
                 </div>
 
-                <div className="tile is-vertical is-clearfix column is-two-fifths banana" id="tile2">
+                <div className="tile is-vertical is-clearfix column is-two-fifths banana box" id="tile2">
                     <p className="subtitle has-text-centered">
                         Deposit money to my bank account
                     </p>

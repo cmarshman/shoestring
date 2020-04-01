@@ -1,12 +1,16 @@
 .banana{
-    border: #3bd389 3px solid;
-    border-radius: 10px;
     margin: 0 auto;
+}
+#tile1{
+    margin: 0px 64.703px 24px 64.703px
+}
+
+#tile2{
+    margin: 0px 64.703px 24px 64.703px
 }
 
 #deposit{
     width: 30%!important;
-
 }
 
 #deposit:hover{

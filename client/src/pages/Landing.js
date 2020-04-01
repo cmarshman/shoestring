@@ -10,7 +10,6 @@ function Landing(props, currentUser) {
  
     const [currentUserObj, setCurrentUserObj] = useState({
          currentUser: httpClient.getCurrentUser()
-       
     })
  
 //Restructuring the data received from history 
@@ -65,16 +64,10 @@ function Landing(props, currentUser) {
 
                     </div>
                     <FriendCard />
-                    
-
-                           
-
                 </div>
             </div>
         </div>
-
-
-
+    </div>
     )
 }
 
