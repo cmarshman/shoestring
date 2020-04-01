@@ -51,6 +51,25 @@ httpClient.signUp = function(userInfo) {
 		})
 }
 
+///Reset password
+
+httpClient.ResetPwd = function(userInfo, id) {
+	return this({ method: 'get', url: '/api/users/'+id, data: userInfo})
+		.then((serverResponse) => {
+			const token = serverResponse.data.token
+			if(token) {
+				// sets token as an included header for all subsequent api requests
+				console.log(`signup`)
+				console.log(this.defaults)
+				this.defaults.headers.common.token = this.setToken(token)
+				console.log(this.defaults)
+				return jwtDecode(token)
+			} else {
+				return false
+			}
+		})
+}
+
 httpClient.logOut = function() {
 	localStorage.removeItem('token')
 	delete this.defaults.headers.common.token

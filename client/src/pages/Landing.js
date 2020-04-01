@@ -42,7 +42,7 @@ function Landing(props, currentUser) {
     return (
         
         <div>
-           {currentUser}? 
+
             <NavBarAuth/>
             <div className="outerTile">
                 <div className="is-clearfix columns is-centered">

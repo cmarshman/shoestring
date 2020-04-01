@@ -14,7 +14,6 @@ import FindAFriend from './pages/FindAFriend';
 import TransferMoney from './pages/TransferMoney';
 import MyWallet from './pages/MyWallet';
 import CurrencyConverter from './pages/CurrencyConverter';
-import httpClient from '../src/httpClient'
 import Reset from '../src/pages/ResetPwd'
  
 function App() {
@@ -33,12 +32,6 @@ function App() {
         <Route exact path="/sign-up" component={SignUp}/>
         <Route exact path="/home" component={Landing}/>
         <Route exact path="/reset" component={Reset}/>
-        {/* <Route path="/home" render={() => {
-						return user
-							? <Landing />
-							: <Redirect to="/login" />
-					}} /> */}
-        {/* <Redirect from='/login/' to="/" /> */}
        </Wrapper>
     </div>
     </Router>
