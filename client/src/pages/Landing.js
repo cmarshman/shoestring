@@ -4,7 +4,7 @@ import './design/Landing.css'
 import FriendCard from './../components/FriendCard';
 import NavBarAuth from '../components/NavBarAuth';
 import JT_square from '../images/Team/JT_square.png'; //to be replaced with user photo later
-// import AddImage from './../components/AddImage';
+import AddImage from './../components/AddImage';
 
 function Landing(props, currentUser) {
  
@@ -45,11 +45,11 @@ function Landing(props, currentUser) {
                 <div className="tile is-10 container column is-fluid">
                     <div className="tile is-7 is-vertical is-parent">
                         <div className="tile is-child box">
-                            <figure className="image is-128x128">
+                            {/* <figure className="image is-128x128">
                                 <img className="is-rounded" id="userPic" src={JT_square} />
                                 <button id="addImage">Add profile picture</button>
-                            </figure>
-{/* //                             <AddImage /> */}
+                            </figure> */}
+                             <AddImage />
                             <br />
                             <p>{currentUser[0].firstName} {currentUser[0].lastName}
                             </p>
@@ -65,9 +65,9 @@ function Landing(props, currentUser) {
                     </div>
                     <FriendCard />
                 </div>
+                </div>
             </div>
         </div>
-</div>
 
 
     )
