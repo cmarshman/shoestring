@@ -40,6 +40,7 @@ function App() {
         <Route exact path="/transfermoney" component={TransferMoney}/>
         <Route exact path="/mywallet" component={MyWallet}/>
         <Route exact path="/currencyconverter" component={CurrencyConverter}/>
+        
       </Wrapper>
     </div>
     </Router>

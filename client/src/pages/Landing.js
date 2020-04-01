@@ -67,7 +67,9 @@ function Landing(props, currentUser) {
                 </div>
             </div>
         </div>
-    </div>
+</div>
+
+
     )
 }
 
