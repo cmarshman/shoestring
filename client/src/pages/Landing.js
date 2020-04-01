@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import httpClient from '../httpClient'
 import './design/Landing.css'
 import FriendCard from './../components/FriendCard';
-import SubNav from '../components/SubNav'
 import NavBarAuth from '../components/NavBarAuth';
 import JT_square from '../images/Team/JT_square.png'; //to be replaced with user photo later
 import AddImage from './../components/AddImage';
@@ -11,7 +10,6 @@ function Landing(props, currentUser) {
  
     const [currentUserObj, setCurrentUserObj] = useState({
          currentUser: httpClient.getCurrentUser()
-       
     })
  
 //Restructuring the data received from history 

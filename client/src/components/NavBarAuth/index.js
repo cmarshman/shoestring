@@ -59,7 +59,7 @@ const NavBarAuth = (props, currentUser) => {
             </Link>
 
             <Link to="/findafriend" className={location.pathname === "/findafriend" ? "navbar-item is-active" : "navbar-item"}>
-              Find a Friend
+              Friends
             </Link>
 
             <Link to="/transfermoney" className={location.pathname === "/transfermoney" ? "navbar-item is-active" : "navbar-item"}>

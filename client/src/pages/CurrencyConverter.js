@@ -14,7 +14,7 @@ function CurrencyConverter() {
                                 <p className="title">Currency Cheat Sheet</p>
                                 <br>
                                 </br>
-                                <p class="subtitle is-4">   Not everyone knows currency abbreviations, this cheat sheet provides the most common currencies in the world for our converter. Make sure to use the abbreviated name for the converter.</p>
+                                <p class="subtitle is-4">Not everyone knows currency abbreviations, this cheat sheet provides the most common currencies in the world for our converter. Make sure to use the abbreviated name for the converter.</p>
                                 <ol type="1">
                                     <li>    AUD = Australian Dollar</li>
                                     <li>    EUR = European Dollar</li>
