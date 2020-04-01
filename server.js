@@ -34,4 +34,3 @@ app.use('*', (req, res) => {
 app.listen(PORT, (err) => {
 	console.log(err || `Server running on port ${PORT}.`)
 })
-

@@ -15,6 +15,7 @@
   "author": "Strategic Machines",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.19.2",
     "bcrypt": "^4.0.1",
     "dotenv": "^6.1.0",
     "express": "^4.16.2",
@@ -22,9 +23,7 @@
     "jquery": "^3.4.1",
     "jsonwebtoken": "^8.1.0",
     "mongoose": "5.3.8",
-    "morgan": "^1.9.1",
-    "cloudinary": "^1.20.0",
-    "cloudinary-react": "^1.4.0"
+    "morgan": "^1.9.1"
   },
   "devDependencies": {
     "concurrently": "^4.1.0",

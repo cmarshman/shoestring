@@ -1,5 +1,6 @@
 
 import React, {useState  } from "react";
+
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -39,6 +40,7 @@ function App() {
         <Route exact path="/transfermoney" component={TransferMoney}/>
         <Route exact path="/mywallet" component={MyWallet}/>
         <Route exact path="/currencyconverter" component={CurrencyConverter}/>
+        
       </Wrapper>
     </div>
     </Router>
