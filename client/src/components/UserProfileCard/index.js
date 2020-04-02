@@ -18,7 +18,6 @@ function UserProfileCard() {
                                     James Horton
                                 </h1>
                                 <h2 className="subtitle">
-                                    Funds Available: $150 <br/>
                                     Member Since: April 2020
                                 </h2>
                                 <UserProfileBtn/>

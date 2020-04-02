@@ -7,7 +7,7 @@ function WalletProfileCard() {
         <div className="outerTile">
                 <div className="is-clearfix columns is-centered">
                     <div className="tile is-10 container column is-fluid">
-                        <div className="tile is-7 is-vertical is-parent"  id="wallet">
+                        <div className="tile is-7 is-vertical is-parent" id="wallet" >
                             <div className="tile is-child box has-text-centered">
                                 <a className="title" href=''>
                                     <img src={JT} alt="JT Turner"/>
