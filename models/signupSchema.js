@@ -8,7 +8,8 @@ const userSchema = new Schema({
   phone: { type: String, required: true },
   email: {type: String, unique: true, match: [/.+@.+\..+/, "Please enter a valid e-mail address"]},
   password: {type: String, required: true, validate: [({ length }) => length >= 8, "Password should be  8 longer."]},
-  checked: {type: Boolean, required: true, default: false},
+  image: { type: String, required: false },
+  checked: {type: Boolean, required: true, default: true},
   date: { type: Date, default: Date.now }
 });
 

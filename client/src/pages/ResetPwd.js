@@ -44,7 +44,7 @@ function ResetPwd() {
    function handleResetOnsubmit(evt) {
         evt.preventDefault()
              $.ajax({
-                url: 'http://localhost:3000/api/users/',
+                url: 'http://localhost:3000/api/users/' +loginObject.email,
                 method: 'get',
                 // data: { 
                 //  email: loginObject
