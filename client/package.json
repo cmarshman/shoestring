@@ -14,6 +14,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "seed": "node scripts/seedDB.js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
