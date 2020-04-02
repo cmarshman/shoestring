@@ -1,10 +1,11 @@
 import React from 'react';
 import './style.css'
+import { Link } from 'react-router-dom';
 
 function AddFriendBtn() {
     return(
         <>
-        <button className="button is-dark red-fish" id="deposit">Add Friend</button>
+        <Link to="/findafriend" className="button is-dark red-fish" id="deposit">Add Friend</Link>
         </>
     );
 }
