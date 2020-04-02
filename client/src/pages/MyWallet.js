@@ -7,7 +7,6 @@ function MyWallet() {
     return (
         <>
             <NavBarAuth />
-
             <WalletProfileCard/>
             <br/>
             <br/>
