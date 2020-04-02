@@ -18,6 +18,7 @@ import MyWallet from './pages/MyWallet';
 import CurrencyConverter from './pages/CurrencyConverter';
 import httpClient from '../src/httpClient'
 import Reset from '../src/pages/ResetPwd'
+import UserProfile from './pages/UserProfile'
 
  
 function App() {
@@ -40,6 +41,7 @@ function App() {
         <Route exact path="/transfermoney" component={TransferMoney}/>
         <Route exact path="/mywallet" component={MyWallet}/>
         <Route exact path="/currencyconverter" component={CurrencyConverter}/>
+        <Route exact path="/user-profile" component={UserProfile}/>
         
       </Wrapper>
     </div>

@@ -152,6 +152,7 @@ return (
               onChange={handleInputChange}
               name="checked"
               value={signupObject.checked}
+              id="bluefish"
             />
                 I agree to the <a href="#"> terms and conditions</a>
           </label>
