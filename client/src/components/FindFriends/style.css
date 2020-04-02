@@ -1,0 +1,32 @@
+#friend_search{
+    background-color: #3bd389;
+    margin: 50px 115px 0px 115px;
+    border-radius: 10px;
+}
+
+#blue{
+    margin: 0;
+    position: relative;
+}
+
+#newFreind{
+    margin-right: 20px;
+}
+
+.deposit{
+    width: 45%!important;
+    margin-bottom: 20px;
+}
+
+.deposit:hover{
+    background-color: #3bd389!important;
+}
+
+#friend{
+    margin-right: 20px;
+    width: 45%!important;
+}
+
+#sendMoney {
+    width: 45%!important;
+}

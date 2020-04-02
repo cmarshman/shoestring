@@ -15,6 +15,7 @@
   "author": "Strategic Machines",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.19.2",
     "bcrypt": "^4.0.1",
     "dotenv": "^6.1.0",
     "express": "^4.16.2",

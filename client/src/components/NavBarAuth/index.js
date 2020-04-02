@@ -1,3 +1,4 @@
+
 import React, { Component, useState, useEffect } from "react";
 import "./style.css";
 import { Link, useLocation } from "react-router-dom";
@@ -5,12 +6,13 @@ import Image from '../../images/Logos/vector/default-monochrome-black.svg'
 import httpClient from '../../httpClient'
 //import Navbar from '../../components/navbar'
 //import Login from '../../pages/'
-
 const NavBarAuth = (props, currentUser) => {
+
 
   const [isActive, setisActive] = React.useState(false);
 
   const location = useLocation();
+
 
   const [currentUserObj, setCurrentUserObj] = useState({
     currentUser: httpClient.getCurrentUser()
@@ -57,7 +59,7 @@ const NavBarAuth = (props, currentUser) => {
             </Link>
 
             <Link to="/findafriend" className={location.pathname === "/findafriend" ? "navbar-item is-active" : "navbar-item"}>
-              Find a Friend
+              Friends
             </Link>
 
             <Link to="/transfermoney" className={location.pathname === "/transfermoney" ? "navbar-item is-active" : "navbar-item"}>
@@ -77,6 +79,7 @@ const NavBarAuth = (props, currentUser) => {
             <div className="navbar-item">
               <div className="buttons">
                 <Link to="/" className="button is-light" id="text-theme" onClick={logOut}>
+
                   Logout
                 </Link>
               </div>
