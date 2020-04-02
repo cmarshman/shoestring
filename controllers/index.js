@@ -1,4 +1,4 @@
-const User = require('../models/signupSchema')
+const User = require('../models/signupSchema.js')
 const signToken = require('../auth').signToken
 
 module.exports = {

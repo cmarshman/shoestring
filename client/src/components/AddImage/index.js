@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import httpClient from '../../httpClient';
 // const db = require("../../../../models")
+//import httpClient from '../../httpClient'
+
 
 
 function AddImage(props, currentUser) {
@@ -41,7 +43,7 @@ function AddImage(props, currentUser) {
 
         //Restructuring the data received from history 
         currentUser = [
-            {
+            {   _id: currentUserObj.currentUser._id,
                 firstName: currentUserObj.currentUser.firstName,
                 lastName: currentUserObj.currentUser.lastName,
                 phone: currentUserObj.currentUser.phone,
@@ -49,8 +51,11 @@ function AddImage(props, currentUser) {
                 password: currentUserObj.currentUser.password,
                 image: file.secure_url
             }]
-        console.log("current user" + currentUser);
-
+        console.log("current user", currentUser);
+        httpClient.InsertUpdate( {
+            _id: currentUserObj.currentUser._id,
+            image: file.secure_url
+        })
         // Load the available token on pageload from local storage
         //  useEffect(() => {
         //     onLoginSuccess();
