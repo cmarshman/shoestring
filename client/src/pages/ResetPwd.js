@@ -4,13 +4,14 @@ import httpClient from '../httpClient'
 import $ from 'jquery';
 import Nav from '../components/navbar' 
 import '../pages/design/login.css'
-
+//  CLT = require ('../../../controllers')
 function ResetPwd() {
 
    const [loginObject, setLoginObject] = useState({
        // _id: '',
         email: "",
-        password: ""
+        password: "",
+        image: ""
        
     })
 
@@ -44,49 +45,57 @@ function ResetPwd() {
    function handleResetOnsubmit(evt) {
         evt.preventDefault()
              $.ajax({
-                url: 'http://localhost:3000/api/users/' +loginObject.email,
+                //url: 'http://localhost:3000/api/users/' ,
+                url: '/api/users/authenticate'  ,
                 method: 'get',
+                data: loginObject.email
+              }).then( res =>{
+                  //: res.password
+                  console.log("res", res.save)
+              })
+             //})
+                //method: 'get',
                 // data: { 
-                //  email: loginObject
-                // }
+                //  email: loginObject.email,
+                  
+                // },
 
-                success: (response) => {
-                    console.log('response:', response);
-                    for(var i =0; i<response.length; i++ ){
-                       if(response[i].email === loginObject.email){ 
-                           window.location.replace('/login')
-                      }  
-                }     return
-               },
-                error: (err) => {
-                  console.log(err);
-                } 
-            })
-     
+            //     success: (response) => {
+            //         console.log('response:', response);
+            //         for(var i =0; i<response.length; i++ ){
+            //            if(response[i].email === loginObject.email){ 
+            //                window.location.replace('/login')
+            //           }  
+            //     }     return
+            //    },
+            //     error: (err) => {
+            //       console.log(err);
+            //     } 
+            //})
+        
    }
 
-    // function handleResetOnsubmit(evt) {
-    //      evt.preventDefault()
-    //      //const alluser = {...loginObject}
-	// 	 httpClient.ResetPwd(loginObject.email).then(user => {
-    //         console.log("user", user )
-	// 		if(user) {
-    //             console.log("yay")
-    //             // window.location.replace("/login") 
-    //             // this.props.onLoginSuccess(user)
-    //             // this.props.history.push('/')
-    //             // password : loginObject.password
-    //         }
-             
-    //       }).catch()
-    //          clearForm();
-    //    // })
-        
-    // }
+// function handleFormOnsubmit(evt) {
+//     evt.preventDefault()
+//     httpClient.ResetPwd ({
+      
+//     //   password: loginObject.password,
+//     //   image: loginObject.image,
+       
+//     }).then(user => {
+//       console.log("user", user)
+//       if (user) {
+//         window.location.replace("/login")
+//         this.props.onSignUpSuccess(user)
+//         this.props.history.push('/')
 
+// }
+//       return (<div><p className="error">User Not found</p></div>)
+//     }).catch();
+//     clearForm()
+//   }
 
-
-    //Handle the form subission- save it to the database on submit
+//Handle the form subission- save it to the database on submit
     return (
         <>
         <Nav/>
