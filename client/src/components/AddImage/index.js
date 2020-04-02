@@ -10,10 +10,19 @@ function AddImage(props, currentUser) {
         currentUser: httpClient.getCurrentUser()
 
     })
-
+ //console.log("currentUer Upper", currentUserObj)
     //image and loading states
     const [image, setImage] = useState([]);
     const [loading, setLoading] = useState(false);
+     // Load the available token on pageload from local storage
+
+     
+    
+     useEffect(() => {
+        
+        //findOneUser()
+    }
+    , [currentUserObj.currentUser.image])
 
     const uploadImage = async e => {
         const files = e.target.files
@@ -31,15 +40,10 @@ function AddImage(props, currentUser) {
 
         setImage(file.secure_url)
         setLoading(false)
-                // .then(req, res =>  {
-                //     db.User
-                //      .findOneAndUpdate({ _id: req.params.id }, req.body)
-                //      .then(dbModel => res.json(dbModel))
-                //      .catch(err => res.status(422).json(err));
-                //  })
-        // }
+                
         console.log(file.public_id)
-        console.log(file.secure_url)
+
+        console.log("other image", file.secure_url)
 
         //Restructuring the data received from history 
         currentUser = [
@@ -49,20 +53,22 @@ function AddImage(props, currentUser) {
                 phone: currentUserObj.currentUser.phone,
                 email: currentUserObj.currentUser.email,
                 password: currentUserObj.currentUser.password,
-                image: file.secure_url
+                image:  currentUserObj.currentUser.image
             }]
-        console.log("current user", currentUser);
+
+        console.log("user image", currentUserObj.currentUser.image)
+
         httpClient.InsertUpdate( {
             _id: currentUserObj.currentUser._id,
             image: file.secure_url
         })
-        // Load the available token on pageload from local storage
-        //  useEffect(() => {
-        //     onLoginSuccess();
-        //     handleImage();
-
-        // }
-        // , [])
+       
+   
+        //const findOneUser = ()=>{
+            httpClient.FindUser( {
+                 image: file.secure_url
+            })
+       // }
 
         const onLoginSuccess = (user) => {
             setCurrentUserObj({ currentUser: httpClient.getCurrentUser(user) })
@@ -82,7 +88,7 @@ function AddImage(props, currentUser) {
         console.log("input ", { name, value })
     };
 
-
+ const my_image = currentUserObj.currentUser.image
     return (
         <div>
             {/* <h3>Upload image</h3> */}
@@ -95,7 +101,7 @@ function AddImage(props, currentUser) {
             ) : (
                     <figure className="image is-128x128">
                         {/* <placeholder>Here we are</placeholder> */}
-                        <img className="is-rounded" src={image} />
+                        <img className="is-rounded" src={my_image} />
                     </figure>
                 )}
             <br />

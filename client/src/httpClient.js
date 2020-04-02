@@ -51,14 +51,30 @@ httpClient.signUp = function(userInfo) {
 		})
 }
 
-///Reset password
-
-httpClient.InsertUpdate = function(userInfo , _id) {
-	return this({ method: 'patch', url: '/api/users/' + userInfo._id, data: userInfo})
-	 
+///Find  a user from the database
+httpClient.FindUser = function(userInfo , _id) {
+	return this({ method: 'get', url: '/api/users/' + userInfo._id, data: userInfo})
 		.then((serverResponse) => {
 			console.log("serverResponse", serverResponse)
+			const token = serverResponse.data.token
+			if(token) {
+				// sets token as an included header for all subsequent api requests
+				console.log("result")
+				console.log(this.defaults)
+				this.defaults.headers.common.token = this.setToken(token)
+				console.log(this.defaults)
+				return jwtDecode(token)
+			} else {
+				return false
+			}
+		})
+}
 
+///Find and Update user
+httpClient.InsertUpdate = function(userInfo , _id) {
+	return this({ method: 'patch', url: '/api/users/' + userInfo._id, data: userInfo})
+		.then((serverResponse) => {
+			console.log("serverResponse", serverResponse)
 			const token = serverResponse.data.token
 			if(token) {
 				// sets token as an included header for all subsequent api requests
@@ -79,35 +95,6 @@ httpClient.logOut = function() {
 	return true
 }
 
-
-//import 
-
-//module.exports = app =>{
-
-//app.get('/getUser', (req, res, next) => {
-
-// httpClient.authentication('api/users', req, res, next,{session: false}, (err, user, info) =>{
- 
-//   if(err){
-
-//     console.log(err);
-// }
-//  if(info ===undefined){
-//   console.log(info.message)
-//   res.send(info.message)
-//  }
- 
-//  else{
-//   console.log('user found in db from route')
-//   res.status(200).send({
-    
-// });
-
-// }
-// })(req, res, next);
-// //});
-
-//};
 // During initial app load attempt to set a localStorage stored token
 // as a default header for all api requests.
 httpClient.defaults.headers.common.token = httpClient.getToken()
