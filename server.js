@@ -10,6 +10,16 @@ const app = express()
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/shoestring'
 const PORT = process.env.PORT || 3001
 
+const {
+	receivePublicToken,
+	getTransactions
+	} = require("./controllers/controller");
+
+	// Get the public token and exchange it for an access token
+app.post("/auth/public_token", receivePublicToken);
+// Get Transactions
+app.get("/transactions", getTransactions);
+
 mongoose.set('useCreateIndex', true)
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, (err) => {
 	console.log(err || `Connected to MongoDB.`)
