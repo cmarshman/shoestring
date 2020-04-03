@@ -16,6 +16,7 @@ function SignUp() {
     phone: "",
     email: "",
     password: "",
+    image: "",
     checked: false
 
   })
@@ -53,6 +54,7 @@ function SignUp() {
       phone: signupObject.phone,
       email: signupObject.email,
       password: signupObject.password,
+      image: signupObject.image,
       checked: true
     }).then(user => {
       console.log("user", user)
@@ -152,6 +154,7 @@ return (
               onChange={handleInputChange}
               name="checked"
               value={signupObject.checked}
+              id="bluefish"
             />
                 I agree to the <a href="#"> terms and conditions</a>
           </label>

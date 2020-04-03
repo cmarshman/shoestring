@@ -1,11 +1,12 @@
 import React from 'react';
 import NavBarAuth from '../components/NavBarAuth';
-import SubNav from './../components/SubNav';
+import TransferMoneyCard from '../components/TransferMoneyCard';
 
 function TransferMoney(){
     return(
         <>
         <NavBarAuth/>
+        <TransferMoneyCard/>
         </>
     );
 }

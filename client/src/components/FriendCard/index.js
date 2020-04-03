@@ -1,9 +1,10 @@
 import React from "react";
 import friends from "../../utils/friendList.json";
 
+
 function Card() {
     return (
-        <div className="tile is-3 is-child box">
+        <div className="tile is-child box has-text-centered">
             {friends.map(item => (
                 <article key={item.id} className="media">
                     <figure className="media-left" id="block">

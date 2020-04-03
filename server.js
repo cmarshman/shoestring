@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config( )
 
 const express = require('express')
 const logger = require('morgan')
@@ -40,8 +40,6 @@ app.use('*', (req, res) => {
 	res.sendFile(`${__dirname}/client/build/index.html`)
 })
 
-
 app.listen(PORT, (err) => {
 	console.log(err || `Server running on port ${PORT}.`)
 })
-

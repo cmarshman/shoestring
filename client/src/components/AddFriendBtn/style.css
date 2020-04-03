@@ -1,0 +1,11 @@
+.red-fish{
+    margin-right: 20px;
+}
+
+#deposit{
+    width: 40%!important;
+}
+
+#deposit:hover{
+    background-color: #3bd389!important;
+}

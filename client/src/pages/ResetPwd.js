@@ -4,11 +4,14 @@ import httpClient from '../httpClient'
 import $ from 'jquery';
 import Nav from '../components/navbar' 
 import '../pages/design/login.css'
-
+//  CLT = require ('../../../controllers')
 function ResetPwd() {
 
    const [loginObject, setLoginObject] = useState({
-        email: "", 
+       // _id: '',
+        email: "",
+        password: "",
+        image: ""
        
     })
 
@@ -24,7 +27,7 @@ function ResetPwd() {
     const clearForm = () => {
         setLoginObject({
             email: "",
-             
+            password: "", 
 
         })
     }
@@ -39,25 +42,60 @@ function ResetPwd() {
     }
 
 	//Function to handle submit
-    function handleResetOnsubmit(evt) {
+   function handleResetOnsubmit(evt) {
         evt.preventDefault()
              $.ajax({
-                url: 'http://data.fixer.io/api/latest/6f19055bbe0aa8fb8296333561932d16',
+                //url: 'http://localhost:3000/api/users/' ,
+                url: '/api/users/authenticate'  ,
                 method: 'get',
-                data: { 
-                 type: JSON
-                },
-                success: (response) => {
-                  console.log('response:', response);
-                },
-                error: (err) => {
-                  console.log(err);
-                } 
-            })
-     
-    }
+                data: loginObject.email
+              }).then( res =>{
+                  //: res.password
+                  console.log("res", res.save)
+              })
+             //})
+                //method: 'get',
+                // data: { 
+                //  email: loginObject.email,
+                  
+                // },
 
-    //Handle the form subission- save it to the database on submit
+            //     success: (response) => {
+            //         console.log('response:', response);
+            //         for(var i =0; i<response.length; i++ ){
+            //            if(response[i].email === loginObject.email){ 
+            //                window.location.replace('/login')
+            //           }  
+            //     }     return
+            //    },
+            //     error: (err) => {
+            //       console.log(err);
+            //     } 
+            //})
+        
+   }
+
+// function handleFormOnsubmit(evt) {
+//     evt.preventDefault()
+//     httpClient.ResetPwd ({
+      
+//     //   password: loginObject.password,
+//     //   image: loginObject.image,
+       
+//     }).then(user => {
+//       console.log("user", user)
+//       if (user) {
+//         window.location.replace("/login")
+//         this.props.onSignUpSuccess(user)
+//         this.props.history.push('/')
+
+// }
+//       return (<div><p className="error">User Not found</p></div>)
+//     }).catch();
+//     clearForm()
+//   }
+
+//Handle the form subission- save it to the database on submit
     return (
         <>
         <Nav/>
@@ -80,6 +118,19 @@ function ResetPwd() {
                         </span>
                         <span className="icon is-small is-right">
                             <i className="fas fa-check"></i>
+                        </span>
+                    </p>
+                </div>
+                <div className="field">
+                <label className="label">New Password</label>
+                    <p className="control has-icons-left">
+                        <input className="input" type="password" placeholder="Password"
+                            onChange={handleInputChange}
+                            name="password"
+                            placeholder="Password (required)"
+                            value={loginObject.password} />
+                        <span className="icon is-small is-left">
+                            <i className="fas fa-lock"></i>
                         </span>
                     </p>
                 </div>

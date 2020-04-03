@@ -1,7 +1,7 @@
 
 import React, { Component, useState, useEffect } from "react";
 import "./style.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, Redirect } from "react-router-dom";
 import Image from '../../images/Logos/vector/default-monochrome-black.svg'
 import httpClient from '../../httpClient'
 //import Navbar from '../../components/navbar'
@@ -20,16 +20,24 @@ const NavBarAuth = (props, currentUser) => {
 })
  
 // Load the available token on pageload from local storage
-// useEffect(() => {
-//   //logOut()
-     
-// }, [])
+useEffect(() => {
+  work()
+}, [])
+
 
   const logOut =() =>{
 		httpClient.logOut()
-    setCurrentUserObj({ currentUser: null })
-     
+    setCurrentUserObj({ currentUser: null }) 
+    
 	}
+  
+  const work = () =>{
+    if(currentUser===null){
+    //<Redirect from='home' to='/'/>
+    window.location.replace('/')
+    }
+     
+  }
 
   return (
     <div>
@@ -59,7 +67,7 @@ const NavBarAuth = (props, currentUser) => {
             </Link>
 
             <Link to="/findafriend" className={location.pathname === "/findafriend" ? "navbar-item is-active" : "navbar-item"}>
-              Find a Friend
+              Friends
             </Link>
 
             <Link to="/transfermoney" className={location.pathname === "/transfermoney" ? "navbar-item is-active" : "navbar-item"}>
@@ -78,8 +86,9 @@ const NavBarAuth = (props, currentUser) => {
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
-                <Link to="/" className="button is-light" id="text-theme" onClick={logOut}>
-
+                  
+                <Link to="/login" className="button is-light" id="text-theme" onClick={logOut}>
+                 
                   Logout
                 </Link>
               </div>
