@@ -12,6 +12,14 @@
     margin-bottom:25px
 }
 
+#honey{
+    color: #3bd389;
+}
+
+#honey:hover{
+    background-color: #363636;
+    color: #f5f5f5;
+}
 
 .reset{
     /* padding: 3px; */

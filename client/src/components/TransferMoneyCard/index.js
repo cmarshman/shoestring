@@ -1,7 +1,8 @@
 import React from 'react';
-import JT from '../../images/Team/JT.png';
 import './style.css';
 import FriendCard from '../FriendCard';
+import MyImage from '../MyImage';
+import UserNameCard from '../UserNameCard';
 
 function TransferMoneyCard () {
     return(
@@ -11,11 +12,9 @@ function TransferMoneyCard () {
                         <div className="tile is-7 is-vertical is-parent"  id="wallet">
                             <div className="tile is-child box has-text-centered">
                                 <a className="title" href=''>
-                                    <img src={JT} alt="JT Turner"/>
+                                    <MyImage/>
                                 </a>
-                                <h1 className="title">
-                                    JT Turner
-                                </h1>
+                                <UserNameCard/>
                                 <h2 className="subtitle">
                                     Funds Available: $100 <br/>
                                     Member Since: April 2020
