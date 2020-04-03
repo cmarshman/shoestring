@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import httpClient from '../httpClient'
 import './design/Landing.css'
 import FriendCard from './../components/FriendCard';
+import Plaid from './../components/plaidLink';
 import NavBarAuth from '../components/NavBarAuth';
-import JT_square from '../images/Team/JT_square.png'; //to be replaced with user photo later
 import AddImage from './../components/AddImage';
 import { Redirect } from "react-router-dom";
 
@@ -66,11 +66,10 @@ const work = () =>{
                 <div className="tile is-10 container column is-fluid">
                     <div className="tile is-7 is-vertical is-parent">
                         <div className="tile is-child box">
-                            {/* <figure className="image is-128x128">
-                                <img className="is-rounded" id="userPic" src={JT_square} />
-                                <button id="addImage">Add profile picture</button>
-                            </figure> */}
+                            
+                                <Plaid />
                              <AddImage />
+
                             <br />
                             <p>
                             {currentUser[0].firstName} {currentUser[0].lastName}
