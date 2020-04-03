@@ -22,15 +22,10 @@ function Landing(props, currentUser) {
     }, [])
 
     //Restructuring the data received from history 
-// const settingUpCurrentUser = ()=>{
-//     if(currentUser===null){ 
-//      window.location.replace('/login')
-//        alert('hey')
-//       }  
+   
 const work = () =>{
     if(currentUser===null){
-    //<Redirect from='home' to='/'/>
-    window.location.replace('/')
+     window.location.replace('/')
     }
      
   }
@@ -47,13 +42,10 @@ const work = () =>{
  	const onLoginSuccess= (currentUser) =>{
         setCurrentUserObj({ currentUser: httpClient.getCurrentUser(currentUser) })
          console.log("currentUserObj " , currentUserObj )
-        //console.log("user " , currentUserObj.currentUser.firstName)
-     }
+      }
 
 	//}
 	 
-	
-
     return (
         
         <div>

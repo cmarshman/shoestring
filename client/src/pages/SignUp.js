@@ -10,12 +10,13 @@ function SignUp() {
 
   // Setting our component's initial state
   const [signupObject, setSignupObject] = useState({
-
-    firstName: "",
-    lastName: "",
+    name: "",
     phone: "",
+    city: "",
+    state: "",
     email: "",
     password: "",
+    friends: [],
     image: "",
     checked: false
 
@@ -31,12 +32,13 @@ function SignUp() {
   //Function to reset the form to empty fields
   const clearForm = () => {
     setSignupObject({
-      firstName: "",
-      lastName: "",
+      name: "",
       phone: "",
+      city: "",
+      state: "",
       email: "",
       password: "",
-      checked: ""
+      checked: " "
     })
   }
   function handleLoginErr(err) {
@@ -49,12 +51,14 @@ function SignUp() {
   function handleFormOnsubmit(evt) {
     evt.preventDefault()
     httpClient.signUp({
-      firstName: signupObject.firstName,
-      lastName: signupObject.lastName,
+      name: signupObject.name,
       phone: signupObject.phone,
+      city: signupObject.city,
+      state: signupObject.state,
       email: signupObject.email,
       password: signupObject.password,
-      image: signupObject.image,
+      friends: signupObject.friends,
+      image:  signupObject.image,
       checked: true
     }).then(user => {
       console.log("user", user)
@@ -62,7 +66,6 @@ function SignUp() {
         window.location.replace("/login")
         this.props.onSignUpSuccess(user)
         this.props.history.push('/')
-
       }
       return (<div><p className="error">User Not found</p></div>)
     }).catch(handleLoginErr);
@@ -80,31 +83,20 @@ function SignUp() {
             <article className="tile is-child notification is-dark">
 
               <div className="field">
-                <label className="label">First Name</label>
+                <label className="label">Name</label>
                 <div className="control">
                   <input className="input"
                     // className = {signupObject.firstName === '' ? "input error" : " input" }
                     type="text"
                     onChange={handleInputChange}
-                    name="firstName"
-                    placeholder="First Name (required)"
-                    value={signupObject.firstName}
+                    name="name"
+                    placeholder="Name (required)"
+                    value={signupObject.name}
                   />
                 </div>
               </div>
 
-              <div className="field">
-                <label className="label">Last Name</label>
-                <div className="control">
-                  <input className="input" type="text"
-                    // className = {signupObject.lastName === "" ? "input error" : " input" }
-                    onChange={handleInputChange}
-                    name="lastName"
-                    placeholder="Last Name (required)"
-                    value={signupObject.lastName}
-                  />
-                </div>
-              </div>
+             
               <div className="field">
                 <label className="label">Phone</label>
                 <div className="control">
@@ -116,6 +108,30 @@ function SignUp() {
                     value={signupObject.phone}
                   />
 
+                </div>
+              </div>
+              <div className="field">
+                <label className="label">City</label>
+                <div className="control">
+                  <input className="input" type="text"
+                    // className = {signupObject.lastName === "" ? "input error" : " input" }
+                    onChange={handleInputChange}
+                    name="city"
+                    placeholder="City (Not required)"
+                    value={signupObject.city}
+                  />
+                </div>
+              </div>
+              <div className="field">
+                <label className="label">State</label>
+                <div className="control">
+                  <input className="input" type="text"
+                    // className = {signupObject.lastName === "" ? "input error" : " input" }
+                    onChange={handleInputChange}
+                    name="state"
+                    placeholder="State (Not required)"
+                    value={signupObject.state}
+                  />
                 </div>
               </div>
 
@@ -150,6 +166,7 @@ function SignUp() {
                   </span>
                 </p>
               </div>
+              
               <div className="field">
                 <div className="control">
                   <label className="checkbox">
