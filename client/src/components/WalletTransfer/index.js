@@ -16,7 +16,7 @@ function WalletTransfer() {
                         <i class="fas fa-money-bill-wave-alt"></i>
                         </span>
                     </p>
-                    <a className="button is-dark" id="deposit">Add Money</a>
+                    <a className="button is-light" id="foundme">Add Money</a>
 
                 </div>
 
@@ -31,7 +31,7 @@ function WalletTransfer() {
                         <i class="fas fa-money-bill-wave-alt"></i>
                         </span>
                     </p>
-                    <a className="button is-dark" id="deposit">Deposit Money</a>
+                    <a className="button is-light" id="foundme">Deposit Money</a>
 
                 </div>
             </div>    

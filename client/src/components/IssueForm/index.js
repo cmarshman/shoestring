@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import $ from 'jquery';
+// import './style.css'
 
 function IssueForm () {
+    
+    useEffect (() => {
+        $("#contactMe").click(function (){
+            window.location.reload();
+        })
+    })
+    
     return (
         <div className="tile is-ancestor">
 
@@ -42,7 +51,7 @@ function IssueForm () {
                             <br />
                             <div className="field">
                                 <p className="control">
-                                    <button className="button is-success" type="submit" id="submit">
+                                    <button className="button is-light" type="submit" id="contactMe">
                                         Submit
                                         </button>
                                 </p>

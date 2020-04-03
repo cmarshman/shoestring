@@ -53,7 +53,7 @@ function loginForm() {
         <div className='container tile is-4 is-parent box'>
             <div className="tile is-child">
                 <div className="field">
-                    <p class="control has-icons-left has-icons-right">
+                    <p className="control has-icons-left has-icons-right">
                         <input className="input" type="email" placeholder="Email"
                             className={loginObject.email === '' ? "input error" : " input"}
                             onChange={handleInputChange}

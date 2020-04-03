@@ -57,7 +57,7 @@ function SearchMyFriends() {
             <div className="control" onSubmit={handleSearchSubmit}>
                 <label htmlFor="findFriends"></label>
                 <input className="input" type="text" onChange={onChangeHandler} placeholder="Search my friends . . . " value={friendSearch}/>
-                <button class="button is-primary" type="submit" id="submit">Submit</button>
+                <button class="button is-light" type="submit" id="submit">Submit</button>
             </div>
         </div>
         <br/>

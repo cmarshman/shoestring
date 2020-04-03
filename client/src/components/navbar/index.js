@@ -39,10 +39,6 @@ const location = useLocation();
               Home
             </Link>
 
-            <Link to="/security" className={location.pathname === "/security" ? "navbar-item is-active" : "navbar-item"}>
-              Security
-            </Link>
-
             <Link to="/about" className={location.pathname === "/about" ? "navbar-item is-active" : "navbar-item"}>
               About
             </Link>
