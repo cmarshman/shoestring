@@ -19,10 +19,10 @@ function AddImage(props, currentUser) {
      
     
      useEffect(() => {
-        
+        //onLoginSuccess();
         //findOneUser()
-    }
-    , [currentUserObj.currentUser.image])
+        //handleImage()
+    },[])
 
     const uploadImage = async e => {
         const files = e.target.files
@@ -55,7 +55,11 @@ function AddImage(props, currentUser) {
                 password: currentUserObj.currentUser.password,
                 image:  currentUserObj.currentUser.image
             }]
-
+            //const onLoginSuccess= (currentUser) =>{
+                setCurrentUserObj({ currentUser: httpClient.getCurrentUser(...currentUser), image:file.secure_url })
+                 console.log("currentUserObj " , currentUserObj )
+                //console.log("user " , currentUserObj.currentUser.firstName)
+             //}
         console.log("user image", currentUserObj.currentUser.image)
 
         httpClient.InsertUpdate( {
@@ -64,17 +68,18 @@ function AddImage(props, currentUser) {
         })
        
    
-        //const findOneUser = ()=>{
+         const findOneUser = ()=>{
             httpClient.FindUser( {
                  image: file.secure_url
             })
-       // }
+            console.log("image", image)
+    }
 
-        const onLoginSuccess = (user) => {
-            setCurrentUserObj({ currentUser: httpClient.getCurrentUser(user) })
-            //  console.log("currentUserObj " , currentUserObj )
-            // console.log("user " , currentUserObj.currentUser.firstName)
-        }
+    //     const onLoginSuccess = (user) => {
+    //         setCurrentUserObj({ currentUser: httpClient.getCurrentUser(user) })
+    //         //  console.log("currentUserObj " , currentUserObj )
+    //         // console.log("user " , currentUserObj.currentUser.firstName)
+    //     }
     }
     console.log(image)
     // .then {

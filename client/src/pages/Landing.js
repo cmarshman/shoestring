@@ -65,12 +65,12 @@ const work = () =>{
                 <div className="is-clearfix columns is-centered">
                 <div className="tile is-10 container column is-fluid">
                     <div className="tile is-7 is-vertical is-parent">
-                        <div className="tile is-child box has-text-centered">
-                            <figure className="image is-128x128" id="foundWaldo">
+                        <div className="tile is-child box">
+                            {/* <figure className="image is-128x128">
                                 <img className="is-rounded" id="userPic" src={JT_square} />
                                 <button id="addImage">Add profile picture</button>
-                            </figure>
-                             {/* <AddImage /> */}
+                            </figure> */}
+                             <AddImage />
                             <br />
                             <p>
                             {currentUser[0].firstName} {currentUser[0].lastName}
@@ -100,3 +100,4 @@ const work = () =>{
 
 
 export default Landing;
+ 
