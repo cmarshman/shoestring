@@ -3,12 +3,13 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
  
 const userSchema = new Schema({
-  firstName: { type: String, required: true },
-  lastName: { type: String, required: true },
+  name: { type: String, required: true },
   phone: { type: String, required: true },
   email: {type: String, unique: true, match: [/.+@.+\..+/, "Please enter a valid e-mail address"]},
   password: {type: String, required: true, validate: [({ length }) => length >= 8, "Password should be  8 longer."]},
-
+  city : { type: String, required: false},
+  state: {type: String, required: false},
+  friends: {type: Array, required: false },
   image: { type: String, required: false },
   checked: {type: Boolean, required: true, default: true},
   date: { type: Date, default: Date.now }

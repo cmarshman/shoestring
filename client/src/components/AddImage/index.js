@@ -54,8 +54,8 @@ function AddImage(props, currentUser) {
                 phone: currentUserObj.currentUser.phone,
                 email: currentUserObj.currentUser.email,
                 password: currentUserObj.currentUser.password,
-               // image:  currentUserObj.currentUser.image,
-                image:  file.secure_url
+                image:  currentUserObj.currentUser.image,
+                
             }]
             //const onLoginSuccess= (currentUser) =>{
                 setCurrentUserObj({ currentUser: httpClient.getCurrentUser(...currentUser), image:file.secure_url })
@@ -110,7 +110,7 @@ function AddImage(props, currentUser) {
             ) : (
                     <figure className="image is-centered">
                         {/* <placeholder>Here we are</placeholder> */}
-                        <img className="is-rounded" src={image} />
+                        <img className="is-rounded" src={my_image} />
                     </figure>
                 )}
             <br />
