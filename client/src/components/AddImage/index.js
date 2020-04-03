@@ -22,7 +22,7 @@ function AddImage(props, currentUser) {
         //onLoginSuccess();
         //findOneUser()
         //handleImage()
-    },[])
+    },[currentUserObj.currentUser.image])
 
     const uploadImage = async e => {
         const files = e.target.files
@@ -53,14 +53,15 @@ function AddImage(props, currentUser) {
                 phone: currentUserObj.currentUser.phone,
                 email: currentUserObj.currentUser.email,
                 password: currentUserObj.currentUser.password,
-                image:  currentUserObj.currentUser.image
+                image:  currentUserObj.currentUser.image,
+                image:  file.secure_url
             }]
             //const onLoginSuccess= (currentUser) =>{
                 setCurrentUserObj({ currentUser: httpClient.getCurrentUser(...currentUser), image:file.secure_url })
                  console.log("currentUserObj " , currentUserObj )
                 //console.log("user " , currentUserObj.currentUser.firstName)
              //}
-        console.log("user image", currentUserObj.currentUser.image)
+        console.log("user image", currentUser[0].image)
 
         httpClient.InsertUpdate( {
             _id: currentUserObj.currentUser._id,
@@ -72,7 +73,7 @@ function AddImage(props, currentUser) {
             httpClient.FindUser( {
                  image: file.secure_url
             })
-            console.log("image", image)
+           // console.log("image", image)
     }
 
     //     const onLoginSuccess = (user) => {
@@ -93,7 +94,7 @@ function AddImage(props, currentUser) {
         console.log("input ", { name, value })
     };
 
- const my_image = currentUserObj.currentUser.image
+ //const my_image = currentUserObj.currentUser.image
     return (
         <div>
             {/* <h3>Upload image</h3> */}
@@ -106,7 +107,7 @@ function AddImage(props, currentUser) {
             ) : (
                     <figure className="image is-128x128">
                         {/* <placeholder>Here we are</placeholder> */}
-                        <img className="is-rounded" src={my_image} />
+                        <img className="is-rounded" src={currentUserObj.currentUser.image} />
                     </figure>
                 )}
             <br />
@@ -116,7 +117,7 @@ function AddImage(props, currentUser) {
                 placeholder="Upload image"
                 value={currentUser.image}
                 onChange={uploadImage}
-            // onChange={handleImage}
+                //onChange={findOneUser}
             />
             {/* {loading ? (
                 <h3>Loading...</h3>
