@@ -69,109 +69,116 @@ function SignUp() {
     clearForm()
   }
 
-// render the Form
-return (
-  <>
-    <Navbar />
-    
-    <div className='container box'>
-      <div className="field">
-        <label className="label">First Name</label>
-        <div className="control">
-          <input className="input"
-            // className = {signupObject.firstName === '' ? "input error" : " input" }
-            type="text"
-            onChange={handleInputChange}
-            name="firstName"
-            placeholder="First Name (required)"
-            value={signupObject.firstName}
-          />
-        </div>
-      </div>
+  // render the Form
+  return (
+    <>
+      <Navbar />
+      <div className="tile is-ancestor">
+        <div className="tile is vertical is-11 box" id="tile">
 
-      <div className="field">
-        <label className="label">Last Name</label>
-        <div className="control">
-          <input className="input" type="text"
-            // className = {signupObject.lastName === "" ? "input error" : " input" }
-            onChange={handleInputChange}
-            name="lastName"
-            placeholder="Last Name (required)"
-            value={signupObject.lastName}
-          />
-        </div>
-      </div>
-      <div className="field">
-        <label className="label">Phone</label>
-        <div className="control">
-          <input className="input" type="text"
-            // className = {signupObject.phone === '' ? "input error" : " input" }
-            onChange={handleInputChange}
-            name="phone"
-            placeholder="555-555-5555 (required)"
-            value={signupObject.phone}
-          />
+          <div className="tile is-parent">
+            <article className="tile is-child notification is-dark">
 
-        </div>
-      </div>
+              <div className="field">
+                <label className="label">First Name</label>
+                <div className="control">
+                  <input className="input"
+                    // className = {signupObject.firstName === '' ? "input error" : " input" }
+                    type="text"
+                    onChange={handleInputChange}
+                    name="firstName"
+                    placeholder="First Name (required)"
+                    value={signupObject.firstName}
+                  />
+                </div>
+              </div>
 
-      <div className="field">
-        <label className="label">Email</label>
-        <div className="control has-icons-left has-icons-right">
-          <input className="input " type="email"
-            // className = {signupObject.email === '' ? "input error" : " input" }
-            onChange={handleInputChange}
-            name="email"
-            placeholder="Email (required)"
-            value={signupObject.email} />
-          <span className="icon is-small is-left">
-            <i className="fas fa-envelope"></i>
-          </span>
-          <span className="icon is-small is-right">
-            <i className="fas fa-exclamation-triangle"></i>
-          </span>
-        </div>
-      </div>
-      <div className="field">
-        <label className="label">Password</label>
-        <p className="control has-icons-left">
-          <input className="input " type="password"
-            // className = {signupObject.password === '' ? "input error" : " input" }
-            onChange={handleInputChange}
-            name="password"
-            placeholder="Password (required)"
-            value={signupObject.password} />
-          <span className="icon is-small is-left">
-            <i className="fas fa-lock"></i>
-          </span>
-        </p>
-      </div>
-      <div className="field">
-        <div className="control">
-          <label className="checkbox">
-            <input type="checkbox"
-              // className = {signupObject.checked === ' ' ? "error" : " " }
-              onChange={handleInputChange}
-              name="checked"
-              value={signupObject.checked}
-              id="bluefish"
-            />
+              <div className="field">
+                <label className="label">Last Name</label>
+                <div className="control">
+                  <input className="input" type="text"
+                    // className = {signupObject.lastName === "" ? "input error" : " input" }
+                    onChange={handleInputChange}
+                    name="lastName"
+                    placeholder="Last Name (required)"
+                    value={signupObject.lastName}
+                  />
+                </div>
+              </div>
+              <div className="field">
+                <label className="label">Phone</label>
+                <div className="control">
+                  <input className="input" type="text"
+                    // className = {signupObject.phone === '' ? "input error" : " input" }
+                    onChange={handleInputChange}
+                    name="phone"
+                    placeholder="555-555-5555 (required)"
+                    value={signupObject.phone}
+                  />
+
+                </div>
+              </div>
+
+              <div className="field">
+                <label className="label">Email</label>
+                <div className="control has-icons-left has-icons-right">
+                  <input className="input " type="email"
+                    // className = {signupObject.email === '' ? "input error" : " input" }
+                    onChange={handleInputChange}
+                    name="email"
+                    placeholder="Email (required)"
+                    value={signupObject.email} />
+                  <span className="icon is-small is-left">
+                    <i className="fas fa-envelope"></i>
+                  </span>
+                  <span className="icon is-small is-right">
+                    <i className="fas fa-exclamation-triangle"></i>
+                  </span>
+                </div>
+              </div>
+              <div className="field">
+                <label className="label">Password</label>
+                <p className="control has-icons-left">
+                  <input className="input " type="password"
+                    // className = {signupObject.password === '' ? "input error" : " input" }
+                    onChange={handleInputChange}
+                    name="password"
+                    placeholder="Password (required)"
+                    value={signupObject.password} />
+                  <span className="icon is-small is-left">
+                    <i className="fas fa-lock"></i>
+                  </span>
+                </p>
+              </div>
+              <div className="field">
+                <div className="control">
+                  <label className="checkbox">
+                    <input id="bluefish" type="checkbox"
+                      // className = {signupObject.checked === ' ' ? "error" : " " }
+                      onChange={handleInputChange}
+                      name="checked"
+                      value={signupObject.checked}
+                    />
                 I agree to the <a href="#"> terms and conditions</a>
-          </label>
+                  </label>
+                </div>
+              </div>
+
+              <div className="field is-grouped">
+                <div className="control">
+                  <button className="button is-light" onClick={handleFormOnsubmit} id="twofish">Submit</button>
+                </div>
+                <div className="control">
+                  <button className="button is-light" onClick={clearForm} id="rainbowfish">Cancel</button>
+                </div>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
 
-      <div className="field is-grouped">
-        <div className="control">
-          <button className="button is-light" onClick={handleFormOnsubmit} id="twofish">Submit</button>
-        </div>
-        <div className="control">
-          <button className="button is-dark" onClick={clearForm} id="rainbowfish">Cancel</button>
-        </div>
-      </div>
-    </div>
-  </>
-)
-  
+    </>
+  )
+
 }
 export default SignUp;

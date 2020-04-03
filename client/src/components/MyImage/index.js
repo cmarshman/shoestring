@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import httpClient from '../../httpClient';
-import './style.css'
-// const db = require("../../../../models")
-//import httpClient from '../../httpClient'
+import './style.css';
 
+function MyImage(currentUser) {
 
-
-function AddImage(props, currentUser) {
     const [currentUserObj, setCurrentUserObj] = useState({
         currentUser: httpClient.getCurrentUser()
     })
@@ -88,46 +85,21 @@ function AddImage(props, currentUser) {
     //console log id and url to update table
     // }
 
-    function handleImage(event) {
-        const { name, value } = event.target;
-        setCurrentUserObj({ ...currentUser, [name]: value })
-        console.log("input ", { name, value })
-    };
-
     const my_image = currentUserObj.currentUser.image
 
     return (
-        <div>
-            {/* <h3>Upload image</h3> */}
-            {/* <figure className="image is-128x128">
-                <img className="is-rounded" id="userPic" src={image} onChange={uploadImage} />
-            </figure> */}
-            <br />
-            {loading ? (
-                <h3>Loading...</h3>
-            ) : (
-                    <figure className="image is-centered">
-                        {/* <placeholder>Here we are</placeholder> */}
-                        <img id="myPhoto" className="is-rounded" src={my_image} />
-                    </figure>
-                )}
-            <br />
+        <>
+        {loading ? (
+            <h3>Loading...</h3>
+        ) : (
+                <figure className="image">
+                    {/* <placeholder>Here we are</placeholder> */}
+                    <img id="lamp" className="is-rounded" src={my_image} />
+                </figure>
+            )}
 
-            <input type="file"
-                name="file"
-                placeholder="Upload image"
-                value={currentUser.image}
-                onChange={uploadImage}
-            // onChange={handleImage}
-            />
-            {/* {loading ? (
-                <h3>Loading...</h3>
-            ) : (
-                    <img src={image} style={{ width: '300px' }} />
-                )} */}
-
-        </div>
-    )
+        </>
+    );
 }
 
-export default AddImage;
+export default MyImage;
