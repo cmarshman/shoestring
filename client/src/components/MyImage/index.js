@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import httpClient from '../../httpClient';
-import './style.css'
-// const db = require("../../../../models")
-//import httpClient from '../../httpClient'
+import './style.css';
 
+function MyImage(currentUser) {
 
-
-function AddImage(props, currentUser) {
     const [currentUserObj, setCurrentUserObj] = useState({
         currentUser: httpClient.getCurrentUser()
     })
@@ -22,7 +19,7 @@ function AddImage(props, currentUser) {
         //onLoginSuccess();
         //findOneUser()
         //handleImage()
-    },[currentUserObj.currentUser.image])
+    }, [])
 
     const uploadImage = async e => {
         const files = e.target.files
@@ -54,15 +51,14 @@ function AddImage(props, currentUser) {
                 phone: currentUserObj.currentUser.phone,
                 email: currentUserObj.currentUser.email,
                 password: currentUserObj.currentUser.password,
-               // image:  currentUserObj.currentUser.image,
-                image:  file.secure_url
+                image: currentUserObj.currentUser.image
             }]
-            //const onLoginSuccess= (currentUser) =>{
-                setCurrentUserObj({ currentUser: httpClient.getCurrentUser(...currentUser), image:file.secure_url })
-                 console.log("currentUserObj " , currentUserObj )
-                //console.log("user " , currentUserObj.currentUser.firstName)
-             //}
-        console.log("user image", currentUser[0].image)
+        //const onLoginSuccess= (currentUser) =>{
+        setCurrentUserObj({ currentUser: httpClient.getCurrentUser(...currentUser), image: file.secure_url })
+        console.log("currentUserObj ", currentUserObj)
+        //console.log("user " , currentUserObj.currentUser.firstName)
+        //}
+        console.log("user image", currentUserObj.currentUser.image)
 
         httpClient.InsertUpdate({
             _id: currentUserObj.currentUser._id,
@@ -74,8 +70,8 @@ function AddImage(props, currentUser) {
             httpClient.FindUser({
                 image: file.secure_url
             })
-           // console.log("image", image)
-    }
+            console.log("image", image)
+        }
 
         //     const onLoginSuccess = (user) => {
         //         setCurrentUserObj({ currentUser: httpClient.getCurrentUser(user) })
@@ -89,47 +85,21 @@ function AddImage(props, currentUser) {
     //console log id and url to update table
     // }
 
-    function handleImage(event) {
-        const { name, value } = event.target;
-        setCurrentUserObj({ ...currentUser, [name]: value })
-        console.log("input ", { name, value })
-    };
-
- //const my_image = currentUserObj.currentUser.image
     const my_image = currentUserObj.currentUser.image
 
     return (
-        <div>
-            {/* <h3>Upload image</h3> */}
-            {/* <figure className="image is-128x128">
-                <img className="is-rounded" id="userPic" src={image} onChange={uploadImage} />
-            </figure> */}
-            <br />
-            {loading ? (
-                <h3>Loading...</h3>
-            ) : (
-                    <figure className="image is-centered">
-                        {/* <placeholder>Here we are</placeholder> */}
-                        <img className="is-rounded" src={image} />
-                    </figure>
-                )}
-            <br />
+        <>
+        {loading ? (
+            <h3>Loading...</h3>
+        ) : (
+                <figure className="image">
+                    {/* <placeholder>Here we are</placeholder> */}
+                    <img id="lamp" className="is-rounded" src={my_image} />
+                </figure>
+            )}
 
-            <input type="file"
-                name="file"
-                placeholder="Upload image"
-                value={currentUser.image}
-                onChange={uploadImage}
-                //onChange={findOneUser}
-            />
-            {/* {loading ? (
-                <h3>Loading...</h3>
-            ) : (
-                    <img src={image} style={{ width: '300px' }} />
-                )} */}
-
-        </div>
-    )
+        </>
+    );
 }
 
-export default AddImage;
+export default MyImage;
