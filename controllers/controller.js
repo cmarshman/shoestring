@@ -1,11 +1,13 @@
 var plaid = require("plaid");
 var moment = require("moment");
 
+//This is Plaid parts
 var PLAID_CLIENT_ID = "5e45d9e00f9243001237c447";
 var PLAID_SECRET = "3e32fe89ce9a6c586bd001cf7be2f3";
 var PLAID_PUBLIC_KEY = "a470a31fd930e601383597d010adba";
 var PLAID_ENV = "development";
 
+// This new token
 var ACCESS_TOKEN = null;
 var PUBLIC_TOKEN = null;
 var ITEM_ID = null;

@@ -10,6 +10,7 @@ const app = express()
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/shoestring'
 const PORT = process.env.PORT || 3001
 
+//This is for the Plaid
 const {
 	receivePublicToken,
 	getTransactions
