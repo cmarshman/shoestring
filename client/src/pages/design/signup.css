@@ -5,3 +5,23 @@
 #bluefish{
     margin-right: 5px;
 }
+
+#twofish{
+    color: #3bd389;
+
+}
+
+#twofish:hover{
+    background-color: #363636;
+    color: #f5f5f5;
+}
+
+#rainbowfish{
+    color: #f5f5f5;
+
+}
+
+#rainbowfish:hover{
+    background-color: #3bd389;
+    color: #363636;
+}

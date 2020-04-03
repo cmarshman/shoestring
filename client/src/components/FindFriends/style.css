@@ -16,10 +16,12 @@
 .deposit{
     width: 45%!important;
     margin-bottom: 20px;
+    color: #3bd389!important;
 }
 
 .deposit:hover{
-    background-color: #3bd389!important;
+    background-color: #363636!important;
+    color: #f5f5f5!important;
 }
 
 #friend{

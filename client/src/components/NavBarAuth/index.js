@@ -43,7 +43,7 @@ useEffect(() => {
     <div>
       <nav className="navbar" role="navigation" aria-label="main navigation" id="opening-nav">
         <div className="navbar-brand">
-          <Link to="/" className="navbar-item">
+          <Link to="/home" className="navbar-item">
             <img src={Image} alt="logo" width="112" height="28"/>
           </Link>
 
@@ -88,7 +88,6 @@ useEffect(() => {
               <div className="buttons">
                   
                 <Link to="/login" className="button is-light" id="text-theme" onClick={logOut}>
-                 
                   Logout
                 </Link>
               </div>

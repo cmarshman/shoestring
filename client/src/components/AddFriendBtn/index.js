@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.css'
-import { Link } from 'react-router-dom';
+
 
 function AddFriendBtn() {
     
@@ -8,7 +8,7 @@ function AddFriendBtn() {
     
     return(
         <>
-        <Link to="/findafriend" className="button is-dark red-fish" id="deposit">Add Friend</Link>
+        <button className="button is-light red-fish" id="addFriend">Add Friend</button>
         </>
     );
 }

@@ -13,8 +13,8 @@ function UserProfileBtn() {
 
     return (
         <>
-            <div onClick={handleToggle}>{friendAdd ? <AddFriendBtn /> : <UnFriendBtn />}
-                <Link to="/transfermoney" className="button is-dark" id="deposit">Send Money</Link>
+            <div onClick={handleToggle}>{friendAdd ? <UnFriendBtn /> : <AddFriendBtn />}
+                <Link to="/transfermoney" className="button is-light" id="sendMoney">Send Money</Link>
             </div>
 
         </>

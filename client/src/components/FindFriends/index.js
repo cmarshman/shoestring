@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './style.css';
-import friends from '../../utils/friendList.json';
 import FindNewFriends from '../FindNewFriends';
 import SearchMyFriends from '../SearchMyFriends';
 
@@ -20,7 +19,7 @@ function FindFriends () {
                         <div className="tile is-12 is-vertical is-parent" id="wallet">
                             <div className="tile is-child box has-text-centered">
                             <p className="subtitle">Toggle below to search for new friends or filter through your current friends</p>
-                            <button className="button is-dark is-medium deposit" id="newFreind" onClick={handleToggle}><strong>{pickSearch ? "Switch to Find new friends" : "Switch to Search my friends"}</strong></button>
+                            <button className="button is-light is-medium deposit" id="newFreind" onClick={handleToggle}>{pickSearch ? "Switch to Find new friends" : "Switch to Search my friends"}</button>
                             {!pickSearch ? 
                                 <FindNewFriends/> 
                                 :

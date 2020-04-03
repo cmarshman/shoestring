@@ -1,8 +1,9 @@
-#submit{
+#contactMe{
+    float: right;
     color: #3bd389;
 }
 
-#submit:hover{
+#contactMe:hover{
     background-color: #363636;
     color: #f5f5f5;
-}
+}   

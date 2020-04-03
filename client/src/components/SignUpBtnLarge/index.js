@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 function SignUpBtnLarge() {
     return (
         <Link to="/sign-up" className="button is-light" id="signup">
-            <p className="title">Sign Up</p>
+            <p className="">Sign Up</p>
         </Link>
     );
 }

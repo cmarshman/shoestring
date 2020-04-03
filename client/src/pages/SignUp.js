@@ -73,7 +73,7 @@ function SignUp() {
 return (
   <>
     <Navbar />
-
+    
     <div className='container box'>
       <div className="field">
         <label className="label">First Name</label>
@@ -163,10 +163,10 @@ return (
 
       <div className="field is-grouped">
         <div className="control">
-          <button className="button is-link loginbtn" onClick={handleFormOnsubmit}>Submit</button>
+          <button className="button is-light" onClick={handleFormOnsubmit} id="twofish">Submit</button>
         </div>
         <div className="control">
-          <button className="button is-link is-light" onClick={clearForm}>Cancel</button>
+          <button className="button is-dark" onClick={clearForm} id="rainbowfish">Cancel</button>
         </div>
       </div>
     </div>

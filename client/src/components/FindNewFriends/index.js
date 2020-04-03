@@ -77,7 +77,7 @@ function FindNewFriends() {
             <div className="control" onSubmit={handleSearchSubmit}>
                 <label htmlFor="findFriends"></label>
                 <input className="input" type="text" onChange={onChangeHandler} placeholder="Find new friends . . . " value={newFriendSearch}/>
-                <button className="button is-primary" type="submit" id="submit">Submit</button>
+                <button className="button is-light" type="submit" id="submit">Submit</button>
             </div>
         </div>
         <br/>
