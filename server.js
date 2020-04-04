@@ -12,9 +12,9 @@ const PORT = process.env.PORT || 3001
 
 //This is for the Plaid
 const {
-	receivePublicToken,
-	getTransactions
-	} = require("./controllers/controller");
+    receivePublicToken,
+    getTransactions
+    } = require("./controllers/controller");
 
 	// Get the public token and exchange it for an access token
 app.post("/auth/public_token", receivePublicToken);

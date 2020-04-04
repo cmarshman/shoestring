@@ -13,7 +13,7 @@ function IssueForm () {
     return (
         <div className="tile is-ancestor">
 
-            <div className="tile is vertical is-11 box" id="tile">
+            <div className="tile is vertical is-7 box" id="tile">
 
                 <div className="tile is-parent">
                     <article className="tile is-child notification is-dark">

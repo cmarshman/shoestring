@@ -1,5 +1,7 @@
 import React from 'react';
 import NavBarAuth from '../components/NavBarAuth';
+import Currency from '../components/CurrencyConverter';
+import './design/CurrencyConverter.css';
 
 function CurrencyConverter() {
     return (
@@ -15,15 +17,29 @@ function CurrencyConverter() {
                                 <br>
                                 </br>
                                 <p class="subtitle is-4">Not everyone knows currency abbreviations, this cheat sheet provides the most common currencies in the world for our converter. Make sure to use the abbreviated name for the converter.</p>
-                                <ol type="1">
-                                    <li>    AUD = Australian Dollar</li>
-                                    <li>    EUR = European Dollar</li>
-                                    <li>    CHF = Swiss Franc</li>
-                                    <li>    CNY = Chinese Yuan</li>
-                                    <li>    GBP = British Pound</li>
-                                    <li>    JPY = Japanese Yuan</li>
-                                    <li>    CAD = Canadian Dollar</li>
-                                    <li>    USD = US Dollar</li>
+                                <ol type="1" id="redHat">
+                                    <li>    AUD = Australian Dollar</li><li>    HKD = Hong Kong Dollar Dollar</li>
+                                    <li>    EUR = European Dollar</li> <li>    ISK = Icelandic Króna</li>
+                                    <li>    CHF = Swiss Franc</li> <li>    PHP = Philippine Peso</li>
+                                    <li>    CNY = Chinese Yuan</li> <li>    DKK = Danish Krone</li>
+                                    <li>    GBP = British Pound</li> <li>    HUF = Hungarian Forint</li>
+                                    <li>    JPY = Japanese Yuan</li> <li>    CZK = Czech Republic Koruna</li>
+                                    <li>    CAD = Canadian Dollar</li> <li>    RON = Romanian Leu</li>
+                                    <li>    USD = US Dollar</li> <li>    SEK = Swedish Krona</li>
+
+
+
+                                    <li>    IDR = Indonesian Rupiah</li> <li>    INR = Indian Rupee</li>
+                                    <li>    BRL = Brazilian Real</li> <li>    RUB = Russian Ruble</li>
+                                    <li>    HRK = Croatian Kuna</li> <li>    THB = Thai Baht</li>
+                                    <li>    SGD = Singapore Dollar</li> <li>    PLN = Polish Zloty</li>
+                                    <li>    BGN = Bulgarian Lev</li> <li>    TRY = Turkish Lira</li>
+                                    <li>    NOK = Norwegian Krone</li> <li>    NZD = New Zealand Dollar</li>
+                                    <li>    ZAR = South African Rand</li> <li>    MXN = Mexican Peso</li>
+                                    <li>    ILS = Israeli New Sheqel</li>
+                                    <li>    KRW = Kuwaiti Dinar</li>
+                                    <li>    MYR = Malaysian Ringgit</li>
+
                                 </ol>
                             </div>
                         </div>
@@ -33,25 +49,7 @@ function CurrencyConverter() {
                             <br>
                             </br>
                             <div className="field">
-                                <label class="label">Amount</label>
-                                <p className="control">
-                                    <input className="input" type="text" placeholder="amount" value='' />
-                                </p>
-                                <label class="label">From</label>
-                                <p className="control">
-                                    <input className="input" type="text" placeholder="From" value='' />
-                                </p>
-                                <label class="label">To</label>
-                                <p className="control">
-                                    <input className="input" type="text" placeholder="To" value='' />
-                                </p>
-                                <br>
-                                </br>
-                                <p class="control">
-                                    <a class="button is-primary">
-                                        Submit
-                                        </a>
-                                </p>
+                                <Currency />
                             </div>
                         </div>
                     </div>

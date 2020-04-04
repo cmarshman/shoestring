@@ -1,0 +1,11 @@
+#userPhoto{
+    height: 48px!important;
+    width: 48px!important;
+}
+
+#pinkDuck{
+    height: 420px!important;
+    width: 412px!important; 
+    overflow-y: scroll;
+    position: relative;
+}

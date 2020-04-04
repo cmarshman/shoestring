@@ -8,25 +8,21 @@ function TransferMoneyCard () {
     return(
         <div className="outerTile">
                 <div className="is-clearfix columns is-centered">
-                    <div className="tile is-10 container column is-fluid" id="wheres_waldo">
-                        <div className="tile is-7 is-vertical is-parent"  id="wallet">
+                    <div className="tile is-10 container column is-fluid" >
+                        <div className="tile is-7 is-vertical is-parent"  >
                             <div className="tile is-child box has-text-centered">
-                                <a className="title" href=''>
+                                <a className="title is-centered" href='/home'>
                                     <MyImage/>
                                 </a>
+                                <br/>
                                 <UserNameCard/>
-                                <h2 className="subtitle">
-                                    Funds Available: $100 <br/>
-                                    Member Since: April 2020
-                                </h2>
+                                <p id="funds">Funds Available: $100</p>
+                            <p id="member">Member Since: April 2019</p>
                             </div>  
                         </div>
-                        <div className="tile is-3 is-vertical is-parent">
                             <FriendCard/>
-                        </div>  
                     </div>
                 </div>
-                <br/>
                 <div className="tile is-ancestor columns is-centered" id="waldos_nothere">
                 <div className="tile is-vertical column is-two-fifths banana box" id="tile1">
                     <p className="subtitle has-text-centered">

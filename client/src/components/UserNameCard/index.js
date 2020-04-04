@@ -38,7 +38,7 @@ function UserNameCard(currentUser) {
     return (
         <>
         <p className="title">
-            {currentUser[0].name} {currentUser[0].lastName}
+            {currentUser[0].name}
         </p>
         </>
     );

@@ -59,7 +59,6 @@ const work = () =>{
                             <div className="is-centered" >
                                 <Plaid />
                              <AddImage />
-
                             <br />
                             <UserNameCard/>
                             <p id="funds">Funds Available: $100</p>
@@ -68,15 +67,14 @@ const work = () =>{
                         </div>
                         <div className="tile is-child box">
                             <p className="title" id="paymentList">Payments</p>
-                            <p>Lisa paid Arnold for pizza</p>
+                            <p>Lisa paid Arnold for Pizza</p>
                             <p>Jeff paid Jesus for rent</p>
                         </div>
-
-                    </div>
+                        </div>
                     <FriendCard />
                 </div>
-                </div>
             </div>
+        </div>
         </div>
 
 
@@ -86,3 +84,4 @@ const work = () =>{
 
 export default Landing;
  
+
