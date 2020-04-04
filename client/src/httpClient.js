@@ -52,8 +52,8 @@ httpClient.signUp = function(userInfo) {
 }
 
 ///Find  a user from the database
-httpClient.FindUser = function(userInfo , _id) {
-	return this({ method: 'get', url: '/api/users/' + userInfo._id, data: userInfo})
+httpClient.FindUser = function(userInfo , name) {
+	return this({ method: 'get', url: '/api/users/' + userInfo.name, data: userInfo.name})
 		.then((serverResponse) => {
 			console.log("serverResponse", serverResponse)
 			const token = serverResponse.data.token
