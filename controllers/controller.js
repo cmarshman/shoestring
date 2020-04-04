@@ -23,7 +23,9 @@ const receivePublicToken = (req, res) => {
   // First, receive the public token and set it to a variable
   let PUBLIC_TOKEN = req.body.public_token;
   // Second, exchange the public token for an access token
-  client.exchangePublicToken(PUBLIC_TOKEN, function(error, tokenResponse) {
+
+  client.exchangePublicToken(PUBLIC_TOKEN, function (error, tokenResponse) {
+
     ACCESS_TOKEN = tokenResponse.access_token;
     ITEM_ID = tokenResponse.item_id;
     res.json({
@@ -50,9 +52,11 @@ const getTransactions = (req, res) => {
       count: 250,
       offset: 0
     },
-    function(error, transactionsResponse) {
+
+    function (error, transactionsResponse) {
       res.json({ transactions: transactionsResponse });
-      // TRANSACTIONS LOGGED BELOW! 
+      // TRANSACTIONS LOGGED BELOW!
+
       // They will show up in the terminal that you are running nodemon in.
       console.log(transactionsResponse);
     }
