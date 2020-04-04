@@ -65,13 +65,16 @@ const work = () =>{
                             <p id="member">Member Since: April 2019</p>
                             </div>
                         </div>
-                        
-
-                    </div>
+                        <div className="tile is-child box">
+                            <p className="title" id="paymentList">Payments</p>
+                            <p>Lisa paid Arnold for Pizza</p>
+                            <p>Jeff paid Jesus for rent</p>
+                        </div>
+                        </div>
                     <FriendCard />
                 </div>
-                </div>
             </div>
+        </div>
         </div>
 
 
