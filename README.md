@@ -2,7 +2,7 @@
 Shoestring although still in development, is a peer to peer payment application that intergrates international payments no matter where you are in the world.
 
 ## Installation
-No installation required. Simply visit [Shoestring] (https://) and get started!
+No installation required. Simply visit [Shoestring] (https://https://dry-woodland-58016.herokuapp.com/home) and get started!
 
 
 ## Functionality
