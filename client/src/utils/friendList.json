@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "name": "James Horton",
+        "name": "JamesHorton",
         "location": "Charlotte, NC",
         "email": "jamesh@gmail.com",
         "phone": "704-888-3456",
@@ -33,6 +33,30 @@
     },
     {
         "id": 5,
+        "name": "Anderson Thompson",
+        "location": "Charlotte, NC",
+        "email": "thompsonandersion@yahoo.com",
+        "phone": "888-675-3456",
+        "image": "../friendPhotos/anderson_thompson.jpg"
+    },
+    {
+        "id": 6,
+        "name": "Anderson Thompson",
+        "location": "Charlotte, NC",
+        "email": "thompsonandersion@yahoo.com",
+        "phone": "888-675-3456",
+        "image": "../friendPhotos/anderson_thompson.jpg"
+    },
+    {
+        "id": 7,
+        "name": "Anderson Thompson",
+        "location": "Charlotte, NC",
+        "email": "thompsonandersion@yahoo.com",
+        "phone": "888-675-3456",
+        "image": "../friendPhotos/anderson_thompson.jpg"
+    },
+    {
+        "id": 8,
         "name": "Anderson Thompson",
         "location": "Charlotte, NC",
         "email": "thompsonandersion@yahoo.com",

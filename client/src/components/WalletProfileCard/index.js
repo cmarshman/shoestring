@@ -15,6 +15,7 @@ function WalletProfileCard() {
                                 <a className="title" href=''>
                                     <MyImage/>
                                 </a>
+                                <br/>
                                 <UserNameCard/>
                                 <h2 className="subtitle">
                                     Funds Available: $100 <br/>
