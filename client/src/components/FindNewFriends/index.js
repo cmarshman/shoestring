@@ -49,7 +49,7 @@ function FindNewFriends(currentUser) {
  function handleSearchSubmit(evt) {
         //evt.preventDefault()
              $.ajax({
-                url: 'http://localhost:3000/api/users/',
+                url: '/api/users/',
                 method: 'get',
                  
                 success: (response) => {
