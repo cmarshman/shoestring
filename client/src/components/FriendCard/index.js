@@ -1,5 +1,6 @@
 import React from "react";
 import friends from "../../utils/friendList.json";
+import './style.css';
 import { Link, withRouter } from 'react-router-dom';
 
 
@@ -7,7 +8,7 @@ function Card(item) {
 
     
     return (
-        <div className="tile is-child box has-text-centered">
+        <div className="tile is-child box has-text-centered" id="pinkDuck">  
             {friends.map(item => (
                 <article key={item.id} className="media">
                     <figure className="media-left" id="block">

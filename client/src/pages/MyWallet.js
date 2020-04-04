@@ -10,7 +10,6 @@ function MyWallet() {
             <WalletProfileCard/>
             <br/>
             <br/>
-            <br/>
             <WalletTransfer/>
         </>
     );

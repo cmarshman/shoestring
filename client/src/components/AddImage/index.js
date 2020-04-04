@@ -109,8 +109,7 @@ function AddImage(props, currentUser) {
                 <h3>Loading...</h3>
             ) : (
                     <figure className="image is-centered">
-                        {/* <placeholder>Here we are</placeholder> */}
-                        <img className="is-rounded" id="myPhoto" src={my_image} />
+                        <img id="myPhoto" className="is-rounded" src={my_image} alt="myPhoto"/>
                     </figure>
                 )}
             <br />

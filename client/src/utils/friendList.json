@@ -38,5 +38,29 @@
         "email": "thompsonandersion@yahoo.com",
         "phone": "888-675-3456",
         "image": "../friendPhotos/anderson_thompson.jpg"
+    },
+    {
+        "id": 6,
+        "name": "Anderson Thompson",
+        "location": "Charlotte, NC",
+        "email": "thompsonandersion@yahoo.com",
+        "phone": "888-675-3456",
+        "image": "../friendPhotos/anderson_thompson.jpg"
+    },
+    {
+        "id": 7,
+        "name": "Anderson Thompson",
+        "location": "Charlotte, NC",
+        "email": "thompsonandersion@yahoo.com",
+        "phone": "888-675-3456",
+        "image": "../friendPhotos/anderson_thompson.jpg"
+    },
+    {
+        "id": 8,
+        "name": "Anderson Thompson",
+        "location": "Charlotte, NC",
+        "email": "thompsonandersion@yahoo.com",
+        "phone": "888-675-3456",
+        "image": "../friendPhotos/anderson_thompson.jpg"
     }
 ]
