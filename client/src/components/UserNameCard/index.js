@@ -23,8 +23,8 @@ function UserNameCard(currentUser) {
     
     currentUser =[
         {
-        firstName:currentUserObj.currentUser.firstName,
-        lastName: currentUserObj.currentUser.lastName,
+        name:currentUserObj.currentUser.name,
+        // lastName: currentUserObj.currentUser.lastName,
         phone: currentUserObj.currentUser.phone,
         email: currentUserObj.currentUser.email,
         password: currentUserObj.currentUser.password,
@@ -37,8 +37,8 @@ function UserNameCard(currentUser) {
 
     return (
         <>
-        <p className="subtitle">
-            {currentUser[0].firstName} {currentUser[0].lastName}
+        <p className="title">
+            {currentUser[0].name}
         </p>
         </>
     );
