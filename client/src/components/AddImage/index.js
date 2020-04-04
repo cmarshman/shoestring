@@ -1,23 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import httpClient from '../../httpClient';
 import './style.css'
-// const db = require("../../../../models")
-//import httpClient from '../../httpClient'
-
-
+ 
 
 function AddImage(props, currentUser) {
     const [currentUserObj, setCurrentUserObj] = useState({
         currentUser: httpClient.getCurrentUser()
     })
-    //console.log("currentUer Upper", currentUserObj)
-    //image and loading states
+    
     const [image, setImage] = useState([]);
     const [loading, setLoading] = useState(false);
+    
     // Load the available token on pageload from local storage
-
-
-
     useEffect(() => {
         //onLoginSuccess();
         //findOneUser()
@@ -60,8 +54,7 @@ function AddImage(props, currentUser) {
             //const onLoginSuccess= (currentUser) =>{
                 setCurrentUserObj({ currentUser: httpClient.getCurrentUser(...currentUser), image:file.secure_url })
                  console.log("currentUserObj " , currentUserObj )
-                //console.log("user " , currentUserObj.currentUser.firstName)
-             //}
+              //}
         console.log("user image", currentUser[0].image)
 
         httpClient.InsertUpdate({
@@ -84,10 +77,7 @@ function AddImage(props, currentUser) {
         //     }
     }
     console.log(image)
-    // .then {
-    //require database, find user and update
-    //console log id and url to update table
-    // }
+     
 
     function handleImage(event) {
         const { name, value } = event.target;

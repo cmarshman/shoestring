@@ -17,7 +17,7 @@ function Landing(props, currentUser) {
     // Load the available token on pageload from local storage
      useEffect(() => {
         onLoginSuccess()
-        //settingUpCurrentUser ()
+         
         work()
     }, [])
 

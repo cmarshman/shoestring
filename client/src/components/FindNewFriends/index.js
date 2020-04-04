@@ -17,8 +17,7 @@ function FindNewFriends(currentUser) {
    useEffect(() => {
        onLoginSuccess();
        handleSearchSubmit();
-    //settingUpCurrentUser ()
-       //work()
+     
      }, [])
      //Restructuring the data received from history 
      currentUser = [
@@ -36,8 +35,7 @@ function FindNewFriends(currentUser) {
         }]
         const onLoginSuccess= (currentUser) =>{
             setCurrentUserObj({ currentUser: httpClient.getCurrentUser(currentUser)})
-             console.log("currentUserObj " , currentUserObj )
-            //console.log("user " , currentUserObj.currentUser.firstName)
+             console.log("currentUserObj " , currentUserObj )     
         }
 
  //function to Handle the  input field
@@ -51,47 +49,25 @@ function FindNewFriends(currentUser) {
  function handleSearchSubmit(evt) {
         //evt.preventDefault()
              $.ajax({
-                url: 'http://localhost:3000/api/users/',
+                url: '/api/users/',
                 method: 'get',
                  
                 success: (response) => {
                     console.log('myresponse:', response);
                     setIsLoading(false)
-                    setFriendResult(response) 
-                    // response.map(item =>{
-                    //     httpClient.InsertUpdate({
-                    //         _id: currentUserObj.currentUser._id,
-                    //         friends:  item.image
-                    //     }) 
-                    // })
-                    //this.props.setFriendResult(response) 
-				    //this.props.history.push('search')   
-                    console.log('image:',  response.image);
-                    // for(var i =0; i<response.length; i++ ){
-                    //    if(response[i] === friendResult[i]){ 
-                    //     console.log('good:', friendResult)
-                            //setIsLoading(false)
-                            //(response.data)
-                           //console.log("name" ,response[i] )
-                           //window.location.replace('/login')
-                //       }  
-                // }     return
+                    setFriendResult(response)       
                },
                 error: (err) => {
                   console.log(err);
                 } 
             })
    }
-   //update the database
-//    httpClient.InsertUpdate({
-    //_id: currentUserObj.currentUser._id,
-    //friends:  //currentUserObj.currentUser
-//}) 
+//update the database
 const addfriend = () =>{
 friendResult.map(item =>{
     httpClient.InsertUpdate({
         _id: currentUserObj.currentUser._id,
-        friends:[{ name:item.name, city: item.city, state: item.state, image:item.image}]
+        friends:[{...currentUserObj.currentUser.friends, name:item.name, city: item.city, state: item.state, image:item.image,}]
     }) 
  })
 }
@@ -101,7 +77,7 @@ friendResult.map(item =>{
         setIsLoading(true)
         event.preventDefault();
         httpClient.FindUser({name: friendResult.search})
-               //console.log("friendResult", friendResult.search)
+                
             .then(response => {
                 console.log("friendResult", response.data)
                 setIsLoading(false);
@@ -146,8 +122,6 @@ friendResult.map(item =>{
             </>
         );
     }
-    
-    
     
     return (
         <>

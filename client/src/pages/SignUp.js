@@ -16,7 +16,7 @@ function SignUp() {
     state: "",
     email: "",
     password: "",
-    friends: [],
+    friends: '',
     image: "",
     checked: false
 
