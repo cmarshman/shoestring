@@ -24,7 +24,7 @@
     "jquery": "^3.4.1",
     "jsonwebtoken": "^8.1.0",
     "moment": "^2.24.0",
-    "mongoose": "5.3.8",
+    "mongoose": "^5.9.7",
     "morgan": "^1.9.1",
     "plaid": "^4.10.0",
     "react-plaid-link": "^2.1.0"
