@@ -1,6 +1,8 @@
 import React from 'react';
 import NavBarAuth from '../components/NavBarAuth';
 import Currency from '../components/CurrencyConverter';
+import './design/CurrencyConverter.css';
+
 function CurrencyConverter() {
     return (
         <>
@@ -15,8 +17,8 @@ function CurrencyConverter() {
                                 <br>
                                 </br>
                                 <p class="subtitle is-4">Not everyone knows currency abbreviations, this cheat sheet provides the most common currencies in the world for our converter. Make sure to use the abbreviated name for the converter.</p>
-                                <ol type="1">
-                                    <li>    AUD = Australian Dollar</li>  <li>    HKD = Hong Kong Dollar Dollar</li>
+                                <ol type="1" id="redHat">
+                                    <li>    AUD = Australian Dollar</li><li>    HKD = Hong Kong Dollar Dollar</li>
                                     <li>    EUR = European Dollar</li> <li>    ISK = Icelandic Króna</li>
                                     <li>    CHF = Swiss Franc</li> <li>    PHP = Philippine Peso</li>
                                     <li>    CNY = Chinese Yuan</li> <li>    DKK = Danish Krone</li>
