@@ -1,12 +1,8 @@
 # Shoestring
-
+Shoestring although still in development, is a peer to peer payment application that intergrates international payments no matter where you are in the world.
 
 ## Installation
 No installation required. Simply visit [Shoestring] (https://) and get started!
-
-
-## Purpose
-
 
 
 ## Functionality
@@ -31,9 +27,9 @@ Shoestring first allows the user to sign up or log in if they already have an ac
 
 ## Images
 Login Page +++++++++++++++++++++++++++++++++++++
-![Login-Page](public/images/)
-![Link-BankAccount](public/images/)
-![Upload-Image](public/images/)
+![Login-Page](./images/home.png)
+![Currency-Converter](./images/currency.png)
+![Upload-Image](./images/profilepage.png)
 
 
 

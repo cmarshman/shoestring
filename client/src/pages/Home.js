@@ -16,7 +16,7 @@ function Home () {
           <div className="column is-three-fifths">
             <p className="title">Welcome to shoestring!</p>
             <br />
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tristique tempus volutpat. Vivamus nibh mi, vestibulum sed eleifend sed, finibus non lectus. Mauris lobortis, dui et cursus scelerisque, tellus lectus efficitur augue, in pellentesque ipsum nunc eget odio. Nullam vel lacus ut est malesuada tincidunt. Quisque sapien arcu, dictum non tincidunt vitae, fringilla non lectus. Vivamus nibh felis, consectetur molestie elit et, hendrerit tincidunt dolor.
+            <p>Shoestring although still in development, is a peer to peer payment application that intergrates international payments no matter where you are in the world.
             </p>
             <br />
             <p className="subtitle"><strong>Download our app</strong></p>
