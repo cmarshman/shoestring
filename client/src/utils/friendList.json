@@ -38,5 +38,45 @@
         "email": "thompsonandersion@yahoo.com",
         "phone": "888-675-3456",
         "image": "../friendPhotos/anderson_thompson.jpg"
+    },
+    {
+        "id": 6,
+        "name": "James_Horton",
+        "location": "Charlotte, NC",
+        "email": "jamesh@gmail.com",
+        "phone": "704-888-3456",
+        "image": "../friendPhotos/james_horton.jpg"
+    },
+    {
+        "id": 7,
+        "name": "Kassidy_Jones",
+        "location": "Statesville, NC",
+        "email": "kjones@gmail.com",
+        "phone": "828-345-6745",
+        "image": "../friendPhotos/kassidy_jones.jpg"
+    },
+    {
+        "id": 8,
+        "name": "Bill_Bob",
+        "location": "Mooresville, NC",
+        "email": "bobthebuilder@gmail.com",
+        "phone": "828-546-5564",
+        "image": "../friendPhotos/bill_bob.jpg"
+    },
+    {
+        "id": 9,
+        "name": "Bill_Landers",
+        "location": "Statesville, NC",
+        "email": "landyb@gmail.com",
+        "phone": "828-345-6745",
+        "image": "../friendPhotos/bill_landers.jpg"
+    },
+    {
+        "id": 10,
+        "name": "Anderson_Thompson",
+        "location": "Charlotte, NC",
+        "email": "thompsonandersion@yahoo.com",
+        "phone": "888-675-3456",
+        "image": "../friendPhotos/anderson_thompson.jpg"
     }
 ]
