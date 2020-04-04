@@ -110,7 +110,7 @@ function AddImage(props, currentUser) {
             ) : (
                     <figure className="image is-centered">
                         {/* <placeholder>Here we are</placeholder> */}
-                        <img className="is-rounded" src={my_image} />
+                        <img className="is-rounded" id="myPhoto" src={my_image} />
                     </figure>
                 )}
             <br />
