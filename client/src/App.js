@@ -1,5 +1,4 @@
-
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -15,9 +14,10 @@ import TransferMoney from './pages/TransferMoney';
 import MyWallet from './pages/MyWallet';
 import CurrencyConverter from './pages/CurrencyConverter';
 import Reset from '../src/pages/ResetPwd'
-import UserProfile from './pages/UserProfile'
+import UserProfile from './pages/UserProfile';
+import friends from './utils/friendList.json';
 
-function App() {
+function App(item) {
    
   return (
     <>
@@ -36,7 +36,7 @@ function App() {
         <Route exact path="/transfermoney" component={TransferMoney}/>
         <Route exact path="/mywallet" component={MyWallet}/>
         <Route exact path="/currencyconverter" component={CurrencyConverter}/>
-        <Route exact path="/user-profile" component={UserProfile}/>
+        <Route path="/user-profile/:name" component={UserProfile}/>
       </Wrapper>
     </div>
     </Router>

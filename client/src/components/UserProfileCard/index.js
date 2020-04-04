@@ -1,9 +1,10 @@
 import React from 'react';
 import './style.css';
-import James from '../../images/friendPhotos/james_horton.jpg';
+// import James from '../../images/friendPhotos/james_horton.jpg';
 import UserProfileBtn from '../UserProfileBtn';
+import friends from '../../utils/friendList.json';
 
-function UserProfileCard() {
+function UserProfileCard(item) {
     return(
         <>
         <div className="outerTile">
@@ -12,10 +13,10 @@ function UserProfileCard() {
                         <div className="tile is-7 is-vertical is-parent"  id="wallet">
                             <div className="tile is-child box has-text-centered">
                                 <a className="" href=''>
-                                    <img className="is-rounded is-256x256" src={James} alt="James Horton"/>
+                                    <img className="is-rounded is-256x256" src={item.image} alt="James Horton"/>
                                 </a>
                                 <h1 className="title">
-                                    James Horton
+                                    {item.name}
                                 </h1>
                                 <h2 className="subtitle">
                                     Member Since: April 2020
