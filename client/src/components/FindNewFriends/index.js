@@ -140,39 +140,16 @@ const [friendResult, setFriendResult] = useState([{
    }
 //update the database
 const addfriend = (evt) =>{
-   // evt.target
-friendResult.map(item =>{
-    let container= []
+   const friendId = evt.target.dataset.newfriend  
+    let friendToAdd=friendResult.find(item =>item._id===friendId)
     httpClient.InsertUpdate({
         _id: currentUserObj.currentUser._id,
-        friends:[...currentUserObj.currentUser.friends, {image: item.image,name: item.name, city: item.city, state: item.state}]
+        friends:[...currentUserObj.currentUser.friends, {image: friendToAdd.image,name: friendToAdd.name, city: friendToAdd.city, state: friendToAdd.state}]
     }) 
- })
+  
 }
-//console.log("friends", setFriendResult(friendResult.response))
-//display only searched user from the database
-// const searchfriend = () =>{
-//     friendResult.map(item =>{
-//         if(item.name === friendResult.search){
-//             console.log("yay", item)
-//            return item
-//       }
-//     })
-       
-// }
-//console.log("yay", searchfriend)
-    
-        // httpClient.InsertUpdate({
-        //     _id: currentUserObj.currentUser._id,
-        //     friends:[{...currentUserObj.currentUser.friends, name:item.name, city: item.city, state: item.state, image:item.image,}]
-        
-    
-    //}) 
-     //})
-    //}
 
-
-////
+     
     const handleSear = (event) => {
         setIsLoading(true)
         event.preventDefault();
@@ -184,10 +161,6 @@ friendResult.map(item =>{
                 setFriendResult(response);
             })
             .catch(err => setIsLoading(false))
-    }
-    
-    const onChangeHandler = (event) => {
-        setSearch(event.target.value);
     }
     
     const searchResult = () => {
@@ -208,7 +181,7 @@ friendResult.map(item =>{
                             <p className="" >{item.city}, {item.state}</p>
                             <hr />
                             <a className="button is-dark is-medium" 
-                            id="friend"
+                            id="friend" data-newfriend={item._id}
                             onClick={addfriend}>Add Friend</a>
                         </article>
                     </div>
