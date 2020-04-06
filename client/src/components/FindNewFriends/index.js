@@ -40,7 +40,7 @@ const [friendResult, setFriendResult] = useState([{
        //onLoginSuccess();
        handleSearchSubmit();
        //searchfriend();
-     // handleInputChange() 
+      // handleInputChange() 
       setFriendResult({friendResult:friendResult})    
 
     }, [])
@@ -71,6 +71,7 @@ const [friendResult, setFriendResult] = useState([{
          
     // };
     console.log("all friends", friendResult)
+
      const handleInputChange = event => {
         const value = event.target.value.toLowerCase();
         console.log("value", value)
@@ -90,7 +91,7 @@ const [friendResult, setFriendResult] = useState([{
            return result.name.includes(value) || result.date.includes(value)
            || result.email.includes(value) || result.phone.includes(value)
           })
-           setFriendResult({friendResult:filteredArr})
+           setFriendResult(filteredArr)
            console.log("one friend", filteredArr)
            //this.setState({ results: filteredArr })
         }
@@ -138,39 +139,17 @@ const [friendResult, setFriendResult] = useState([{
       })
    }
 //update the database
-const addfriend = () =>{
-friendResult.map(item =>{
-    let container= []
+const addfriend = (evt) =>{
+   const friendId = evt.target.dataset.newfriend  
+    let friendToAdd=friendResult.find(item =>item._id===friendId)
     httpClient.InsertUpdate({
         _id: currentUserObj.currentUser._id,
-        friends:[{...currentUserObj.currentUser.friends, friends: item.friends,}]
+        friends:[...currentUserObj.currentUser.friends, {image: friendToAdd.image,name: friendToAdd.name, city: friendToAdd.city, state: friendToAdd.state}]
     }) 
- })
+  
 }
-//console.log("friends", setFriendResult(friendResult.response))
-//display only searched user from the database
-// const searchfriend = () =>{
-//     friendResult.map(item =>{
-//         if(item.name === friendResult.search){
-//             console.log("yay", item)
-//            return item
-//       }
-//     })
-       
-// }
-//console.log("yay", searchfriend)
-    
-        // httpClient.InsertUpdate({
-        //     _id: currentUserObj.currentUser._id,
-        //     friends:[{...currentUserObj.currentUser.friends, name:item.name, city: item.city, state: item.state, image:item.image,}]
-        
-    
-    //}) 
-     //})
-    //}
 
-
-////
+     
     const handleSear = (event) => {
         setIsLoading(true)
         event.preventDefault();
@@ -182,10 +161,6 @@ friendResult.map(item =>{
                 setFriendResult(response);
             })
             .catch(err => setIsLoading(false))
-    }
-    
-    const onChangeHandler = (event) => {
-        setSearch(event.target.value);
     }
     
     const searchResult = () => {
@@ -206,7 +181,7 @@ friendResult.map(item =>{
                             <p className="" >{item.city}, {item.state}</p>
                             <hr />
                             <a className="button is-dark is-medium" 
-                            id="friend"
+                            id="friend" data-newfriend={item._id}
                             onClick={addfriend}>Add Friend</a>
                         </article>
                     </div>
