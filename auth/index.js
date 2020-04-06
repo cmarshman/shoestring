@@ -3,7 +3,7 @@ const User = require('../models/signupSchema.js')
 
 // Note this is the supper secret for signing the JWT
 // this should be acquired via .env or a microservice
-const JWT_SECRET  = 'thisismysecretkey'
+const JWT_SECRET  = 'ourdreamwillcometrue'
 
 // function for creating tokens
 function signToken(user) {
