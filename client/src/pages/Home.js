@@ -16,7 +16,7 @@ function Home () {
           <div className="column is-three-fifths">
             <p className="title">Welcome to shoestring!</p>
             <br />
-            <p>Shoestring although still in development, is a peer to peer payment application that intergrates international payments no matter where you are in the world.
+            <p>Shoestring although still in development, is a peer to peer payment application that intergrates international payments no matter where you are in the world. We realized there is a gap in the market for a peer to peer payment system that can integrates currency conversion to send payments instantly both locally and internationally to anyone, anywhere. Sign up to become a founding member or the Shoestring community. 
             </p>
             <br />
             <p className="subtitle"><strong>Download our app</strong></p>
