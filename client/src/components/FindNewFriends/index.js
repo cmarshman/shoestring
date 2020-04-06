@@ -6,19 +6,44 @@ import './style.css';
 import $ from 'jquery';
 
 function FindNewFriends(currentUser) {
-    const [newFriendSearch, setSearch] = useState('');
-    const [friendResult, setFriendResult] = useState([{search: ''}]);
+   
     const [isLoading, setIsLoading] = useState(false);
 
     const [currentUserObj, setCurrentUserObj] = useState({
         currentUser: httpClient.getCurrentUser()
     })
+
+    //Set-up the original state when the page loads
+//   state = {
+//     search: "",
+//     results: [],
+//     currentSort: "default"
+//   };
+//   // When this component mounts, search for randome Employees API and populated their info
+//   componentDidMount() {
+//     this.setState({ results: Data })
+     
+//   }
+
+const [newFriendSearch, setSearch] = useState('');
+const [friendResult, setFriendResult] = useState([{
+     //search: "",
+    //results: [],
+
+}])
+    //search: "",
+    //results: [],
+//});
+ 
 // Load the available token on pageload from local storage
    useEffect(() => {
-       onLoginSuccess();
+       //onLoginSuccess();
        handleSearchSubmit();
-     
-     }, [])
+       //searchfriend();
+      // handleInputChange();
+      //setFriendResult({friendResult: friendResult})    
+
+    }, [])
      //Restructuring the data received from history 
      currentUser = [
         {
@@ -33,18 +58,36 @@ function FindNewFriends(currentUser) {
             image:  currentUserObj.currentUser.image,
             
         }]
-        const onLoginSuccess= (currentUser) =>{
-            setCurrentUserObj({ currentUser: httpClient.getCurrentUser(currentUser)})
-             console.log("currentUserObj " , currentUserObj )     
-        }
+        // const onLoginSuccess= (currentUser) =>{
+        //     setCurrentUserObj({ currentUser: httpClient.getCurrentUser(currentUser)})
+        //      console.log("currentUserObj " , currentUserObj )     
+        // }
 
  //function to Handle the  input field
-    function handleInputChange(event) {
-        const { name, value } = event.target;
-        setFriendResult({ ...friendResult, [name]: value })
-        console.log("input ", { name, value })
+    // function handleInputChange(event) {
+    //     const { name, value } = event.target;
+    //     setFriendResult({ ...friendResult, [name]: value })
+    //     console.log("input ", { name, value })
          
-    };
+    // };
+    console.log("all friends", friendResult)
+    const handleInputChange = event => {
+        const value = event.target.value.toLowerCase();
+        console.log("value", value)
+        if (value !==null) {
+          const filteredArr = friendResult.filter(result => {
+           return result.name.includes(value) || result.date.includes(value)
+           || result.email.includes(value) || result.phone.includes(value)
+          })
+           setFriendResult({friendResult:filteredArr})
+           console.log("one friend", filteredArr)
+           //this.setState({ results: filteredArr })
+            
+        }
+      };
+
+
+
 
  function handleSearchSubmit(evt) {
         //evt.preventDefault()
@@ -55,22 +98,58 @@ function FindNewFriends(currentUser) {
                 success: (response) => {
                     console.log('myresponse:', response);
                     setIsLoading(false)
-                    setFriendResult(response)       
-               },
-                error: (err) => {
+                    setFriendResult(response) 
+                    //handleInputChange();
+                    //console.log("friends", friendResult)
+            //         response.filter(item =>{
+            //              if(item.name === friendResult.search){
+                             
+            //                 console.log("friends", item)
+            //                 //friendResult = item;
+            //                 setIsLoading(item) 
+            //                 //console.log("friends", item)
+            //            }
+            //            //setIsLoading(true)
+            //            setFriendResult(response) 
+                        
+            //    })
+              },
+             error: (err) => {
                   console.log(err);
                 } 
-            })
+      })
    }
 //update the database
 const addfriend = () =>{
 friendResult.map(item =>{
     httpClient.InsertUpdate({
         _id: currentUserObj.currentUser._id,
-        friends:[{...currentUserObj.currentUser.friends, name:item.name, city: item.city, state: item.state, image:item.image,}]
+        friends:[{...currentUserObj.currentUser.friends, friends: item.friends,}]
     }) 
  })
 }
+//console.log("friends", setFriendResult(friendResult.response))
+//display only searched user from the database
+const searchfriend = () =>{
+    friendResult.map(item =>{
+        if(item.name === friendResult.search){
+            console.log("yay", item)
+           return item
+      }
+    })
+       
+}
+//console.log("yay", searchfriend)
+    
+        // httpClient.InsertUpdate({
+        //     _id: currentUserObj.currentUser._id,
+        //     friends:[{...currentUserObj.currentUser.friends, name:item.name, city: item.city, state: item.state, image:item.image,}]
+        
+    
+    //}) 
+     //})
+    //}
+
 
 ////
     const handleSear = (event) => {
@@ -90,12 +169,14 @@ friendResult.map(item =>{
         setSearch(event.target.value);
     }
     
-    const searchResult = () => {
+    const searchResult = (results) => {
         return(
             <>
             {friendResult.length > 0 ?
-                friendResult.map(item =>{
-                    return(
+              friendResult.map(item =>{
+                //if(friendResult.search === item.name){
+                  return(
+                      
                     <div key={item._id} className="column is-one-third" id="blue"> 
                         <article className="tile is-child notification has-text-centered" id="block">
                             <figure className="image is-square">
@@ -111,9 +192,11 @@ friendResult.map(item =>{
                             onClick={addfriend}>Add Friend</a>
                         </article>
                     </div>
+                     //}
                     )
-                }
-
+                  }
+               // }
+              
 
                 )
                 
