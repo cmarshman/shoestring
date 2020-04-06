@@ -40,7 +40,7 @@ const [friendResult, setFriendResult] = useState([{
        //onLoginSuccess();
        handleSearchSubmit();
        //searchfriend();
-     // handleInputChange() 
+      // handleInputChange() 
       setFriendResult({friendResult:friendResult})    
 
     }, [])
@@ -71,6 +71,7 @@ const [friendResult, setFriendResult] = useState([{
          
     // };
     console.log("all friends", friendResult)
+
      const handleInputChange = event => {
         const value = event.target.value.toLowerCase();
         console.log("value", value)
@@ -90,7 +91,7 @@ const [friendResult, setFriendResult] = useState([{
            return result.name.includes(value) || result.date.includes(value)
            || result.email.includes(value) || result.phone.includes(value)
           })
-           setFriendResult({friendResult:filteredArr})
+           setFriendResult(filteredArr)
            console.log("one friend", filteredArr)
            //this.setState({ results: filteredArr })
         }
@@ -138,12 +139,13 @@ const [friendResult, setFriendResult] = useState([{
       })
    }
 //update the database
-const addfriend = () =>{
+const addfriend = (evt) =>{
+   // evt.target
 friendResult.map(item =>{
     let container= []
     httpClient.InsertUpdate({
         _id: currentUserObj.currentUser._id,
-        friends:[{...currentUserObj.currentUser.friends, friends: item.friends,}]
+        friends:[...currentUserObj.currentUser.friends, {image: item.image,name: item.name, city: item.city, state: item.state}]
     }) 
  })
 }
