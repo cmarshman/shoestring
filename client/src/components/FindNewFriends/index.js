@@ -40,8 +40,8 @@ const [friendResult, setFriendResult] = useState([{
        //onLoginSuccess();
        handleSearchSubmit();
        //searchfriend();
-      // handleInputChange();
-      //setFriendResult({friendResult: friendResult})    
+     // handleInputChange() 
+      setFriendResult({friendResult:friendResult})    
 
     }, [])
      //Restructuring the data received from history 
@@ -71,25 +71,43 @@ const [friendResult, setFriendResult] = useState([{
          
     // };
     console.log("all friends", friendResult)
-    const handleInputChange = event => {
+     const handleInputChange = event => {
         const value = event.target.value.toLowerCase();
         console.log("value", value)
-        if (value !==null) {
-          const filteredArr = friendResult.filter(result => {
+        //if (value !=='') {
+          let results= [];
+          $.ajax({
+            url: '/api/users/',
+            method: 'get',
+            data: value,
+            success: (response => {
+                console.log('myresponse:', response);
+                //setFriendResult({friendResult:response})
+            console.log('results', response) 
+        if (value !=='')  {
+            //const value = event.target.value.toLowerCase();
+          const filteredArr = response.filter(result => {
            return result.name.includes(value) || result.date.includes(value)
            || result.email.includes(value) || result.phone.includes(value)
           })
            setFriendResult({friendResult:filteredArr})
            console.log("one friend", filteredArr)
            //this.setState({ results: filteredArr })
-            
         }
-      };
+        }),
+       //}  
+        //.catch(err =>{console.log(err)})
+        error: (err) => {
+            console.log(err);
+          } 
+      
+          })
+}
 
 
 
 
- function handleSearchSubmit(evt) {
+ function handleSearchSubmit(evt, props) {
         //evt.preventDefault()
              $.ajax({
                 url: '/api/users/',
@@ -101,18 +119,18 @@ const [friendResult, setFriendResult] = useState([{
                     setFriendResult(response) 
                     //handleInputChange();
                     //console.log("friends", friendResult)
-            //         response.filter(item =>{
-            //              if(item.name === friendResult.search){
+                    response.filter(item =>{
+                         if(item.name === friendResult.search){
                              
-            //                 console.log("friends", item)
-            //                 //friendResult = item;
-            //                 setIsLoading(item) 
-            //                 //console.log("friends", item)
-            //            }
-            //            //setIsLoading(true)
-            //            setFriendResult(response) 
+                            console.log("friends", item)
+                            //friendResult = item;
+                            setIsLoading(item) 
+                            //console.log("friends", item)
+                       }
+                       //setIsLoading(true)
+                       setFriendResult(response) 
                         
-            //    })
+               })
               },
              error: (err) => {
                   console.log(err);
@@ -122,6 +140,7 @@ const [friendResult, setFriendResult] = useState([{
 //update the database
 const addfriend = () =>{
 friendResult.map(item =>{
+    let container= []
     httpClient.InsertUpdate({
         _id: currentUserObj.currentUser._id,
         friends:[{...currentUserObj.currentUser.friends, friends: item.friends,}]
@@ -130,15 +149,15 @@ friendResult.map(item =>{
 }
 //console.log("friends", setFriendResult(friendResult.response))
 //display only searched user from the database
-const searchfriend = () =>{
-    friendResult.map(item =>{
-        if(item.name === friendResult.search){
-            console.log("yay", item)
-           return item
-      }
-    })
+// const searchfriend = () =>{
+//     friendResult.map(item =>{
+//         if(item.name === friendResult.search){
+//             console.log("yay", item)
+//            return item
+//       }
+//     })
        
-}
+// }
 //console.log("yay", searchfriend)
     
         // httpClient.InsertUpdate({
@@ -169,13 +188,12 @@ const searchfriend = () =>{
         setSearch(event.target.value);
     }
     
-    const searchResult = (results) => {
+    const searchResult = () => {
         return(
             <>
             {friendResult.length > 0 ?
               friendResult.map(item =>{
-                //if(friendResult.search === item.name){
-                  return(
+                   return(
                       
                     <div key={item._id} className="column is-one-third" id="blue"> 
                         <article className="tile is-child notification has-text-centered" id="block">
