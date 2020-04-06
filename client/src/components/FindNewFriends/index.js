@@ -3,47 +3,31 @@ import httpClient from '../../httpClient';
 import Spinner from '../Spinner';
 import { Link } from 'react-router-dom';
 import './style.css';
-import $ from 'jquery';
-
+ 
+//Main function to handle friends page
 function FindNewFriends(currentUser) {
    
+    //Setup loading image state
     const [isLoading, setIsLoading] = useState(false);
 
+    //Setup currently logged in user
     const [currentUserObj, setCurrentUserObj] = useState({
         currentUser: httpClient.getCurrentUser()
     })
-
-    //Set-up the original state when the page loads
-//   state = {
-//     search: "",
-//     results: [],
-//     currentSort: "default"
-//   };
-//   // When this component mounts, search for randome Employees API and populated their info
-//   componentDidMount() {
-//     this.setState({ results: Data })
-     
-//   }
-
-const [newFriendSearch, setSearch] = useState('');
-const [friendResult, setFriendResult] = useState([{
-     //search: "",
-    //results: [],
-
-}])
-    //search: "",
-    //results: [],
-//});
  
-// Load the available token on pageload from local storage
+//setup friends states
+const [newFriendSearch, setSearch] = useState('');
+const [friendResult, setFriendResult] = useState([{}])
+   
+ 
+// Load the all users from the database on page load
    useEffect(() => {
-       //onLoginSuccess();
-       handleSearchSubmit();
-       //searchfriend();
-      // handleInputChange() 
-      setFriendResult({friendResult:friendResult})    
+      // handleSearchSubmit();
+       handleSearch();
+       setFriendResult(friendResult) ;   
 
     }, [])
+
      //Restructuring the data received from history 
      currentUser = [
         {
@@ -58,87 +42,26 @@ const [friendResult, setFriendResult] = useState([{
             image:  currentUserObj.currentUser.image,
             
         }]
-        // const onLoginSuccess= (currentUser) =>{
-        //     setCurrentUserObj({ currentUser: httpClient.getCurrentUser(currentUser)})
-        //      console.log("currentUserObj " , currentUserObj )     
-        // }
-
- //function to Handle the  input field
-    // function handleInputChange(event) {
-    //     const { name, value } = event.target;
-    //     setFriendResult({ ...friendResult, [name]: value })
-    //     console.log("input ", { name, value })
-         
-    // };
-    console.log("all friends", friendResult)
-
+      
+     //Function to handle  search for user on load     
      const handleInputChange = event => {
         const value = event.target.value.toLowerCase();
-        console.log("value", value)
-        //if (value !=='') {
-          let results= [];
-          $.ajax({
-            url: '/api/users/',
-            method: 'get',
-            data: value,
-            success: (response => {
-                console.log('myresponse:', response);
-                //setFriendResult({friendResult:response})
-            console.log('results', response) 
-        if (value !=='')  {
-            //const value = event.target.value.toLowerCase();
-          const filteredArr = response.filter(result => {
+         httpClient.FindAllUser()   
+         .then(response=> {
+            const data = response.data
+            setFriendResult(data);        
+          if (value !=="")  {
+           const filteredArr = data.filter(result => {
            return result.name.includes(value) || result.date.includes(value)
            || result.email.includes(value) || result.phone.includes(value)
           })
-           setFriendResult(filteredArr)
-           console.log("one friend", filteredArr)
-           //this.setState({ results: filteredArr })
+           setFriendResult(filteredArr); 
         }
-        }),
-       //}  
-        //.catch(err =>{console.log(err)})
-        error: (err) => {
-            console.log(err);
-          } 
-      
-          })
+        }) 
+        .catch(err =>{console.log(err)})
 }
 
-
-
-
- function handleSearchSubmit(evt, props) {
-        //evt.preventDefault()
-             $.ajax({
-                url: '/api/users/',
-                method: 'get',
-                 
-                success: (response) => {
-                    console.log('myresponse:', response);
-                    setIsLoading(false)
-                    setFriendResult(response) 
-                    //handleInputChange();
-                    //console.log("friends", friendResult)
-                    response.filter(item =>{
-                         if(item.name === friendResult.search){
-                             
-                            console.log("friends", item)
-                            //friendResult = item;
-                            setIsLoading(item) 
-                            //console.log("friends", item)
-                       }
-                       //setIsLoading(true)
-                       setFriendResult(response) 
-                        
-               })
-              },
-             error: (err) => {
-                  console.log(err);
-                } 
-      })
-   }
-//update the database
+//update the database with a new friend added
 const addfriend = (evt) =>{
    const friendId = evt.target.dataset.newfriend  
     let friendToAdd=friendResult.find(item =>item._id===friendId)
@@ -146,23 +69,18 @@ const addfriend = (evt) =>{
         _id: currentUserObj.currentUser._id,
         friends:[...currentUserObj.currentUser.friends, {image: friendToAdd.image,name: friendToAdd.name, city: friendToAdd.city, state: friendToAdd.state}]
     }) 
-  
 }
 
-     
-    const handleSear = (event) => {
-        setIsLoading(true)
-        event.preventDefault();
-        httpClient.FindUser({name: friendResult.search})
-                
-            .then(response => {
-                console.log("friendResult", response.data)
-                setIsLoading(false);
-                setFriendResult(response);
+//Function to load all user on page load
+    const handleSearch = () => {
+        httpClient.FindAllUser()   
+            .then(serverResponse=> {
+             setFriendResult(serverResponse.data);
             })
-            .catch(err => setIsLoading(false))
+            .catch(err => setIsLoading(true))
     }
     
+    //Maping data to the friends page
     const searchResult = () => {
         return(
             <>
@@ -210,7 +128,7 @@ const addfriend = (evt) =>{
                 placeholder="Find new friends . . . " 
                 value={friendResult.search}/>
                 <button className="button is-light" 
-                type="submit" id="submit" onClick={handleSearchSubmit}>Submit</button>
+                type="submit" id="submit" onClick={handleSearch}>Submit</button>
             </div>
         </div>
         <br/>

@@ -52,8 +52,8 @@ httpClient.signUp = function(userInfo) {
 }
 
 ///Find  a user from the database
-httpClient.FindUser = function(userInfo , name) {
-	return this({ method: 'get', url: '/api/users/' + userInfo.name, data: userInfo.name})
+httpClient.FindUser = function(userInfo , _id) {
+	return this({ method: 'get', url: '/api/users/' + userInfo._id, data: userInfo._id})
 		.then((serverResponse) => {
 			console.log("serverResponse", serverResponse)
 			const token = serverResponse.data.token
@@ -73,21 +73,9 @@ httpClient.FindUser = function(userInfo , name) {
 ///Find  a user from the database
 httpClient.FindAllUser = function(userInfo) {
 	return this({ method: 'get', url: '/api/users/', data: userInfo})
-		.then((serverResponse) => {
-			console.log("serverResponse", serverResponse)
-			const token = serverResponse.data.token
-			if(token) {
-				// sets token as an included header for all subsequent api requests
-				console.log("result")
-				console.log(this.defaults)
-				this.defaults.headers.common.token = this.setToken(token)
-				console.log(this.defaults)
-				return jwtDecode(token)
-			} else {
-				return false
-			}
-		})
-}
+		 
+	}
+
 
 ///Find and Update user
 httpClient.InsertUpdate = function(userInfo , _id) {
