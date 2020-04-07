@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import API from "../../utils/api.js";
 //import { Redirect } from 'react-router-dom';
 import "./style.css";
+import * as EmailValidator from 'email-validator';
+import * as Yup from 'yup';
+import {useFormik} from 'formik';
+
 
 function loginForm() {
    const [loginObject, setLoginObject] = useState({
@@ -50,6 +54,7 @@ function loginForm() {
     };
 
     return (
+        <form onSubmit={handleSubmit}>
         <div className='container tile is-4 is-parent box'>
             <div className="tile is-child">
                 <div className="field">
@@ -92,7 +97,7 @@ function loginForm() {
                 </div>
             </div>
         </div>
-
+    </form>
     )
 }
 export default loginForm;

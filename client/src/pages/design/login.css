@@ -31,10 +31,10 @@
 }
 
  
-.errorMsg{
-    padding: 20px;
-    border: 1px solid red;
+.errormsg{
+    padding: 5px;
+    /* border: 1px solid red; */
     color: red;
-    text-align: center;
+    /* text-align: center; */
     font-size: large;
 }
