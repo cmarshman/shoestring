@@ -5,10 +5,11 @@ import Nav from '../components/navbar';
 import '../pages/design/login.css';
 import * as EmailValidator from 'email-validator';
 import * as Yup from 'yup';
-import { useFormik , useFormikContext} from 'formik';
+import { useFormik} from 'formik';
 import $ from 'jquery'
 
 
+//Setup  validation condition on the schema using Yup
 const validationSchenma = Yup.object({
     email: Yup.string().email().required(),
     password: Yup.string().required().min(8),
@@ -18,18 +19,18 @@ const validationSchenma = Yup.object({
 //Function to handle the login form
 const Login = (email, password ) => {
 
-    const { values, touched, errors, handleChange, handleBlur, handleSubmit, isSubmitting } = useFormik({
+const { values, touched, errors, handleChange, handleBlur, handleSubmit, isSubmitting } = useFormik({
         initialValues: {
             email: '',
             password: ''
         },
         validationSchenma,
         onSubmit(values) {
-                  
+            handleLoginOnsubmit(values)        
         }
-    });
+});
  
-// //Function to handle submit
+//Function to handle submit
     function handleLoginOnsubmit(evt) {
         evt.preventDefault()
         const alluser = {...values}
@@ -45,20 +46,14 @@ const Login = (email, password ) => {
 
              return
            }).catch(err => console.log('err', err));
-             //clearForm();        
-  }
+   }
 
- 
- //Function to reset the form to empty fields
-    const clearForm = () => {
-       window.location.reload() 
-        
-    }
-    //Render all  the form
+  //Render the form and display error when error occurs
      return (
         <>
         <Nav />
         <form onSubmit={handleLoginOnsubmit}>
+        <div id='errorMsg'  ></div>
             <div className='container tile is-4 is-parent box'>
                 <div className="tile is-child">
                     <div className="field">
@@ -91,8 +86,7 @@ const Login = (email, password ) => {
                                 onBlur={handleBlur}
                                 name="password"
                                 placeholder="Password (required)"
-                                //className = {values.password.length < 8 && touched.password? 'input errormsg' : 'input'}
-                            />
+                             />
                              {values.password.length < 8 &&  touched.password && 'errors' ?   (
                               <p className="errormsg">Please enter a valid password</p>
                             ): ''}
