@@ -1,65 +1,103 @@
 import React, { components, useState, useEffect } from "react";
-import API from "../utils/api";
 import Navbar from './../components/navbar';
 import Alert from "../components/Alert/alert"
 import '../pages/design/signup.css'
 import httpClient from '../httpClient'
 import $ from 'jquery'
+import * as EmailValidator from 'email-validator';
+import * as Yup from 'yup';
+import { useFormik , useFormikContext} from 'formik';
+ 
+
+const validationSchenma = Yup.object({
+  name: Yup.string().email().required(),
+  phone: Yup.string().required(),
+  city: Yup.string().required(),
+  state: Yup.string().required(),
+  email: Yup.string().email().required(),
+  password: Yup.string().required().min(8),
+     
+});
+
+//Function to handle the login form
+// const Login = (email, password ) => {
+
+//     const { values, touched, errors, handleChange, handleBlur, handleSubmit, isSubmitting } = useFormik({
+//         initialValues: {
+//             email: '',
+//             password: ''
+//         },
+//         validationSchenma,
+//         onSubmit(values) {
+                  
+//         }
+//     });
+ 
 
 function SignUp() {
 
   // Setting our component's initial state
-  const [signupObject, setSignupObject] = useState({
-    name: "",
-    phone: "",
-    city: "",
-    state: "",
-    email: "",
-    password: "",
-    friends: '',
-    image: "",
-    checked: false
+  // const [signupObject, setSignupObject] = useState({
+  //   name: "",
+  //   phone: "",
+  //   city: "",
+  //   state: "",
+  //   email: "",
+  //   password: "",
+  //   friends: '',
+  //   image: "",
+  //   checked: false,
+    
 
-  })
+  // })
 
-  // Handles updating component state when the user types into the input field
-  function handleInputChange(event) {
-    const { name, value } = event.target;
-    setSignupObject({ ...signupObject, [name]: value })
-    console.log("input ", { name, value })
-  };
-
-  //Function to reset the form to empty fields
-  const clearForm = () => {
-    setSignupObject({
+  const { values, touched, errors, handleChange, handleBlur, handleSubmit, isSubmitting } = useFormik({
+    initialValues: {
       name: "",
       phone: "",
       city: "",
       state: "",
       email: "",
       password: "",
-      checked: " "
-    })
-  }
-  function handleLoginErr(err) {
-    $("#alert .msg").text(err.responseJSON);
-    $("#alert").fadeIn(500);
-  }
+      friends: '',
+      image: "",
+      checked: '',
+    },
+    validationSchenma,
+    onSubmit(values) {
+              
+    }
+});
+  // Handles updating component state when the user types into the input field
+  // function handleInputChange(event) {
+  //   const { name, value } = event.target;
+  //   setSignupObject({ ...signupObject, [name]: value })
+  //   console.log("input ", { name, value })
+  // };
 
-  // Does a post to the signup route. If successful, we are redirected to the members page
-  // Otherwise we log any errors
+  //Function to reset the form to empty fields
+  const clearForm = () => {
+      window.location.reload()
+  }
+  // function handleLoginErr(err) {
+  //   $("#alert .msg").text(err.responseJSON);
+  //   $("#alert").fadeIn(500);
+  // }
+
+  // Does a post to the signup route. If successful, we are redirected to the login page
+  // Otherwise we log   errors
   function handleFormOnsubmit(evt) {
     evt.preventDefault()
     httpClient.signUp({
-      name: signupObject.name,
-      phone: signupObject.phone,
-      city: signupObject.city,
-      state: signupObject.state,
-      email: signupObject.email,
-      password: signupObject.password,
-      friends: signupObject.friends,
-      image:  signupObject.image,
-      checked: true
+      name: values.name,
+      phone: values.phone,
+      city: values.city,
+      state: values.state,
+      email: values.email,
+      password: values.password,
+      friends: values.friends,
+      image:  values.image,
+      checked: values.checked
     }).then(user => {
       console.log("user", user)
       if (user) {
@@ -68,14 +106,15 @@ function SignUp() {
         this.props.history.push('/')
       }
       return (<div><p className="error">User Not found</p></div>)
-    }).catch(handleLoginErr);
-    clearForm()
+    }).catch(err => console.log('err', err));
+   // clearForm()
   }
 
   // render the Form
   return (
     <>
       <Navbar />
+      <form onSubmit={handleFormOnsubmit}>
       <div className="tile is-ancestor">
         <div className="tile is vertical is-7 box" id="tile">
 
@@ -88,11 +127,15 @@ function SignUp() {
                   <input className="input"
                     // className = {signupObject.firstName === '' ? "input error" : " input" }
                     type="text"
-                    onChange={handleInputChange}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                     name="name"
                     placeholder="Name (required)"
-                    value={signupObject.name}
+                    value={values.name}
                   />
+                  {values.name.length <1 && touched.name && 'errors' ? (
+                    <p className="errormsg">Please enter your name</p>
+                            ): ''}
                 </div>
               </div>
 
@@ -102,12 +145,15 @@ function SignUp() {
                 <div className="control">
                   <input className="input" type="text"
                     // className = {signupObject.phone === '' ? "input error" : " input" }
-                    onChange={handleInputChange}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                     name="phone"
                     placeholder="555-555-5555 (required)"
-                    value={signupObject.phone}
+                    value={values.phone}
                   />
-
+                  {values.phone.length < 10 &&  touched.phone && 'errors' ? (
+                              <p className="errormsg">Please enter a valid Phone</p>
+                            ): ''}
                 </div>
               </div>
               <div className="field">
@@ -115,11 +161,15 @@ function SignUp() {
                 <div className="control">
                   <input className="input" type="text"
                     // className = {signupObject.lastName === "" ? "input error" : " input" }
-                    onChange={handleInputChange}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                     name="city"
                     placeholder="City (Not required)"
-                    value={signupObject.city}
+                    value={values.city}
                   />
+                   {values.city.length < 10 &&  touched.city && 'errors' ? (
+                        <p className="errormsg">Please enter a valid City</p>
+                    ): ''}
                 </div>
               </div>
               <div className="field">
@@ -127,11 +177,15 @@ function SignUp() {
                 <div className="control">
                   <input className="input" type="text"
                     // className = {signupObject.lastName === "" ? "input error" : " input" }
-                    onChange={handleInputChange}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                     name="state"
                     placeholder="State (Not required)"
-                    value={signupObject.state}
+                    value={values.state}
                   />
+                   {values.state.length < 2 &&  touched.state && 'errors' ? (
+                    <p className="errormsg">Please enter a valid State</p>
+                    ): ''}
                 </div>
               </div>
 
@@ -140,10 +194,14 @@ function SignUp() {
                 <div className="control has-icons-left has-icons-right">
                   <input className="input " type="email"
                     // className = {signupObject.email === '' ? "input error" : " input" }
-                    onChange={handleInputChange}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                     name="email"
                     placeholder="Email (required)"
-                    value={signupObject.email} />
+                    value={values.email} />
+                     {values.email.length < 10 &&  touched.email && 'errors' ? (
+                        <p className="errormsg">Please enter a valid Email</p>
+                      ): ''}
                   <span className="icon is-small is-left">
                     <i className="fas fa-envelope"></i>
                   </span>
@@ -157,10 +215,14 @@ function SignUp() {
                 <p className="control has-icons-left">
                   <input className="input " type="password"
                     // className = {signupObject.password === '' ? "input error" : " input" }
-                    onChange={handleInputChange}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                     name="password"
                     placeholder="Password (required)"
-                    value={signupObject.password} />
+                    value={values.password} />
+                    {values.password.length < 10 &&  touched.password && 'errors' ? (
+                      <p className="errormsg">Please enter a valid Password</p>
+                     ): ''}
                   <span className="icon is-small is-left">
                     <i className="fas fa-lock"></i>
                   </span>
@@ -171,19 +233,28 @@ function SignUp() {
                 <div className="control">
                   <label className="checkbox">
                     <input id="bluefish" type="checkbox"
-                      // className = {signupObject.checked === ' ' ? "error" : " " }
-                      onChange={handleInputChange}
+                      className = {values.checked === ' ' ? "errormsg" : " " }
+                      onChange={handleChange}
+                      onBlur={handleBlur}
                       name="checked"
-                      value={signupObject.checked}
-                    />
-                I agree to the <a href="#"> terms and conditions</a>
+                      value={values.checked}
+                    />{values.checked.length <1 &&  touched.checked && 'errors' ? (
+                  <p className="errormsg">Please check the box </p>
+                  ): ''} 
+                    I agree to the <a href="#"> terms and conditions</a>
+                   
                   </label>
                 </div>
               </div>
 
               <div className="field is-grouped">
                 <div className="control">
-                  <button className="button is-light" onClick={handleFormOnsubmit} id="twofish">Submit</button>
+                  <button className="button is-light" 
+                  //onClick={handleFormOnsubmit} 
+                  disabled={!values.checked && 'errors'}
+
+                  id="twofish"
+                  >Submit</button>
                 </div>
                 <div className="control">
                   <button className="button is-light" onClick={clearForm} id="rainbowfish">Cancel</button>
@@ -193,7 +264,7 @@ function SignUp() {
           </div>
         </div>
       </div>
-
+    </form>
     </>
   )
 
