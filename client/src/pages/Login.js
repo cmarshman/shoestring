@@ -6,7 +6,7 @@ import '../pages/design/login.css';
 import * as EmailValidator from 'email-validator';
 import * as Yup from 'yup';
 import { useFormik , useFormikContext} from 'formik';
-import Alert from '../components/Alert/alert'
+import $ from 'jquery'
 
 
 const validationSchenma = Yup.object({
@@ -40,6 +40,9 @@ const Login = (email, password ) => {
                 this.props.onLoginSuccess(user);
 				this.props.history.push('/');
             }
+            $('#errorMsg').attr("style", "color:red")
+            $('#errorMsg').text("An error occured please review your entries");
+
              return
            }).catch(err => console.log('err', err));
              //clearForm();        
