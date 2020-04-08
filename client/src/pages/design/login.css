@@ -30,11 +30,20 @@
     /* font-weight: bold; */
 }
 
- 
 .errormsg{
-    padding: 5px;
-    /* border: 1px solid red; */
+padding: 10px;
+/* border: 1px solid red; */
+color: red;
+/* text-align: center;  */
+font-size: large;
+}
+ 
+#errorMsg{
+    padding: 10px;
+    margin-bottom: 30px;
+    /* border: 1px solid red;  */
+    font-weight:bold ;
     color: red;
-    /* text-align: center; */
+    text-align: center; 
     font-size: large;
 }
