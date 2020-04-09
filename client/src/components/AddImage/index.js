@@ -16,7 +16,10 @@ function AddImage(props, currentUser) {
         //onLoginSuccess();
         //findOneUser()
         //handleImage()
-    },[currentUserObj.currentUser.image])
+        userreset()
+    },[ ])
+   
+   const userreset= ()=> !currentUserObj? window.location.replace("/"):  ''
 
     const uploadImage = async e => {
         const files = e.target.files
@@ -95,6 +98,8 @@ function AddImage(props, currentUser) {
                 <img className="is-rounded" id="userPic" src={image} onChange={uploadImage} />
             </figure> */}
             <br />
+          
+
             {loading ? (
                 <h3>Loading...</h3>
             ) : (

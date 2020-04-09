@@ -9,7 +9,7 @@ httpClient.getToken = function() {
 }
 
 httpClient.setToken = function(token) {
-	localStorage.setItem('token', token)
+	localStorage.setItem('token', token, {expiresIn: '30s'})
 	return token
 }
 
@@ -25,7 +25,7 @@ httpClient.logIn = function(credentials) {
 			const token = serverResponse.data.token
 			if(token) {
 				// sets token as an included header for all subsequent api requests
-				this.defaults.headers.common.token = this.setToken(token)
+				this.defaults.headers.common.token = this.setToken(token, {expiresIn: '30s'})
 				return jwtDecode(token)
 			} else {
 				return false

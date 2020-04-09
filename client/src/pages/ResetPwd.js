@@ -4,8 +4,9 @@ import httpClient from '../httpClient'
 import $ from 'jquery';
 import Nav from '../components/navbar' 
 import '../pages/design/login.css'
-//  CLT = require ('../../../controllers')
-function ResetPwd() {
+
+
+ const  ResetPwd =() =>{
 
    const [loginObject, setLoginObject] = useState({
        // _id: '',
@@ -32,35 +33,62 @@ function ResetPwd() {
         })
     }
 
-    const validate = (user) =>{
-       
-        return(
-            <div> <p className = {!user ? "input error" : " input"}>
-            </p>
-            </div>
-          )
+
+    const resetUser = (evt) =>{
+        const userEmail = loginObject.email
+        httpClient.FindAllUser()   
+        .then(serverResponse => {
+         setLoginObject(serverResponse.data);
+         
+       // const data = serverResponse.data
+        //})
+        //.catch(err => console.log('err', err))
+        //.then( data =>{
+            const data = serverResponse.data
+            console.log("data", data)
+            let findEmail=data.find(item =>item.email===userEmail)
+            console.log("find", findEmail)
+            httpClient.InsertUpdate({
+                _id:  findEmail._id,
+                password: loginObject.password
+            })
+            window.location.replace('/login')
+            .catch(err => console.log('err', err))
+        })
     }
-
-	//Function to handle submit
-   function handleResetOnsubmit(evt) {
-        evt.preventDefault()
-             $.ajax({
-                //url: 'http://localhost:3000/api/users/' ,
-                url: '/api/users/authenticate'  ,
-                method: 'get',
-                data: loginObject.email
-              }).then( res =>{
-                  //: res.password
-                  console.log("res", res.save)
-              })
-             //})
-                //method: 'get',
-                // data: { 
-                //  email: loginObject.email,
+        //})
+        // .then( ()=> {
+        //     httpClient.InsertUpdate({
+        //     _id:  findEmail._id,
+        //     password: loginObject.password
+        // }) 
+        // .catch(err => console.log('err', err)
+          
+      //}
+         //.catch(err => console.log('err', err)
+    
+    
+    
+// 	//Function to handle submit
+//    function handleResetOnsubmit(evt) {
+//         evt.preventDefault()
+//              $.ajax({
+//                 url: 'http://localhost:3000/api/users/' +  loginObject.email,
+//                 //url: '/api/users/authenticate'  ,
+//                 method: 'get',
+//                 //data
+//               }).then( res =>{
+//                   //: res.password
+//                   console.log("res", res)
+//               })
+//              //})
+//                 //method: 'get',
+//                 // data: { 
+//                 //  email: loginObject.email,
                   
-                // },
+//                 // },
 
-            //     success: (response) => {
+//             //     success: (response) => {
             //         console.log('response:', response);
             //         for(var i =0; i<response.length; i++ ){
             //            if(response[i].email === loginObject.email){ 
@@ -73,27 +101,9 @@ function ResetPwd() {
             //     } 
             //})
         
-   }
+   //}
 
-// function handleFormOnsubmit(evt) {
-//     evt.preventDefault()
-//     httpClient.ResetPwd ({
-      
-//     //   password: loginObject.password,
-//     //   image: loginObject.image,
-       
-//     }).then(user => {
-//       console.log("user", user)
-//       if (user) {
-//         window.location.replace("/login")
-//         this.props.onSignUpSuccess(user)
-//         this.props.history.push('/')
-
-// }
-//       return (<div><p className="error">User Not found</p></div>)
-//     }).catch();
-//     clearForm()
-//   }
+  
 
 //Handle the form subission- save it to the database on submit
     return (
@@ -138,7 +148,7 @@ function ResetPwd() {
                 <div className="field">
                     <p className="control">
                         <button className="button is-success loginbtn"
-                            onClick={handleResetOnsubmit}>
+                            onClick={resetUser}>
                             Reset Password
                         </button>
                     </p>

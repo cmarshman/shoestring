@@ -11,7 +11,7 @@ function signToken(user) {
 	// comprised of data from db. Delete password before creating jwt
 	const userData = user.toObject()
 	delete userData.password
-	return jwt.sign(userData, JWT_SECRET)
+	return jwt.sign(userData, JWT_SECRET, {expiresIn:'30s'})
 }
 
 // function for verifying tokens
@@ -21,11 +21,12 @@ function verifyToken(req, res, next) {
 	// if no token present, deny access
 	if(!token) return res.json({success: false, message: "No token provided"})
 	// otherwise, try to verify token
-	jwt.verify(token, JWT_SECRET, (err, decodedData) => {
+	jwt.verify(token, JWT_SECRET,  (err, decodedData) => {
 		// if problem with token verification, deny access
 		if(err) return res.json({success: false, message: "Invalid token."})
+		   
 		// otherwise, search for user by id that was embedded in token
-		User.findById(decodedData._id || decodedData.name , (err, user) => {
+		User.findById(decodedData._id , (err, user) => {
 			// if no user, deny access
 			if(!user) return res.json({success: false, message: "Invalid token."})
 			// otherwise, add user to req object
