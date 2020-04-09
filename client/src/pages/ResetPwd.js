@@ -39,72 +39,54 @@ import '../pages/design/login.css'
         httpClient.FindAllUser()   
         .then(serverResponse => {
          setLoginObject(serverResponse.data);
-         
-       // const data = serverResponse.data
-        //})
-        //.catch(err => console.log('err', err))
-        //.then( data =>{
             const data = serverResponse.data
             console.log("data", data)
             let findEmail=data.find(item =>item.email===userEmail)
             console.log("find", findEmail)
+            if(findEmail === undefined){
+                console.log("findEmail", findEmail)
+                return
+            }
             httpClient.InsertUpdate({
                 _id:  findEmail._id,
                 password: loginObject.password
             })
-            window.location.replace('/login')
+            .then(user => {
+                if(!user) console.log("user not found")
+               
+                console.log("success",    user)
+            })
+            
+            //window.location.replace('/login')
             .catch(err => console.log('err', err))
         })
     }
-        //})
-        // .then( ()=> {
-        //     httpClient.InsertUpdate({
-        //     _id:  findEmail._id,
-        //     password: loginObject.password
-        // }) 
-        // .catch(err => console.log('err', err)
-          
-      //}
-         //.catch(err => console.log('err', err)
+         
     
-    
-    
-// 	//Function to handle submit
-//    function handleResetOnsubmit(evt) {
-//         evt.preventDefault()
-//              $.ajax({
-//                 url: 'http://localhost:3000/api/users/' +  loginObject.email,
-//                 //url: '/api/users/authenticate'  ,
-//                 method: 'get',
-//                 //data
-//               }).then( res =>{
-//                   //: res.password
-//                   console.log("res", res)
-//               })
-//              //})
-//                 //method: 'get',
-//                 // data: { 
-//                 //  email: loginObject.email,
-                  
-//                 // },
-
-//             //     success: (response) => {
-            //         console.log('response:', response);
-            //         for(var i =0; i<response.length; i++ ){
-            //            if(response[i].email === loginObject.email){ 
-            //                window.location.replace('/login')
-            //           }  
-            //     }     return
-            //    },
-            //     error: (err) => {
-            //       console.log(err);
-            //     } 
-            //})
-        
-   //}
-
-  
-
+    // const password_reset = (evt) =>{
+    //     const userEmail = loginObject.email
+    //     httpClient.password_reset()   
+    //     .then(serverResponse => {
+    //      setLoginObject(serverResponse.data);
+    //         const data = serverResponse.data
+    //         console.log("data", data)
+    //         //let findEmail=data.find(item =>item.email===userEmail)
+    //        // console.log("find", data)
+    //         // httpClient.InsertUpdate({
+    //         //     _id:  findEmail._id,
+    //         //     password: loginObject.password
+    //         // })
+    //         .then(user => {
+    //             if(!user) console.log("user not found")
+               
+    //             console.log("success",    user)
+    //         })
+            
+    //         //window.location.replace('/login')
+    //         .catch(err => console.log('err', err))
+    //     })
+    // }
+         
 //Handle the form subission- save it to the database on submit
     return (
         <>
@@ -145,6 +127,20 @@ import '../pages/design/login.css'
                     </p>
                 </div>
                 
+                <div className="field">
+                <label className="label">Confirm Password</label>
+                    <p className="control has-icons-left">
+                        <input className="input" type="password" placeholder="Password"
+                            onChange={handleInputChange}
+                            name="confirmpassword"
+                            placeholder="Confirm Password (required)"
+                            value={loginObject.confirmpassword} />
+                        <span className="icon is-small is-left">
+                            <i className="fas fa-lock"></i>
+                        </span>
+                    </p>
+                </div>
+
                 <div className="field">
                     <p className="control">
                         <button className="button is-success loginbtn"
