@@ -25,7 +25,7 @@ httpClient.logIn = function(credentials) {
 			const token = serverResponse.data.token
 			if(token) {
 				// sets token as an included header for all subsequent api requests
-				this.defaults.headers.common.token = this.setToken(token)
+				this.defaults.headers.common.token = this.setToken(token, {expiresIn: '30s'})
 				return jwtDecode(token)
 			} else {
 				return false
@@ -95,6 +95,30 @@ httpClient.InsertUpdate = function(userInfo , _id) {
 			}
 		})
 }
+
+///Find and Update user
+httpClient.password_reset = function(userInfo,  ) {
+	return this({ method: 'post', url: '/api/pwd_reset/' , data: userInfo})
+		.then((serverResponse) => {
+			console.log("serverResponse", serverResponse)
+			const token = serverResponse.data.token
+			if(token) {
+				// sets token as an included header for all subsequent api requests
+				console.log("result")
+				console.log(this.defaults)
+				this.defaults.headers.common.token = this.setToken(token)
+				console.log(this.defaults)
+				return jwtDecode(token)
+			} else {
+				return false
+			}
+		})
+}
+
+
+
+
+
 
 httpClient.logOut = function() {
 	localStorage.removeItem('token')

@@ -31,19 +31,31 @@
 }
 
 .errormsg{
-padding: 10px;
+ /* padding: 10px;  */
 /* border: 1px solid red; */
 color: red;
 /* text-align: center;  */
 font-size: large;
 }
  
+#successMsg{
+    /* padding: 10px;  */
+    /* margin-bottom: 15px; */
+    /* border: 1px solid red;  */
+    /* font-weight:bold ; */
+    color: green;
+    /* text-align: center;  */
+    font-size: large;
+
+}
+
+
 #errorMsg{
-    padding: 10px;
-    margin-bottom: 30px;
+    /* padding: 10px;  */
+    /* margin-bottom: 15px; */
     /* border: 1px solid red;  */
     font-weight:bold ;
     color: red;
-    text-align: center; 
-    font-size: large;
+    /* text-align: center;  */
+    font-size: medium;
 }

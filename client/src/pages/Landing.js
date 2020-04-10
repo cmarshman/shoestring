@@ -7,6 +7,7 @@ import NavBarAuth from '../components/NavBarAuth';
 import UserNameCard from '../components/UserNameCard';
 import AddImage from './../components/AddImage';
 import { Redirect } from "react-router-dom";
+import NavBar from '../components/navbar'
 
 function Landing(props, currentUser) {
  
@@ -30,27 +31,32 @@ const work = () =>{
      
   }
     
-    currentUser =[
-        {
-        firstName:currentUserObj.currentUser.firstName,
-        lastName: currentUserObj.currentUser.lastName,
-        phone: currentUserObj.currentUser.phone,
-        email: currentUserObj.currentUser.email,
-        password: currentUserObj.currentUser.password,
-    }]
+    // currentUser =[
+    //     {
+    //     firstName:currentUserObj.currentUser.firstName,
+    //     lastName: currentUserObj.currentUser.lastName,
+    //     phone: currentUserObj.currentUser.phone,
+    //     email: currentUserObj.currentUser.email,
+    //     password: currentUserObj.currentUser.password,
+    // }]
 //}
  	const onLoginSuccess= (currentUser) =>{
         setCurrentUserObj({ currentUser: httpClient.getCurrentUser(currentUser) })
          console.log("currentUserObj " , currentUserObj )
       }
 
-	//}
+    //}
+    //console.log
 	 
     return (
         
-        <div>
+        <div>  
 
-            <NavBarAuth/>
+            {currentUserObj ?(
+               <NavBarAuth/>  
+             
+            ): window.location.replace("/")}
+            
             <div className="outerTile">
                 <div className="is-clearfix columns is-centered">
                 <div className="tile is-10 container column is-fluid">
@@ -75,10 +81,11 @@ const work = () =>{
                 </div>
             </div>
         </div>
+     
         </div>
-
-
-    )
+            
+)
+     
 }
 
 

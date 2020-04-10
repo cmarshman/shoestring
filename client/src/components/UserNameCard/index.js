@@ -37,9 +37,13 @@ function UserNameCard(currentUser) {
 
     return (
         <>
-        <p className="title">
-            {currentUser[0].name}
-        </p>
+        {currentUserObj ?(
+               <p className="title">
+               {currentUser[0].name}
+              </p>
+             
+            ): window.location.replace("/")}
+        
         </>
     );
 }
