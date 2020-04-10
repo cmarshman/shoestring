@@ -67,7 +67,7 @@ const addfriend = (evt) =>{
     let friendToAdd=friendResult.find(item =>item._id===friendId)
     httpClient.InsertUpdate({
         _id: currentUserObj.currentUser._id,
-        friends:[...currentUserObj.currentUser.friends, {image: friendToAdd.image,name: friendToAdd.name, city: friendToAdd.city, state: friendToAdd.state}]
+        friends:[...currentUserObj.currentUser.friends, {_id:friendToAdd._id, image: friendToAdd.image,name: friendToAdd.name, city: friendToAdd.city, state: friendToAdd.state}]
     }) 
 }
 
