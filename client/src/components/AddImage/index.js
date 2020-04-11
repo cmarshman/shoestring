@@ -3,24 +3,27 @@ import httpClient from '../../httpClient';
 import './style.css'
  
 
-function AddImage(props, currentUser) {
+function AddImage(props, currentUser, findImage, data, file) {
+
+
     const [currentUserObj, setCurrentUserObj] = useState({
         currentUser: httpClient.getCurrentUser()
-    })
+})
     
-    const [image, setImage] = useState([]);
+    const [image, setImage] = useState();
     const [loading, setLoading] = useState(false);
     
     // Load the available token on pageload from local storage
-    useEffect(() => {
+   // useEffect(() => {
         //onLoginSuccess();
         //findOneUser()
         //handleImage()
-        userreset()
-    },[ ])
+       //resetUser()
+        //setImage({image})
+        //()
+    //},[])
    
-   const userreset= ()=> !currentUserObj? window.location.replace("/"):  ''
-
+ 
     const uploadImage = async e => {
         const files = e.target.files
         const data = new FormData()
@@ -40,8 +43,11 @@ function AddImage(props, currentUser) {
 
         console.log(file.public_id)
 
-        console.log("other image", file.secure_url)
-
+        console.log("image", file.secure_url)
+        console.log("image", image)
+        let myimage;
+        
+        
         //Restructuring the data received from history 
         currentUser = [
             {
@@ -54,33 +60,94 @@ function AddImage(props, currentUser) {
                 image:  currentUserObj.currentUser.image,
                 
             }]
-            //const onLoginSuccess= (currentUser) =>{
-                setCurrentUserObj({ currentUser: httpClient.getCurrentUser(...currentUser), image:file.secure_url })
-                 console.log("currentUserObj " , currentUserObj )
-              //}
-        console.log("user image", currentUser[0].image)
+           // ({...currentUserObj , image:file.secure_url})
+            //const onLoginSuccess= (currentUserObj) =>{
+                setCurrentUserObj({ currentUser: httpClient.getCurrentUser([{...currentUser, image : file.secure_url}])
+                     
+              })
+            //}
+
+            console.log("currentUserObj " , currentUser )
+      
+         
+        console.log("user image")
+
+       // currentUserObj.currentUser.image = file.secure_url
 
         httpClient.InsertUpdate({
             _id: currentUserObj.currentUser._id,
             image: file.secure_url
         })
+        httpClient.FindAllUser()   
+        .then(serverResponse => {
+         const data = serverResponse.data
+         let findImage= data.find(item =>item.image===file.secure_url)
+         console.log("all please", findImage)
+         myimage = {findImage}
+        // .then(findImage =>{
+        //     console.log("all", findImage)
+        // })
+    })
+    
+    console.log("all", myimage)
+        // httpClient.FindUser ({
+        //     image: currentUserObj.currentUser.image,
+        //     //     image: findImage.image =>{
+             
+        // }).then(data =>{
+        //     console.log("all", data)
+        // })
+         
+   // }
 
+        //const resetUser = (evt) =>{
+            //const userEmail = values.email 
+            // httpClient.FindAllUser()   
+            // .then(serverResponse => {
+            //   const data = serverResponse.data
+            //   let findImage= data.find(item =>item.image===file.secure_url)
+              //setImage(findImage.image)
+                //console.log("find", findImage.image)
+            //     if(findImage === undefined){
+            //         console.log("findEmail", findImage)
+            //    // console.log("find", findImage)
+            //         setImage(findImage.image)
+            //         //$('#errorMsg').attr("style", "color:red")
+            //         //$('#errorMsg').text("Email not found- try again or register.");
+                    
+            //     }
+                //Insert the new password after update
+                // httpClient.FindUser({
+                //    // _id: findImage._id
+                //     image: findImage.image
+                // })
+                // .then(user =>{
+                //     console.log('user', user)
+                //     setImage(image)
+                //     console.log('user1', findImage.image)
+                // })
+//.catch(err => console.log('err', err))
+            // })
+        //}
+       // console.log("findreal", findImage.image)
 
-        const findOneUser = () => {
-            httpClient.FindUser({
-                image: file.secure_url
-            })
-           // console.log("image", image)
-    }
-
+    //     const findOneUser = () => {
+    //         httpClient.FindUser({
+    //             image: file.secure_url
+    //         })
+    //        // console.log("image", image)
+    // }
+//}
         //     const onLoginSuccess = (user) => {
         //         setCurrentUserObj({ currentUser: httpClient.getCurrentUser(user) })
         //         //  console.log("currentUserObj " , currentUserObj )
         //         // console.log("user " , currentUserObj.currentUser.firstName)
         //     }
-    }
-    console.log(image)
+    //}
+    //console.log('data' , data.image)
      
+
+   
 
     function handleImage(event) {
         const { name, value } = event.target;
@@ -88,8 +155,14 @@ function AddImage(props, currentUser) {
         console.log("input ", { name, value })
     };
 
- //const my_image = currentUserObj.currentUser.image
-    const my_image = currentUserObj.currentUser.image
+}
+
+const my_image= currentUserObj.currentUser.image  
+console.log('last chance',{image})
+//const my_image = image
+console.log('',{my_image})
+    //const my_image =  file.secure_url
+    //setImage(findImage.image)
 
     return (
         <div>
@@ -112,7 +185,7 @@ function AddImage(props, currentUser) {
             <input type="file"
                 name="file"
                 placeholder="Upload image"
-                value={currentUser.image}
+                //value={ file.secure_url}
                 onChange={uploadImage}
                 //onChange={findOneUser}
             />
