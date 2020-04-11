@@ -3,15 +3,14 @@ import React, { useState } from "react";
 import './style.css';
 import { Link, withRouter } from 'react-router-dom';
 import httpClient from "../../httpClient.js";
+import Modal from '../Modal/index';
 
 
 function Card(currentUser) {
 
-    //setup currently logged in user
     const [currentUserObj, setCurrentUserObj] = useState({
         currentUser: httpClient.getCurrentUser()
     });
-
     currentUser = [
         {
             _id: currentUserObj.currentUser._id,
@@ -25,12 +24,28 @@ function Card(currentUser) {
             image: currentUserObj.currentUser.image,
         }
     ]
+    //variable for user's friends list
+    let usersFriends = currentUser[0].friends;
+    const addfriend = (evt) => {
+        const friendId = evt.target.dataset.myfriend
+        const friendToAdd = usersFriends.find(item => item._id === friendId)
+        console.log(" Hello ", friendToAdd)
+        this.props.history.push('/')
+        alert(friendToAdd)
+        //setCurrentUserObj(friendToAdd);
+        //usersFriends = friendToAdd;
+        // httpClient.InsertUpdate({
+        //     _id: currentUserObj.currentUser._id,
+        //     friends: [...currentUserObj.currentUser.friends, { image: friendToAdd.image, name: friendToAdd.name, city: friendToAdd.city, state: friendToAdd.state }]
+        // })
+    }
+    console.log(" Hello ", usersFriends)
 
-    const usersFriends = currentUser[0].friends;
-    console.log(currentUserObj.currentUser.friends)
+
+
 
     return (
-        
+
         <div className="tile is-child box has-text-centered" id="pinkDuck">
             {usersFriends.map(item => (
                 <article key={item._id} className="media is-scrollable">
@@ -41,16 +56,27 @@ function Card(currentUser) {
                     </figure>
                     <div>
 
-                        <Link to={`/user-profile/${item.name}`} className="title is-5" id={item.name}>{item.name}</Link>
+                        {/* <Link to={`/user-profile/${item.name}`} className="title is-5" id={item.name} data-friend={item._id} onClick= {addfriend} >{item.name}</Link> */}
+
+                        <a href={`/user-profile/ ${item.name}`}
+                            id="friend" data-myfriend={item._id}
+                            onClick={addfriend}>
+                            {item.name}
+                        </a>
+
 
                         <h3 className="has-text-left" id="location">{item.city}</h3>
                     </div>
 
                 </article>
-            ))}
+
+            )
+            )}
+            <Modal/>
         </div>
 
     );
 }
 
 export default withRouter(Card);
+
