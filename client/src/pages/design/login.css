@@ -21,6 +21,12 @@
     color: #f5f5f5;
 }
 
+#resetpwd{
+    color: #3273dc;
+    font-size: large; 
+    float: right;
+}
+
 .reset{
     /* padding: 3px; */
     /* border: 1px solid black; */
