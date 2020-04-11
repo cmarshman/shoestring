@@ -5,7 +5,7 @@ import Nav from '../components/navbar';
 import '../pages/design/login.css';
 import * as EmailValidator from 'email-validator';
 import * as Yup from 'yup';
-import { useFormik} from 'formik';
+import { useFormik } from 'formik';
 import $ from 'jquery'
 
 
@@ -54,9 +54,13 @@ const { values, touched, errors, handleChange, handleBlur, handleSubmit, isSubmi
         <Nav />
         <form onSubmit={handleLoginOnsubmit}>
         <div id='errorMsg'  ></div>
-            <div className='container tile is-4 is-parent box'>
-                <div className="tile is-child">
-                    <div className="field">
+        <div className="tile is-ancestor">
+        <div className="tile is vertical is-7 box" id="tile">
+
+          <div className="tile is-parent">
+            <article className="tile is-child notification is-dark">
+
+              <div className="field">
                         <label className="label">Email</label>
                         <p className="control has-icons-left has-icons-right">
                             <input className="input" type="email" placeholder="Email"
@@ -107,7 +111,9 @@ const { values, touched, errors, handleChange, handleBlur, handleSubmit, isSubmi
                         </p>
                         <h5><a href="/reset">Forgot Password?</a></h5>
                     </div>
+                    </article>
                 </div>
+            </div>
             </div>
             </form>
         </>
