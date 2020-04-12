@@ -1,37 +1,3 @@
-// //import React from 'react'
-// import React, { useState, useEffect } from "react";
-// import httpClient from '../httpClient'
-// import $ from 'jquery';
-// import Nav from '../components/navbar' 
-// import '../pages/design/login.css'
-
-
-//  const  ResetPwd =() =>{
-
-//    const [loginObject, setLoginObject] = useState({
-//        // _id: '',
-//         email: "",
-//         password: "",
-//         image: ""
-       
-//     })
-
-//  //function to Handle the  input field
-//     function handleInputChange(event) {
-//         const { name, value } = event.target;
-//         setLoginObject({ ...loginObject, [name]: value })
-//         console.log("input ", { name, value })
-         
-//     };
-
-//     //Function to reset the form to empty fields
-//     const clearForm = () => {
-//         setLoginObject({
-//             email: "",
-//             password: "", 
-
-//         })
-//     }
 
 import React, { useState, useEffect } from "react";
 import httpClient from '../httpClient';

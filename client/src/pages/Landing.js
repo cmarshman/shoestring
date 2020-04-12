@@ -9,7 +9,7 @@ import AddImage from './../components/AddImage';
 import { Redirect } from "react-router-dom";
 import NavBar from '../components/navbar'
 
-function Landing(props, currentUser) {
+function Landing() {
  
     const [currentUserObj, setCurrentUserObj] = useState({
          currentUser: httpClient.getCurrentUser()
@@ -17,46 +17,17 @@ function Landing(props, currentUser) {
 //}
     // Load the available token on pageload from local storage
      useEffect(() => {
-        onLoginSuccess()
-         
-        work()
+        //work()
     }, [])
 
-    //Restructuring the data received from history 
    
-const work = () =>{
-    if(currentUser===null){
-     window.location.replace('/')
-    }
-     
-  }
-    
-    // currentUser =[
-    //     {
-    //     firstName:currentUserObj.currentUser.firstName,
-    //     lastName: currentUserObj.currentUser.lastName,
-    //     phone: currentUserObj.currentUser.phone,
-    //     email: currentUserObj.currentUser.email,
-    //     password: currentUserObj.currentUser.password,
-    // }]
-//}
- 	const onLoginSuccess= (currentUser) =>{
-        setCurrentUserObj({ currentUser: httpClient.getCurrentUser(currentUser) })
-         console.log("currentUserObj " , currentUserObj )
-      }
-
-    //}
-    //console.log
-	 
     return (
-        
-        <div>  
-
-            {currentUserObj ?(
-               <NavBarAuth/>  
-             
-            ): window.location.replace("/")}
-            
+      
+        <div>
+            {!currentUserObj ?(
+               <Redirect  from= '/home' to ='/login'></Redirect>
+           ):"" }
+           <NavBarAuth/>  
             <div className="outerTile">
                 <div className="is-clearfix columns is-centered">
                 <div className="tile is-10 container column is-fluid">
@@ -81,14 +52,10 @@ const work = () =>{
                 </div>
             </div>
         </div>
-     
-        </div>
-            
+   </div>
 )
-     
+
 }
-
-
 export default Landing;
  
 

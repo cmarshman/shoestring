@@ -52,22 +52,22 @@ httpClient.signUp = function(userInfo) {
 }
 
 ///Find  a user from the database
-httpClient.FindUser = function(userInfo , _id) {
-	return this({ method: 'get', url: '/api/users/' + userInfo._id, data: userInfo._id})
-		.then((serverResponse) => {
-			console.log("serverResponse", serverResponse)
-			const token = serverResponse.data.token
-			if(token) {
-				// sets token as an included header for all subsequent api requests
-				console.log("result")
-				console.log(this.defaults)
-				this.defaults.headers.common.token = this.setToken(token)
-				console.log(this.defaults)
-				return jwtDecode(token)
-			} else {
-				return false
-			}
-		})
+httpClient.FindUser = function(userInfo , _id, image) {
+	return this({ method: 'get', url: '/api/users/' + userInfo.image, data: userInfo})
+		// .then((serverResponse) => {
+		// 	console.log("serverResponse", serverResponse)
+		// 	const token = serverResponse.data.token
+		// 	if(token) {
+		// 		// sets token as an included header for all subsequent api requests
+		// 		console.log("result")
+		// 		console.log(this.defaults)
+		// 		this.defaults.headers.common.token = this.setToken(token)
+		// 		console.log(this.defaults)
+		// 		return jwtDecode(token)
+		// 	} else {
+		// 		return false
+		// 	}
+		//})
 }
 
 ///Find  a user from the database

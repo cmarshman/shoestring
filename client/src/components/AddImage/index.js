@@ -3,24 +3,27 @@ import httpClient from '../../httpClient';
 import './style.css'
  
 
-function AddImage(props, currentUser) {
+function AddImage(props, currentUser, findImage, data, file) {
+ 
+    //Set current user state
     const [currentUserObj, setCurrentUserObj] = useState({
         currentUser: httpClient.getCurrentUser()
-    })
-    
-    const [image, setImage] = useState([]);
+   })
+    //Set uploaded image state
+    const [image, setImage] = useState({
+        
+    });
     const [loading, setLoading] = useState(false);
     
     // Load the available token on pageload from local storage
-    useEffect(() => {
-        //onLoginSuccess();
-        //findOneUser()
-        //handleImage()
-        userreset()
-    },[ ])
+   useEffect(() => {
+        
+        //setImage({data})
+        //()
+    },[])
    
-   const userreset= ()=> !currentUserObj? window.location.replace("/"):  ''
-
+    //console.log("currentUserObj " , currentUser )
+ 
     const uploadImage = async e => {
         const files = e.target.files
         const data = new FormData()
@@ -34,62 +37,70 @@ function AddImage(props, currentUser) {
         }
         )
         const file = await res.json()
-
         setImage(file.secure_url)
         setLoading(false)
-
         console.log(file.public_id)
 
-        console.log("other image", file.secure_url)
-
-        //Restructuring the data received from history 
-        currentUser = [
-            {
-                _id: currentUserObj.currentUser._id,
-                firstName: currentUserObj.currentUser.firstName,
-                lastName: currentUserObj.currentUser.lastName,
-                phone: currentUserObj.currentUser.phone,
-                email: currentUserObj.currentUser.email,
-                password: currentUserObj.currentUser.password,
-                image:  currentUserObj.currentUser.image,
-                
-            }]
-            //const onLoginSuccess= (currentUser) =>{
-                setCurrentUserObj({ currentUser: httpClient.getCurrentUser(...currentUser), image:file.secure_url })
-                 console.log("currentUserObj " , currentUserObj )
-              //}
-        console.log("user image", currentUser[0].image)
-
+//Function to update the image in the database
         httpClient.InsertUpdate({
             _id: currentUserObj.currentUser._id,
             image: file.secure_url
         })
+      
+}
+//Variable to setup user
+let thisImage= image  
+//console.log('thisImage', thisImage)
 
+       httpClient.FindUser ({
+        image: currentUserObj.currentUser.image,
+        image: image 
+             
+        }).then(data =>{
+           // console.log("all", data)
+            setImage(data)
+    })
+    //console.log("outside", data)
+    // httpClient.FindAllUser()   
+    //     .then(serverResponse => {
+    //      const data = serverResponse.data
+    //      let findImage= data.find(item =>item.image===thisImage)
+    //      console.log("all please", findImage)
+    //      setImage(findImage)
+    //      //myimage = {findImage}
+    //     // .then(findImage =>{
+    //     //     console.log("all", findImage)
+    //     // })
+    // }).then(findImage.map(item =>{
+    //     console.log('result',item.image)
 
-        const findOneUser = () => {
-            httpClient.FindUser({
-                image: file.secure_url
-            })
-           // console.log("image", image)
-    }
+    // })
+    // )   
+    //})
 
-        //     const onLoginSuccess = (user) => {
-        //         setCurrentUserObj({ currentUser: httpClient.getCurrentUser(user) })
-        //         //  console.log("currentUserObj " , currentUserObj )
-        //         // console.log("user " , currentUserObj.currentUser.firstName)
-        //     }
-    }
-    console.log(image)
-     
+    //      //Function to handle  search for user on load     
+    //      const handleInputChange = event => {
+    //         const value = event.target.value.toLowerCase();
+    //          httpClient.FindAllUser()   
+    //          .then(response=> {
+    //             const data = response.data
+    //             setFriendResult(data);        
+    //           if (value !=="")  {
+    //            const filteredArr = data.filter(result => {
+    //            return result.name.includes(value) || result.date.includes(value)
+    //            || result.email.includes(value) || result.phone.includes(value)
+    //           })
+    //            setFriendResult(filteredArr); 
+    //         }
+    //         }) 
+    //         .catch(err =>{console.log(err)})
+    // }
+    
 
-    function handleImage(event) {
-        const { name, value } = event.target;
-        setCurrentUserObj({ ...currentUser, [name]: value })
-        console.log("input ", { name, value })
-    };
-
- //const my_image = currentUserObj.currentUser.image
-    const my_image = currentUserObj.currentUser.image
+const my_image= currentUserObj.currentUser.image  
+  
+//console.log('findImage',result)
+  
 
     return (
         <div>
@@ -112,7 +123,7 @@ function AddImage(props, currentUser) {
             <input type="file"
                 name="file"
                 placeholder="Upload image"
-                value={currentUser.image}
+                //value={ file.secure_url}
                 onChange={uploadImage}
                 //onChange={findOneUser}
             />
