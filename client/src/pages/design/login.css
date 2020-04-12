@@ -22,10 +22,11 @@
 }
 
 #resetpwd{
-    color: blue;
+    color: #3273dc;
     font-size: large; 
-    font-weight: bold;
+    float: right;
 }
+
 .reset{
     /* padding: 3px; */
     /* border: 1px solid black; */

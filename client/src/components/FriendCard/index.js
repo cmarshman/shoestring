@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 // import friends from "../../utils/friendList.json";
 import './style.css';
@@ -6,6 +7,7 @@ import httpClient from "../../httpClient.js";
 
 
 function Card(currentUser) {
+
 
     //const usersFriends = currentUser[0].friends;
 
@@ -39,19 +41,6 @@ function Card(currentUser) {
 
 
 
-    // currentUser = [
-    //     {
-    //         _id: currentUserObj.currentUser._id,
-    //         friends: currentUserObj.currentUser.friends,
-    //         name: currentUserObj.currentUser.name,
-    //         phone: currentUserObj.currentUser.phone,
-    //         city: currentUserObj.currentUser.city,
-    //         state: currentUserObj.currentUser.state,
-    //         email: currentUserObj.currentUser.email,
-    //         password: currentUserObj.currentUser.password,
-    //         image: currentUserObj.currentUser.image,
-    //     }
-    // ]
 
      const usersFriends = currentUser[0].friends;
     //setFriendResult(usersFriends) 
@@ -76,6 +65,7 @@ function Card(currentUser) {
     }
 
     //console.log('ohhh', FriendResult)
+
     return (
         
         <div className="tile is-child box has-text-centered" id="pinkDuck">
@@ -87,6 +77,7 @@ function Card(currentUser) {
                         </p>
                     </figure>
                     <div>
+
                     <a href={`/user-profile/ ${item.name}`}
                             id="friend" data-myfriend={item._id}
                             onClick={addfriend}>
@@ -97,6 +88,7 @@ function Card(currentUser) {
                         onClick={addfriend}
                          >{item.name}</Link> */}
                         <h3 className="has-text-left" id="location">{item.location}</h3>
+
                     </div>
                 </article>
             ))}
