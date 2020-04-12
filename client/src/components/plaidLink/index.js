@@ -2,9 +2,20 @@ import React, { useCallback } from 'react';
 import { usePlaidLink } from 'react-plaid-link';
  
 const Plaid = () => {
-  const onSuccess = useCallback((token, metadata) => {
-    // send token to server
-  }, []);
+  const onSuccess = useCallback(
+    (token, metadata) => console.log('onSuccess', token, metadata),
+    []
+  );
+
+  const onEvent = useCallback(
+    (eventName, metadata) => console.log('onEvent', eventName, metadata),
+    []
+  );
+
+  const onExit = useCallback(
+    (err, metadata) => console.log('onExit', err, metadata),
+    []
+  );
  
   const config = {
     clientName: 'Shoestring',
@@ -12,6 +23,8 @@ const Plaid = () => {
     product: ['auth', 'transactions'],
     publicKey: 'a470a31fd930e601383597d010adba',
     onSuccess,
+    onEvent,
+    onExit,
     // ...
   };
  
