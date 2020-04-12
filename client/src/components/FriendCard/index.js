@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+
+import React, { useState, useEffect } from "react";
 // import friends from "../../utils/friendList.json";
 import './style.css';
 import { Link, withRouter } from 'react-router-dom';
@@ -8,9 +9,14 @@ import Modal from '../Modal/index';
 
 function Card(currentUser) {
 
+
+    //const usersFriends = currentUser[0].friends;
+
+    //setup currently logged in user
     const [currentUserObj, setCurrentUserObj] = useState({
         currentUser: httpClient.getCurrentUser()
     });
+    
     currentUser = [
         {
             _id: currentUserObj.currentUser._id,
@@ -24,25 +30,42 @@ function Card(currentUser) {
             image: currentUserObj.currentUser.image,
         }
     ]
-    //variable for user's friends list
-    let usersFriends = currentUser[0].friends;
+   // const usersFriends = currentUserObj.currentUser.friends;
+    const [FriendResult, setFriendResult] = useState([])
+  // Load the available token on pageload from local storage
+  useEffect(() => {
+        
+   //setFriendResult (FriendResult)
+   //setFriendResult(friendToAdd) 
+    
+},[])
+
+
+
+
+     const usersFriends = currentUser[0].friends;
+    //setFriendResult(usersFriends) 
+  // console.log('ggggggg' ,FriendResult[0])
+
     const addfriend = (evt) => {
         const friendId = evt.target.dataset.myfriend
-        const friendToAdd = usersFriends.find(item => item._id === friendId)
-        console.log(" Hello ", friendToAdd)
+        let friendToAdd = usersFriends.find(item => item._id === friendId)
+        console.log(" Hello1 ", friendToAdd)
+         setFriendResult(friendToAdd) ;   
+         
         this.props.history.push('/')
-        alert(friendToAdd)
-        //setCurrentUserObj(friendToAdd);
-        //usersFriends = friendToAdd;
+        setCurrentUserObj(friendToAdd);
+            //usersFriends = friendToAdd;
+        
+        
         // httpClient.InsertUpdate({
         //     _id: currentUserObj.currentUser._id,
         //     friends: [...currentUserObj.currentUser.friends, { image: friendToAdd.image, name: friendToAdd.name, city: friendToAdd.city, state: friendToAdd.state }]
         // })
+        
     }
-    console.log(" Hello ", usersFriends)
 
-
-
+    //console.log('ohhh', FriendResult)
 
     return (
 
@@ -56,18 +79,18 @@ function Card(currentUser) {
                     </figure>
                     <div>
 
-                        {/* <Link to={`/user-profile/${item.name}`} className="title is-5" id={item.name} data-friend={item._id} onClick= {addfriend} >{item.name}</Link> */}
-
-                        <a href={`/user-profile/ ${item.name}`}
+                    <a href={`/user-profile/ ${item.name}`}
                             id="friend" data-myfriend={item._id}
                             onClick={addfriend}>
-                            {item.name}
-                        </a>
+                            {item.name} 
+                            </a>
+                        {/* <Link to={`/user-profile/${item.name}`} className="title"
+                        data-myfriend={item._id}
+                        onClick={addfriend}
+                         >{item.name}</Link> */}
+                        <h3 className="has-text-left" id="location">{item.location}</h3>
 
-
-                        <h3 className="has-text-left" id="location">{item.city}</h3>
                     </div>
-
                 </article>
 
             )

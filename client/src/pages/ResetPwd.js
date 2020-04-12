@@ -1,37 +1,3 @@
-// //import React from 'react'
-// import React, { useState, useEffect } from "react";
-// import httpClient from '../httpClient'
-// import $ from 'jquery';
-// import Nav from '../components/navbar' 
-// import '../pages/design/login.css'
-
-
-//  const  ResetPwd =() =>{
-
-//    const [loginObject, setLoginObject] = useState({
-//        // _id: '',
-//         email: "",
-//         password: "",
-//         image: ""
-       
-//     })
-
-//  //function to Handle the  input field
-//     function handleInputChange(event) {
-//         const { name, value } = event.target;
-//         setLoginObject({ ...loginObject, [name]: value })
-//         console.log("input ", { name, value })
-         
-//     };
-
-//     //Function to reset the form to empty fields
-//     const clearForm = () => {
-//         setLoginObject({
-//             email: "",
-//             password: "", 
-
-//         })
-//     }
 
 import React, { useState, useEffect } from "react";
 import httpClient from '../httpClient';
@@ -104,8 +70,11 @@ const { values, touched, errors, handleChange, handleBlur, handleSubmit } = useF
         <>
         <Nav/>
         <form onSubmit={handleSubmit}>
-         <div className='container tile is-4 is-parent box'>
-            <div className="tile is-child">
+        <div className="tile is-ancestor">
+        <div className="tile is vertical is-7 box" id="tile">
+
+          <div className="tile is-parent">
+            <article className="tile is-child notification is-dark">
             <p className="reset"><em>Please Enter your Email to reset your password.</em></p>
             <br></br>
                 <div className="field">
@@ -174,6 +143,8 @@ const { values, touched, errors, handleChange, handleBlur, handleSubmit } = useF
                             Reset Password
                         </button>
                     </p>
+                </div>
+                </article>
                 </div>
             </div>
         </div>

@@ -108,8 +108,9 @@ const { values, touched, errors, handleChange, handleBlur, handleSubmit, isSubmi
                             >
                             Login
                             </button>
+                            <h5 id='resetpwd'><a href="/reset">Forgot Password?</a></h5>
                         </p>
-                        <h5><a href="/reset">Forgot Password?</a></h5>
+
                     </div>
                     </article>
                 </div>
