@@ -12,7 +12,7 @@ Shoestring first allows the user to sign up or log in if they already have an ac
 ## Contributions/Resources
 * Group Members: [Cory Marshman] (https://github.com/cmarshman), [Sile Kiman] (https://github.com/Sile-Kiman), [DeVante Bailey ] (https://github.com/DrBailey13), and [JT Turner] (https://github.com/javierturner)
 
-* Other Contributors: UNCC TAs, Rodney Brenes (Instructor)
+* Other Contributors: UNCC TAs, Students and Instructors
 
 * API/Framework Resources: 
   - [Cloudinary API] (https://cloudinary.com/documentation/image_upload_api_reference)
