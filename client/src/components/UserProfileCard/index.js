@@ -12,12 +12,12 @@ function UserProfileCard(currentUser, props) {
     currentUser: httpClient.getCurrentUser()
 });
 
-console.log('props', props.friendId)
+//console.log('props', props.friendId)
 useEffect(() => {
     // handleSearchSubmit();
      //handleSearch();
      
-     setFriendResult(friendResult) ;   
+     //setFriendResult(friendResult) ;   
 
   }, [])
 
@@ -35,47 +35,30 @@ useEffect(() => {
         image: currentUserObj.currentUser.image,
     }
 ]
-const [friendResult, setFriendResult] = useState([currentUser[0].friends])
-//variable for user’s friends list
-//let friendResult = currentUser[0].friends;
-
-const addfriend = (evt) => {
-    const friendId = evt.target.dataset.myfriend
-    let friendToAdd = friendResult.find(item => item === friendId)
-    console.log(" Hello ", friendToAdd)
-    //get ('/user-profile/%20DeVante%20Bailey')
-    setFriendResult(friendToAdd) ;   
-     
-    this.props.history.push('/')
-        //setCurrentUserObj(friendToAdd);
-        //usersFriends = friendToAdd;
-    
-    
-    // httpClient.InsertUpdate({
-    //     _id: currentUserObj.currentUser._id,
-    //     friends: [...currentUserObj.currentUser.friends, { image: friendToAdd.image, name: friendToAdd.name, city: friendToAdd.city, state: friendToAdd.state }]
-    // })
-    
-}
-console.log(" Hello ", friendResult)
+const usersFriends = currentUser[0].friends;
+ 
+//console.log(" Hello ", friendResult)
 return(
         <>
         {/* {friendResult.length > 0 ?( */}
 
-        {friendResult.map(item =>{
+        {usersFriends.map(item =>{
          return(
         <div className="outerTile">
                 <div className="is-clearfix columns is-centered">
                     <div className="tile is-10 container column is-fluid">
                         <div className="tile is-7 is-vertical is-parent"  id="wallet">
                             <div className="tile is-child box has-text-centered">
-                                <a className="" href=''>
+                                <a className="" href={`/user-profile/ ${item.name}`}>
                                     <img className="is-rounded is-256x256" src={item.image} 
-                                    data-myfriend = {item._id} alt="James Horton"/>
-                                </a>
+                                    data-friends = {item._id} alt="James Horton"
+                                    />
+                    
                                 <h1 className="title">
                                     {item.name}
+                                     
                                 </h1>
+                                </a>
                                 <h2 className="subtitle">
                                     Member Since: April 2020
                                 </h2>

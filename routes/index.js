@@ -15,8 +15,7 @@ usersRouter.post('/authenticate', usersCtrl.authenticate)
 usersRouter.route('/:id').patch(usersCtrl.update)
 
 usersRouter.route('/pwd_reset').post(usersCtrl.reset_password)
-usersRouter.route('/:id').get(usersCtrl.show)
-
+ 
 usersRouter.use(verifyToken)
 
 usersRouter.route('/:id').get(usersCtrl.show)
