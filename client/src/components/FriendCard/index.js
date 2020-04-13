@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import './style.css';
 import { Link, withRouter } from 'react-router-dom';
 import httpClient from "../../httpClient.js";
+import Modal from '../Modal/index';
 
 
 function Card(currentUser) {
@@ -67,7 +68,7 @@ function Card(currentUser) {
     //console.log('ohhh', FriendResult)
 
     return (
-        
+
         <div className="tile is-child box has-text-centered" id="pinkDuck">
             {usersFriends.map(item => (
                 <article key={item._id} className="media is-scrollable">
@@ -91,10 +92,14 @@ function Card(currentUser) {
 
                     </div>
                 </article>
-            ))}
+
+            )
+            )}
+            <Modal/>
         </div>
 
     );
 }
 
 export default withRouter(Card);
+
