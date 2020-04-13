@@ -20,7 +20,7 @@ function AddImage(props, currentUser, findImage, data, file) {
 
 
     useEffect(() => {
-        currentuserCheck();
+       // currentuserCheck();
     }, [])
      
     const currentuserCheck = () => {
@@ -121,7 +121,7 @@ const my_image= currentUserObj.currentUser.image
     return (
 
         <>
-        {!currentUserObj.currentUser ===null ?(
+        {currentUserObj.currentUser !==null ?(
               <div>
               <br />
               {/* {currentUserObj.currentUser===null?(

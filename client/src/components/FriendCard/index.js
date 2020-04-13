@@ -14,19 +14,19 @@ function Card(currentUser, props) {
         currentUser: httpClient.getCurrentUser()
     });
     
-    // currentUser = [
-    //     {
-    //         _id: currentUserObj.currentUser._id,
-    //         friends: currentUserObj.currentUser.friends,
-    //         name: currentUserObj.currentUser.name,
-    //         phone: currentUserObj.currentUser.phone,
-    //         city: currentUserObj.currentUser.city,
-    //         state: currentUserObj.currentUser.state,
-    //         email: currentUserObj.currentUser.email,
-    //         password: currentUserObj.currentUser.password,
-    //         image: currentUserObj.currentUser.image,
-    //     }
-    // ]
+    currentUser = [
+        {
+            _id: currentUserObj.currentUser._id,
+            friends: currentUserObj.currentUser.friends,
+            name: currentUserObj.currentUser.name,
+            phone: currentUserObj.currentUser.phone,
+            city: currentUserObj.currentUser.city,
+            state: currentUserObj.currentUser.state,
+            email: currentUserObj.currentUser.email,
+            password: currentUserObj.currentUser.password,
+            image: currentUserObj.currentUser.image,
+        }
+    ]
    // const usersFriends = currentUserObj.currentUser.friends;
     const [friendResult, setFriendResult] = useState([])
   // Load the available token on pageload from local storage
@@ -73,7 +73,7 @@ function Card(currentUser, props) {
     console.log('ohhh', friendToAdd)
     return (
         <>
-         {!currentUserObj.currentUser ===null ?(
+         {currentUserObj.currentUser !==null ?(
                <div className="tile is-child box has-text-centered" id="pinkDuck">
                {usersFriends.map(item => (
                    <article key={item._id} className="media is-scrollable">

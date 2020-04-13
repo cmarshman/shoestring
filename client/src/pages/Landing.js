@@ -33,7 +33,7 @@ function Landing() {
     return (
       
         <>
-        {(!currentUserObj.currentUser ===null) ?(
+        {(currentUserObj.currentUser !==null) ?(
             <div>
               <NavBarAuth/> 
                   <div className="outerTile">

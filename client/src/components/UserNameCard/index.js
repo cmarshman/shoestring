@@ -22,7 +22,7 @@ function UserNameCard(currentUser) {
 //       }
 
 useEffect(() => {
-    currentuserCheck();
+    //currentuserCheck();
 }, [])
  
 const currentuserCheck = () => {
@@ -32,14 +32,14 @@ const currentuserCheck = () => {
     
 }
     
-    // currentUser =[
-    //     {
-    //     name:currentUserObj.currentUser.name,
-    //     // lastName: currentUserObj.currentUser.lastName,
-    //     phone: currentUserObj.currentUser.phone,
-    //     email: currentUserObj.currentUser.email,
-    //     password: currentUserObj.currentUser.password,
-    // }]
+    currentUser =[
+        {
+        name:currentUserObj.currentUser.name,
+        // lastName: currentUserObj.currentUser.lastName,
+        phone: currentUserObj.currentUser.phone,
+        email: currentUserObj.currentUser.email,
+        password: currentUserObj.currentUser.password,
+    }]
     
     const onLoginSuccess= (currentUser) =>{
         setCurrentUserObj({ currentUser: httpClient.getCurrentUser(currentUser) })
@@ -48,7 +48,7 @@ const currentuserCheck = () => {
 
     return (
         <>
-        {(!currentUserObj.currentUser ===null) ?(
+        {currentUserObj.currentUser !==null ?(
                <p className="title">
                {currentUser[0].name}
               </p>
