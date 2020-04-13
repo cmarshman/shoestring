@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import httpClient from '../../httpClient';
 import './style.css'
+import { Redirect } from "react-router-dom";
+
  
 
 function AddImage(props, currentUser, findImage, data, file) {
@@ -14,14 +16,28 @@ function AddImage(props, currentUser, findImage, data, file) {
         
     });
     const [loading, setLoading] = useState(false);
+
+
+
+    useEffect(() => {
+        currentuserCheck();
+    }, [])
+     
+    const currentuserCheck = () => {
+        if (currentUserObj.curenntUser=== null){
+            alert ('hello')
+            return <Redirect  from= '/home' to ='/'></Redirect>  
+          }      
+        setCurrentUserObj(httpClient.getCurrentUser())
+
+    }
+
+    // {currentUserObj.currentUser===null?(
+    //     <Redirect  from= '/home' to ='/'></Redirect>
+    //     ):"" } 
     
     // Load the available token on pageload from local storage
-   useEffect(() => {
-        
-        //setImage({data})
-        //()
-    },[])
-   
+    
     //console.log("currentUserObj " , currentUser )
  
     const uploadImage = async e => {
@@ -103,37 +119,40 @@ const my_image= currentUserObj.currentUser.image
   
 
     return (
-        <div>
-            {/* <h3>Upload image</h3> */}
-            {/* <figure className="image is-128x128">
-                <img className="is-rounded" id="userPic" src={image} onChange={uploadImage} />
-            </figure> */}
-            <br />
-          
 
-            {loading ? (
-                <h3>Loading...</h3>
-            ) : (
-                    <figure className="image is-centered">
-                        <img id="myPhoto" className="is-rounded" src={my_image} alt="myPhoto"/>
-                    </figure>
-                )}
-            <br />
+        <>
+        {!currentUserObj.currentUser ===null ?(
+              <div>
+              <br />
+              {/* {currentUserObj.currentUser===null?(
+              <Redirect  from= '/home' to ='/'></Redirect>
+              ):"" }     */}
+  
+              {loading ? (
+                  <h3>Loading...</h3>
+              ) : (
+                      <figure className="image is-centered">
+                          <img id="myPhoto" className="is-rounded" src={my_image} alt="myPhoto"/>
+                      </figure>
+                  )}
+              <br />
+  
+              <input type="file"
+                  name="file"
+                  placeholder="Upload image"
+                  //value={ file.secure_url}
+                  onChange={uploadImage}
+                  //onChange={findOneUser}
+              />
+             
+             
+          </div>
+             
+            ): window.location.replace("/")}
+        
+        </>
 
-            <input type="file"
-                name="file"
-                placeholder="Upload image"
-                //value={ file.secure_url}
-                onChange={uploadImage}
-                //onChange={findOneUser}
-            />
-            {/* {loading ? (
-                <h3>Loading...</h3>
-            ) : (
-                    <img src={image} style={{ width: '300px' }} />
-                )} */}
-
-        </div>
+           
     )
 }
 

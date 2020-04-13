@@ -7,28 +7,39 @@ function UserNameCard(currentUser) {
         currentUser: httpClient.getCurrentUser()
    })
 
-   useEffect(() => {
-    onLoginSuccess()
-    //settingUpCurrentUser ()
-    work()
-    }, [])
+//    useEffect(() => {
+//     onLoginSuccess()
+//     //settingUpCurrentUser ()
+//     work()
+//     }, [])
 
-    const work = () =>{
-        if(currentUser===null){
-        //<Redirect from='home' to='/'/>
-        window.location.replace('/')
-        }
+//     const work = () =>{
+//         if(currentUser===null){
+//         //<Redirect from='home' to='/'/>
+//         window.location.replace('/')
+//         }
          
-      }
+//       }
+
+useEffect(() => {
+    currentuserCheck();
+}, [])
+ 
+const currentuserCheck = () => {
+    if (!currentUserObj){
+        window.location.replace('/')
+    }
     
-    currentUser =[
-        {
-        name:currentUserObj.currentUser.name,
-        // lastName: currentUserObj.currentUser.lastName,
-        phone: currentUserObj.currentUser.phone,
-        email: currentUserObj.currentUser.email,
-        password: currentUserObj.currentUser.password,
-    }]
+}
+    
+    // currentUser =[
+    //     {
+    //     name:currentUserObj.currentUser.name,
+    //     // lastName: currentUserObj.currentUser.lastName,
+    //     phone: currentUserObj.currentUser.phone,
+    //     email: currentUserObj.currentUser.email,
+    //     password: currentUserObj.currentUser.password,
+    // }]
     
     const onLoginSuccess= (currentUser) =>{
         setCurrentUserObj({ currentUser: httpClient.getCurrentUser(currentUser) })
@@ -37,7 +48,7 @@ function UserNameCard(currentUser) {
 
     return (
         <>
-        {currentUserObj ?(
+        {(!currentUserObj.currentUser ===null) ?(
                <p className="title">
                {currentUser[0].name}
               </p>

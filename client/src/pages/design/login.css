@@ -35,13 +35,22 @@
     /* font-weight: bold; */
 }
 
-.errormsg{
- /* padding: 10px;  */
-/* border: 1px solid red; */
+#loginerrMsg{
+  padding: 7px;  
+ /* border: 1px solid red;  */
 color: red;
-/* text-align: center;  */
+text-align: center;  
 font-size: large;
 }
+
+.errMsg{
+    /* padding: 10px;   */
+   /* border: 1px solid red;  */
+  color: red;
+  /* text-align: center;   */
+  font-size: large;
+  }
+   
  
 #successMsg{
     /* padding: 10px;  */
