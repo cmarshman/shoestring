@@ -1,0 +1,34 @@
+{
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject",
+    "postinstall": "cp node_modules/@expo/vector-icons/FontAwesome.js node_modules/@expo/vector-icons/Fontisto.js"
+  },
+  "dependencies": {
+    "expo": "~37.0.3",
+    "expo-font": "~8.1.0",
+    "fontisto": "^3.0.4",
+    "link": "^0.1.5",
+    "native-base": "^2.13.12",
+    "react": "~16.9.0",
+    "react-dom": "~16.9.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.1.tar.gz",
+    "react-native-elements": "^1.2.7",
+    "react-native-gesture-handler": "^1.6.1",
+    "react-native-navigation": "^6.4.0",
+    "react-native-reanimated": "^1.7.1",
+    "react-native-screens": "~2.2.0",
+    "react-native-web": "~0.11.7",
+    "react-navigation": "^4.3.7",
+    "react-navigation-drawer": "^2.4.11"
+  },
+  "devDependencies": {
+    "babel-preset-expo": "~8.1.0",
+    "@babel/core": "^7.8.6"
+  },
+  "private": true
+}

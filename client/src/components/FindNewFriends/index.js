@@ -100,7 +100,7 @@ const addfriend = (evt) =>{
                             <p className="subtitle" >{item.name}</p>
                             <p className="" >{item.city}, {item.state}</p>
                             <hr />
-                            <a className="button is-dark is-medium" 
+                            <a className="button is-fullwidth is-dark is-medium" 
                             id="friend" data-newfriend={item._id}
                             onClick={addfriend}>Add Friend</a>
                         </article>
