@@ -46,6 +46,7 @@ const [addNewFriend, newFriendAdded] = useState(false);
         }]
       
      //Function to handle  search for user on load     
+     //if (debouncedSearchTerm) {
      const handleInputChange = event => {
         const value = event.target.value.toLowerCase();
          httpClient.FindAllUser()   
