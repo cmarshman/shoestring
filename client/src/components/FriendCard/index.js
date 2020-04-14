@@ -7,7 +7,7 @@ import httpClient from "../../httpClient.js";
 import FriendsModal from '../FriendsModal/index';
 
 
-function Card(currentUser) {
+function Card(currentUser, props) {
 
 
     //const usersFriends = currentUser[0].friends;
@@ -31,7 +31,7 @@ function Card(currentUser) {
         }
     ]
    // const usersFriends = currentUserObj.currentUser.friends;
-    const [FriendResult, setFriendResult] = useState([])
+    const [friendResult, setFriendResult] = useState([])
   // Load the available token on pageload from local storage
 //   useEffect(() => {
         
@@ -40,21 +40,27 @@ function Card(currentUser) {
     
 // },[])
 
+  const currentuserCheck = () => {
+    if (!currentUserObj){
+        window.location.replace('/')
+    }
+    
+}
+    
+  let friendToAdd =[]
+     const usersFriends = currentUserObj.currentUser.friends;
 
-
-
-     const usersFriends = currentUser[0].friends;
     //setFriendResult(usersFriends) 
   // console.log('ggggggg' ,FriendResult[0])
 
     const addfriend = (evt) => {
         const friendId = evt.target.dataset.myfriend
-        let friendToAdd = usersFriends.find(item => item._id === friendId)
+        friendToAdd = usersFriends.find(item => item._id === friendId)
         console.log(" Hello1 ", friendToAdd)
-         setFriendResult(friendToAdd) ;   
+         setFriendResult([friendToAdd]) ;   
          
-        this.props.history.push('/')
-        setCurrentUserObj(friendToAdd);
+        //this.props.history.push('/')
+        //setCurrentUserObj(friendToAdd);
             //usersFriends = friendToAdd;
         
         
@@ -64,9 +70,7 @@ function Card(currentUser) {
         // })
         
     }
-
-    //console.log('ohhh', FriendResult)
-
+    
     return (
 
         <div className="tile is-child box has-text-centered" id="pinkDuck">
