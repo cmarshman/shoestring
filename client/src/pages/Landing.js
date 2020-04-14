@@ -6,32 +6,17 @@ import Plaid from './../components/plaidLink';
 import NavBarAuth from '../components/NavBarAuth';
 import UserNameCard from '../components/UserNameCard';
 import AddImage from './../components/AddImage';
-import { Redirect } from "react-router-dom";
-import NavBar from '../components/navbar'
+ 
 
 function Landing() {
  
     const [currentUserObj, setCurrentUserObj] = useState({
          currentUser: httpClient.getCurrentUser()
     })
-//}
-    // Load the available token on pageload from local storage
-     useEffect(() => {
-        //currentuserCheck();
-    }, [])
-     
-    const currentuserCheck = () => {
-        if (currentUserObj.curenntUser=== null){
-            window.location.replace('/')
-        }
-        setCurrentUserObj(httpClient.getCurrentUser())
+ 
 
-    }
-
-   // console.log('current', currentUserObj.currentUser)
-   
+ // Render the  all  the  pages on the landing pages
     return (
-      
         <>
         {(currentUserObj.currentUser !==null) ?(
             <div>
@@ -42,7 +27,7 @@ function Landing() {
                           <div className="tile is-7 is-vertical is-parent" >
                               <div className="tile is-child box has-text-centered" >
                                   <div className="is-centered" >
-                                      <Plaid />
+                                   <Plaid />
                                    <AddImage />
                                   <br />
                                   <UserNameCard/>
@@ -64,10 +49,7 @@ function Landing() {
              
         ): window.location.replace("/")}
         
-        </>
-
-      
-
+</>
 )
 
 }

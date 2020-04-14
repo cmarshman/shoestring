@@ -52,7 +52,7 @@ httpClient.signUp = function(userInfo) {
 }
 
 ///Find  a user from the database
-httpClient.FindUser = function(userInfo , _id, image) {
+httpClient.FindUser = function(userInfo, image) {
 	return this({ method: 'get', url: '/api/users/' + userInfo.image, data: userInfo})
 		// .then((serverResponse) => {
 		// 	console.log("serverResponse", serverResponse)
