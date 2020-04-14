@@ -20,8 +20,9 @@ function FindNewFriends(currentUser) {
     //setup friends states
     const [newFriendSearch, setSearch] = useState('');
     const [friendResult, setFriendResult] = useState([{}]);
-    //JT's code
-    const [addNewFriend, newFriendAdded] = useState(false);
+    
+    //Toggle Add Friends Button
+    // const [addNewFriend, newFriendAdded] = useState(false);
     // const handleToggle = () => {
     //     newFriendAdded(addNewFriend => !addNewFriend)   
     // }
@@ -74,11 +75,12 @@ function FindNewFriends(currentUser) {
     const addfriend = (evt) => {
         const friendId = evt.target.dataset.newfriend
         let friendToAdd = friendResult.find(item => item._id === friendId)
-        newFriendAdded(addNewFriend => !addNewFriend)
+        // newFriendAdded(addNewFriend => !addNewFriend)
         httpClient.InsertUpdate({
             _id: currentUserObj.currentUser._id,
             friends: [...currentUserObj.currentUser.friends, { _id: friendToAdd._id, image: friendToAdd.image, name: friendToAdd.name, city: friendToAdd.city, state: friendToAdd.state }]
         })
+        console.log("friend added!", friendToAdd)
         
 
     }
@@ -110,8 +112,8 @@ function FindNewFriends(currentUser) {
                                     <p className="subtitle" >{item.name}</p>
                                     <p className="" >{item.city}, {item.state}</p>
                                     <hr />
-
-                                    <button className="button is-fullwidth is-dark is-medium" id="friend" data-newfriend={item._id} onClick={addfriend}>{addNewFriend ? "Friend Added!" : "Add Friend"}</button>
+                                    <FriendAddedBtn className="button is-fullwidth is-dark is-medium" id="friend" data-newfriend={item._id} onClick={addfriend} />
+                                    {/* <button className="button is-fullwidth is-dark is-medium" id="friend" data-newfriend={item._id} onClick={addfriend}>{addNewFriend ? "Friend Added!" : "Add Friend"}</button> */}
                                     {/* {!addNewFriend ?
                                     <button>Add Friend</button>
                                     :
