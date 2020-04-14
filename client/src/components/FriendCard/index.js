@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import './style.css';
 import { Link, withRouter } from 'react-router-dom';
 import httpClient from "../../httpClient.js";
-import Modal from '../Modal/index';
+import FriendsModal from '../FriendsModal/index';
 
 
 function Card(currentUser) {
@@ -33,12 +33,12 @@ function Card(currentUser) {
    // const usersFriends = currentUserObj.currentUser.friends;
     const [FriendResult, setFriendResult] = useState([])
   // Load the available token on pageload from local storage
-  useEffect(() => {
+//   useEffect(() => {
         
    //setFriendResult (FriendResult)
    //setFriendResult(friendToAdd) 
     
-},[])
+// },[])
 
 
 
@@ -70,20 +70,17 @@ function Card(currentUser) {
     return (
 
         <div className="tile is-child box has-text-centered" id="pinkDuck">
+            
             {usersFriends.map(item => (
-                <article key={item._id} className="media is-scrollable">
+                <article key={item._id} className="media is-scrollable friend" id="friendSelector" data-friend={item._id}>
                     <figure className="media-left" id="block">
                         <p className="image is-square is-48x48" id="friendPic">
                             <img className="is-rounded" src={item.image} alt="userImage" />
                         </p>
                     </figure>
                     <div>
-
-                    <a href={`/user-profile/ ${item.name}`}
-                            id="friend" data-myfriend={item._id}
-                            onClick={addfriend}>
-                            {item.name} 
-                            </a>
+                    <p>{item.name}</p>
+                    
                         {/* <Link to={`/user-profile/${item.name}`} className="title"
                         data-myfriend={item._id}
                         onClick={addfriend}
@@ -92,10 +89,9 @@ function Card(currentUser) {
 
                     </div>
                 </article>
-
             )
-            )}
-            <Modal/>
+            )}<FriendsModal/>
+            
         </div>
 
     );
