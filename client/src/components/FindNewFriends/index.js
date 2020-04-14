@@ -49,9 +49,10 @@ function FindNewFriends(currentUser) {
             image: currentUserObj.currentUser.image,
 
         }]
-
-    //Function to handle  search for user on load     
-    const handleInputChange = event => {
+      
+     //Function to handle  search for user on load     
+     //if (debouncedSearchTerm) {
+     const handleInputChange = event => {
         const value = event.target.value.toLowerCase();
         httpClient.FindAllUser()
             .then(response => {

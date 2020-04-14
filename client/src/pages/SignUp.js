@@ -101,7 +101,7 @@ function SignUp(user) {
                     value={values.name}
                   />
                   {values.name.length < 1 && touched.name && 'errors' ? (
-                    <p className="errormsg">Please enter your name</p>
+                    <p className="errMsg">Please enter your name</p>
                             ): ''}
                 </div>
               </div>
@@ -118,7 +118,7 @@ function SignUp(user) {
                    value={values.phone}
                   />
                   {values.phone.length < 10 &&  touched.phone && 'errors' ? (
-                              <p className="errormsg">Please enter a valid Phone</p>
+                              <p className="errMsg">Please enter a valid Phone</p>
                             ): ''}
                 </div>
               </div>
@@ -133,7 +133,7 @@ function SignUp(user) {
                     value={values.city}
                   />
                    {values.city.length <2 &&  touched.city && 'errors' ? (
-                        <p className="errormsg">Please enter a valid City</p>
+                        <p className="errMsg">Please enter a valid City</p>
                     ): ''}
                 </div>
               </div>
@@ -148,7 +148,7 @@ function SignUp(user) {
                     value={values.state}
                   />
                    {values.state.length < 2 &&  touched.state && 'errors' ? (
-                    <p className="errormsg">Please enter a valid State</p>
+                    <p className="errMsg">Please enter a valid State</p>
                     ): ''}
                 </div>
               </div>
@@ -163,7 +163,7 @@ function SignUp(user) {
                     placeholder="Email (required)"
                     value={values.email} />
                     {values.email.length < 4 &&  touched.email && 'errors' ? (
-                        <p className="errormsg">Please enter a valid Email</p>
+                        <p className="errMsg">Please enter a valid Email</p>
                       ): ''}
                   <span className="icon is-small is-left">
                     <i className="fas fa-envelope"></i>
@@ -183,7 +183,7 @@ function SignUp(user) {
                     placeholder="Password (required)"
                     value={values.password} />
                     {values.password.length <8 &&  touched.password && 'errors' ? (
-                      <p className="errormsg">Please enter a valid Password</p>
+                      <p className="errMsg">Please enter a valid Password</p>
                      ): ''}
                   <span className="icon is-small is-left">
                     <i className="fas fa-lock"></i>
@@ -202,7 +202,7 @@ function SignUp(user) {
                     />I agree to the <a href="#"> terms and conditions</a>
 
                     {values.checked !== true &&  'errors' ? (
-                  <p className="errormsg">Please check the box to enable the submit button </p>
+                  <p className="errMsg">Please check the box to enable the submit button </p>
                   ): ''} 
                     
                    
