@@ -17,7 +17,9 @@ function FindNewFriends(currentUser) {
  
 //setup friends states
 const [newFriendSearch, setSearch] = useState('');
-const [friendResult, setFriendResult] = useState([{}])
+const [friendResult, setFriendResult] = useState([{}]);
+//JT's code
+const [addNewFriend, newFriendAdded] = useState(false);
    
  
 // Load the all users from the database on page load
@@ -98,7 +100,7 @@ const addfriend = (evt) =>{
                             <p className="subtitle" >{item.name}</p>
                             <p className="" >{item.city}, {item.state}</p>
                             <hr />
-                            <a className="button is-dark is-medium" 
+                            <a className="button is-fullwidth is-dark is-medium" 
                             id="friend" data-newfriend={item._id}
                             onClick={addfriend}>Add Friend</a>
                         </article>
@@ -127,8 +129,8 @@ const addfriend = (evt) =>{
                 onChange={handleInputChange} 
                 placeholder="Find new friends . . . " 
                 value={friendResult.search}/>
-                <button className="button is-light" 
-                type="submit" id="submit" onClick={handleSearch}>Submit</button>
+                {/* <button className="button is-light" 
+                type="submit" id="submit" onClick={handleSearch}>Submit</button> */}
             </div>
         </div>
         <br/>

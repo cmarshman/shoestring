@@ -1,11 +1,14 @@
+
 import React, { useState, useEffect } from "react";
 // import friends from "../../utils/friendList.json";
 import './style.css';
 import { Link, withRouter } from 'react-router-dom';
 import httpClient from "../../httpClient.js";
+import Modal from '../Modal/index';
 
 
 function Card(currentUser, props) {
+
 
     //const usersFriends = currentUser[0].friends;
 
@@ -45,10 +48,10 @@ function Card(currentUser, props) {
     }
     
 }
-
     
   let friendToAdd =[]
      const usersFriends = currentUserObj.currentUser.friends;
+
     //setFriendResult(usersFriends) 
   // console.log('ggggggg' ,FriendResult[0])
 
@@ -69,8 +72,7 @@ function Card(currentUser, props) {
         // })
         
     }
-
-    console.log('ohhh', friendToAdd)
+    
     return (
         <>
          {currentUserObj.currentUser !==null ?(
@@ -101,8 +103,10 @@ function Card(currentUser, props) {
              
         ): window.location.replace("/")}
 
+
         </>
     );
 }
 
 export default withRouter(Card);
+
