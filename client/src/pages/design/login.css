@@ -65,11 +65,9 @@ font-size: large;
 
 
 #errorMsg{
-    /* padding: 10px;  */
-    /* margin-bottom: 15px; */
+    padding: 7px;  
     /* border: 1px solid red;  */
-    font-weight:bold ;
-    color: red;
-    /* text-align: center;  */
-    font-size: medium;
+   color: red;
+   text-align: center;  
+   font-size: large;
 }
