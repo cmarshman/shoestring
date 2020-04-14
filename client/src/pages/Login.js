@@ -41,8 +41,8 @@ const { values, touched, errors, handleChange, handleBlur, handleSubmit, isSubmi
                 this.props.onLoginSuccess(user);
 				this.props.history.push('/');
             }
-            $('#errorMsg').attr("style", "color:red")
-            $('#errorMsg').text("An error occured please review your entries");
+            $('#loginerrMsg').attr("style", "color:red", 'border: solid 1px')
+            $('#loginerrMsg').text("Your Email or Password is incorrect, please check and try again.");
 
              return
            }).catch(err => console.log('err', err));
@@ -53,7 +53,7 @@ const { values, touched, errors, handleChange, handleBlur, handleSubmit, isSubmi
         <>
         <Nav />
         <form onSubmit={handleLoginOnsubmit}>
-        <div id='errorMsg'  ></div>
+        <div id='loginerrMsg'  ></div>
         <div className="tile is-ancestor">
         <div className="tile is vertical is-7 box" id="tile">
 
@@ -61,6 +61,7 @@ const { values, touched, errors, handleChange, handleBlur, handleSubmit, isSubmi
             <article className="tile is-child notification is-dark">
 
               <div className="field">
+
                         <label className="label">Email</label>
                         <p className="control has-icons-left has-icons-right">
                             <input className="input" type="email" placeholder="Email"
@@ -71,7 +72,7 @@ const { values, touched, errors, handleChange, handleBlur, handleSubmit, isSubmi
                                 placeholder="Email (required)"
                             />
                              {values.email.length < 10 &&  touched.email && 'errors' ? (
-                              <p className="errormsg">Please enter a valid email</p>
+                              <p className="errMsg">Please enter a valid email</p>
                             ): ''}
                             <span className="icon is-small is-left">
                                 <i className="fas fa-envelope"></i>
@@ -92,7 +93,7 @@ const { values, touched, errors, handleChange, handleBlur, handleSubmit, isSubmi
                                 placeholder="Password (required)"
                              />
                              {values.password.length < 8 &&  touched.password && 'errors' ?   (
-                              <p className="errormsg">Please enter a valid password</p>
+                              <p className="errMsg">Please enter a valid password</p>
                             ): ''}
                             <span className="icon is-small is-left">
                                 <i className="fas fa-lock"></i>

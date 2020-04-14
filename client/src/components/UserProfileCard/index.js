@@ -6,21 +6,22 @@ import friends from '../../utils/friendList.json';
 import httpClient from '../../httpClient.js';
 
 
-function UserProfileCard(currentUser, props) {
+function UserProfileCard(currentUser,   ) {
   //setup currently logged in user
   const [currentUserObj, setCurrentUserObj] = useState({
     currentUser: httpClient.getCurrentUser()
 });
 
+const [friendResult, setFriendResult] = useState([{}])
 //console.log('props', props.friendId)
 useEffect(() => {
     // handleSearchSubmit();
      //handleSearch();
-     
-     //setFriendResult(friendResult) ;   
+     //addfriend()
+     setFriendResult(friendResult) ;   
 
   }, [])
-
+ console.log('one', friendResult)
 
     currentUser = [
       {
@@ -36,8 +37,36 @@ useEffect(() => {
     }
 ]
 const usersFriends = currentUser[0].friends;
+
+//let friendId;
+//const usersFriends = currentUser[0].friends;
+//setFriendResult(usersFriends) 
+// console.log('ggggggg' ,FriendResult[0])
+console.log('two', friendResult)
+
+
+const addfriend = (evt) => {
+    let friendId = evt.target.dataset.myfriend
+    // if(!friendId){
+    //     return
+    // }
+    let friendToAdd = usersFriends.find(item => item._id === friendId)
+    console.log(" Hello1 ", friendToAdd)
+     setFriendResult(friendToAdd) ;   
+     
+    this.props.history.push('/')
+    //setFriendResult({friendToAdd}) 
+    //usersFriends = friendToAdd;
+    
+    
+    // httpClient.InsertUpdate({
+    //     _id: currentUserObj.currentUser._id,
+    //     friends: [...currentUserObj.currentUser.friends, { image: friendToAdd.image, name: friendToAdd.name, city: friendToAdd.city, state: friendToAdd.state }]
+    // })
+    
+}
  
-//console.log(" Hello ", friendResult)
+console.log(" Hello000 ", friendResult)
 return(
         <>
         {/* {friendResult.length > 0 ?( */}
