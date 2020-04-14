@@ -13,30 +13,6 @@ const userSchema = new Schema({
   image: { type: String, required: false },
   checked: {type: Boolean, required: true},
   date: { type: Date, default: Date.now },
-  accessToken: {
-    type: String,
-    required: true
-  },
-  itemId: {
-    type: String,
-    required: true
-  },
-  institutionId: {
-    type: String,
-    required: true
-  },
-  institutionName: {
-    type: String
-  },
-  accountName: {
-    type: String
-  },
-  accountType: {
-    type: String
-  },
-  accountSubtype: {
-    type: String
-  }
 });
 
 // adds a method to a user document object to create a hashed password
