@@ -11,6 +11,7 @@ import $ from 'jquery'
 
    //Setup  validation condition on the schema using Yup
    const validationSchenma = Yup.object({
+    name:   Yup.string().required(),
     amount: Yup.number().required(),
     message: Yup.string().required(),
      
@@ -21,13 +22,14 @@ function TransferMoneyCard () {
 
     const { values, touched, errors, handleChange, handleBlur, handleSubmit } = useFormik({
         initialValues: {
+            email: '',
             amount: null,
             message: '',
              
         },
         validationSchenma,
         onSubmit(values) {
-            console.log('values', values)
+        console.log('values', values)
         transferMoney(values)        
         }
     });
@@ -53,30 +55,32 @@ function TransferMoneyCard () {
 //Function to handle the transfert money form
 //const transferMoney = () => {
 
-
+    const usersFriends = currentUserObj.friends;
+    console.log("friends", usersFriends)
     //Function 
     const transferMoney = (evt) =>{
-        const userId = currentUserObj.currentUser._id
+        const userEmail = values.email 
         httpClient.FindAllUser()   
         .then(serverResponse => {
           const data = serverResponse.data
-          let findUser=data.find(item =>item._id===userId)
-            console.log("find", findUser)
-            // if(findEmail){
-            //     console.log("findEmail", findEmail)
-            //     $('#resetPwd').attr("style", "color:red")
-            //     $('#resetPwd').text("Email not found- try again or register.");
-            //     return
-            // }
+          let findEmail=data.find(item =>item.email===userEmail)
+            console.log("find", findEmail)
+            if(findEmail === undefined){
+                console.log("findEmail", findEmail)
+                $('#errormsg').attr("style", "color:red")
+                $('#errormsg').text("Email not found- try again.");
+                return
+            }
             //Insert the new password after update
             httpClient.InsertUpdate({
-                _id:  findUser._id,
+                _id:  findEmail._id,
                 amount: values.amount,
                 message: values.message
             })
             .then(response => {
                 console.log('response', response)
             })
+            .then(window.location.replace('/home'))
             .catch(err => console.log('err', err))
         })
     }
@@ -108,13 +112,18 @@ function TransferMoneyCard () {
                     <p className="subtitle has-text-centered">
                         Transfer money to your friend
                     </p>
-                    {/* <p>Select from your friends to send money</p>
+                    <p>Enter your friend's email to start the transfer</p>
                     <p className="control has-icons-left">
-                        <input className="input" type="text" name="name" placeholder="Search by friends name . . . " />
+                        <input className="input" type="text"  placeholder="Enter your  friend's email . . . " 
+                         onChange={handleChange}
+                         name="email"
+                         value={values.email}
+                         onBlur={handleBlur} />
+                        <div id='errormsg'></div>
                         <span className="icon is-small is-left">
                         <i className="fas fa-user-circle"></i>
                         </span>
-                    </p> */}
+                    </p>
                     <p>Enter the ammount you would like to transfer</p>
                     <p className="control has-icons-left">
                         <input className="input" type="text" placeholder="$50" 
