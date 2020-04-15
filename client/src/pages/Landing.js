@@ -25,7 +25,7 @@ function Landing() {
               <NavBarAuth/> 
                   <div className="outerTile">
                       <div className="is-clearfix columns is-centered">
-                      <div className="tile is-9 container column is-fluid">
+                      <div className="tile is-9 container column is-fluid" id="purpleDuck">
                           <div className="tile is-vertical is-parent" >
                               <div className="tile is-child box has-text-centered" >
                                   <div className="is-centered" >

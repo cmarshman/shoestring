@@ -98,7 +98,7 @@ useEffect(() => {
               </div>
             </div>
           </div>
-          </div>
+          
 
           <div className="navbar-end">
             <div className="navbar-item">
@@ -110,7 +110,7 @@ useEffect(() => {
               </div>
             </div>
           </div>
-        
+          </div>
       </nav>
       <br/>
       <br/>

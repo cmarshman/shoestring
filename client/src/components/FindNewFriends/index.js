@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import httpClient from '../../httpClient';
 import Spinner from '../Spinner';
-import { Link } from 'react-router-dom';
-import $ from 'jquery';
 import './style.css';
 
 //Main function to handle friends page
@@ -45,6 +43,8 @@ function FindNewFriends(currentUser) {
             city: currentUserObj.currentUser.city,
             state: currentUserObj.currentUser.state,
             email: currentUserObj.currentUser.email,
+            amount: currentUserObj.currentUser.amount,
+            nessage: currentUserObj.currentUser.message,
             password: currentUserObj.currentUser.password,
             image: currentUserObj.currentUser.image,
 
@@ -79,7 +79,7 @@ function FindNewFriends(currentUser) {
         // newFriendAdded(addNewFriend => !addNewFriend);
         httpClient.InsertUpdate({
             _id: currentUserObj.currentUser._id,
-            friends: [...currentUserObj.currentUser.friends, { _id: friendToAdd._id, image: friendToAdd.image, name: friendToAdd.name, city: friendToAdd.city, state: friendToAdd.state }]
+            friends: [...currentUserObj.currentUser.friends, { _id: friendToAdd._id, image: friendToAdd.image, name: friendToAdd.name, city: friendToAdd.city, state: friendToAdd.state, amount: friendToAdd.amount, message: friendToAdd.message,  }]
         })
         // alert("Friend added!");
         onSuccess();
@@ -104,9 +104,9 @@ function FindNewFriends(currentUser) {
                             <div key={item._id} className="column is-one-third" id="blue">
                                 <article className="tile is-child notification has-text-centered" id="block">
                                     <figure className="image is-square">
-                                        <Link to={`/user-profile/${item.name}`}>
+
                                             <img className="is-rounded is-256x256" src={item.image} alt={item.name} />
-                                        </Link>
+
                                     </figure>
                                     <p className="subtitle" >{item.name}</p>
                                     <p className="" >{item.city}, {item.state}</p>

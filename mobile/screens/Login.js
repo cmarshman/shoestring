@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, KeyboardAvoidingView, Modal, Button, Text, TextInput, View, Linking } from 'react-native';
-import { Navigation } from 'react-native-navigation';
-import MainHamburger from './MainNavigation/MainHamburger';
+import Main from './MainNavigation/Main';
 
 const Login = props => {
   const [isMain, setIsMain] = useState(false)
@@ -48,7 +47,7 @@ const Login = props => {
         <View style={styles.buttonContainer}>
           <View style={styles.button} >
             <Button title='NEXT' color='#3bd389' onPress={() => setIsMain(true)}/>
-            <MainHamburger
+            <Main
             visible={isMain}
             onCancel={cancelMain}
             />

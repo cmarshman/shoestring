@@ -56,6 +56,10 @@ function TransferMoneyCard () {
     const usersFriends = currentUserObj.friends;
     console.log("friends", usersFriends)
     //Function 
+   // let currentAmount = currentUserObj.amount
+   // let newamount = currentAmount + values.amount
+
+    
     const transferMoney = (evt) =>{
         const userEmail = values.email 
         httpClient.FindAllUser()   
@@ -75,6 +79,14 @@ function TransferMoneyCard () {
                 amount: values.amount,
                 message: values.message
             })
+            // const updateAmount = () =>{
+            //     let newamount = amount + values.amount
+            // }
+            .then(httpClient.InsertUpdate({
+                _id:  currentUserObj.currentUser._id,
+                friends: [...currentUserObj.currentUser.friends, {amount: values.amount, message: values.message  }]
+            })
+            )
             .then(response => {
                 console.log('response', response)
             })
