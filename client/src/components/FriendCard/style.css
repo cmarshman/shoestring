@@ -9,3 +9,7 @@
     overflow-y: scroll;
     position: relative;
 }
+
+#purpleDuck{
+    padding-left: 0px;
+}

@@ -6,6 +6,7 @@ import Plaid from './../components/plaidLink';
 import NavBarAuth from '../components/NavBarAuth';
 import UserNameCard from '../components/UserNameCard';
 import AddImage from './../components/AddImage';
+// import Modal from '../components/Modal';
  
 
 function Landing() {
@@ -23,8 +24,8 @@ function Landing() {
               <NavBarAuth/> 
                   <div className="outerTile">
                       <div className="is-clearfix columns is-centered">
-                      <div className="tile is-10 container column is-fluid">
-                          <div className="tile is-7 is-vertical is-parent" >
+                      <div className="tile is-9 container column is-fluid">
+                          <div className="tile is-vertical is-parent" >
                               <div className="tile is-child box has-text-centered" >
                                   <div className="is-centered" >
                                    <Plaid />
@@ -35,14 +36,15 @@ function Landing() {
                                   <p id="member">Member Since: April 2019</p>
                                   </div>
                               </div>
-                              <div className="tile is-child box">
+                              <div className="tile is-child box is-fullwidth">
                                   <p className="title" id="paymentList">Payments</p>
                                   <p>Lisa paid Arnold for Pizza</p>
                                   <p>Jeff paid Jesus for rent</p>
                               </div>
                               </div>
-                          <FriendCard />
+                          
                       </div>
+                      <FriendCard />
                   </div>
               </div>
          </div>
