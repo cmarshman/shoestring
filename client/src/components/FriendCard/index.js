@@ -27,38 +27,39 @@ function Card(currentUser) {
         }
     ]
 
-    const usersFriends = currentUserObj.currentUser.friends;
+    const usersFriends = currentUserObj.currentUser.friends.slice(1);
+    console.log('slice', usersFriends)
 
-    return (
-        <>
-        <br/>
-            <div className="tile is-3 container column is-fluid" >
-            <div className="tile is-child box has-text-centered" id="pinkDuck">
-                {usersFriends.map(item => (
-                    <article key={item._id} className="is-scrollable friend" id="friendSelector" data-friend={item._id}>
-                        <figure id="block">
-                            
-                            <p className="image has-text-centered" id="friendPic">
-                            <div className="is-centered">
-                            <img className="is-rounded is-48x48" id="userPhoto" src={item.image} alt={item.name} />
+
+    return ( 
+            <>
+            <br/>
+                <div className="tile is-3 container column is-fluid" >
+                <div className="tile is-child box has-text-centered" id="pinkDuck">
+                    {usersFriends.map(
+                        item => (
+                        <article key={item._id} className="is-scrollable friend" id="friendSelector" >
+                            <figure id="block">
+                                <p className="image has-text-centered" id="friendPic">
+                                <div className="is-centered">
+                                <img className="is-rounded is-48x48" id="userPhoto" src={item.image} alt={item.name} />
+                                </div>
+                                {item.name}
+                                </p>
+                            </figure>
+                            <div>
+                                <Link to='/transfermoney'>
+                                <h3 className="has-text-centered" id="location">{item.city}</h3>
+                                </Link>
                             </div>
-                            {item.name}
-                            </p>
-
-                        </figure>
-                        <div>
-                            <Link to='/transfermoney'>
-                            <h3 className="has-text-centered" id="location">{item.city}</h3>
-                            </Link>
-                        </div>
-                        <hr/>
-                    </article>
-                )
-                )}
-            </div>
-            </div>
-        </>
-    );
-}
+                            <hr/>
+                        </article>
+                    )
+                    )}
+                </div>
+                </div>
+            </>
+        );
+    }
 
 export default withRouter(Card);

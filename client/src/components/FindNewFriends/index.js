@@ -95,12 +95,15 @@ function FindNewFriends(currentUser) {
             .catch(err => setIsLoading(true))
     }
 
+    const removeUser = friendResult.slice(1)
     //Maping data to the friends page
     const searchResult = () => {
         return (
             <>
-                {friendResult.length > 0 ?
-                    friendResult.map(item => {
+                {/* {removeUser >0 ? */}
+                   
+                 
+                  {removeUser.map(item => {
                         return (
                             <div key={item._id} className="column is-one-third" id="blue">
                                 <article className="tile is-child notification has-text-centered" id="block">
@@ -118,9 +121,9 @@ function FindNewFriends(currentUser) {
                             </div>
                         )
                     }
-                    )
+                    )}
                     :
-                    
+                
                     <p>No Results</p>}
             </>
         );
