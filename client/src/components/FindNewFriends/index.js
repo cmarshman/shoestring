@@ -45,7 +45,7 @@ function FindNewFriends(currentUser) {
             state: currentUserObj.currentUser.state,
             email: currentUserObj.currentUser.email,
             amount: currentUserObj.currentUser.amount,
-            nessage: currentUserObj.currentUser.message,
+            message: currentUserObj.currentUser.message,
             password: currentUserObj.currentUser.password,
             image: currentUserObj.currentUser.image,
 
