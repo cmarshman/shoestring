@@ -12,12 +12,12 @@ function AddImage() {
    })
     //Set uploaded image state
     const [image, setImage] = useState({
-        
+        image:""
     });
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-       // currentuserCheck();
+        findImage()
     }, [])
 
 //Function to setup image upload
@@ -46,14 +46,15 @@ function AddImage() {
       
 }
 //Variable to setup user
-       httpClient.FindUser ({
-        image: currentUserObj.currentUser.image,
-        image: image 
-             
+      const findImage= () =>{
+         httpClient.FindUser ({
+         image: image
+         
         }).then(data =>{
              setImage(data)
+             console.log("data", data)
     })
-   
+}
 //variable to setup the image to display
 const my_image= currentUserObj.currentUser.image  
   
@@ -81,7 +82,7 @@ const my_image= currentUserObj.currentUser.image
                />
           </div>
              
-            ): window.location.replace("/")}
+        ): window.location.replace("/")}
         
         </>
     )
