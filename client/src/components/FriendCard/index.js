@@ -21,6 +21,8 @@ function Card(currentUser) {
             phone: currentUserObj.currentUser.phone,
             city: currentUserObj.currentUser.city,
             state: currentUserObj.currentUser.state,
+            amount: currentUserObj.currentUser.amount,
+            message: currentUserObj.currentUser.message,
             email: currentUserObj.currentUser.email,
             password: currentUserObj.currentUser.password,
             image: currentUserObj.currentUser.image,

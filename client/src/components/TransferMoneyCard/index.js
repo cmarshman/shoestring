@@ -77,16 +77,17 @@ function TransferMoneyCard () {
             httpClient.InsertUpdate({
                 _id:  findEmail._id,
                 amount: values.amount,
-                message: values.message
+                message: values.message,
+               // friends: [{amount: values.amount, message: values.message }]
             })
             // const updateAmount = () =>{
             //     let newamount = amount + values.amount
             // }
-            .then(httpClient.InsertUpdate({
-                _id:  currentUserObj.currentUser._id,
-                friends: [...currentUserObj.currentUser.friends, {amount: values.amount, message: values.message  }]
-            })
-            )
+        //     .then(httpClient.InsertUpdate({
+        //         _id:  currentUserObj.currentUser._id,
+        //         friends: [...currentUserObj.currentUser.friends, {amount: values.amount, message: values.message }]
+        //     })
+        //    )
             .then(response => {
                 console.log('response', response)
             })
