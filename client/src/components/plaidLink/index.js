@@ -1,6 +1,8 @@
 import React, { useCallback } from 'react';
 import { usePlaidLink } from 'react-plaid-link';
 import $ from 'jquery'
+import './style.css'
+ 
 const Plaid = () => {
   const onSuccess = useCallback(
     (token, metadata) => { 
@@ -22,8 +24,11 @@ const Plaid = () => {
  
   const { open, ready, error } = usePlaidLink(config);
   return (
+
     <>
-    <button type="button" className="button" onClick={() => open()} disabled={!ready}>
+
+    <button type="button" className="button" id="fluffyduck" onClick={() => open()} disabled={!ready}>
+
       Connect your bank account
     </button>
     <div id='successMsg'  ></div>

@@ -1,6 +1,7 @@
 #userPhoto{
-    height: 48px!important;
-    width: 48px!important;
+    height: 96px!important;
+    width: 96px!important;
+    margin: 0 auto;
 }
 
 #pinkDuck{
@@ -10,6 +11,7 @@
     position: relative;
 }
 
-#friendSelector {
-    cursor: pointer;
+#purpleDuck{
+    padding-left: 0px;
+
 }
