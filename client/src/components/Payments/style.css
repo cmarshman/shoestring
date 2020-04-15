@@ -1,0 +1,10 @@
+#friendImage{
+    height: 48px!important;
+    width: 48px!important;
+    margin: 0 auto;
+    margin-right: 1%;
+}
+
+.transactionInfo {
+    font-size: 20px;
+}
