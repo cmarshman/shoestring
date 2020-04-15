@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import './style.css';
 // import James from '../../images/friendPhotos/james_horton.jpg';
 import UserProfileBtn from '../UserProfileBtn';

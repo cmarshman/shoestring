@@ -1,6 +1,7 @@
 #userPhoto{
-    height: 48px!important;
-    width: 48px!important;
+    height: 96px!important;
+    width: 96px!important;
+    margin: 0 auto;
 }
 
 #pinkDuck{
@@ -8,4 +9,9 @@
     width: 412px!important; 
     overflow-y: scroll;
     position: relative;
+}
+
+#purpleDuck{
+    padding-left: 0px;
+
 }

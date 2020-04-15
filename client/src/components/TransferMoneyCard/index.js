@@ -124,7 +124,7 @@ function TransferMoneyCard () {
                         <i className="fas fa-user-circle"></i>
                         </span>
                     </p>
-                    <p>Enter the ammount you would like to transfer</p>
+                    <p>Enter the amount you would like to transfer</p>
                     <p className="control has-icons-left">
                         <input className="input" type="text" placeholder="$50" 
                         onChange={handleChange}

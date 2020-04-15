@@ -1,0 +1,10 @@
+#fluffyduck{
+    color: #3bd389;
+    border-color: white;
+    background-color: #f5f5f5;
+}
+
+#fluffyduck:hover{
+    background-color: #363636;
+    color: #f5f5f5;
+}
