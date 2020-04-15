@@ -39,7 +39,7 @@ function Card(currentUser) {
                             <Link to='/transfermoney'>
                             <p className="image has-text-centered" id="friendPic">
                             <div className="is-centered">
-                            <img className="is-rounded is-48x48" id="userPhoto" src={item.image} alt="userImage" />
+                            <img className="is-rounded is-48x48" id="userPhoto" src={item.image} alt="" />
                             </div>
                             {item.name}
                             </p>

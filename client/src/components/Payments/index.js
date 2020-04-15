@@ -25,28 +25,23 @@ function Payments(currentUser) {
     const myMoney = currentUserObj.currentUser.amount;
     const myMessage = currentUserObj.currentUser.message;
 
+    const usersFriends = currentUserObj.currentUser.friends;
+
+
     return (
         <div className="tile is-child box is-fullwidth">
             <div>
-                {/* {usersFriends.map(item => (
-                    <article key={item._id} className="is-scrollable friend" id="friendSelector" data-friend={item._id}>
-                        <figure id="block">
-                            <Link to='/transfermoney'>
-                            <p className="image has-text-centered" id="friendPic">
-                            <div className="is-centered">
-                            <img className="is-rounded is-48x48" id="userPhoto" src={item.image} alt="userImage" />
-                            </div>
-                            {item.name}
-                            </p>
-                            </Link>
-                        </figure>
+                {usersFriends.map(item => (
+                    <article key={item._id} className="is-scrollable" id="paymentList" data-payment={item.myMoney}>
+                        {/* <figure id="block">
+                        </figure> */}
                         <div>
                             <h3 className="has-text-centered" id="location">{item.city}</h3>
                         </div>
                         <hr/>
                     </article>
                 )
-                )} */}
+                )}
 
                 <p className="title" id="paymentList">Payments</p>
                 <p>Lisa paid  for {myMessage}</p>
