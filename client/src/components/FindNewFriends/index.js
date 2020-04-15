@@ -140,4 +140,4 @@ function FindNewFriends(currentUser) {
 }
 
 
-export default FindNewFriends;
+export default FindNewFriends; 
