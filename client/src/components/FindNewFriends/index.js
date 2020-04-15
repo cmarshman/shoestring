@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import httpClient from '../../httpClient';
 import Spinner from '../Spinner';
 import { Link } from 'react-router-dom';
+import $ from 'jquery';
 import './style.css';
 
 //Main function to handle friends page
@@ -66,6 +67,11 @@ function FindNewFriends(currentUser) {
             .catch(err => { console.log(err) })
     }
 
+    //Friend added message
+    function onSuccess() {
+        $("#successMsg").text("Your new friend has been added!")
+    }
+
     //update the database with a new friend added
     const addfriend = (evt) => {
         const friendId = evt.target.dataset.newfriend
@@ -75,7 +81,8 @@ function FindNewFriends(currentUser) {
             _id: currentUserObj.currentUser._id,
             friends: [...currentUserObj.currentUser.friends, { _id: friendToAdd._id, image: friendToAdd.image, name: friendToAdd.name, city: friendToAdd.city, state: friendToAdd.state }]
         })
-        alert("Friend added!");
+        // alert("Friend added!");
+        onSuccess();
     }
 
     //Function to load all user on page load
@@ -94,7 +101,6 @@ function FindNewFriends(currentUser) {
                 {friendResult.length > 0 ?
                     friendResult.map(item => {
                         return (
-
                             <div key={item._id} className="column is-one-third" id="blue">
                                 <article className="tile is-child notification has-text-centered" id="block">
                                     <figure className="image is-square">
@@ -105,13 +111,15 @@ function FindNewFriends(currentUser) {
                                     <p className="subtitle" >{item.name}</p>
                                     <p className="" >{item.city}, {item.state}</p>
                                     <hr />
-                                    <button className="button is-fullwidth is-dark is-medium" id="friend" data-newfriend={item._id} onClick={addfriend}>{addNewFriend ? "Friend Added!" : "Add Friend"}</button>
+                                    <button className="button is-fullwidth is-dark is-medium" id="friend" data-newfriend={item._id} onClick={addfriend}>{addNewFriend ? "Friend Added!" : "Add Friend"}
+                                    </button>
                                 </article>
                             </div>
                         )
                     }
                     )
                     :
+                    
                     <p>No Results</p>}
             </>
         );
@@ -129,6 +137,7 @@ function FindNewFriends(currentUser) {
                         value={friendResult.search} />
                 </div>
             </div>
+            <div id="successMsg"></div>
             <br />
             <div className="tile is-child columns is-multiline box has-text-centered">
                 {
