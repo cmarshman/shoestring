@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import httpClient from '../../httpClient';
 import Spinner from '../Spinner';
-import { Link } from 'react-router-dom';
+
 import './style.css';
 
 //Main function to handle friends page
@@ -98,9 +98,9 @@ function FindNewFriends(currentUser) {
                             <div key={item._id} className="column is-one-third" id="blue">
                                 <article className="tile is-child notification has-text-centered" id="block">
                                     <figure className="image is-square">
-                                        <Link to={`/user-profile/${item.name}`}>
+
                                             <img className="is-rounded is-256x256" src={item.image} alt={item.name} />
-                                        </Link>
+
                                     </figure>
                                     <p className="subtitle" >{item.name}</p>
                                     <p className="" >{item.city}, {item.state}</p>

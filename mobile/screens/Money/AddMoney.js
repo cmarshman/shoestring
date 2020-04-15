@@ -1,9 +1,12 @@
 import React from 'react';
-import { StyleSheet, Modal, Button, Text, View } from 'react-native';
+import { StyleSheet, Modal, Button, Text, TextInput, View } from 'react-native';
 
 const AddMoney = props => {
     return(
         <Modal visible={props.visible} animationType="fade">
+        <View style={styles.container}>
+
+       
         <View style={styles.cancelButtonContainer}>
           <View style={styles.cancelButton}>
             <Button title="<" color="#3bd389" onPress={props.onCancel} />
@@ -11,6 +14,17 @@ const AddMoney = props => {
         </View>
         <View>
             <Text style={styles.headerText}>Add Money</Text>
+        </View>
+        <Text style={styles.subHeader}>Your wallet has : $110</Text>
+        <Text style={styles.subHeader2}>Add money to your wallet</Text>
+        <TextInput style={styles.input}
+          id='addMoney'
+          lable='addMoney (required)'
+          placeholder='Add money to your wallet . . . '
+          required
+          autoCapitalize='none'
+          // onValueChange = {() => ()}
+          initialValue='' />
         </View>
         </Modal>
     )
@@ -29,6 +43,27 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         marginRight: 125,
         marginBottom: 20,
+      },
+      subHeader:{
+        fontSize: 25,
+        color: '#363636',
+        justifyContent: 'flex-start',
+        marginRight: 90,
+      },
+      subHeader2:{
+        fontSize: 25,
+        color: '#363636',
+        justifyContent: 'flex-start',
+        marginRight: 0,
+      },
+      input: {
+        width: '80%',
+        borderColor: 'black',
+        borderWidth: 1,
+        padding: 10,
+        marginBottom: 10,
+        backgroundColor: '#f5f5f5',
+        marginTop: 10,
       },
     cancelButtonContainer: {
         paddingTop: 20,
