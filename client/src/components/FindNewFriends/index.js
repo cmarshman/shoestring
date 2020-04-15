@@ -45,6 +45,8 @@ function FindNewFriends(currentUser) {
             city: currentUserObj.currentUser.city,
             state: currentUserObj.currentUser.state,
             email: currentUserObj.currentUser.email,
+            amount: currentUserObj.currentUser.amount,
+            nessage: currentUserObj.currentUser.message,
             password: currentUserObj.currentUser.password,
             image: currentUserObj.currentUser.image,
 
@@ -79,7 +81,7 @@ function FindNewFriends(currentUser) {
         // newFriendAdded(addNewFriend => !addNewFriend);
         httpClient.InsertUpdate({
             _id: currentUserObj.currentUser._id,
-            friends: [...currentUserObj.currentUser.friends, { _id: friendToAdd._id, image: friendToAdd.image, name: friendToAdd.name, city: friendToAdd.city, state: friendToAdd.state }]
+            friends: [...currentUserObj.currentUser.friends, { _id: friendToAdd._id, image: friendToAdd.image, name: friendToAdd.name, city: friendToAdd.city, state: friendToAdd.state, amount: friendToAdd.amount, message: friendToAdd.message,  }]
         })
         // alert("Friend added!");
         onSuccess();
