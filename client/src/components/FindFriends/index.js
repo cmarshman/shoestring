@@ -4,12 +4,6 @@ import FindNewFriends from '../FindNewFriends';
 import SearchMyFriends from '../SearchMyFriends';
 
 function FindFriends () {
-    
-    const [pickSearch, setPickSearch] = useState(false)
-    
-    // const handleToggle = () => {
-    //     setPickSearch(pickSearch => !pickSearch)
-    // }
 
     return(
         <>
@@ -21,6 +15,7 @@ function FindFriends () {
                             <p className="title">Search for new friends</p>
                                 <FindNewFriends/> 
                                 
+
 
                             </div>
                             </div>

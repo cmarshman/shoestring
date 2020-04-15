@@ -3,10 +3,12 @@ import React, { useState, useEffect } from "react";
 import './style.css';
 import { withRouter } from 'react-router-dom';
 import httpClient from "../../httpClient.js";
+
 // import FriendsModal from "../FriendsModal";
 
 function Card(currentUser) {
     //setup currently logged in user
+
     const [currentUserObj, setCurrentUserObj] = useState({
         currentUser: httpClient.getCurrentUser()
     });

@@ -4,7 +4,7 @@ import httpClient from '../../httpClient';
 
 
 
-function FriendAddedBtn(currentUser) {
+function FriendAddedBtn(currentUser, props) {
     const [addNewFriend, newFriendAdded] = useState(false);
 
     // const handleToggle = () => {
@@ -39,16 +39,13 @@ function FriendAddedBtn(currentUser) {
             friends: [...currentUserObj.currentUser.friends, { _id: friendToAdd._id, image: friendToAdd.image, name: friendToAdd.name, city: friendToAdd.city, state: friendToAdd.state }]
         })
         console.log("friend added!", friendToAdd)
-        
-
     }
     
     
     return(
         <>
-        <button onClick={addfriend}>{addNewFriend ? "Friend Added!" : "Add Friend"}</button>
-
-
+        <button className="button is-fullwidth is-dark is-medium" id="friend" data-newfriend={props.item._id} onClick={addfriend}>{addNewFriend ? "Friend Added!" : "Add Friend"}</button>
+        
         {/* <button className="button is-light red-fish" id="addFriend">Friend Added!</button> */}
         </>
     );

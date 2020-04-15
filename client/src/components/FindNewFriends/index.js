@@ -3,8 +3,6 @@ import httpClient from '../../httpClient';
 import Spinner from '../Spinner';
 import { Link } from 'react-router-dom';
 import './style.css';
-import FriendAddedBtn from '../FriendAdded';
-import SearchMyFriends from '../SearchMyFriends';
 
 //Main function to handle friends page
 function FindNewFriends(currentUser) {
@@ -20,9 +18,9 @@ function FindNewFriends(currentUser) {
     //setup friends states
     const [newFriendSearch, setSearch] = useState('');
     const [friendResult, setFriendResult] = useState([{}]);
-    
+
     //Toggle Add Friends Button
-    // const [addNewFriend, newFriendAdded] = useState(false);
+    const [addNewFriend, newFriendAdded] = useState(false);
     // const handleToggle = () => {
     //     newFriendAdded(addNewFriend => !addNewFriend)   
     // }
@@ -50,10 +48,8 @@ function FindNewFriends(currentUser) {
             image: currentUserObj.currentUser.image,
 
         }]
-      
-     //Function to handle  search for user on load     
-     //if (debouncedSearchTerm) {
-     const handleInputChange = event => {
+
+    const handleInputChange = event => {
         const value = event.target.value.toLowerCase();
         httpClient.FindAllUser()
             .then(response => {
@@ -71,18 +67,15 @@ function FindNewFriends(currentUser) {
     }
 
     //update the database with a new friend added
-
     const addfriend = (evt) => {
         const friendId = evt.target.dataset.newfriend
         let friendToAdd = friendResult.find(item => item._id === friendId)
-        // newFriendAdded(addNewFriend => !addNewFriend)
+        // newFriendAdded(addNewFriend => !addNewFriend);
         httpClient.InsertUpdate({
             _id: currentUserObj.currentUser._id,
             friends: [...currentUserObj.currentUser.friends, { _id: friendToAdd._id, image: friendToAdd.image, name: friendToAdd.name, city: friendToAdd.city, state: friendToAdd.state }]
         })
-        console.log("friend added!", friendToAdd)
-        
-
+        alert("Friend added!");
     }
 
     //Function to load all user on page load
@@ -112,28 +105,12 @@ function FindNewFriends(currentUser) {
                                     <p className="subtitle" >{item.name}</p>
                                     <p className="" >{item.city}, {item.state}</p>
                                     <hr />
-                                    <FriendAddedBtn className="button is-fullwidth is-dark is-medium" id="friend" data-newfriend={item._id} onClick={addfriend} />
-                                    {/* <button className="button is-fullwidth is-dark is-medium" id="friend" data-newfriend={item._id} onClick={addfriend}>{addNewFriend ? "Friend Added!" : "Add Friend"}</button> */}
-                                    {/* {!addNewFriend ?
-                                    <button>Add Friend</button>
-                                    :
-                                    <button>Friend Added!</button>
-                                } */}
-
-
-                                    {/* <a className="button is-fullwidth is-dark is-medium" 
-                            id="friend" data-newfriend={item._id}
-                            onClick={addfriend}>Add Friend</a> */}
+                                    <button className="button is-fullwidth is-dark is-medium" id="friend" data-newfriend={item._id} onClick={addfriend}>{addNewFriend ? "Friend Added!" : "Add Friend"}</button>
                                 </article>
                             </div>
-                            //}
                         )
                     }
-                        // }
-
-
                     )
-
                     :
                     <p>No Results</p>}
             </>
@@ -150,12 +127,8 @@ function FindNewFriends(currentUser) {
                         onChange={handleInputChange}
                         placeholder="Find new friends . . . "
                         value={friendResult.search} />
-                    {/* <button className="button is-light" 
-                type="submit" id="submit" onClick={handleSearch}>Submit</button> */}
                 </div>
             </div>
-            <br />
-            <br />
             <br />
             <div className="tile is-child columns is-multiline box has-text-centered">
                 {
