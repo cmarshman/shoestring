@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './style.css';
-import FriendCard from '../FriendCard';
 import MyImage from '../MyImage';
 import UserNameCard from '../UserNameCard';
 import httpClient from '../../httpClient';
@@ -17,7 +16,6 @@ import $ from 'jquery'
      
 });
      
-
 function TransferMoneyCard () {
 
     const { values, touched, errors, handleChange, handleBlur, handleSubmit } = useFormik({
@@ -91,23 +89,22 @@ function TransferMoneyCard () {
         
         <form onSubmit={handleSubmit}>
         <div className="outerTile">
-                <div className="is-clearfix columns is-centered">
-                    <div className="tile is-10 container column is-fluid" >
-                        <div className="tile is-7 is-vertical is-parent"  >
-                            <div className="tile is-child box has-text-centered">
-                                <a className="title is-centered" href='/home'>
-                                    <MyImage/>
-                                </a>
-                                <br/>
-                                <UserNameCard/>
-                                <p id="funds">Funds Available: $100</p>
+            <div className="is-clearfix columns is-centered">
+                <div className="tile is-9 container column is-fluid">
+                    <div className="tile is-vertical is-parent" >
+                        <div className="tile is-child box has-text-centered" >
+                            <a className="title is-centered" href='/home'>
+                                <MyImage />
+                            </a>
+                            <br />
+                            <UserNameCard />
+                            <p id="funds">Funds Available: $100</p>
                             <p id="member">Member Since: April 2019</p>
-                            </div>  
                         </div>
-                            <FriendCard/>
                     </div>
                 </div>
-                <div className="tile is-ancestor columns is-centered" id="waldos_nothere">
+            </div>
+            <div className="tile is-ancestor columns is-centered" id="waldos_nothere">
                 <div className="tile is-vertical column is-two-fifths banana box" id="tile1">
                     <p className="subtitle has-text-centered">
                         Transfer money to your friend
@@ -121,7 +118,7 @@ function TransferMoneyCard () {
                          onBlur={handleBlur} />
                         <div id='errormsg'></div>
                         <span className="icon is-small is-left">
-                        <i className="fas fa-user-circle"></i>
+                            <i className="fas fa-user-circle"></i>
                         </span>
                     </p>
                     <p>Enter the amount you would like to transfer</p>
@@ -135,7 +132,7 @@ function TransferMoneyCard () {
                               <p className="errormsg">Please enter a valid amount</p>
                         ): ''} */}
                         <span className="icon is-small is-left">
-                        <i className="fas fa-money-bill-wave-alt"></i>
+                            <i className="fas fa-money-bill-wave-alt"></i>
                         </span>
                     </p>
                     <p>Leave a messeage for your friend</p>
@@ -154,7 +151,7 @@ function TransferMoneyCard () {
                     onClick={transferMoney}>Transfer Money</a>
 
                 </div>
-                </div>
+            </div>
         </div>
         </form>
          
