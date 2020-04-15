@@ -33,7 +33,7 @@ function FindNewFriends(currentUser) {
         setFriendResult(friendResult);
 
     }, [])
-
+ 
     //Restructuring the data received from history 
     currentUser = [
         {
