@@ -15,3 +15,45 @@
     padding-left: 0px;
 
 }
+
+.overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 98;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  
+  .modal {
+    position: relative;
+    z-index: 99;
+    width: 100%;
+    max-width: 20rem;
+    max-height: 100%;
+    margin: 0 auto;
+  }
+  
+  .modal-close {
+    position: absolute;
+    top: -1.5rem;
+    right: 0;
+    padding: 5px;
+    border: 0;
+    -webkit-appearance: none;
+    background: none;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .modal-body {
+    padding: 1.25rem 1.5rem;
+    border-radius: 4px;
+    background-color: white;
+  }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import friends from "../../utils/friendList.json";
 import './style.css';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import httpClient from "../../httpClient.js";
 
 // import FriendsModal from "../FriendsModal";
@@ -36,16 +36,16 @@ function Card(currentUser) {
                 {usersFriends.map(item => (
                     <article key={item._id} className="is-scrollable friend" id="friendSelector" data-friend={item._id}>
                         <figure id="block">
+                            <Link to='/transfermoney'>
                             <p className="image has-text-centered" id="friendPic">
-                                <div className="is-centered">
+                            <div className="is-centered">
                             <img className="is-rounded is-48x48" id="userPhoto" src={item.image} alt="userImage" />
                             </div>
                             {item.name}
                             </p>
-                            {/* <p>{item.name}</p> */}
+                            </Link>
                         </figure>
                         <div>
-                            
                             <h3 className="has-text-centered" id="location">{item.city}</h3>
                         </div>
                         <hr/>
