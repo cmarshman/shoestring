@@ -43,7 +43,7 @@ function loginForm() {
         if (loginObject.email) {
             API.getLoginData( res =>{
                if(res.email === loginObject.email && res.password === loginObject.password){
-                  console.log("login sussful")
+                  console.log("login")
                }
                  
             })

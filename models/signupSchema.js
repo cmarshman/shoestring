@@ -12,6 +12,8 @@ const userSchema = new Schema({
   friends: {type: Array, required: false },
   image: { type: String, required: false },
   checked: {type: Boolean, required: true},
+  amount:{type: Number, require: false},
+  message: {type: String, require: false},
   date: { type: Date, default: Date.now }
 
 });

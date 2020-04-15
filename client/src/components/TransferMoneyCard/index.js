@@ -1,11 +1,91 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './style.css';
 import FriendCard from '../FriendCard';
 import MyImage from '../MyImage';
 import UserNameCard from '../UserNameCard';
+import httpClient from '../../httpClient';
+import * as Yup from 'yup';
+import { useFormik} from 'formik';
+import $ from 'jquery'
+
+
+   //Setup  validation condition on the schema using Yup
+   const validationSchenma = Yup.object({
+    amount: Yup.number().required(),
+    message: Yup.string().required(),
+     
+});
+     
 
 function TransferMoneyCard () {
+
+    const { values, touched, errors, handleChange, handleBlur, handleSubmit } = useFormik({
+        initialValues: {
+            amount: null,
+            message: '',
+             
+        },
+        validationSchenma,
+        onSubmit(values) {
+            console.log('values', values)
+        transferMoney(values)        
+        }
+    });
+ 
+
+    const [currentUserObj, setCurrentUserObj] = useState({
+        currentUser: httpClient.getCurrentUser()
+    })
+
+  console.log("current", currentUserObj)
+    // Function to update the image in the database
+    const updateUser = () =>{
+        httpClient.InsertUpdate({
+            _id:  currentUserObj.currentUser._id,
+            amount: values.amount,
+            message: values.message
+        })
+    }
+     
+
+ 
+
+//Function to handle the transfert money form
+//const transferMoney = () => {
+
+
+    //Function 
+    const transferMoney = (evt) =>{
+        const userId = currentUserObj.currentUser._id
+        httpClient.FindAllUser()   
+        .then(serverResponse => {
+          const data = serverResponse.data
+          let findUser=data.find(item =>item._id===userId)
+            console.log("find", findUser)
+            // if(findEmail){
+            //     console.log("findEmail", findEmail)
+            //     $('#resetPwd').attr("style", "color:red")
+            //     $('#resetPwd').text("Email not found- try again or register.");
+            //     return
+            // }
+            //Insert the new password after update
+            httpClient.InsertUpdate({
+                _id:  findUser._id,
+                amount: values.amount,
+                message: values.message
+            })
+            .then(response => {
+                console.log('response', response)
+            })
+            .catch(err => console.log('err', err))
+        })
+    }
+
+       //console.log("value", values)  
+
     return(
+        
+        <form onSubmit={handleSubmit}>
         <div className="outerTile">
                 <div className="is-clearfix columns is-centered">
                     <div className="tile is-10 container column is-fluid" >
@@ -28,28 +108,47 @@ function TransferMoneyCard () {
                     <p className="subtitle has-text-centered">
                         Transfer money to your friend
                     </p>
-                    <p>Select from your friends to send money</p>
+                    {/* <p>Select from your friends to send money</p>
                     <p className="control has-icons-left">
                         <input className="input" type="text" name="name" placeholder="Search by friends name . . . " />
                         <span className="icon is-small is-left">
                         <i className="fas fa-user-circle"></i>
                         </span>
-                    </p>
+                    </p> */}
                     <p>Enter the ammount you would like to transfer</p>
                     <p className="control has-icons-left">
-                        <input className="input" type="text" name="name" placeholder="$50" />
+                        <input className="input" type="text" placeholder="$50" 
+                        onChange={handleChange}
+                        name="amount"
+                        value={values.amount}
+                        onBlur={handleBlur} />
+                        {/* {values.amount.length <1 &&  touched.amount && 'errors' ? (
+                              <p className="errormsg">Please enter a valid amount</p>
+                        ): ''} */}
                         <span className="icon is-small is-left">
                         <i className="fas fa-money-bill-wave-alt"></i>
                         </span>
                     </p>
                     <p>Leave a messeage for your friend</p>
-                    <textarea className="textarea" placeholder="For fluffy rainbow unicorn"></textarea>
+                    <textarea className="textarea" placeholder="For fluffy rainbow unicorn"
+                    onChange={handleChange}
+                    name="message"
+                    value={values.message}
+                    onBlur={handleBlur} />
+                    {/* {values.message.length <10 &&  touched.amount && 'errors' ? ( */}
+                          {/* <p className="errormsg">Please enter a valid message</p>
+                    ): ''} */}
+                     
+                    {/* </textarea> */}
                     <br/>
-                    <a className="button is-light" id="deposit">Transfer Money</a>
+                    <a className="button is-light" id="deposit" type="submit"
+                    onClick={transferMoney}>Transfer Money</a>
 
                 </div>
                 </div>
         </div>
+        </form>
+         
     )
 }
 
