@@ -16,6 +16,8 @@ import CurrencyConverter from './pages/CurrencyConverter';
 import Reset from '../src/pages/ResetPwd'
 import UserProfile from './pages/UserProfile';
 import friends from './utils/friendList.json';
+import CancelAccount from './pages/CancelAccount';
+import RequestData from './pages/RequestData';
 
 function App(item) {
    
@@ -37,6 +39,8 @@ function App(item) {
         <Route exact path="/mywallet" component={MyWallet}/>
         <Route exact path="/currencyconverter" component={CurrencyConverter}/>
         <Route path="/user-profile/:name" component={UserProfile}/>
+        <Route exact path="/cancelaccount" component={CancelAccount}/>
+        <Route exact path="/requestdata" component={RequestData}/>
       </Wrapper>
     </div>
     </Router>

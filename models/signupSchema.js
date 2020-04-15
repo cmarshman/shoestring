@@ -15,7 +15,6 @@ const userSchema = new Schema({
   amount:{type: Number, require: false},
   message: {type: String, require: false},
   date: { type: Date, default: Date.now }
-
 });
 
 // adds a method to a user document object to create a hashed password
