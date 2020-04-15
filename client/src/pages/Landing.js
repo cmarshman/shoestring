@@ -28,10 +28,10 @@ function Landing() {
                           <div className="tile is-vertical is-parent" >
                               <div className="tile is-child box has-text-centered" >
                                   <div className="is-centered" >
-                                   <Plaid />
+                                  <UserNameCard/>
                                    <AddImage />
                                   <br />
-                                  <UserNameCard/>
+                                  <Plaid />
                                   <p id="funds">Funds Available: $100</p>
                                   <p id="member">Member Since: April 2019</p>
                                   </div>
@@ -41,8 +41,7 @@ function Landing() {
                                   <p>Lisa paid Arnold for Pizza</p>
                                   <p>Jeff paid Jesus for rent</p>
                               </div>
-                              </div>
-                          
+                            </div>
                       </div>
                       <FriendCard />
                   </div>
