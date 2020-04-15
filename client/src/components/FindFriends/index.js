@@ -12,8 +12,11 @@ function FindFriends () {
                     <div className="tile is-10 container column is-fluid">
                         <div className="tile is-12 is-vertical is-parent" id="wallet">
                             <div className="tile is-child box has-text-centered">
-                            <p className="subtitle">Find Friends</p>
-                        <FindNewFriends/>
+                            <p className="title">Search for new friends</p>
+                                <FindNewFriends/> 
+                                
+
+
                             </div>
                             </div>
                         </div>

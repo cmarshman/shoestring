@@ -32,3 +32,4 @@ function FriendsModal() {
     )
 }
 export default FriendsModal;
+
