@@ -35,6 +35,8 @@ function SignUp(user) {
       password: "",
       friends: '',
       image: "",
+      amount: '',
+      message: '',
       checked: false,
     },
     validationSchenma,
@@ -62,6 +64,8 @@ function SignUp(user) {
       password: values.password,
       friends: values.friends,
       image:  values.image,
+      amount: values.amount,
+      message: values.message,
       checked: values.checked
     }).then(user => {
       console.log("user", user)

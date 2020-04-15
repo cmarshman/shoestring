@@ -12,7 +12,9 @@ const userSchema = new Schema({
   friends: {type: Array, required: false },
   image: { type: String, required: false },
   checked: {type: Boolean, required: true},
-  date: { type: Date, default: Date.now },
+  amount:{type: Number, require: false},
+  message: {type: String, require: false},
+  date: { type: Date, default: Date.now }
 });
 
 // adds a method to a user document object to create a hashed password
