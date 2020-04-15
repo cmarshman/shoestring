@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import httpClient from '../../httpClient';
 import Spinner from '../Spinner';
 import './style.css';
+import $ from 'jquery';
 
 //Main function to handle friends page
 function FindNewFriends(currentUser) {
