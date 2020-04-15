@@ -35,7 +35,7 @@ function SignUp(user) {
       password: "",
       friends: '',
       image: "",
-      amount: '',
+      amount: 0,
       message: '',
       checked: false,
     },
