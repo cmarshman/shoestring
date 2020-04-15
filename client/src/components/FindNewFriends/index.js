@@ -3,7 +3,7 @@ import httpClient from '../../httpClient';
 import Spinner from '../Spinner';
 import $ from 'jquery';
 import './style.css';
-import $ from 'jquery';
+
 
 //Main function to handle friends page
 function FindNewFriends(currentUser) {
