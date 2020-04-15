@@ -9,3 +9,7 @@
     overflow-y: scroll;
     position: relative;
 }
+
+#friendSelector {
+    cursor: pointer;
+}

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import './style.css';
 import { Link, withRouter } from 'react-router-dom';
 import httpClient from "../../httpClient.js";
-import Modal from '../Modal/index';
+import FriendsModal from '../FriendsModal/index';
 
 
 function Card(currentUser, props) {
@@ -33,14 +33,12 @@ function Card(currentUser, props) {
    // const usersFriends = currentUserObj.currentUser.friends;
     const [friendResult, setFriendResult] = useState([])
   // Load the available token on pageload from local storage
-  useEffect(() => {
-    // handleSearchSubmit();
-     //handleSearch();
-    //addfriend()\
-    currentuserCheck()
-     setFriendResult(friendResult) ;   
-
-  }, [])
+//   useEffect(() => {
+        
+   //setFriendResult (FriendResult)
+   //setFriendResult(friendToAdd) 
+    
+// },[])
 
   const currentuserCheck = () => {
     if (!currentUserObj){
@@ -74,37 +72,32 @@ function Card(currentUser, props) {
     }
     
     return (
-        <>
-         {currentUserObj.currentUser !==null ?(
-               <div className="tile is-child box has-text-centered" id="pinkDuck">
-               {usersFriends.map(item => (
-                   <article key={item._id} className="media is-scrollable">
-                       <figure className="media-left" id="block">
-                           <p className="image is-square is-48x48" id="friendPic">
-                               <img className="is-rounded" src={item.image} alt="userImage" />
-                           </p>
-                       </figure>
-                       <div>
-                       {/* <a href={`/user-profile/ ${item.name}`}
-                               id="friend" data-myfriend={`/user-profile/ ${item.name}`}
-                               onClick={addfriend}>
-                               {item.name} 
-                               </a> */}
-                           <Link to={`/user-profile/${item.name}`} className="title"
-                           data-myfriend={item._id}
-                           onClick={addfriend}
-                            >{item.name}</Link>
-                           <h3 className="has-text-left" id="location">{item.location}</h3>
-                       </div>
-                   </article>
-               ))}
-           </div>
-   
-             
-        ): window.location.replace("/")}
 
+        <div className="tile is-child box has-text-centered" id="pinkDuck">
+            
+            {usersFriends.map(item => (
+                <article key={item._id} className="media is-scrollable friend" id="friendSelector" data-friend={item._id}>
+                    <figure className="media-left" id="block">
+                        <p className="image is-square is-48x48" id="friendPic">
+                            <img className="is-rounded" src={item.image} alt="userImage" />
+                        </p>
+                    </figure>
+                    <div>
+                    <p>{item.name}</p>
+                    
+                        {/* <Link to={`/user-profile/${item.name}`} className="title"
+                        data-myfriend={item._id}
+                        onClick={addfriend}
+                         >{item.name}</Link> */}
+                        <h3 className="has-text-left" id="location">{item.location}</h3>
 
-        </>
+                    </div>
+                </article>
+            )
+            )}<FriendsModal/>
+            
+        </div>
+
     );
 }
 
