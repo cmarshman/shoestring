@@ -5,8 +5,6 @@ import { withRouter } from 'react-router-dom';
 import httpClient from "../../httpClient.js";
 // import FriendsModal from "../FriendsModal";
 
-
-
 function Card(currentUser) {
     //setup currently logged in user
     const [currentUserObj, setCurrentUserObj] = useState({
@@ -29,8 +27,8 @@ function Card(currentUser) {
 
     const usersFriends = currentUserObj.currentUser.friends;
 
-
     return (
+
         <>
             <div className="tile is-3 container column is-fluid" id="purpleDuck">       
             <div className="tile is-child box has-text-centered" id="pinkDuck">
@@ -52,6 +50,7 @@ function Card(currentUser) {
             </div>
             </div> 
         </>
+
     );
 }
 

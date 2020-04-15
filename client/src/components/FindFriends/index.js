@@ -21,6 +21,7 @@ function FindFriends () {
                             <p className="title">Search for new friends</p>
                                 <FindNewFriends/> 
                                 
+
                             </div>
                             </div>
                         </div>
