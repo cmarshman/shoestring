@@ -35,14 +35,14 @@ function TransferMoneyCard () {
                         <i className="fas fa-user-circle"></i>
                         </span>
                     </p>
-                    <p>Enter the ammount you would like to transfer</p>
+                    <p>Enter the amount you would like to transfer</p>
                     <p className="control has-icons-left">
                         <input className="input" type="text" name="name" placeholder="$50" />
                         <span className="icon is-small is-left">
                         <i className="fas fa-money-bill-wave-alt"></i>
                         </span>
                     </p>
-                    <p>Leave a messeage for your friend</p>
+                    <p>Leave a message for your friend</p>
                     <textarea className="textarea" placeholder="For fluffy rainbow unicorn"></textarea>
                     <br/>
                     <a className="button is-light" id="deposit">Transfer Money</a>

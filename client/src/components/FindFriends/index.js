@@ -4,12 +4,6 @@ import FindNewFriends from '../FindNewFriends';
 import SearchMyFriends from '../SearchMyFriends';
 
 function FindFriends () {
-    
-    const [pickSearch, setPickSearch] = useState(false)
-    
-    // const handleToggle = () => {
-    //     setPickSearch(pickSearch => !pickSearch)
-    // }
 
     return(
         <>
@@ -19,17 +13,7 @@ function FindFriends () {
                         <div className="tile is-12 is-vertical is-parent" id="wallet">
                             <div className="tile is-child box has-text-centered">
                             <p className="subtitle">Find Friends</p>
-                            {/* <button className="button is-light is-medium deposit" id="newFreind"  */}
-                            {/* // onClick={handleToggle} */}
-                            {/* > */}
-                            {/* {pickSearch ? "Switch to Find new friends" : "Switch to Search my friends"} */}
-                        {/* </button> */}
                         <FindNewFriends/>
-                            {/* {!pickSearch ? 
-                                <FindNewFriends/> 
-                                :
-                                <SearchMyFriends/> 
-                            } */}
                             </div>
                             </div>
                         </div>
