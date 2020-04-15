@@ -21,7 +21,7 @@ function Payments(currentUser) {
             amount: currentUserObj.currentUser.amount,
             message: currentUserObj.currentUser.message,
             // friendPayment: currentUserObj.currentUser.friends[0].name
-            friendPayment: currentUserObj.currentUser.friends[1].amount
+            // friendPayment: currentUserObj.currentUser.friends[1].amount
         }
     ]
 
@@ -49,7 +49,7 @@ function Payments(currentUser) {
                                     {/* <img className="is-rounded is-48x48" id="friendImage" src={item.image} alt={item.name} />
                                     <p>{item.name} paid {userName} for {item.message}</p> */}
                                 </figure>
-                                <div className="transactionInfo">{item.name} paid {userName} for {item.message}</div>
+                                <div className="transactionInfo">{userName} paid {item.name} for {item.message}</div>
 
                                 <hr />
                             </article>
