@@ -46,7 +46,7 @@ function FindNewFriends(currentUser) {
             state: currentUserObj.currentUser.state,
             email: currentUserObj.currentUser.email,
             amount: currentUserObj.currentUser.amount,
-            nessage: currentUserObj.currentUser.message,
+            message: currentUserObj.currentUser.message,
             password: currentUserObj.currentUser.password,
             image: currentUserObj.currentUser.image,
 
@@ -96,12 +96,15 @@ function FindNewFriends(currentUser) {
             .catch(err => setIsLoading(true))
     }
 
+    const removeUser = friendResult.slice(1)
     //Maping data to the friends page
     const searchResult = () => {
         return (
             <>
-                {friendResult.length > 0 ?
-                    friendResult.map(item => {
+                {/* {removeUser >0 ? */}
+                   
+                 
+                  {removeUser.map(item => {
                         return (
                             <div key={item._id} className="column is-one-third" id="blue">
                                 <article className="tile is-child notification has-text-centered" id="block">
@@ -119,9 +122,9 @@ function FindNewFriends(currentUser) {
                             </div>
                         )
                     }
-                    )
+                    )}
                     :
-                    
+                
                     <p>No Results</p>}
             </>
         );
