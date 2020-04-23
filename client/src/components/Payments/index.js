@@ -38,7 +38,7 @@ function Payments(currentUser) {
         <div className="tile is-child box is-fullwidth">
             <div>
                 <p className="subtitle" id="payments">My Transactions</p>
-                {friendsPayments.length > 1 ?
+                {friendsPayments.length > 0 ?
                     friendsPayments.map(item => {
                         return (
                             <article key={item._id} className="media is-scrollable" id="paymentList">
