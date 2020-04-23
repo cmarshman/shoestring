@@ -81,7 +81,24 @@ useEffect(() => {
             <Link to="/currencyconverter" className={location.pathname === "/currencyconverter" ? "navbar-item is-active" : "navbar-item"}>
               Currency Converter
             </Link>
+          
+          <div className="navbar-item has-dropdown is-hoverable" >
+              <Link to="#" className="navbar-link" id="navitems">
+                More
+              </Link>
+
+              <div className="navbar-dropdown">
+                <hr className="navbar-divider" />
+                <Link to="/cancelaccount" className={location.pathname === "/cancelaccount" ? "navbar-item is-active" : "navbar-item"}>
+                  Cancel Account
+                </Link>
+                <Link to="/requestdata" className={location.pathname === "/requestdata" ? "navbar-item is-active" : "navbar-item"}>
+                  Request My Data
+                </Link>
+              </div>
+            </div>
           </div>
+          
 
           <div className="navbar-end">
             <div className="navbar-item">
@@ -93,7 +110,7 @@ useEffect(() => {
               </div>
             </div>
           </div>
-        </div>
+          </div>
       </nav>
       <br/>
       <br/>

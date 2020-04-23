@@ -83,11 +83,11 @@ function TransferMoneyCard () {
             // const updateAmount = () =>{
             //     let newamount = amount + values.amount
             // }
-        //     .then(httpClient.InsertUpdate({
-        //         _id:  currentUserObj.currentUser._id,
-        //         friends: [...currentUserObj.currentUser.friends, {amount: values.amount, message: values.message }]
-        //     })
-        //    )
+            // .then(httpClient.InsertUpdate({
+            //     _id:  currentUserObj.currentUser._id,
+            //     friends: [...currentUserObj.currentUser.friends, {amount: values.amount, message: values.message  }]
+            // })
+            // )
             .then(response => {
                 console.log('response', response)
             })

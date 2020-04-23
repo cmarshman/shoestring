@@ -33,8 +33,7 @@ function Card(currentUser) {
     console.log('slice', usersFriends)
 
 
-    return (
- 
+    return ( 
             <>
             <br/>
                 <div className="tile is-3 container column is-fluid" >
@@ -64,4 +63,5 @@ function Card(currentUser) {
             </>
         );
     }
+
 export default withRouter(Card);
