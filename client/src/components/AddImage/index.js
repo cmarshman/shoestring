@@ -106,16 +106,14 @@ function AddImage() {
                 <div>
                     <br />
 
-
-
-                    {removeUser.map(item => {
+                    {friendResult.map(item => {
                         return (
                             <div>
                                 {loading ? (
                                     <h3>Loading...</h3>
                                 ) : (
                                         <figure className="image is-centered">
-                                            <img id="myPhoto" className="is-rounded" src={my_image} alt="myPhoto" />
+                                            <img id="myPhoto" className="is-rounded" src={item.image} alt="myPhoto" />
                                         </figure>
                                     )}
                                 <br />
@@ -127,38 +125,14 @@ function AddImage() {
                                 //={handleInputChange}
                                 />
                             </div>
-
-                        ): window.location.replace("/")}
-        </div>
-        </>
+                           )
+                        }
+                        )}
+               </div>
+               ): window.location.replace("/")}
             )
-}
-
-
-
-
-
-            {/* {loading ? (
-                  <h3>Loading...</h3>
-              ) : (
-                      <figure className="image is-centered">
-                          <img id="myPhoto" className="is-rounded" src={my_image} alt="myPhoto"/>
-                      </figure>
-                  )}
-              <br />
-  
-              <input type="file"
-                  name="file"
-                  placeholder="Upload image"
-                  onChange={uploadImage}
-                  //={handleInputChange}
-               />
-          </div>
-             
-        ): window.location.replace("/")}
-        
         </>
     )
-} */}
+}
 
 export default AddImage;
