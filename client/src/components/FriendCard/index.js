@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import friends from "../../utils/friendList.json";
 import './style.css';
 import { Link, withRouter } from 'react-router-dom';
 import httpClient from "../../httpClient.js";
@@ -13,33 +12,40 @@ function Card(currentUser) {
         currentUser: httpClient.getCurrentUser()
     });
 
-    currentUser = [
-        {
-            _id: currentUserObj.currentUser._id,
-            friends: currentUserObj.currentUser.friends,
-            name: currentUserObj.currentUser.name,
-            phone: currentUserObj.currentUser.phone,
-            city: currentUserObj.currentUser.city,
-            state: currentUserObj.currentUser.state,
-            amount: currentUserObj.currentUser.amount,
-            message: currentUserObj.currentUser.message,
-            email: currentUserObj.currentUser.email,
-            password: currentUserObj.currentUser.password,
-            image: currentUserObj.currentUser.image,
-        }
-    ]
+    const [friendResult, setFriendResult] = useState([{}]);
+
+     //Load funtion on page load
+     useEffect(() => {
+        handleFriends()
+     }, [])
 
     const usersFriends = currentUserObj.currentUser.friends.slice(1);
     console.log('slice', usersFriends)
 
+//Function to load all user on page load
+const handleFriends = () => {
+    httpClient.FindAllUser()
+   
+        .then(serverResponse => {
+           setFriendResult(serverResponse.data);
+            let currentUserId = currentUserObj.currentUser._id
+            let findFriend = serverResponse.data.find(item => item._id === currentUserId)
+            let friendsArray = findFriend.friends.slice(1)
+            console.log("inside", friendsArray)
+           setFriendResult(friendsArray)
+          
+        })
+        .catch(err => { console.log(err) })            
+}
 
+//Render all the logged in user Friends
     return ( 
             <>
             <br/>
                 <div className="tile is-3 container column is-fluid" >
                 <div className="tile is-child box has-text-centered" id="pinkDuck">
-                    {usersFriends.map(
-                        item => (
+                { friendResult.map(item =>{ 
+                         return (
                         <article key={item._id} className="is-scrollable friend" id="friendSelector" >
                             <figure id="block">
                                 <p className="image has-text-centered" id="friendPic">
@@ -57,9 +63,11 @@ function Card(currentUser) {
                             <hr/>
                         </article>
                     )
-                    )}
-                </div>
-                </div>
+                  } 
+                )}  
+
+              </div>
+            </div>
             </>
         );
     }

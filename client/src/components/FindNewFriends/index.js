@@ -28,29 +28,12 @@ function FindNewFriends(currentUser) {
 
     // Load the all users from the database on page load
     useEffect(() => {
-        // handleSearchSubmit();
+         
         handleSearch();
-        setFriendResult(friendResult);
-
+        
     }, [])
  
-    //Restructuring the data received from history 
-    currentUser = [
-        {
-            _id: currentUserObj.currentUser._id,
-            friends: currentUserObj.currentUser.friends,
-            name: currentUserObj.currentUser.name,
-            phone: currentUserObj.currentUser.phone,
-            city: currentUserObj.currentUser.city,
-            state: currentUserObj.currentUser.state,
-            email: currentUserObj.currentUser.email,
-            amount: currentUserObj.currentUser.amount,
-            message: currentUserObj.currentUser.message,
-            password: currentUserObj.currentUser.password,
-            image: currentUserObj.currentUser.image,
-
-        }]
-
+    //Function to search for friend in 
     const handleInputChange = event => {
         const value = event.target.value.toLowerCase();
         httpClient.FindAllUser()
@@ -59,8 +42,7 @@ function FindNewFriends(currentUser) {
                 setFriendResult(data);
                 if (value !== "") {
                     const filteredArr = data.filter(result => {
-                        return result.name.includes(value) || result.date.includes(value)
-                            || result.email.includes(value) || result.phone.includes(value)
+                        return result.name.includes(value) || result.email.includes(value) || result.phone.includes(value)
                     })
                     setFriendResult(filteredArr);
                 }
@@ -95,15 +77,12 @@ function FindNewFriends(currentUser) {
             .catch(err => setIsLoading(true))
     }
 
-    const removeUser = friendResult.slice(1)
-    //Maping data to the friends page
+
+//Maping data to the friends page
     const searchResult = () => {
         return (
             <>
-                {/* {removeUser >0 ? */}
-                   
-                 
-                  {removeUser.map(item => {
+                  {friendResult.map(item => {
                         return (
                             <div key={item._id} className="column is-one-third" id="blue">
                                 <article className="tile is-child notification has-text-centered" id="block">
