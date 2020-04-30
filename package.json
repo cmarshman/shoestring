@@ -23,7 +23,7 @@
     "express": "^4.17.1",
     "formik": "^2.1.4",
     "if-env": "^1.0.4",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jsonwebtoken": "^8.1.0",
     "modal": "^1.2.0",
     "moment": "^2.24.0",
