@@ -5,35 +5,29 @@ import httpClient from "../../httpClient.js";
 
 // import FriendsModal from "../FriendsModal";
 
-function Card(currentUser) {
+function Card() {
     //setup currently logged in user
-
     const [currentUserObj, setCurrentUserObj] = useState({
         currentUser: httpClient.getCurrentUser()
     });
-
+    //setup results state
     const [friendResult, setFriendResult] = useState([{}]);
 
      //Load funtion on page load
      useEffect(() => {
         handleFriends()
      }, [])
-
-    const usersFriends = currentUserObj.currentUser.friends.slice(1);
-    console.log('slice', usersFriends)
+ 
 
 //Function to load all user on page load
 const handleFriends = () => {
     httpClient.FindAllUser()
-   
         .then(serverResponse => {
            setFriendResult(serverResponse.data);
             let currentUserId = currentUserObj.currentUser._id
             let findFriend = serverResponse.data.find(item => item._id === currentUserId)
             let friendsArray = findFriend.friends.slice(1)
-            console.log("inside", friendsArray)
-           setFriendResult(friendsArray)
-          
+            setFriendResult(friendsArray)
         })
         .catch(err => { console.log(err) })            
 }
