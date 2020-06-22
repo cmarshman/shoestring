@@ -21,6 +21,9 @@ const validationSchenma = Yup.object({
      
 });
 
+
+let phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+let emailVal = /.+@.+\..+/;
  
 //Function to handle  user sign-up
 function SignUp(user) {
@@ -35,7 +38,7 @@ function SignUp(user) {
       password: "",
       friends: '',
       image: "",
-      amount: '',
+      amount: 0,
       message: '',
       checked: false,
     },
@@ -121,7 +124,7 @@ function SignUp(user) {
                    placeholder="555-555-5555 (required)"
                    value={values.phone}
                   />
-                  {values.phone.length < 10 &&  touched.phone && 'errors' ? (
+                  {!values.phone.match(phoneno) &&  touched.phone && 'errors' ? (
                               <p className="errMsg">Please enter a valid Phone</p>
                             ): ''}
                 </div>
@@ -166,7 +169,7 @@ function SignUp(user) {
                     name="email"
                     placeholder="Email (required)"
                     value={values.email} />
-                    {values.email.length < 4 &&  touched.email && 'errors' ? (
+                    {!values.email.match(emailVal) &&  touched.email && 'errors' ? (
                         <p className="errMsg">Please enter a valid Email</p>
                       ): ''}
                   <span className="icon is-small is-left">
@@ -219,6 +222,8 @@ function SignUp(user) {
                   <button className="button is-light" 
                   onClick={handleFormOnsubmit} 
                   disabled={!values.checked && 'errors'}
+                  disabled={!values.phone.match(phoneno)}
+                  disabled={!values.email.match(emailVal)}
                   id="twofish"
                   >Submit</button>
                 </div>
