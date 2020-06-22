@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import Image from '../../images/Logos/vector/default-monochrome-black.svg'
 
 
-const Navbar =(props) => {
+const Navbar = (props) => {
 
 const [isActive, setisActive] = React.useState(false);
 

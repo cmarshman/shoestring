@@ -29,13 +29,16 @@ function Card(currentUser) {
 
     const usersFriends = currentUserObj.currentUser.friends;
 
+
+
     return (
         <>
         <br/>
             <div className="tile is-3 container column is-fluid" >
             <div className="tile is-child box has-text-centered" id="pinkDuck">
-                {usersFriends.map(item => (
-                    <article key={item._id} className="is-scrollable friend" id="friendSelector" data-friend={item._id}>
+                {usersFriends.map(
+                    item => (
+                    <article key={item._id} className="is-scrollable friend" id="friendSelector" >
                         <figure id="block">
                             
                             <p className="image has-text-centered" id="friendPic">

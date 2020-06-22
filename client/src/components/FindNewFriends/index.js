@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import httpClient from '../../httpClient';
 import Spinner from '../Spinner';
-import $ from "jquery"
 import './style.css';
+import $ from 'jquery';
 
 //Main function to handle friends page
 function FindNewFriends(currentUser) {
@@ -28,27 +28,12 @@ function FindNewFriends(currentUser) {
 
     // Load the all users from the database on page load
     useEffect(() => {
-        // handleSearchSubmit();
+         
         handleSearch();
-        setFriendResult(friendResult);
-
+        
     }, [])
  
-    //Restructuring the data received from history 
-    currentUser = [
-        {
-            _id: currentUserObj.currentUser._id,
-            friends: currentUserObj.currentUser.friends,
-            name: currentUserObj.currentUser.name,
-            phone: currentUserObj.currentUser.phone,
-            city: currentUserObj.currentUser.city,
-            state: currentUserObj.currentUser.state,
-            email: currentUserObj.currentUser.email,
-            password: currentUserObj.currentUser.password,
-            image: currentUserObj.currentUser.image,
-
-        }]
-
+    //Function to search for friend in 
     const handleInputChange = event => {
         const value = event.target.value.toLowerCase();
         httpClient.FindAllUser()
@@ -57,8 +42,7 @@ function FindNewFriends(currentUser) {
                 setFriendResult(data);
                 if (value !== "") {
                     const filteredArr = data.filter(result => {
-                        return result.name.includes(value) || result.date.includes(value)
-                            || result.email.includes(value) || result.phone.includes(value)
+                        return result.name.includes(value) || result.email.includes(value) || result.phone.includes(value)
                     })
                     setFriendResult(filteredArr);
                 }
@@ -66,6 +50,11 @@ function FindNewFriends(currentUser) {
             .catch(err => { console.log(err) })
     }
 
+    //Friend added message
+    function onSuccess() {
+        $("#successMsg").text("Your new friend has been added!")
+    }
+   
     //update the database with a new friend added
     const addfriend = (evt) => {
         const friendId = evt.target.dataset.newfriend
@@ -73,10 +62,51 @@ function FindNewFriends(currentUser) {
         // newFriendAdded(addNewFriend => !addNewFriend);
         httpClient.InsertUpdate({
             _id: currentUserObj.currentUser._id,
-            friends: [...currentUserObj.currentUser.friends, { _id: friendToAdd._id, image: friendToAdd.image, name: friendToAdd.name, city: friendToAdd.city, state: friendToAdd.state }]
+           friends: [...currentUserObj.currentUser.friends, {...friendToAdd}]
+            //friends: currentUserObj.currentUser.friends.push(friendToAdd.friends)
+
+            //friends: [...currentUserObj.currentUser.friends, { _id: friendToAdd._id, image: friendToAdd.image, name: friendToAdd.name, city: friendToAdd.city, state: friendToAdd.state, amount: friendToAdd.amount, message: friendToAdd.message, date: friendToAdd.date}]
         })
-        alert("Friend added!");
+        //setFriendResult(filteredArr);
+        // alert("Friend added!");
+        onSuccess();
     }
+
+var btnEL = document.querySelectorAll(".saveBtn");
+
+const friendsButtonHandle = () =>{ 
+
+    console.log("buttons", btnEL )
+    // Add an EventListner to save the events into local storage on click
+        btnEL.forEach(function (event) {
+        event.addEventListener("click", addfriend)
+
+   })
+};
+
+//Function to load all user on page load
+const handleFriends = (evt) => {
+    const friendId = evt.target.dataset.newfriend
+    httpClient.FindAllUser()
+        .then(serverResponse => {
+           setFriendResult(serverResponse.data);
+            //let currentUserId = currentUserObj.currentUser._id
+            let findFriend = serverResponse.data.find(item => item._id === friendId)
+            let friendsArray = findFriend.friends
+           let container = currentUserObj.currentUser.friends.push(friendsArray)
+           // setFriendResult(friendsArray)
+           for(var i =0; i<container.length; i++){
+             httpClient.InsertUpdate({
+            _id: currentUserObj.currentUser._id,
+            friends: [...currentUserObj.currentUser.friends, {...findFriend}]
+         
+            })
+        }
+            //setFriendResult( [...currentUserObj.currentUser.friends, {...findFriend}])
+        })
+        .catch(err => { console.log(err) })            
+}
+
 
     //Function to load all user on page load
     const handleSearch = () => {
@@ -87,14 +117,13 @@ function FindNewFriends(currentUser) {
             .catch(err => setIsLoading(true))
     }
 
-    //Maping data to the friends page
+
+//Maping data to the friends page
     const searchResult = () => {
         return (
             <>
-                {friendResult.length > 0 ?
-                    friendResult.map(item => {
+                  {friendResult.map(item => {
                         return (
-
                             <div key={item._id} className="column is-one-third" id="blue">
                                 <article className="tile is-child notification has-text-centered" id="block">
                                     <figure className="image is-square">
@@ -105,14 +134,14 @@ function FindNewFriends(currentUser) {
                                     <p className="subtitle" >{item.name}</p>
                                     <p className="" >{item.city}, {item.state}</p>
                                     <hr />
-                                    <button className="button is-fullwidth is-dark is-medium" id="friend" data-newfriend={item._id} onClick={addfriend}>{addNewFriend ? "Friend Added!" : "Add Friend"}</button>
+                                    <button className="button is-fullwidth is-dark is-medium saveBtn" id="friend" data-newfriend={item._id} onClick ={friendsButtonHandle}>
+                                        Add Friend
+                                    </button>
                                 </article>
                             </div>
                         )
                     }
-                    )
-                    :
-                    <p>No Results</p>}
+                    )}
             </>
         );
     }
@@ -129,6 +158,7 @@ function FindNewFriends(currentUser) {
                         value={friendResult.search} />
                 </div>
             </div>
+            <div id="successMsg"></div>
             <br />
             <div className="tile is-child columns is-multiline box has-text-centered">
                 {
@@ -140,4 +170,4 @@ function FindNewFriends(currentUser) {
 }
 
 
-export default FindNewFriends; 
+export default FindNewFriends;

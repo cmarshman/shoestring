@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import httpClient from '../httpClient';
-import './design/login.css';
+import './design/reset.css';
 import Nav from '../components/navbar';
 import '../pages/design/login.css';
 import * as EmailValidator from 'email-validator';
@@ -50,8 +50,8 @@ const { values, touched, errors, handleChange, handleBlur, handleSubmit } = useF
             console.log("find", findEmail)
             if(findEmail === undefined){
                 console.log("findEmail", findEmail)
-                $('#errorMsg').attr("style", "color:red")
-                $('#errorMsg').text("Email not found- try again or register.");
+                $('#resetPwd').attr("style", "color:red")
+                $('#resetPwd').text("Email not found- try again or register.");
                 return
             }
             //Insert the new password after update
@@ -87,7 +87,7 @@ const { values, touched, errors, handleChange, handleBlur, handleSubmit } = useF
                             placeholder="Email (required)"
                             value={values.email}
                             onBlur={handleBlur} />
-                            <div id='errorMsg'  ></div>
+                            <div id='resetPwd'></div>
                             {/* {values.email.length <4 &&  touched.email && 'errors' ? (
                               <p className="errormsg">Please enter a valid email</p>
                             ): ''} */}
