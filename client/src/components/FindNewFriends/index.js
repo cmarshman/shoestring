@@ -170,4 +170,4 @@ const handleFriends = (evt) => {
 }
 
 
-export default FindNewFriends;
+export default FindNewFriends; 
