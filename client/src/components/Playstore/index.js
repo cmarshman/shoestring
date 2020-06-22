@@ -10,12 +10,12 @@ function Playstore() {
             <div className="column is-one-fifth is-1">
             </div>
             <div className="column is-two-fifths">
-                <a href="https://www.apple.com/ios/app-store/" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.figma.com/proto/uqJHM2IyFmYsaFkPNux7YE/shoestring?node-id=8%3A23&scaling=scale-down" target="_blank" rel="noopener noreferrer">
                     <img id="playstore" src={Apple} alt="playstore"/>
                 </a>
             </div>
             <div className="column is-two-fifths ">
-                <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.figma.com/proto/uqJHM2IyFmYsaFkPNux7YE/shoestring?node-id=8%3A23&scaling=scale-down" target="_blank" rel="noopener noreferrer">
                     <img id="playstore" src={Google} alt="playstore"/>
                 </a>
             </div>

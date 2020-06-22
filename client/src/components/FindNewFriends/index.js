@@ -169,5 +169,4 @@ const handleFriends = (evt) => {
     );
 }
 
-
 export default FindNewFriends; 
