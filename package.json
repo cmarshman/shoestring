@@ -25,6 +25,7 @@
     "if-env": "^1.0.4",
     "jquery": "^3.5.0",
     "jsonwebtoken": "^8.1.0",
+    "logkitty": "^0.7.1",
     "modal": "^1.2.0",
     "moment": "^2.24.0",
     "mongoose": "^5.9.7",
