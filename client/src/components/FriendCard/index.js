@@ -41,7 +41,7 @@ function Card() {
                 setFriendResult(serverResponse.data);
                 let currentUserId = currentUserObj.currentUser._id
                 let findFriend = serverResponse.data.find(item => item._id === currentUserId)
-                let friendsArray = findFriend.friends.slice(1)
+                let friendsArray = findFriend.friends
                 setFriendResult(friendsArray)
             })
             .catch(err => { console.log(err) })
@@ -104,7 +104,7 @@ function Card() {
                                     >
                                         <div className="modal-card">
                                             <header className="modal-card-head">
-                                                <p className="modal-card-title">Send Money</p>
+                                                <p className="modal-card-title">Send Money to {item.name}</p>
                                                 <button className="delete" aria-label="close" onClick={closeModal}></button>
                                             </header>
                                             <section className="modal-card-body">
@@ -135,26 +135,26 @@ function Card() {
                                                 </footer>
                                         </div>
                                     </Modal>
-                                        <Modal
-                                            isOpen={modal2IsOpen}
-                                            onRequestClose={closeModal2}
-                                            style={customStyles}
-                                            contentLabel="Remove Friend Modal"
-                                        >
-                                            <div className="modal-card">
-                                                <header className="modal-card-head">
-                                                    <p className="modal-card-title">Remove Friend</p>
-                                                    <button className="delete" aria-label="close" onClick={closeModal2}></button>
-                                                </header>
-                                                <section className="modal-card-body">
+                                    <Modal
+                                        isOpen={modal2IsOpen}
+                                        onRequestClose={closeModal2}
+                                        style={customStyles}
+                                        contentLabel="Remove Friend Modal"
+                                    >
+                                        <div className="modal-card">
+                                            <header className="modal-card-head">
+                                                <p className="modal-card-title">Remove Friend</p>
+                                                <button className="delete" aria-label="close" onClick={closeModal2}></button>
+                                            </header>
+                                            <section className="modal-card-body">
 
-                                                </section>
-                                                <footer className="modal-card-foot">
-                                                    <button className="button is-success">I'm sure</button>
-                                                    <button className="button" onClick={closeModal2}>Never Mind</button>
-                                                </footer>
-                                            </div>
-                                        </Modal>
+                                            </section>
+                                            <footer className="modal-card-foot">
+                                                <button className="button is-success">I'm sure</button>
+                                                <button className="button" onClick={closeModal2}>Never Mind</button>
+                                            </footer>
+                                        </div>
+                                    </Modal>
 
                                 </article>
                             </div>
