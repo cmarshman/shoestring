@@ -5,10 +5,26 @@
 }
 
 #pinkDuck{
-    height: 420px!important;
+    height: 920px!important;
     width: 412px!important; 
     overflow-y: scroll;
     position: relative;
 }
 
+#craftBrew{
+    margin-bottom: 10px;
+    margin-top: 52px;
+    padding-left: 0px;
+}
 
+#seltzer{
+    width: 45%!important;
+    color: #3bd389;
+    margin: 0px 5px 0px 5px;
+    font-size: 15px;
+}
+
+#seltzer:hover{
+    background-color: #363636!important;
+    color: #f5f5f5;
+}

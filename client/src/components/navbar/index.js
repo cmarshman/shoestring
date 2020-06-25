@@ -10,8 +10,6 @@ const [isActive, setisActive] = React.useState(false);
 
 const location = useLocation();
 
-
-
   return (
     <div>
       <nav className="navbar" role="navigation" aria-label="main navigation" id="opening-nav">

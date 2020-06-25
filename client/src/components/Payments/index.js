@@ -60,9 +60,9 @@ function Payments(currentUser) {
     console.log(friendResult)
 
     return (
-        <div className="tile is-child box is-fullwidth">
+        <div className="tile is-child box is-fullwidth" id="payments">
             <div>
-                <p className="subtitle" id="payments">My Transactions</p>
+                <p className="subtitle" >My Transactions</p>
                 {friendResult.length > 0 ?
                     friendResult.map(item => {
                         return (
