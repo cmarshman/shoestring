@@ -32,6 +32,7 @@
     "morgan": "^1.9.1",
     "plaid": "^4.10.0",
     "react-bootstrap": "^1.0.0",
+    "react-modal": "^3.11.2",
     "react-native": "^0.62.2",
     "react-plaid-link": "^2.1.0",
     "yarn": "^1.22.4",

@@ -1,36 +1,34 @@
-import React from "react";
-import httpClient from '../httpClient';
+import React from 'react';
+import httpAdmin from '../httpAdmin'
 import Nav from '../components/navbar';
 import '../pages/design/login.css';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import $ from 'jquery'
+import $ from 'jquery';
 
-//Setup  validation condition on the schema using Yup
 const validationSchenma = Yup.object({
     email: Yup.string().email().required(),
     password: Yup.string().required().min(8),
+     
 });
 
-//Function to handle the login form
-const Login = (email, password ) => {
-
-const { values, touched, errors, handleChange, handleBlur, handleSubmit, isSubmitting } = useFormik({
+const Admin = (email, password) =>{
+    
+    const { values, touched, errors, handleChange, handleBlur, handleSubmit, isSubmitting } = useFormik({
         initialValues: {
             email: '',
             password: ''
         },
         validationSchenma,
         onSubmit(values) {
-            handleLoginOnsubmit(values)
+            handleLoginOnsubmit(values)        
         }
-});
- 
-//Function to handle submit
+    });
+    
     function handleLoginOnsubmit(evt) {
         evt.preventDefault()
         const alluser = {...values}
-		httpClient.logIn(alluser).then(user => {
+		httpAdmin.logIn(alluser).then(user => {
             console.log("user", user )
             if(user){
                 window.location.replace("/home") ;
@@ -44,8 +42,7 @@ const { values, touched, errors, handleChange, handleBlur, handleSubmit, isSubmi
            }).catch(err => console.log('err', err));
    }
 
-  //Render the form and display error when error occurs
-     return (
+    return (
         <>
         <Nav/>
         <form onSubmit={handleLoginOnsubmit}>
@@ -116,6 +113,6 @@ const { values, touched, errors, handleChange, handleBlur, handleSubmit, isSubmi
             </form>
         </>
     )
+}
 
-} 
-export default Login;
+export default Admin;

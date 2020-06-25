@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from './../components/navbar';
+import Navbar from '../components/navbar';
 import AppScreens from './../images/AppScreens/user-wallet.png';
 import TheTeam from './../components/TheTeam';
 import Playstore from './../components/Playstore';

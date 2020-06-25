@@ -19,24 +19,24 @@ function Card() {
      }, [])
  
 
-//Function to load all user on page load
-const handleFriends = () => {
-    httpClient.FindAllUser()
-        .then(serverResponse => {
-           setFriendResult(serverResponse.data);
-            let currentUserId = currentUserObj.currentUser._id
-            let findFriend = serverResponse.data.find(item => item._id === currentUserId)
-            let friendsArray = findFriend.friends.slice(1)
-            setFriendResult(friendsArray)
-        })
-        .catch(err => { console.log(err) })            
-}
+    //Function to load all user on page load
+    const handleFriends = () => {
+        httpClient.FindAllUser()
+            .then(serverResponse => {
+            setFriendResult(serverResponse.data);
+                let currentUserId = currentUserObj.currentUser._id
+                let findFriend = serverResponse.data.find(item => item._id === currentUserId)
+                let friendsArray = findFriend.friends
+                setFriendResult(friendsArray)
+            })
+            .catch(err => { console.log(err) })            
+    }
 
 //Render all the logged in user Friends
     return ( 
             <>
             <br/>
-                <div className="tile is-3 container column is-fluid" >
+                <div className="tile is-3 container column is-fluid" id="craftBrew">
                 <div className="tile is-child box has-text-centered" id="pinkDuck">
                 { friendResult.map(item =>{ 
                          return (
@@ -50,9 +50,12 @@ const handleFriends = () => {
                                 </p>
                             </figure>
                             <div>
-                                <Link to='/transfermoney'>
                                 <h3 className="has-text-centered" id="location">{item.city}</h3>
-                                </Link>
+                            </div>
+                            <br/>
+                            <div>
+                                <a className="button is-light" id="seltzer">Send Money</a>
+                                <a className="button is-light" id="seltzer">Remove Friend</a>
                             </div>
                             <hr/>
                         </article>

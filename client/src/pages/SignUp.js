@@ -1,5 +1,5 @@
 import React, { components, useState, useEffect } from "react";
-import Navbar from './../components/navbar';
+import Navbar from '../components/navbar';
 import '../pages/design/signup.css'
 import httpClient from '../httpClient'
 import $ from 'jquery'
