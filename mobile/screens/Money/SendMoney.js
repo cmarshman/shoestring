@@ -19,7 +19,7 @@ const SendMoney = props => {
   };
 
   return (
-    <Modal visible={props.visible} animationType="fade">
+    <Modal visible={props.visible} animationType="slide">
       <KeyboardAvoidingView
         style={styles.container}
         behavior='padding'

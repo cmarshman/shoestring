@@ -2,7 +2,7 @@ import React from 'react';
 import './design/Home.css';
 import Gif from './../gifs/index.gif'
 import Playstore from './../components/Playstore';
-import Navbar from './../components/navbar';
+import Navbar from '../components/navbar';
 import SignUpBtnLarge from './../components/SignUpBtnLarge';
 
 function Home () {

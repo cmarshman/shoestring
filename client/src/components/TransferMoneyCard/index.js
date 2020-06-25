@@ -48,7 +48,7 @@ function TransferMoneyCard() {
         httpClient.InsertUpdate({
             _id: currentUserObj.currentUser._id,
             amount: values.amount,
-            message: values.message
+            message: [...values.message]
         })
     }
 
@@ -81,6 +81,14 @@ function TransferMoneyCard() {
                 //Insert the new password after update
                 httpClient.InsertUpdate({
                     _id: findEmail._id,
+                    name: findEmail.name,
+                    friends: [...findEmail.friends],
+                    phone: findEmail.phone,
+                    city: findEmail.city,
+                    state: findEmail.state,
+                    password: findEmail.password,
+                    image: findEmail.image,
+                    date: findEmail.date,
                     amount: values.amount,
                     message: values.message
                 })

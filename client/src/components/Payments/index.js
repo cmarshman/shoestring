@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import httpClient from "../../httpClient";
 import './style.css';
 
@@ -6,6 +6,12 @@ function Payments(currentUser) {
     const [currentUserObj, setCurrentUserObj] = useState({
         currentUser: httpClient.getCurrentUser()
     });
+    const [friendResult, setFriendResult] = useState([{}]);
+
+    useEffect(() => {
+        handleSearch()
+
+    }, [])
 
     currentUser = [
         {
@@ -33,23 +39,42 @@ function Payments(currentUser) {
     console.log(friendsPayments);
     const userName = currentUserObj.currentUser.name;
 
+    const handleSearch = () => {
+        httpClient.FindAllUser()
+
+            .then(serverResponse => {
+                setFriendResult(serverResponse.data);
+                let currentUserId = currentUserObj.currentUser._id
+                let findPayment = serverResponse.data.find(item => item._id === currentUserId)
+                let findFriend = findPayment.friends.slice(1)
+                console.log(findPayment)
+                setFriendResult([findPayment])
+
+
+            })
+            .catch(err => { console.log(err) })
+    }
+
+    console.log("hello", friendResult)
+    console.log(currentUserObj.currentUser.message)
+    console.log(friendResult)
 
     return (
-        <div className="tile is-child box is-fullwidth">
+        <div className="tile is-child box is-fullwidth" id="payments">
             <div>
-                <p className="subtitle" id="payments">My Transactions</p>
-                {friendsPayments.length > 0 ?
-                    friendsPayments.map(item => {
+                <p className="subtitle" >My Transactions</p>
+                {friendResult.length > 0 ?
+                    friendResult.map(item => {
                         return (
                             <article key={item._id} className="media is-scrollable" id="paymentList">
                                 <figure className="media-left">
                                     <p className="image is-square is-48x48">
-                                        <img className="is-rounded" src={item.image} alt={item.name}/>
+                                        <img className="is-rounded" src={item.image} alt={item.name} />
                                     </p>
                                     {/* <img className="is-rounded is-48x48" id="friendImage" src={item.image} alt={item.name} />
                                     <p>{item.name} paid {userName} for {item.message}</p> */}
                                 </figure>
-                                <div className="transactionInfo">{userName} paid {item.name} for {item.message}</div>
+                                <div className="transactionInfo">{item.name} just got paid for {item.message}</div>
 
                                 <hr />
                             </article>

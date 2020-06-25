@@ -1,19 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import httpClient from '../httpClient';
-import './design/login.css';
 import Nav from '../components/navbar';
 import '../pages/design/login.css';
-import * as EmailValidator from 'email-validator';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import $ from 'jquery'
-
 
 //Setup  validation condition on the schema using Yup
 const validationSchenma = Yup.object({
     email: Yup.string().email().required(),
     password: Yup.string().required().min(8),
-     
 });
 
 //Function to handle the login form
@@ -26,7 +22,7 @@ const { values, touched, errors, handleChange, handleBlur, handleSubmit, isSubmi
         },
         validationSchenma,
         onSubmit(values) {
-            handleLoginOnsubmit(values)        
+            handleLoginOnsubmit(values)
         }
 });
  
@@ -51,7 +47,7 @@ const { values, touched, errors, handleChange, handleBlur, handleSubmit, isSubmi
   //Render the form and display error when error occurs
      return (
         <>
-        <Nav />
+        <Nav/>
         <form onSubmit={handleLoginOnsubmit}>
         <div id='loginerrMsg'  ></div>
         <div className="tile is-ancestor">
@@ -109,7 +105,7 @@ const { values, touched, errors, handleChange, handleBlur, handleSubmit, isSubmi
                             >
                             Login
                             </button>
-                            <h5 id='resetpwd'><a href="/reset">Forgot Password?</a></h5>
+                            <a href="/reset" className='subtitle'id='resetpwd'>Forgot Password</a>
                         </p>
 
                     </div>

@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import httpClient from '../httpClient';
 import './design/Landing.css';
-import FriendCard from './../components/FriendCard';
+import Friends from '../components/FriendCard';
 import Plaid from './../components/plaidLink';
 import NavBarAuth from '../components/NavBarAuth';
 import UserNameCard from '../components/UserNameCard';
 import AddImage from './../components/AddImage';
 import Payments from './../components/Payments';
 import moment from 'moment';
+
 
 
 function Landing() {
@@ -41,24 +42,20 @@ function Landing() {
                                         </div>
                                     </div>
                                     <div className="tile is-child box is-fullwidth">
-                                        {/* <p className="title" id="paymentList">Payments</p>
-                                  <p>Lisa paid Arnold for Pizza</p>
-                                  <p>Jeff paid Jesus for rent</p> */}
                                         <Payments />
                                     </div>
                                 </div>
                             </div>
-                            <FriendCard />
+                          <Friends/>
                         </div>
                     </div>
                 </div>
-
             ) : window.location.replace("/")}
 
         </>
     )
-
 }
+
 export default Landing;
 
 

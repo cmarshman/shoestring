@@ -44,7 +44,6 @@ const Main = props => {
                     <View style={styles.cancelButton}>
                         <Button title="<" color="#f5f5f5" onPress={props.onCancel} />
                     </View>
-
                 </View>
                 <Text style={styles.headerText}>My Wallet</Text>
                 <Image source={Cory} style={styles.image} />
