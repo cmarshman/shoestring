@@ -41,7 +41,7 @@ function Card() {
                 setFriendResult(serverResponse.data);
                 let currentUserId = currentUserObj.currentUser._id
                 let findFriend = serverResponse.data.find(item => item._id === currentUserId)
-                let friendsArray = findFriend.friends
+                let friendsArray = findFriend.friends.slice(1)
                 setFriendResult(friendsArray)
             })
             .catch(err => { console.log(err) })
