@@ -27,12 +27,12 @@ const Admin = (email, password) =>{
     
     function handleLoginOnsubmit(evt) {
         evt.preventDefault()
-        const alluser = {...values}
-		httpAdmin.logIn(alluser).then(user => {
-            console.log("user", user )
-            if(user){
-                window.location.replace("/home") ;
-                this.props.onLoginSuccess(user);
+        const alladmin = {...values}
+		httpAdmin.logIn(alladmin).then(admin => {
+            console.log("admin", admin )
+            if(admin){
+                window.location.replace("/userAdmin") ;
+                this.props.onLoginSuccess(admin);
 				this.props.history.push('/');
             }
             $('#loginerrMsg').attr("style", "color:red", 'border: solid 1px')

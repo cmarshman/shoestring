@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from '../components/navbar';
 import '../pages/design/signup.css'
-import httpClient from '../httpClient'
+import httpAdmin from '../httpAdmin'
 import $ from 'jquery'
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
@@ -24,8 +24,8 @@ const validationSchenma = Yup.object({
 let phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 let emailVal = /.+@.+\..+/;
  
-//Function to handle  user sign-up
-function SignUp(user) {
+//Function to handle  admin sign-up
+function AdminSignUp(admin) {
 
   const { values, touched, errors, handleChange, handleBlur, handleSubmit, isSubmitting } = useFormik({
     initialValues: {
@@ -35,14 +35,11 @@ function SignUp(user) {
       state: "",
       email: "",
       password: "",
-      friends: '',
       image: "",
-      amount: 0,
-      message: '',
       checked: false,
     },
     validationSchenma,
-    // Handles updating component state when the user types into the input field
+    // Handles updating component state when the admin types into the input field
     onSubmit(values) {
       handleFormOnsubmit(values)
     }
@@ -57,23 +54,20 @@ function SignUp(user) {
   // Otherwise we log   errors
   function handleFormOnsubmit(evt) {
     evt.preventDefault()
-    httpClient.signUp({
+    httpAdmin.signUp({
       name: values.name,
       phone: values.phone,
       city: values.city,
       state: values.state,
       email: values.email,
       password: values.password,
-      friends: values.friends,
       image:  values.image,
-      amount: values.amount,
-      message: values.message,
       checked: values.checked
-    }).then(user => {
-      console.log("user", user)
-      if (user) {
-        window.location.replace("/login")
-        this.props.onSignUpSuccess(user)
+    }).then(admin => {
+      console.log("admin", admin)
+      if (admin) {
+        window.location.replace("/admin-12152011")
+        this.props.onSignUpSuccess(admin)
         this.props.history.push('/')
       }
       $('#errorMsg').attr("style", "color:red")
@@ -108,69 +102,12 @@ function SignUp(user) {
                   />
                   {values.name.length < 1 && touched.name && 'errors' ? (
                     <p className="errMsg">Please enter your name</p>
-                            ): ''}
-                  <span className="icon is-small is-left">
+                            ): ''} 
+                    <span className="icon is-small is-left">
                         <i className="fas fa-user-astronaut"></i>
-                  </span>
+                    </span>
                 </div>
               </div>
-
-             
-              <div className="field">
-                <label className="label">Phone</label>
-                <div className="control has-icons-left">
-                  <input className="input" type="text"
-                   onChange={handleChange}
-                   onBlur={handleBlur}
-                   name="phone"
-                   placeholder="555-555-5555 (required)"
-                   value={values.phone}
-                  />
-                  {!values.phone.match(phoneno) &&  touched.phone && 'errors' ? (
-                              <p className="errMsg">Please enter a valid Phone</p>
-                            ): ''}
-                  <span className="icon is-small is-left">
-                    <i class="fas fa-mobile-alt"></i>
-                  </span>
-                </div>
-              </div>
-              <div className="field">
-                <label className="label">City</label>
-                <div className="control has-icons-left">
-                  <input className="input" type="text"
-                     onChange={handleChange}
-                    onBlur={handleBlur}
-                    name="city"
-                    placeholder="City (Not required)"
-                    value={values.city}
-                  />
-                   {values.city.length <2 &&  touched.city && 'errors' ? (
-                        <p className="errMsg">Please enter a valid City</p>
-                    ): ''}
-                  <span className="icon is-small is-left">
-                    <i class="fas fa-city"></i>
-                  </span>
-                </div>
-              </div>
-              <div className="field">
-                <label className="label">State</label>
-                <div className="control has-icons-left">
-                  <input className="input" type="text"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    name="state"
-                    placeholder="State (Not required)"
-                    value={values.state}
-                  />
-                   {values.state.length < 2 &&  touched.state && 'errors' ? (
-                    <p className="errMsg">Please enter a valid State</p>
-                    ): ''}
-                  <span className="icon is-small is-left">
-                    <i class="far fa-compass"></i>
-                  </span>
-                </div>
-              </div>
-
               <div className="field">
                 <label className="label">Email</label>
                 <div className="control has-icons-left has-icons-right">
@@ -190,7 +127,7 @@ function SignUp(user) {
               </div>
               <div className="field">
                 <label className="label">Password</label>
-                <p className="control has-icons-left">
+                <div className="control has-icons-left">
                   <input className="input " type="password"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -203,7 +140,7 @@ function SignUp(user) {
                   <span className="icon is-small is-left">
                     <i className="fas fa-lock"></i>
                   </span>
-                </p>
+                </div>
               </div>
               
               <div className="field">
@@ -217,7 +154,7 @@ function SignUp(user) {
                     />I agree to the <a href="#"> terms and conditions</a>
 
                     {values.checked !== true &&  'errors' ? (
-                  <p className="errMsg">Please check the box to enable the submit button </p>
+                  <div><p className="errMsg">Please check the box to enable the submit button </p></div>
                   ): ''} 
                     
                    
@@ -249,4 +186,4 @@ function SignUp(user) {
   )
 
 }
-export default SignUp;
+export default AdminSignUp;
