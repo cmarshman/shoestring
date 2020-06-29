@@ -6,15 +6,12 @@ import httpClient from '../../httpClient'
 
 const NavBarAuth = (currentUser) => {
 
-
   const [isActive, setisActive] = React.useState(false);
 
   const location = useLocation();
 
-
-  const [currentUserObj, setCurrentUserObj] = useState({
+  const [setCurrentUserObj] = useState({
     currentUser: httpClient.getCurrentUser()
-  
 })
  
 // Load the available token on pageload from local storage

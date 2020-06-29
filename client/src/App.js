@@ -18,7 +18,8 @@ import UserProfile from './pages/UserProfile';
 // import friends from './utils/friendList.json';
 import CancelAccount from './pages/CancelAccount';
 import RequestData from './pages/RequestData';
-// import Admin from './pages/Admin';
+import Admin from './pages/Admin';
+import AdminSignUp from './pages/AdminSignUp';
 // import UsersAdmin from './pages/UserAdmin';
 // import TransactionsAdmin from './pages/TransactionsAdmin';
 // import Payments from './pages/Payments';
@@ -45,7 +46,8 @@ function App(item) {
         <Route path="/user-profile/:name" component={UserProfile}/>
         <Route exact path="/cancelaccount" component={CancelAccount}/>
         <Route exact path="/requestdata" component={RequestData}/>
-        {/* <Route exact path="/admin-12152011" component={Admin}/> */}
+        <Route exact path="/admin-12152011" component={Admin}/>
+        <Route exact path="/admin-sign-up-02121986" component={AdminSignUp}/>
         {/* <Route exact path="/usersAdmin" component={UsersAdmin}/> */}
         {/* <Route exact path="/transactionsAdmin" component={TransactionsAdmin}/> */}
         {/* <Route exact path="/payments" component={Payments}/> */}

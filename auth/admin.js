@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const Admin = require('../models/signupAdminSchema.js');
+const Admin = require('../models/signupAdminSchema.js')
 
 // Note this is the supper secret for signing the JWT
 // this should be acquired via .env or a microservice
