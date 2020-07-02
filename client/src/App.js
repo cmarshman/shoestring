@@ -14,15 +14,15 @@ import TransferMoney from './pages/TransferMoney';
 import MyWallet from './pages/MyWallet';
 import CurrencyConverter from './pages/CurrencyConverter';
 import Reset from '../src/pages/ResetPwd'
-import UserProfile from './pages/UserProfile';
-// import friends from './utils/friendList.json';
 import CancelAccount from './pages/CancelAccount';
 import RequestData from './pages/RequestData';
-import Admin from './pages/Admin';
+import AdminLogin from './pages/AdminLogin';
 import AdminSignUp from './pages/AdminSignUp';
-// import UsersAdmin from './pages/UserAdmin';
-// import TransactionsAdmin from './pages/TransactionsAdmin';
-// import Payments from './pages/Payments';
+import AdminSummary from './pages/AdminSummary';
+import TransactionHistory from './pages/TransactionHistory';
+import AllUsers from './pages/AllUsers';
+import NewUsers from './pages/NewUsers';
+import TotalIncome from './pages/TotalIncome';
 
 function App(item) {
    
@@ -43,14 +43,15 @@ function App(item) {
         <Route exact path="/transfermoney" component={TransferMoney}/>
         <Route exact path="/mywallet" component={MyWallet}/>
         <Route exact path="/currencyconverter" component={CurrencyConverter}/>
-        <Route path="/user-profile/:name" component={UserProfile}/>
         <Route exact path="/cancelaccount" component={CancelAccount}/>
         <Route exact path="/requestdata" component={RequestData}/>
-        <Route exact path="/admin-12152011" component={Admin}/>
+        <Route exact path="/admin-12152011" component={AdminLogin}/>
         <Route exact path="/admin-sign-up-02121986" component={AdminSignUp}/>
-        {/* <Route exact path="/usersAdmin" component={UsersAdmin}/> */}
-        {/* <Route exact path="/transactionsAdmin" component={TransactionsAdmin}/> */}
-        {/* <Route exact path="/payments" component={Payments}/> */}
+        <Route exact path="/admin-summary" component={AdminSummary}/>
+        <Route exact path="/transaction-history" component={TransactionHistory}/>
+        <Route exact path="/all-users" component={AllUsers}/>
+        <Route exact path="/new-users-last-month" component={NewUsers}/>
+        <Route exact path="/total-income" component={TotalIncome}/> 
       </Wrapper>
     </div>
     </Router>

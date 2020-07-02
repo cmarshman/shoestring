@@ -2,16 +2,16 @@ import React, { useState, useEffect } from "react";
 import "./style.css";
 import { Link, useLocation } from "react-router-dom";
 import Image from '../../images/Logos/vector/default-monochrome-black.svg'
-import httpClient from '../../httpClient'
+import httpAdmin from '../../httpAdmin'
 
-const NavBarAuth = (currentUser) => {
+const NavBarAdmin = (currentUser) => {
 
   const [isActive, setisActive] = React.useState(false);
 
   const location = useLocation();
 
   const [setCurrentUserObj] = useState({
-    currentUser: httpClient.getCurrentUser()
+    currentUser: httpAdmin.getCurrentUser()
 })
  
 // Load the available token on pageload from local storage
@@ -21,7 +21,7 @@ useEffect(() => {
 
 
   const logOut =() =>{
-		httpClient.logOut()
+		httpAdmin.logOut()
     setCurrentUserObj({ currentUser: null }) 
     
 	}
@@ -38,7 +38,7 @@ useEffect(() => {
     <div>
       <nav className="navbar" role="navigation" aria-label="main navigation" id="opening-nav">
         <div className="navbar-brand">
-          <Link to="/home" className="navbar-item">
+          <Link to="/admin-summary" className="navbar-item">
             <img src={Image} alt="logo" width="112" height="28"/>
           </Link>
 
@@ -57,41 +57,27 @@ useEffect(() => {
 
         <div id="navbarBasicExample" className={`navbar-menu ${isActive ? "is-active" : ""}`}>
           <div className="navbar-start">
-            <Link to="/home" className={location.pathname === "/home" ? "navbar-item is-active" : "navbar-item"}>
-              My Profile
+            <Link to="/admin-summary" className={location.pathname === "/admin-summary" ? "navbar-item is-active" : "navbar-item"}>
+              Summary
             </Link>
 
-            <Link to="/findafriend" className={location.pathname === "/findafriend" ? "navbar-item is-active" : "navbar-item"}>
-              Friends
+            <Link to="/transaction-history" className={location.pathname === "/transaction-history" ? "navbar-item is-active" : "navbar-item"}>
+              Transactions
             </Link>
 
-            <Link to="/transfermoney" className={location.pathname === "/transfermoney" ? "navbar-item is-active" : "navbar-item"}>
-              Transfer Money
+            <Link to="/all-users" className={location.pathname === "/all-users" ? "navbar-item is-active" : "navbar-item"}>
+              Users
             </Link>
 
-            <Link to="/mywallet" className={location.pathname === "/mywallet" ? "navbar-item is-active" : "navbar-item"}>
-              My Wallet
+            <Link to="/new-users-last-month" className={location.pathname === "/new-users-last-month" ? "navbar-item is-active" : "navbar-item"}>
+              New Users
             </Link>
 
-            <Link to="/currencyconverter" className={location.pathname === "/currencyconverter" ? "navbar-item is-active" : "navbar-item"}>
-              Currency Converter
+            <Link to="/total-income" className={location.pathname === "/total-income" ? "navbar-item is-active" : "navbar-item"}>
+              Income
             </Link>
           
-          <div className="navbar-item has-dropdown is-hoverable" >
-              <Link to="#" className="navbar-link" id="navitems">
-                More
-              </Link>
-
-              <div className="navbar-dropdown">
-                <hr className="navbar-divider" />
-                <Link to="/cancelaccount" className={location.pathname === "/cancelaccount" ? "navbar-item is-active" : "navbar-item"}>
-                  Cancel Account
-                </Link>
-                <Link to="/requestdata" className={location.pathname === "/requestdata" ? "navbar-item is-active" : "navbar-item"}>
-                  Request My Data
-                </Link>
-              </div>
-            </div>
+          
           </div>
           
 
@@ -99,7 +85,7 @@ useEffect(() => {
             <div className="navbar-item">
               <div className="buttons">
                   
-                <Link to="/login" className="button is-light" id="text-theme" onClick={logOut}>
+                <Link to="/" className="button is-light" id="text-theme" onClick={logOut}>
                   Logout
                 </Link>
               </div>
@@ -113,4 +99,4 @@ useEffect(() => {
   )
 }
 
-export default NavBarAuth;
+export default NavBarAdmin;
