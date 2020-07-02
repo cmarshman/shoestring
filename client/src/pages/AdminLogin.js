@@ -12,7 +12,7 @@ const validationSchenma = Yup.object({
      
 });
 
-const Admin = (email, password) =>{
+const AdminLogin = (email, password) =>{
     
     const { values, touched, errors, handleChange, handleBlur, handleSubmit, isSubmitting } = useFormik({
         initialValues: {
@@ -115,4 +115,4 @@ const Admin = (email, password) =>{
     )
 }
 
-export default Admin;
+export default AdminLogin;

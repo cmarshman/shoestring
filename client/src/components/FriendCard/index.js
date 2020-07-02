@@ -101,6 +101,7 @@ function Card() {
                                         onRequestClose={closeModal}
                                         style={customStyles}
                                         contentLabel="Send Money Modal"
+                                        key={item._id}
                                     >
                                         <div className="modal-card">
                                             <header className="modal-card-head">

@@ -1,0 +1,23 @@
+#section1{
+    margin-bottom: 0px;
+    margin-top: 20px;
+    height: 300px;
+}
+
+#section2{
+    margin-top: 0px;
+    margin-bottom: -100px;
+    height: 300px;
+}
+
+#admin_title{
+    font-size: 40px;
+}
+
+a{
+    color: #363636!important;
+}
+
+a:hover{
+    color: #3bd389!important;;
+}

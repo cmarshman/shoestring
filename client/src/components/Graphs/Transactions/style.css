@@ -1,0 +1,49 @@
+.graphs-container .data-container {
+    max-width: 100%;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+  }
+  .graphs-container .data-container > div {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    padding: 0;
+    text-align: center;
+    background-color: #0074D9;
+  }
+  .graphColor{
+      color: #0074D9!important;
+  }
+  .graphs-container .data-container.is-vertical-graph div {
+    margin: 0.25rem 0;
+    padding-left: 5px;
+  }
+  .graphs-container .data-container.is-vertical-graph div p {
+    text-align: left;
+  }
+  .graphs-container .data-container.columns > div {
+    position: relative;
+    margin: 0 0.25rem;
+  }
+  .graphs-container .data-container.columns > div:first-child {
+    margin-left: 0;
+  }
+  .graphs-container .data-container.columns > div:last-child {
+    margin-right: 0;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .graphs-container .data-container:not(.is-vertical-graph) > div p {
+      position: absolute;
+      bottom: -13px;
+      left: 5px;
+      -webkit-transform: rotate(-90deg);
+      -ms-transform: rotate(-90deg);
+      transform: rotate(-90deg);
+      -webkit-transform-origin: top left;
+      -ms-transform-origin: top left;
+      transform-origin: top left;
+      text-shadow: 0px 0px 2px #000000;
+    }
+  }
