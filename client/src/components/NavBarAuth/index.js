@@ -6,7 +6,6 @@ import httpClient from '../../httpClient'
 
 const NavBarAuth = (currentUser) => {
 
-
   const [isActive, setisActive] = React.useState(false);
 
   const location = useLocation();
@@ -31,7 +30,6 @@ useEffect(() => {
   
   const work = () =>{
     if(currentUser===null){
-    //<Redirect from='home' to='/'/>
     window.location.replace('/')
     }
      

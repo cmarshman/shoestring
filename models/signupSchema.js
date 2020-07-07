@@ -10,9 +10,17 @@ const userSchema = new Schema({
   city : { type: String, required: false},
   state: {type: String, required: false},
   friends: {type: Array, required: false },
-  image: { type: String, required: false },
+  sentTransactions: {type: Array, required: false },
+  receivedTransactions : {type: Array, required: false },
+  sentBankTransactions: {type: Array, required: false },
+  receivedBankTransactions : {type: Array, required: false },
+  plaidToken: {type: String, required: false},
+  institution :{type: String, required: false},
+  accountType:{type: String, required: false},
+  image: {type: String, required: false },
   checked: {type: Boolean, required: true},
   amount:{type: Number, require: false},
+  balance:{type: Number, require: false},
   message: {type: String, require: false},
   date: { type: Date, default: Date.now }
 });

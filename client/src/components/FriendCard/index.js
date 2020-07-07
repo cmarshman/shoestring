@@ -3,6 +3,7 @@ import './style.css';
 import { Link, withRouter } from 'react-router-dom';
 import Modal from 'react-modal';
 import httpClient from "../../httpClient.js";
+//import MYModal from "./Fmodal";
 
 const customStyles = {
     content: {
@@ -31,6 +32,7 @@ function Card() {
     //Load funtion on page load
     useEffect(() => {
         handleFriends()
+        //addfriend()
     }, [])
 
 
@@ -51,8 +53,36 @@ function Card() {
     const [modal2IsOpen, set2IsOpen] = useState(false);
 
 
+    const addfriend = (evt) => {
+        const friendId = evt.target.dataset.newfriend
+        console.log("sendMoney", friendId)
+        let sendToFriend = friendResult.find(item => item._id === friendId)
+        let fname = sendToFriend.name
+        //console.log("sendMoney", friendId)
+    }
+
+     
+
+
+    var btnEL = document.querySelectorAll(".saveBtn");
+
+    const friendsHandle = () => {
+        //console.log("buttons", btnEL )
+        // Add an EventListner to save the events into local storage on click
+        btnEL.forEach(function (event) {
+            event.addEventListener("click", addfriend)
+            //addfriend()
+            openModal()
+            console.log("test")
+
+
+        })
+    };
+
+
     function openModal() {
         setIsOpen(true);
+        //addfriend()
     }
 
     function openModal2() {
@@ -90,12 +120,12 @@ function Card() {
                                     </div>
                                     <br />
                                     <div>
-                                        <a className="button is-light" id="seltzer" onClick={openModal}>Send Money</a>
-                                        <a className="button is-light" id="seltzer" onClick={openModal2}>Remove Friend</a>
+                                    <a className="button is-light saveBtn" id="seltzer" data-newfriend={item._id} onClick={friendsHandle} >Send Money</a>
+                                    <a className="button is-light" id="seltzer" onClick={openModal2}>Remove Friend</a>
+                                     
                                     </div>
                                     <hr />
-
-
+                                
                                     <Modal
                                         isOpen={modalIsOpen}
                                         onRequestClose={closeModal}
@@ -103,13 +133,14 @@ function Card() {
                                         contentLabel="Send Money Modal"
                                         key={item._id}
                                     >
+                                        
                                         <div className="modal-card">
                                             <header className="modal-card-head">
-                                                <p className="modal-card-title">Send Money to {item.name}</p>
+                                                <p className="modal-card-title" data-newfriend={item._id}>Send Money to {item.name}</p>
                                                 <button className="delete" aria-label="close" onClick={closeModal}></button>
                                             </header>
                                             <section className="modal-card-body">
-                                            <p className='subtitle'>How much would you like to transfer</p>
+                                                <p className='subtitle'>How much would you like to transfer</p>
                                                 <div class="field has-addons">
                                                     <p class="control">
                                                         <span class="select">
@@ -121,7 +152,7 @@ function Card() {
                                                         </span>
                                                     </p>
                                                     <p class="control is-expanded">
-                                                        <input class="input" type="text" placeholder="Amount of money"/>
+                                                        <input class="input" type="text" placeholder="Amount of money" />
                                                     </p>
                                                 </div>
                                                 <p className='subtitle'>Leave a messeage for your friend</p>
@@ -131,9 +162,9 @@ function Card() {
                                                     </div>
                                                 </div>
                                             </section>
-                                                <footer className="modal-card-foot">
-                                                    <button className="button is-success">Submit Payment</button>
-                                                </footer>
+                                            <footer className="modal-card-foot">
+                                                <button className="button is-success">Submit Payment</button>
+                                            </footer>
                                         </div>
                                     </Modal>
                                     <Modal
@@ -155,14 +186,17 @@ function Card() {
                                                 <button className="button" onClick={closeModal2}>Never Mind</button>
                                             </footer>
                                         </div>
+                                        
                                     </Modal>
-
+                                   
                                 </article>
+                                 
                             </div>
+                                 
                         )
                     }
                     )}
-                            </div>
+                </div>
             </div>
         </>
     );
