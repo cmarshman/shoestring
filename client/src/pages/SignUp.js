@@ -38,6 +38,15 @@ function SignUp(user) {
       password: "",
       friends: '',
       image: "",
+      sentTransactions: "",
+      receivedTransactions : "",
+      sentBankTransactions: "",
+      receivedBankTransactions : "",
+      plaidToken: "",
+      institution : "",
+      accountType: "",
+      balance: 0,
+      message: "",
       amount: 0,
       message: '',
       checked: false,
@@ -67,6 +76,14 @@ function SignUp(user) {
       password: values.password,
       friends: values.friends,
       image:  values.image,
+      sentTransactions: values.sentTransactions,
+      receivedTransactions : values.receivedTransactions,
+      sentBankTransactions: values.sentBankTransactions,
+      receivedBankTransactions : values.receivedBankTransactions,
+      plaidToken: values.plaidToken,
+      institution : values.institution,
+      accountType: values.accountType,
+      balance: values.balance,
       amount: values.amount,
       message: values.message,
       checked: values.checked
@@ -221,9 +238,9 @@ function SignUp(user) {
                 <div className="control">
                   <button className="button is-light" 
                   onClick={handleFormOnsubmit} 
-                  disabled={!values.checked && 'errors'}
                   disabled={!values.phone.match(phoneno)}
                   disabled={!values.email.match(emailVal)}
+                  disabled={!values.checked && 'errors'}
                   id="twofish"
                   >Submit</button>
                 </div>
