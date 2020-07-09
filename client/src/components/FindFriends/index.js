@@ -14,8 +14,6 @@ function FindFriends () {
                             <div className="tile is-child box has-text-centered">
                             <p className="title">Search for new friends</p>
                                 <FindNewFriends/> 
-                                
-
 
                             </div>
                             </div>
