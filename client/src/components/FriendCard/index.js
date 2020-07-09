@@ -3,8 +3,7 @@ import './style.css';
 import { Link, withRouter } from 'react-router-dom';
 import Modal from 'react-modal';
 import httpClient from "../../httpClient.js";
-//import MYModal from "./Fmodal";
-
+ 
 const customStyles = {
     content: {
         top: '50%',
@@ -32,8 +31,7 @@ function Card() {
     //Load funtion on page load
     useEffect(() => {
         handleFriends()
-        //addfriend()
-    }, [])
+     }, [])
 
 
     //Function to load all user on page load
@@ -43,7 +41,7 @@ function Card() {
                 setFriendResult(serverResponse.data);
                 let currentUserId = currentUserObj.currentUser._id
                 let findFriend = serverResponse.data.find(item => item._id === currentUserId)
-                let friendsArray = findFriend.friends
+                let friendsArray = findFriend.friends.slice(1)
                 setFriendResult(friendsArray)
             })
             .catch(err => { console.log(err) })
@@ -52,38 +50,9 @@ function Card() {
     const [modalIsOpen, setIsOpen] = useState(false);
     const [modal2IsOpen, set2IsOpen] = useState(false);
 
-
-    const addfriend = (evt) => {
-        const friendId = evt.target.dataset.newfriend
-        console.log("sendMoney", friendId)
-        let sendToFriend = friendResult.find(item => item._id === friendId)
-        let fname = sendToFriend.name
-        //console.log("sendMoney", friendId)
-    }
-
-     
-
-
-    var btnEL = document.querySelectorAll(".saveBtn");
-
-    const friendsHandle = () => {
-        //console.log("buttons", btnEL )
-        // Add an EventListner to save the events into local storage on click
-        btnEL.forEach(function (event) {
-            event.addEventListener("click", addfriend)
-            //addfriend()
-            openModal()
-            console.log("test")
-
-
-        })
-    };
-
-
     function openModal() {
         setIsOpen(true);
-        //addfriend()
-    }
+     }
 
     function openModal2() {
         set2IsOpen(true);
@@ -120,7 +89,7 @@ function Card() {
                                     </div>
                                     <br />
                                     <div>
-                                    <a className="button is-light saveBtn" id="seltzer" data-newfriend={item._id} onClick={friendsHandle} >Send Money</a>
+                                    <a className="button is-light saveBtn" id="seltzer" data-newfriend={item._id} onClick={openModal} >Send Money</a>
                                     <a className="button is-light" id="seltzer" onClick={openModal2}>Remove Friend</a>
                                      
                                     </div>
