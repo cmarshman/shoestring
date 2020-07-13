@@ -5,7 +5,7 @@ import UserNameCard from '../UserNameCard';
 import httpClient from '../../httpClient';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import $ from 'jquery';
+import $, { data } from 'jquery';
 import moment from 'moment';
 
 
@@ -39,77 +39,63 @@ function TransferMoneyCard() {
     })
 
     var createdDate = currentUserObj.currentUser.date
-    console.log(createdDate)
+    //console.log(Yup.date)
     createdDate = moment().format('LL');
-
-    console.log("current", currentUserObj)
-    // Function to update the image in the database
-    const updateUser = () => {
+    let currentUser = currentUserObj.currentUser
+     
+    const sendMoney = () =>{
         httpClient.InsertUpdate({
-            _id: currentUserObj.currentUser._id,
-            amount: values.amount,
-            message: [...values.message]
+           _id: currentUser._id,
+            sentTransactions: [...currentUser.sentTransactions, {amount: values.amount, message: values.message}],
+            balance: parseInt(currentUser.balance) - parseInt(values.amount),
+            date: createdDate
         })
     }
 
-
-
-
-    //Function to handle the transfert money form
-    //const transferMoney = () => {
-
-    const usersFriends = currentUserObj.friends;
-    console.log("friends", usersFriends)
-    //Function 
-    // let currentAmount = currentUserObj.amount
-    // let newamount = currentAmount + values.amount
-
-
     const transferMoney = (evt) => {
         const userEmail = values.email
+        let currentUser = currentUserObj.currentUser
         httpClient.FindAllUser()
             .then(serverResponse => {
                 const data = serverResponse.data
                 let findEmail = data.find(item => item.email === userEmail)
+                let findCurrentUser = data.find(item => item._id === currentUser._id)
                 console.log("find", findEmail)
-                if (findEmail === undefined) {
+                 if (findEmail.email === undefined || findEmail.email ===findCurrentUser.email) {
                     console.log("findEmail", findEmail)
                     $('#errormsg').attr("style", "color:red")
-                    $('#errormsg').text("Email not found- try again.");
+                    $('#errormsg').text("Email not valid- try again.");
                     return
                 }
-                //Insert the new password after update
+                 
                 httpClient.InsertUpdate({
                     _id: findEmail._id,
-                    name: findEmail.name,
-                    friends: [...findEmail.friends],
-                    phone: findEmail.phone,
-                    city: findEmail.city,
-                    state: findEmail.state,
-                    password: findEmail.password,
-                    image: findEmail.image,
-                    date: findEmail.date,
-                    amount: values.amount,
-                    message: values.message
+                    //receivedTransactions: [{...{amount: values.amount, ...{message: values.message}}}],
+                    receivedTransactions:[...findEmail.receivedTransactions, {amount: values.amount, message: values.message}],
+                    balance: parseInt(findEmail.balance) + parseInt(values.amount),
+                    date:  createdDate,
                 })
-                    // const updateAmount = () =>{
-                    //     let newamount = amount + values.amount
-                    // }
-                    // .then(httpClient.InsertUpdate({
-                    //     _id:  currentUserObj.currentUser._id,
-                    //     friends: [...currentUserObj.currentUser.friends, {amount: values.amount, message: values.message  }]
-                    // })
-                    // )
-                    .then(response => {
-                        console.log('response', response)
-                    })
-                    .then(window.location.replace('/home'))
-                    .catch(err => console.log('err', err))
+                // httpClient.InsertUpdate({
+                //     _id: findCurrentUser._id,
+                //     //receivedTransactions: [{...{amount: values.amount, ...{message: values.message}}}],
+                //     sentTransactions:[...findCurrentUser.sentTransactions, {amount: values.amount, message: values.message}],
+                //     balance: parseInt(findCurrentUser.balance) - parseInt(values.amount),
+                //     date:  createdDate,
+                // })
+                .then(response => {
+                        console.log('response', response)   
+                })   
+                .then(window.location.replace('/home'), 
+                 httpClient.InsertUpdate({
+                    _id: findCurrentUser._id,
+                     sentTransactions:[...findCurrentUser.sentTransactions, {amount: values.amount, message: values.message}],
+                    balance: parseInt(findCurrentUser.balance) - parseInt(values.amount),
+                    date:  createdDate,
+                }))
+                .catch(err => console.log('err', err))
             })
     }
-
-    //console.log("value", values)  
-
+//Render all the data
     return (
 
         <form onSubmit={handleSubmit}>
@@ -123,7 +109,7 @@ function TransferMoneyCard() {
                                 </a>
                                 <br />
                                 <UserNameCard />
-                                <p id="funds">Funds Available: {currentUserObj.currentUser.amount}</p>
+                                <p id="funds">Funds Available: {currentUserObj.currentUser.balance}</p>
                                 <p id="member">Member Since: {createdDate}</p>
                             </div>
                         </div>

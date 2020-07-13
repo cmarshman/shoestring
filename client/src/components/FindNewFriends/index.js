@@ -57,7 +57,7 @@ function FindNewFriends(currentUser) {
          if(friendToAdd !=null){
           httpClient.InsertUpdate({
             _id: currentUserObj.currentUser._id,
-           friends: [...currentUserObj.currentUser.friends, {...friendToAdd}]
+           friends: [...currentUserObj.currentUser.friends, {friendToAdd}]
              
         })
    }    
