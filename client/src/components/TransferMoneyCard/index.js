@@ -136,17 +136,30 @@ function TransferMoneyCard() {
                             </span>
                         </p>
                         <p>Enter your friend's name</p>
-                        <p className="control has-icons-left">
+                        <p class="input control">
+                        {/* <p className="control has-icons-left">
                             <input className="input" type="text" placeholder="Enter your  friend's name . . . "
                                 onChange={handleChange}
                                 name="name"
                                 value={values.name}
                                 onBlur={handleBlur} />
                             {/* <div id='errormsg'></div> */}
-                            <span className="icon is-small is-left">
+                            {/* <span className="icon is-small is-left">
                             <i className="fas fa-user-astronaut"></i>
-                            </span>
-                        </p>
+                            </span> */}
+                       {/* </p>  */}
+
+                       <select 
+                         name="name"
+                         value={values.name} 
+                         onChange={handleChange}
+                         onBlur={handleBlur}>
+                        <option value="grapefruit">Grapefruit</option>
+                        <option value="lime">Lime</option>
+                        <option value="coconut">Coconut</option>
+                        <option value="mango">Mango</option>
+                       </select>
+                       </p>
                         <p>Enter the amount you would like to transfer</p>
                         <p className="control has-icons-left">
                             <input className="input" type="text" placeholder="$50"
