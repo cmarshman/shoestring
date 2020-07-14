@@ -24,7 +24,7 @@ function TransferMoneyCard() {
         initialValues: {
             email: '',
             name:'',
-            amount: 0,
+            amount: null,
             message: '',
 
         },
@@ -77,16 +77,16 @@ function TransferMoneyCard() {
                     balance: parseInt(findEmail.balance) + parseInt(values.amount),
                     date:  createdDate,
             })
-            httpClient.InsertUpdate({
-                    _id: findCurrentUser._id,
-                    //receivedTransactions: [{...{amount: values.amount, ...{message: values.message}}}],
-                    sentTransactions:[...findCurrentUser.sentTransactions, {amount: values.amount, message: values.message}],
-                    balance: parseInt(findCurrentUser.balance) - parseInt(values.amount),
-                    date:  createdDate,
-            })
-            .then(response => {
-                        console.log('response', response)   
-            })   
+            // httpClient.InsertUpdate({
+            //         _id: findCurrentUser._id,
+            //         //receivedTransactions: [{...{amount: values.amount, ...{message: values.message}}}],
+            //         sentTransactions:[...findCurrentUser.sentTransactions, {amount: values.amount, message: values.message}],
+            //         balance: parseInt(findCurrentUser.balance) - parseInt(values.amount),
+            //         date:  createdDate,
+            // })
+            // .then(response => {
+            //             console.log('response', response)   
+            // })   
             .then(window.location.replace('/home'), 
                  httpClient.InsertUpdate({
                     _id: findCurrentUser._id,
