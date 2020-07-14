@@ -106,7 +106,7 @@ useEffect(() => {
                 <Icon path={mdiBellOutline}
                 title="Alerts"
                 size={1.15}
-                color="#f5f5f5"
+                color="#363636"
                 id="alert"
                 />
               </a>
@@ -114,7 +114,7 @@ useEffect(() => {
                 <Icon path={mdiCogOutline}
                 title="Alerts"
                 size={1.15}
-                color="#f5f5f5"
+                color="#363636"
                 id="alert"
                 />
               </a>
