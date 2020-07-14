@@ -53,10 +53,10 @@ function TransferMoneyCard() {
             date: createdDate
         })
     }
-
+    let currentUserfriends = currentUserObj.currentUser.friends
     const transferMoney = (evt) => {
-        const userEmail = values.email.toLocaleLowerCase
-        const userName = values.name.toLocaleLowerCase
+        const userEmail = values.email
+        const userName = values.name
         let currentUser = currentUserObj.currentUser
         httpClient.FindAllUser()
         .then(serverResponse => {
@@ -136,30 +136,19 @@ function TransferMoneyCard() {
                             </span>
                         </p>
                         <p>Enter your friend's name</p>
-                        <p class="input control">
-                        {/* <p className="control has-icons-left">
+                         
+                        <p className="control has-icons-left">
                             <input className="input" type="text" placeholder="Enter your  friend's name . . . "
                                 onChange={handleChange}
                                 name="name"
                                 value={values.name}
                                 onBlur={handleBlur} />
-                            {/* <div id='errormsg'></div> */}
-                            {/* <span className="icon is-small is-left">
+                            <div id='errormsg'></div>
+                            <span className="icon is-small is-left">
                             <i className="fas fa-user-astronaut"></i>
-                            </span> */}
-                       {/* </p>  */}
-
-                       <select 
-                         name="name"
-                         value={values.name} 
-                         onChange={handleChange}
-                         onBlur={handleBlur}>
-                        <option value="grapefruit">Grapefruit</option>
-                        <option value="lime">Lime</option>
-                        <option value="coconut">Coconut</option>
-                        <option value="mango">Mango</option>
-                       </select>
-                       </p>
+                            </span> 
+                       </p> 
+                      
                         <p>Enter the amount you would like to transfer</p>
                         <p className="control has-icons-left">
                             <input className="input" type="text" placeholder="$50"
