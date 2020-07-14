@@ -3,13 +3,16 @@ import "./style.css";
 import { Link, useLocation } from "react-router-dom";
 import Image from '../../images/Logos/vector/default-monochrome-black.svg'
 import httpClient from '../../httpClient'
+import { mdiBellOutline } from '@mdi/js';
+import Icon from '@mdi/react';
+import { mdiCogOutline } from '@mdi/js';
+
 
 const NavBarAuth = (currentUser) => {
 
   const [isActive, setisActive] = React.useState(false);
 
   const location = useLocation();
-
 
   const [currentUserObj, setCurrentUserObj] = useState({
     currentUser: httpClient.getCurrentUser()
@@ -20,7 +23,6 @@ const NavBarAuth = (currentUser) => {
 useEffect(() => {
   work()
 }, [])
-
 
   const logOut =() =>{
 		httpClient.logOut()
@@ -98,8 +100,23 @@ useEffect(() => {
 
           <div className="navbar-end">
             <div className="navbar-item">
+              <a>
+                <Icon path={mdiBellOutline}
+                title="Alerts"
+                size={1.15}
+                color="#363636"
+                id="alert"
+                />
+              </a>
+              <a>
+                <Icon path={mdiCogOutline}
+                title="Alerts"
+                size={1.15}
+                color="#363636"
+                id="alert"
+                />
+              </a>
               <div className="buttons">
-                  
                 <Link to="/login" className="button is-light" id="text-theme" onClick={logOut}>
                   Logout
                 </Link>
