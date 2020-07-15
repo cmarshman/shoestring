@@ -3,12 +3,12 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
  
 const userSchema = new Schema({
-  name: { type: String, required: true },
-  phone: { type: String, required: true },
+  name: { type: String, required: true, trim: true},
+  phone: { type: String, required: true, trim: true },
   email: {type: String, unique: true, match: [/.+@.+\..+/, "Please enter a valid e-mail address"]},
   password: {type: String, required: true, validate: [({ length }) => length >= 8, "Password should be  8 longer."]},
-  city : { type: String, required: false},
-  state: {type: String, required: false},
+  city : { type: String, required: false, trim: true},
+  state: {type: String, required: false, trim: true},
   friends: {type: Array, required: false },
   sentTransactions: {type: Array, required: false },
   receivedTransactions : {type: Array, required: false },
@@ -19,10 +19,10 @@ const userSchema = new Schema({
   accountType:{type: String, required: false},
   image: {type: String, required: false },
   checked: {type: Boolean, required: true},
-  amount:{type: Number, require: false},
-  balance:{type: Number, require: false},
+  amount:{type: Number, require: false, trim: true},
+  balance:{type: Number, require: false, trim: true},
   message: {type: String, require: false},
-  date: { type: Date, default: Date.now }
+  date: {type: Date, default: Date.now }
 });
 
 // adds a method to a user document object to create a hashed password

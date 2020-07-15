@@ -48,7 +48,9 @@ function SignUp(user) {
       message: "",
       amount: 0,
       message: '',
+      date: Date.now,
       checked: false,
+
     },
     validationSchenma,
     // Handles updating component state when the user types into the input field
@@ -85,6 +87,7 @@ function SignUp(user) {
       balance: values.balance,
       amount: values.amount,
       message: values.message,
+      date: Date.now(),
       checked: values.checked
     }).then(user => {
       console.log("user", user)
