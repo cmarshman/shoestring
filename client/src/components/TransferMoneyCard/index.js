@@ -14,7 +14,7 @@ const validationSchenma = Yup.object({
     email: Yup.string().required(),
     name: Yup.string().required(),
     amount: Yup.number().required(),
-    message: Yup.string().required(),
+    message: Yup.string(),
 
 });
 
@@ -24,7 +24,7 @@ function TransferMoneyCard() {
         initialValues: {
             email: '',
             name:'',
-            amount: null,
+            amount: 0,
             message: '',
 
         },
@@ -61,10 +61,12 @@ function TransferMoneyCard() {
         httpClient.FindAllUser()
         .then(serverResponse => {
             const data = serverResponse.data
-            let findEmail = data.find(item => item.email === userEmail && item.name === userName)
             let findCurrentUser = data.find(item => item._id === currentUser._id)
+            let friendArray = findCurrentUser.friends
+            let findEmail = friendArray.find(item => item.email === userEmail && item.name === userName)
+
             console.log("find", findEmail)
-             if (findEmail === undefined || findEmail.email ===findCurrentUser.email || userName === findCurrentUser.name) {
+             if (findEmail === undefined || findEmail.email === findCurrentUser.email || userName === findCurrentUser.name) {
                 console.log("findEmail", findEmail)
                 $('#errormsg').attr("style", "color:red")
                 $('#errormsg').text("Your Friend is not found. Make sure your friend's email and name are correct.");
@@ -87,13 +89,13 @@ function TransferMoneyCard() {
             // .then(response => {
             //             console.log('response', response)   
             // })   
-            .then(window.location.replace('/home'), 
+            .then(
                  httpClient.InsertUpdate({
                     _id: findCurrentUser._id,
                      sentTransactions:[...findCurrentUser.sentTransactions, {amount: values.amount, message: values.message}],
                     balance: parseInt(findCurrentUser.balance) - parseInt(values.amount),
                     date:  createdDate,
-                }))
+                }),window.location.replace('/home'))
                 .catch(err => console.log('err', err))
             })
     }
