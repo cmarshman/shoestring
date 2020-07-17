@@ -1,102 +1,99 @@
-import React from "react";
-import Navbar from '../components/navbar';
+import React from "react"
+import NavBarSettings from "../components/NavBarSettings"
 import '../pages/design/signup.css'
 import httpClient from '../httpClient'
 import $ from 'jquery'
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
- 
+
 
 
 //Setup  validation condition on the schema using Yup
 const validationSchenma = Yup.object({
-  name: Yup.string().email().required(),
-  phone: Yup.string().required(),
-  city: Yup.string().required(),
-  state: Yup.string().required(),
-  email: Yup.string().email().required(),
-  password: Yup.string().required().min(8),
-  checked: Yup.boolean().required(),
-     
-});
-
+    name: Yup.string().email().required(),
+    phone: Yup.string().required(),
+    city: Yup.string().required(),
+    state: Yup.string().required(),
+    email: Yup.string().email().required(),
+    password: Yup.string().required().min(8),
+  });
 
 let phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 let emailVal = /.+@.+\..+/;
- 
-//Function to handle  user sign-up
-function SignUp(user) {
 
-  const { values, touched, errors, handleChange, handleBlur, handleSubmit, isSubmitting } = useFormik({
-    initialValues: {
-      name: "",
-      phone: "",
-      city: "",
-      state: "",
-      email: "",
-      password: "",
-      friends: '',
-      image: "",
-      amount: 0,
-      message: '',
-      checked: false,
-    },
-    validationSchenma,
-    // Handles updating component state when the user types into the input field
-    onSubmit(values) {
-      handleFormOnsubmit(values)
-    }
-});
-   
-  //Function to reset the form to empty fields
-  const clearForm = () => {
-      window.location.reload()
-  }
-   
-  // Does a post to the signup route. If successful, we are redirected to the login page
-  // Otherwise we log   errors
-  function handleFormOnsubmit(evt) {
-    evt.preventDefault()
-    httpClient.signUp({
-      name: values.name,
-      phone: values.phone,
-      city: values.city,
-      state: values.state,
-      email: values.email,
-      password: values.password,
-      friends: values.friends,
-      image:  values.image,
-      amount: values.amount,
-      message: values.message,
-      checked: values.checked
-    }).then(user => {
-      console.log("user", user)
-      if (user) {
-        window.location.replace("/login")
-        this.props.onSignUpSuccess(user)
-        this.props.history.push('/')
-      }
-      $('#errorMsg').attr("style", "color:red")
-      $('#errorMsg').text("An error occured please review your entries");
-      return
-    }).catch(err => console.log('err', err));
+const Settings = () => {
     
-  }
+    const { values, touched, errors, handleChange, handleBlur, handleSubmit, isSubmitting } = useFormik({
+        initialValues: {
+          name: "",
+          phone: "",
+          city: "",
+          state: "",
+          email: "",
+          password: "",
+          friends: '',
+          image: "",
+          amount: 0,
+          message: '',
+          checked: false,
+        },
+        validationSchenma,
+        // Handles updating component state when the user types into the input field
+        onSubmit(values) {
+          handleFormOnsubmit(values)
+        }
+    });
+       
+      //Function to reset the form to empty fields
+      const clearForm = () => {
+          window.location.reload()
+      }
+       
+      // Does a post to the signup route. If successful, we are redirected to the login page
+      // Otherwise we log   errors
+      function handleFormOnsubmit(evt) {
+        evt.preventDefault()
+        httpClient.signUp({
+          name: values.name,
+          phone: values.phone,
+          city: values.city,
+          state: values.state,
+          email: values.email,
+          password: values.password,
+          friends: values.friends,
+          image:  values.image,
+          amount: values.amount,
+          message: values.message,
+          checked: values.checked
+        }).then(user => {
+          console.log("user", user)
+          if (user) {
+            window.location.replace("/login")
+            this.props.onSignUpSuccess(user)
+            this.props.history.push('/')
+          }
+          $('#errorMsg').attr("style", "color:red")
+          $('#errorMsg').text("An error occured please review your entries");
+          return
+        }).catch(err => console.log('err', err));
+        
+      }
 
-  // render the Form and handle validations
-  return (
-    <>
-      <Navbar />
-      <form onSubmit={handleSubmit}>
+    return(
+        <>
+        <NavBarSettings/>
+        <form onSubmit={handleSubmit}>
       <div id='errorMsg'  ></div>
       <div className="tile is-ancestor">
         <div className="tile is vertical is-7 box" id="tile">
 
           <div className="tile is-parent">
             <article className="tile is-child notification is-dark">
-              <p className="title" id="formTitle">Sign Up</p>
+            <p className="title" id="formTitle">Update your information</p>
               <div className="field">
                 <label className="label">Name</label>
+                <p id="formTitle">If you are changing your name, please make sure it reflects your legal name used with your bank.</p>
+                <br/>
                 <div className="control has-icons-left">
                   <input className="input"
                     type="text"
@@ -245,8 +242,8 @@ function SignUp(user) {
         </div>
       </div> 
     </form>
-    </>
-  )
-
+        </>
+    )
 }
-export default SignUp;
+
+export default Settings;
