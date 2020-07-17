@@ -23,7 +23,10 @@
 #twofish{
     background-color: #3bd389!important;
     color: #f5f5f5;
+}
 
+#formTitle{
+    color: #363636!important;
 }
 
 #twofish:hover{

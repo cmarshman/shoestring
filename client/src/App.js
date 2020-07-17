@@ -23,6 +23,7 @@ import TransactionHistory from './pages/TransactionHistory';
 import AllUsers from './pages/AllUsers';
 import NewUsers from './pages/NewUsers';
 import TotalIncome from './pages/TotalIncome';
+import Settings from './pages/Settings';
 
 function App(item) {
    
@@ -52,6 +53,7 @@ function App(item) {
         <Route exact path="/all-users" component={AllUsers}/>
         <Route exact path="/new-users-last-month" component={NewUsers}/>
         <Route exact path="/total-income" component={TotalIncome}/> 
+        <Route exact path="/settings" component={Settings}/>
       </Wrapper>
     </div>
     </Router>

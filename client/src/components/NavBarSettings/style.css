@@ -1,0 +1,13 @@
+#opening-nav{
+    background-color: #3bd389;
+    height: 80px;
+}
+
+#text-theme{
+    color: #3bd389;
+}
+
+#text-theme:hover{
+    background-color: #363636;
+    color: #f5f5f5;
+}
