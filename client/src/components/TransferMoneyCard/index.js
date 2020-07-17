@@ -5,15 +5,16 @@ import UserNameCard from '../UserNameCard';
 import httpClient from '../../httpClient';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import $ from 'jquery';
+import $, { data } from 'jquery';
 import moment from 'moment';
 
 
 //Setup  validation condition on the schema using Yup
 const validationSchenma = Yup.object({
+    email: Yup.string().required(),
     name: Yup.string().required(),
     amount: Yup.number().required(),
-    message: Yup.string().required(),
+    message: Yup.string(),
 
 });
 
@@ -22,7 +23,8 @@ function TransferMoneyCard() {
     const { values, touched, errors, handleChange, handleBlur, handleSubmit } = useFormik({
         initialValues: {
             email: '',
-            amount: null,
+            name:'',
+            amount: 0,
             message: '',
 
         },
@@ -39,77 +41,65 @@ function TransferMoneyCard() {
     })
 
     var createdDate = currentUserObj.currentUser.date
-    console.log(createdDate)
+    //console.log(Yup.date)
     createdDate = moment().format('LL');
-
-    console.log("current", currentUserObj)
-    // Function to update the image in the database
-    const updateUser = () => {
+    let currentUser = currentUserObj.currentUser
+     
+    const sendMoney = () =>{
         httpClient.InsertUpdate({
-            _id: currentUserObj.currentUser._id,
-            amount: values.amount,
-            message: [...values.message]
+           _id: currentUser._id,
+            sentTransactions: [...currentUser.sentTransactions, {amount: values.amount, message: values.message}],
+            balance: parseInt(currentUser.balance) - parseInt(values.amount),
+            date: createdDate
         })
     }
-
-
-
-
-    //Function to handle the transfert money form
-    //const transferMoney = () => {
-
-    const usersFriends = currentUserObj.friends;
-    console.log("friends", usersFriends)
-    //Function 
-    // let currentAmount = currentUserObj.amount
-    // let newamount = currentAmount + values.amount
-
-
+    let currentUserfriends = currentUserObj.currentUser.friends
     const transferMoney = (evt) => {
         const userEmail = values.email
+        const userName = values.name
+        let currentUser = currentUserObj.currentUser
         httpClient.FindAllUser()
-            .then(serverResponse => {
-                const data = serverResponse.data
-                let findEmail = data.find(item => item.email === userEmail)
-                console.log("find", findEmail)
-                if (findEmail === undefined) {
-                    console.log("findEmail", findEmail)
-                    $('#errormsg').attr("style", "color:red")
-                    $('#errormsg').text("Email not found- try again.");
-                    return
-                }
-                //Insert the new password after update
-                httpClient.InsertUpdate({
+        .then(serverResponse => {
+            const data = serverResponse.data
+            let findCurrentUser = data.find(item => item._id === currentUser._id)
+            let friendArray = findCurrentUser.friends
+            let findEmail = friendArray.find(item => item.email === userEmail && item.name === userName)
+
+            console.log("find", findEmail)
+             if (findEmail === undefined || findEmail.email === findCurrentUser.email || userName === findCurrentUser.name) {
+                console.log("findEmail", findEmail)
+                $('#errormsg').attr("style", "color:red")
+                $('#errormsg').text("Your Friend is not found. Make sure your friend's email and name are correct.");
+                return
+            }
+            httpClient.InsertUpdate({
                     _id: findEmail._id,
-                    name: findEmail.name,
-                    friends: [...findEmail.friends],
-                    phone: findEmail.phone,
-                    city: findEmail.city,
-                    state: findEmail.state,
-                    password: findEmail.password,
-                    image: findEmail.image,
-                    date: findEmail.date,
-                    amount: values.amount,
-                    message: values.message
-                })
-                    // const updateAmount = () =>{
-                    //     let newamount = amount + values.amount
-                    // }
-                    // .then(httpClient.InsertUpdate({
-                    //     _id:  currentUserObj.currentUser._id,
-                    //     friends: [...currentUserObj.currentUser.friends, {amount: values.amount, message: values.message  }]
-                    // })
-                    // )
-                    .then(response => {
-                        console.log('response', response)
-                    })
-                    .then(window.location.replace('/home'))
-                    .catch(err => console.log('err', err))
+                    //receivedTransactions: [{...{amount: values.amount, ...{message: values.message}}}],
+                    receivedTransactions:[...findEmail.receivedTransactions, {amount: values.amount, message: values.message}],
+                    balance: parseInt(findEmail.balance) + parseInt(values.amount),
+                    date:  createdDate,
+            })
+            // httpClient.InsertUpdate({
+            //         _id: findCurrentUser._id,
+            //         //receivedTransactions: [{...{amount: values.amount, ...{message: values.message}}}],
+            //         sentTransactions:[...findCurrentUser.sentTransactions, {amount: values.amount, message: values.message}],
+            //         balance: parseInt(findCurrentUser.balance) - parseInt(values.amount),
+            //         date:  createdDate,
+            // })
+            // .then(response => {
+            //             console.log('response', response)   
+            // })   
+            .then(
+                 httpClient.InsertUpdate({
+                    _id: findCurrentUser._id,
+                     sentTransactions:[...findCurrentUser.sentTransactions, {amount: values.amount, message: values.message}],
+                    balance: parseInt(findCurrentUser.balance) - parseInt(values.amount),
+                    date:  createdDate,
+                }),window.location.replace('/home'))
+                .catch(err => console.log('err', err))
             })
     }
-
-    //console.log("value", values)  
-
+//Render all the data
     return (
 
         <form onSubmit={handleSubmit}>
@@ -123,12 +113,13 @@ function TransferMoneyCard() {
                                 </a>
                                 <br />
                                 <UserNameCard />
-                                <p id="funds">Funds Available: {currentUserObj.currentUser.amount}</p>
+                                <p id="funds">Funds Available: {currentUserObj.currentUser.balance}</p>
                                 <p id="member">Member Since: {createdDate}</p>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div id='errormsg'></div>
                 <div className="tile is-ancestor columns is-centered" id="waldos_nothere">
                     <div className="tile is-vertical column is-two-fifths banana box" id="tile1">
                         <p className="subtitle has-text-centered">
@@ -136,7 +127,7 @@ function TransferMoneyCard() {
                     </p>
                         <p>Enter your friend's email to start the transfer</p>
                         <p className="control has-icons-left">
-                            <input className="input" type="text" placeholder="Enter your  friend's email . . . "
+                            <input className="input" type="text" placeholder="Enter your  friend's email or phone. . . "
                                 onChange={handleChange}
                                 name="email"
                                 value={values.email}
@@ -146,6 +137,20 @@ function TransferMoneyCard() {
                                 <i className="fas fa-user-circle"></i>
                             </span>
                         </p>
+                        <p>Enter your friend's name</p>
+                         
+                        <p className="control has-icons-left">
+                            <input className="input" type="text" placeholder="Enter your  friend's name . . . "
+                                onChange={handleChange}
+                                name="name"
+                                value={values.name}
+                                onBlur={handleBlur} />
+                            <div id='errormsg'></div>
+                            <span className="icon is-small is-left">
+                            <i className="fas fa-user-astronaut"></i>
+                            </span> 
+                       </p> 
+                      
                         <p>Enter the amount you would like to transfer</p>
                         <p className="control has-icons-left">
                             <input className="input" type="text" placeholder="$50"

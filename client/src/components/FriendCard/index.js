@@ -3,7 +3,7 @@ import './style.css';
 import { Link, withRouter } from 'react-router-dom';
 import Modal from 'react-modal';
 import httpClient from "../../httpClient.js";
-
+ 
 const customStyles = {
     content: {
         top: '50%',
@@ -31,7 +31,7 @@ function Card() {
     //Load funtion on page load
     useEffect(() => {
         handleFriends()
-    }, [])
+     }, [])
 
 
     //Function to load all user on page load
@@ -50,10 +50,9 @@ function Card() {
     const [modalIsOpen, setIsOpen] = useState(false);
     const [modal2IsOpen, set2IsOpen] = useState(false);
 
-
     function openModal() {
         setIsOpen(true);
-    }
+     }
 
     function openModal2() {
         set2IsOpen(true);
@@ -90,26 +89,26 @@ function Card() {
                                     </div>
                                     <br />
                                     <div>
-                                        <a className="button is-light" id="seltzer" onClick={openModal}>Send Money</a>
-                                        <a className="button is-light" id="seltzer" onClick={openModal2}>Remove Friend</a>
+                                    <a className="button is-light saveBtn" id="seltzer" data-newfriend={item._id} onClick={openModal} >Send Money</a>
+                                    <a className="button is-light" id="seltzer" onClick={openModal2}>Remove Friend</a>
+                                     
                                     </div>
                                     <hr />
-
-
+                                
                                     <Modal
                                         isOpen={modalIsOpen}
                                         onRequestClose={closeModal}
                                         style={customStyles}
                                         contentLabel="Send Money Modal"
-                                        key={item._id}
                                     >
+                                        
                                         <div className="modal-card">
                                             <header className="modal-card-head">
-                                                <p className="modal-card-title">Send Money to {item.name}</p>
+                                                <p className="modal-card-title" data-newfriend={item._id}>Send Money to {item.name}</p>
                                                 <button className="delete" aria-label="close" onClick={closeModal}></button>
                                             </header>
                                             <section className="modal-card-body">
-                                            <p className='subtitle'>How much would you like to transfer</p>
+                                                <p className='subtitle'>How much would you like to transfer</p>
                                                 <div class="field has-addons">
                                                     <p class="control">
                                                         <span class="select">
@@ -121,7 +120,7 @@ function Card() {
                                                         </span>
                                                     </p>
                                                     <p class="control is-expanded">
-                                                        <input class="input" type="text" placeholder="Amount of money"/>
+                                                        <input class="input" type="text" placeholder="Amount of money" />
                                                     </p>
                                                 </div>
                                                 <p className='subtitle'>Leave a messeage for your friend</p>
@@ -131,9 +130,9 @@ function Card() {
                                                     </div>
                                                 </div>
                                             </section>
-                                                <footer className="modal-card-foot">
-                                                    <button className="button is-success">Submit Payment</button>
-                                                </footer>
+                                            <footer className="modal-card-foot">
+                                                <button className="button is-success">Submit Payment</button>
+                                            </footer>
                                         </div>
                                     </Modal>
                                     <Modal
@@ -155,14 +154,17 @@ function Card() {
                                                 <button className="button" onClick={closeModal2}>Never Mind</button>
                                             </footer>
                                         </div>
+                                        
                                     </Modal>
-
+                                   
                                 </article>
+                                 
                             </div>
+                                 
                         )
                     }
                     )}
-                            </div>
+                </div>
             </div>
         </>
     );

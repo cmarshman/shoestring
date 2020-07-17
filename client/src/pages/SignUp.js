@@ -37,9 +37,20 @@ function SignUp(user) {
       password: "",
       friends: '',
       image: "",
+      sentTransactions: "",
+      receivedTransactions : "",
+      sentBankTransactions: "",
+      receivedBankTransactions : "",
+      plaidToken: "",
+      institution : "",
+      accountType: "",
+      balance: 0,
+      message: "",
       amount: 0,
       message: '',
+      date: Date.now,
       checked: false,
+
     },
     validationSchenma,
     // Handles updating component state when the user types into the input field
@@ -66,8 +77,17 @@ function SignUp(user) {
       password: values.password,
       friends: values.friends,
       image:  values.image,
+      sentTransactions: values.sentTransactions,
+      receivedTransactions : values.receivedTransactions,
+      sentBankTransactions: values.sentBankTransactions,
+      receivedBankTransactions : values.receivedBankTransactions,
+      plaidToken: values.plaidToken,
+      institution : values.institution,
+      accountType: values.accountType,
+      balance: values.balance,
       amount: values.amount,
       message: values.message,
+      date: Date.now(),
       checked: values.checked
     }).then(user => {
       console.log("user", user)
@@ -229,9 +249,9 @@ function SignUp(user) {
                 <div className="control">
                   <button className="button is-light" 
                   onClick={handleFormOnsubmit} 
-                  disabled={!values.checked && 'errors'}
                   disabled={!values.phone.match(phoneno)}
                   disabled={!values.email.match(emailVal)}
+                  disabled={!values.checked && 'errors'}
                   id="twofish"
                   >Submit</button>
                 </div>

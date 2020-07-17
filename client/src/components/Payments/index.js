@@ -26,8 +26,7 @@ function Payments(currentUser) {
             image: currentUserObj.currentUser.image,
             amount: currentUserObj.currentUser.amount,
             message: currentUserObj.currentUser.message,
-            // friendPayment: currentUserObj.currentUser.friends[0].name
-            // friendPayment: currentUserObj.currentUser.friends[1].amount
+             
         }
     ]
 
@@ -36,7 +35,7 @@ function Payments(currentUser) {
 
     const friendsPayments = currentUserObj.currentUser.friends.slice(1);
 
-    console.log(friendsPayments);
+    // console.log(friendsPayments);
     const userName = currentUserObj.currentUser.name;
 
     const handleSearch = () => {
@@ -55,9 +54,9 @@ function Payments(currentUser) {
             .catch(err => { console.log(err) })
     }
 
-    console.log("hello", friendResult)
-    console.log(currentUserObj.currentUser.message)
-    console.log(friendResult)
+    // console.log("hello", friendResult)
+    // console.log(currentUserObj.currentUser.message)
+    // console.log(friendResult)
 
     return (
         <div className="tile is-child box is-fullwidth" id="payments">
