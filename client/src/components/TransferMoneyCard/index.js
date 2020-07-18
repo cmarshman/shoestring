@@ -89,8 +89,7 @@ function TransferMoneyCard() {
             httpClient.InsertUpdate({
                     _id: findEmail._id,
                     receivedTransactions:[...findEmail.receivedTransactions, {name:findCurrentUser.name, amount: values.amount, message: values.message, date:  Date.now}],
-                    balance: parseInt(findEmail.balance) + parseInt(values.amount),
-                     
+                    balance: parseInt(findEmail.balance) + parseInt(values.amount),       
             })   
             .then(
                  httpClient.InsertUpdate({
