@@ -10,9 +10,22 @@
     margin-right: 10px!important;
 }
 
+a{
+    text-decoration: none!important;
+}
+
 #rainbowfish{
     color: #3bd389;
 
+}
+
+#tile {
+    margin: 0 auto;
+}
+
+.sticky	{
+	position: sticky;
+  	top: 30px;
 }
 
 #rainbowfish:hover{
@@ -33,6 +46,7 @@
     background-color: #363636!important;
     color: #f5f5f5!important;
 }
+
 .errMsg{
     padding: 7px;  
    /* border: 1px solid red;  */
