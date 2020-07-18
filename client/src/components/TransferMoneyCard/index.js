@@ -40,10 +40,17 @@ function TransferMoneyCard() {
         currentUser: httpClient.getCurrentUser()
     })
 
-    var createdDate = currentUserObj.currentUser.date
-    //console.log(Yup.date)
-    createdDate = moment().format('LL');
+     //setup results state
+     const [friendResult, setFriendResult] = useState([{}]);
+
+    var createdDate1 = currentUserObj.currentUser.date
+    let createdDate = moment(createdDate1).format('LL');
     let currentUser = currentUserObj.currentUser
+
+    useEffect(() => {
+        transferMoney()
+        
+    }, [])
      
     const sendMoney = () =>{
         httpClient.InsertUpdate({
@@ -54,9 +61,10 @@ function TransferMoneyCard() {
         })
     }
     let currentUserfriends = currentUserObj.currentUser.friends
-    const transferMoney = (evt) => {
+    const transferMoney =() => {
         const userEmail = values.email
         const userName = values.name
+        const userAmount = values.amount
         let currentUser = currentUserObj.currentUser
         httpClient.FindAllUser()
         .then(serverResponse => {
@@ -64,41 +72,38 @@ function TransferMoneyCard() {
             let findCurrentUser = data.find(item => item._id === currentUser._id)
             let friendArray = findCurrentUser.friends
             let findEmail = friendArray.find(item => item.email === userEmail && item.name === userName)
-
+            setFriendResult(findCurrentUser)
             console.log("find", findEmail)
              if (findEmail === undefined || findEmail.email === findCurrentUser.email || userName === findCurrentUser.name) {
                 console.log("findEmail", findEmail)
                 $('#errormsg').attr("style", "color:red")
                 $('#errormsg').text("Your Friend is not found. Make sure your friend's email and name are correct.");
                 return
+            }else if (findCurrentUser.balance <=0 || findCurrentUser.balance < userAmount){
+                $('#errormsg').attr("style", "color:red")
+                $('#errormsg').text("Your balance is less than the amount you are trying to send. Please go to My wallet to fund your account");
+                //window.location.replace('/mywallet')
+                console.log("Hey")
+                return
             }
             httpClient.InsertUpdate({
                     _id: findEmail._id,
-                    //receivedTransactions: [{...{amount: values.amount, ...{message: values.message}}}],
-                    receivedTransactions:[...findEmail.receivedTransactions, {amount: values.amount, message: values.message}],
+                    receivedTransactions:[...findEmail.receivedTransactions, {name:findCurrentUser.name, amount: values.amount, message: values.message, date:  Date.now}],
                     balance: parseInt(findEmail.balance) + parseInt(values.amount),
-                    date:  createdDate,
-            })
-            // httpClient.InsertUpdate({
-            //         _id: findCurrentUser._id,
-            //         //receivedTransactions: [{...{amount: values.amount, ...{message: values.message}}}],
-            //         sentTransactions:[...findCurrentUser.sentTransactions, {amount: values.amount, message: values.message}],
-            //         balance: parseInt(findCurrentUser.balance) - parseInt(values.amount),
-            //         date:  createdDate,
-            // })
-            // .then(response => {
-            //             console.log('response', response)   
-            // })   
+                     
+            })   
             .then(
                  httpClient.InsertUpdate({
                     _id: findCurrentUser._id,
-                     sentTransactions:[...findCurrentUser.sentTransactions, {amount: values.amount, message: values.message}],
+                    sentTransactions:[...findCurrentUser.sentTransactions, {name:findEmail.name,amount: values.amount, message: values.message, date:  Date.now}],
                     balance: parseInt(findCurrentUser.balance) - parseInt(values.amount),
-                    date:  createdDate,
+                     
                 }),window.location.replace('/home'))
                 .catch(err => console.log('err', err))
             })
     }
+
+    console.log("log", friendResult)
 //Render all the data
     return (
 
@@ -113,7 +118,7 @@ function TransferMoneyCard() {
                                 </a>
                                 <br />
                                 <UserNameCard />
-                                <p id="funds">Funds Available: {currentUserObj.currentUser.balance}</p>
+                                <p id="funds">Funds Available: {friendResult.balance}</p>
                                 <p id="member">Member Since: {createdDate}</p>
                             </div>
                         </div>

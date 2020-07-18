@@ -48,7 +48,6 @@ function SignUp(user) {
       message: "",
       amount: 0,
       message: '',
-      date: Date.now,
       checked: false,
 
     },
@@ -87,7 +86,6 @@ function SignUp(user) {
       balance: values.balance,
       amount: values.amount,
       message: values.message,
-      date: Date.now(),
       checked: values.checked
     }).then(user => {
       console.log("user", user)

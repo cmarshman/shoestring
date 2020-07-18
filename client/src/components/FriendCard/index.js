@@ -171,3 +171,4 @@ function Card() {
 }
 
 export default withRouter(Card);
+ 
