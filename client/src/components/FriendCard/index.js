@@ -57,9 +57,12 @@ function Card() {
     //setup results state
     const [friendResult, setFriendResult] = useState([{}]);
 
+    const [sendMoney, setSendMoney] = useState([{}]);
+
     //Load funtion on page load
     useEffect(() => {
         handleFriends()
+        //transferMoney()
     }, [])
 
 
@@ -78,40 +81,48 @@ function Card() {
 
 
        //update the database with a new friend added 
-       const addMoneytofriend = (evt) => {
+       const sendMoneytofriend = (evt) => {
         const friendId = evt.target.dataset.newfriend
         let friendToAdd = friendResult.find(item => item._id === friendId)
          if(friendToAdd !=null){
             openModal() 
+            setSendMoney(friendToAdd)
       }    
-        //onSuccess();
-    }
-    //update the database with a new friend added 
-    const transferMoney = (evt) => {
-        const friendId = evt.target.dataset.newfriend
+     }
+
+    console.log('dataset', sendMoney)
+
+    let currentUser = currentUserObj.currentUser
+    console.log('current', currentUser)
+
+    //update the database with a   friend balance and current user balance 
+    const transferMoney = () => {
+        //const friendId = evt.target.dataset.newfriend
         let currentUser = currentUserObj.currentUser
-        const userAmount = values.amount
+        let userAmount = values.amount
         httpClient.FindAllUser()
             .then(serverResponse => {
                 const data = serverResponse.data
                 let findCurrentUser = data.find(item => item._id === currentUser._id)
                 let friendArray = findCurrentUser.friends
-                let friendToSendTo = friendArray.find(item => item._id === friendId)
+                let friendToSendTo = friendArray.find(item => item._id === sendMoney._id)
                 //setFriendResult(friendToSendTo);
-                //setIsOpen(true);
-                if (userAmount <= 0 || userAmount === '') {
+                //setCurrentUserObj(findCurrentUser)
+                 //openModal() 
+                if (userAmount <= 0) {
+                    alert("heyyy")
                     $('#errormsg').attr("style", "color:red")
                     $('#errormsg').text("Please endter a valide amount")
                     return
-                }
-                if (findCurrentUser.balance <= 0 || findCurrentUser.balance < userAmount) {
+                    
+                }else if (findCurrentUser.balance <= 0 || findCurrentUser.balance < userAmount) {
                     $('#errormsg').attr("style", "color:red")
                     $('#errormsg').text("Your balance is less than the amount you are trying to send. Please go to My wallet to fund your account");
-                    //return
+                    return
                 }
                 httpClient.InsertUpdate({
                     _id: friendToSendTo._id,
-                    receivedTransactions: [...friendToSendTo.receivedTransactions, { name: findCurrentUser.name, amount: values.amount, message: values.message }],
+                    receivedTransactions:[...friendToSendTo.receivedTransactions, { name: findCurrentUser.name, amount: values.amount, message: values.message }],
                     balance: parseInt(friendToSendTo.balance) + parseInt(values.amount),
                 })
                 .then(
@@ -120,7 +131,7 @@ function Card() {
                             sentTransactions: [...findCurrentUser.sentTransactions, { name: friendToSendTo.name, amount: values.amount, message: values.message }],
                             balance: parseInt(findCurrentUser.balance) - parseInt(values.amount),
 
-                    }),closeModal())
+                    }),window.location.replace('/'))
                     .catch(err => console.log('err', err))
             })
 
@@ -168,7 +179,7 @@ function Card() {
                                     </div>
                                     <br />
                                     <div>
-                                        <a className="button is-light saveBtn" id="seltzer" data-newfriend={item._id} onClick={addMoneytofriend} >Send Money</a>
+                                        <a className="button is-light saveBtn" id="seltzer" data-newfriend={item._id} onClick={sendMoneytofriend} >Send Money</a>
                                         <a className="button is-light" id="seltzer" onClick={openModal2}>Remove Friend</a>
 
                                     </div>
@@ -177,9 +188,9 @@ function Card() {
 
                             </div>
 
-                        )
-                    }
-                    )} */}
+                    //     )
+                    // }
+                    // )} */}
                                     <form onSubmit={handleSubmit}>
                                         <Modal
                                             isOpen={modalIsOpen}
@@ -187,14 +198,15 @@ function Card() {
                                             style={customStyles}
                                             contentLabel="Send Money Modal"
                                         >
-                                            {/* {friendResult.map(item => {
-                         return ( */}
+                                    {/* {friendResult.map(item => { */}
+                                    
+                                        {/* return ( */}
 
 
                                             <div className="modal-card">
 
                                                 <header className="modal-card-head">
-                                                    <p className="modal-card-title" data-newfriend={item._id}>Send Money to {item.name}</p>
+                                                    <p className="modal-card-title" >Send Money to {sendMoney.name}</p>
                                                     <button className="delete" aria-label="close" onClick={closeModal}></button>
                                                 </header>
                                                 <section className="modal-card-body">
@@ -234,14 +246,13 @@ function Card() {
                                                     </div>
                                                 </section>
                                                 <footer className="modal-card-foot">
-                                                    <button className="button is-success"  type="submit" data-newfriend={item._id} onClick={transferMoney}>Submit Payment</button>
+                                                    <button className="button is-success"  type="submit"  onClick={transferMoney}>Submit Payment</button>
                                                 </footer>
                                             </div>
-
-                                            {/* //     )
-                    // }
-                    // )} */}
-                                        </Modal>
+                              {/* ) */}
+                     {/* }
+                    )}   */}
+                                   </Modal>
                                         <Modal
                                             isOpen={modal2IsOpen}
                                             onRequestClose={closeModal2}
@@ -264,15 +275,15 @@ function Card() {
 
                                         </Modal>
                                     </form>
-                                </article>
+                                </article> 
 
                             </div>
 
                         )
                     }
                     )}
-                </div>
-            </div>
+                </div> 
+            </div> 
 
         </>
     );
