@@ -27,21 +27,41 @@ function Settings() {
                         <div className="columns">
                             <div className="column is-one-third">
                                 <div className="menu sticky">
+                                    <br/>
+                                    <br/>
                                     <p className="menu-label"><b>Quick Links</b></p>
                                     <ul className="menu-list">
-                                        <li><a href="#Personal">Personal Information</a></li>
-                                        <li><a href="#keyword">Password</a></li>
-                                        <li><a href="#onpage">Photo</a></li>
-                                        <li><a href="#content">Bank Information</a></li>
+                                        <li>
+                                        <div className="navbar-item has-dropdown is-hoverable">
+                                            <a className="navbar-link is-arrowless" href="#personal-information">Personal Information</a>
+                                            <div className="navbar-dropdown">
+                                                <a className="navbar-item" href="#name">
+                                                Name
+                                                </a>
+                                                <a className="navbar-item" href="#phone-number">
+                                                Phone Number
+                                                </a>
+                                                <a className="navbar-item" href="#location">
+                                                Location
+                                                </a>
+                                                <a className="navbar-item" href="#email">
+                                                Email
+                                                </a>
+                                            </div>
+                                        </div>
+                                        </li>
+                                        <li><a href="#edit-password">Password</a></li>
+                                        <li><a href="#edit-photo">Photo</a></li>
+                                        <li><a href="#edit-bank-informaion">Bank Information</a></li>
                                     </ul>
-                                </div>
+                                        </div>
                             </div>
-                            <div id="editSettings">
-                            <EditSettings/>
-                            </div>                       
-                        </div>
+                                    <div id="editSettings">
+                                        <EditSettings />
+                                    </div>
+                                </div>
                     </article>
-                </div>
+                        </div>
             </div>
     </>
     )

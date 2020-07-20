@@ -10,6 +10,11 @@
     cursor: pointer;
 }
 
+#terry{
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
 #navitems{
     text-decoration: none;
     color: #363636!important;

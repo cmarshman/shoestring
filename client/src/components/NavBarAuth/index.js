@@ -39,7 +39,7 @@ useEffect(() => {
 
   return (
     <div>
-      <nav className="navbar" role="navigation" aria-label="main navigation" id="opening-nav">
+      <nav className="navbar is-fixed-top" role="navigation" aria-label="main navigation" id="opening-nav">
         <div className="navbar-brand">
           <Link to="/home" className="navbar-item">
             <img src={Image} alt="logo" width="112" height="28"/>

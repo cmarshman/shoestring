@@ -106,7 +106,7 @@ function SignUp(user) {
     <>
       <Navbar />
       <form onSubmit={handleSubmit}>
-      <div id='errorMsg'  ></div>
+      <div id='errorMsg'></div>
       <div className="tile is-ancestor">
         <div className="tile is vertical is-7 box" id="tile">
 

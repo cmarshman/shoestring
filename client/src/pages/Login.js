@@ -55,7 +55,7 @@ const { values, touched, errors, handleChange, handleBlur, handleSubmit, isSubmi
 
           <div className="tile is-parent">
             <article className="tile is-child notification is-dark">
-
+            <p className="title" id="formTitle">Login</p>  
               <div className="field">
 
                         <label className="label">Email</label>

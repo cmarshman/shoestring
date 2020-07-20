@@ -11,11 +11,13 @@ function ContactForm() {
     })
     
     return (
+        <>
+        <div id="terry"></div>
         <div className="tile is-ancestor">
             <div className="tile is vertical is-7 box" id="tile">
-
                 <div className="tile is-parent">
                     <article className="tile is-child notification is-dark">
+                    <p className="title" id="formTitle">Contact us</p>
                         <form action="https://formspree.io/mrgkrawy" method="POST" target="_blank" id='myForm'>
                             <div className="field" id="contact_me">
                                 <p className="control has-icons-left">
@@ -49,6 +51,7 @@ function ContactForm() {
                 </div>
             </div>
         </div>
+        </>
     );
 }
 

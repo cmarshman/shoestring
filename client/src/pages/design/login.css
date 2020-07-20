@@ -37,7 +37,8 @@
 }
 
 #loginerrMsg{
-  padding: 7px;  
+  padding: 20px!important;
+  margin-bottom: 10px;  
  /* border: 1px solid red;  */
 color: red;
 text-align: center;  
