@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import Modal from 'react-modal';
 import httpClient from "../../httpClient.js";
 import * as Yup from 'yup';
-import { useFormik } from 'formik';
+import { useFormik, yupToFormErrors } from 'formik';
 import $, { data } from 'jquery';
 import moment from 'moment';
 
@@ -62,7 +62,7 @@ function Card() {
     //Load funtion on page load
     useEffect(() => {
         handleFriends()
-        //transferMoney()
+         
     }, [])
 
 
@@ -80,7 +80,7 @@ function Card() {
     }
 
 
-       //update the database with a new friend added 
+    //    //update the database with a new friend added 
        const sendMoneytofriend = (evt) => {
         const friendId = evt.target.dataset.newfriend
         let friendToAdd = friendResult.find(item => item._id === friendId)
@@ -88,37 +88,26 @@ function Card() {
             openModal() 
             setSendMoney(friendToAdd)
       }    
+      
      }
 
-    console.log('dataset', sendMoney)
-
-    let currentUser = currentUserObj.currentUser
-    console.log('current', currentUser)
-
-    //update the database with a   friend balance and current user balance 
+    // //update the database with a   friend balance and current user balance 
     const transferMoney = () => {
-        //const friendId = evt.target.dataset.newfriend
+        const userEmail = sendMoney.email
+        const userName = sendMoney.name
         let currentUser = currentUserObj.currentUser
         let userAmount = values.amount
         httpClient.FindAllUser()
             .then(serverResponse => {
                 const data = serverResponse.data
                 let findCurrentUser = data.find(item => item._id === currentUser._id)
+                let friendToSendTo = data.find(item => item._id  === sendMoney._id)
                 let friendArray = findCurrentUser.friends
-                let friendToSendTo = friendArray.find(item => item._id === sendMoney._id)
-                //setFriendResult(friendToSendTo);
-                //setCurrentUserObj(findCurrentUser)
-                 //openModal() 
-                if (userAmount <= 0) {
-                    alert("heyyy")
-                    $('#errormsg').attr("style", "color:red")
-                    $('#errormsg').text("Please endter a valide amount")
-                    return
-                    
-                }else if (findCurrentUser.balance <= 0 || findCurrentUser.balance < userAmount) {
-                    $('#errormsg').attr("style", "color:red")
-                    $('#errormsg').text("Your balance is less than the amount you are trying to send. Please go to My wallet to fund your account");
-                    return
+                setFriendResult(findCurrentUser.friends)
+                
+                if(sendMoney !=null)
+                {
+                    setSendMoney(friendToSendTo)
                 }
                 httpClient.InsertUpdate({
                     _id: friendToSendTo._id,
@@ -131,8 +120,8 @@ function Card() {
                             sentTransactions: [...findCurrentUser.sentTransactions, { name: friendToSendTo.name, amount: values.amount, message: values.message }],
                             balance: parseInt(findCurrentUser.balance) - parseInt(values.amount),
 
-                    }),window.location.replace('/'))
-                    .catch(err => console.log('err', err))
+                }),window.location.replace('/home'))
+                .catch(err => console.log('err', err))
             })
 
     }
@@ -147,7 +136,6 @@ function Card() {
     function openModal2() {
         set2IsOpen(true);
     }
-
     function closeModal() {
         setIsOpen(false);
     }
@@ -191,12 +179,15 @@ function Card() {
                     //     )
                     // }
                     // )} */}
+                                  
+
                                     <form onSubmit={handleSubmit}>
                                         <Modal
                                             isOpen={modalIsOpen}
                                             onRequestClose={closeModal}
                                             style={customStyles}
                                             contentLabel="Send Money Modal"
+                                            
                                         >
                                     {/* {friendResult.map(item => { */}
                                     
@@ -204,11 +195,12 @@ function Card() {
 
 
                                             <div className="modal-card">
-
+                                            
                                                 <header className="modal-card-head">
                                                     <p className="modal-card-title" >Send Money to {sendMoney.name}</p>
                                                     <button className="delete" aria-label="close" onClick={closeModal}></button>
                                                 </header>
+                                                
                                                 <section className="modal-card-body">
                                                     <p className='subtitle'>How much would you like to transfer</p>
                                                     <div id='errormsg'></div>
