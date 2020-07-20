@@ -3,7 +3,7 @@ import './style.css';
 import { Link, withRouter } from 'react-router-dom';
 import Modal from 'react-modal';
 import httpClient from "../../httpClient.js";
- 
+
 const customStyles = {
     content: {
         top: '50%',
@@ -31,8 +31,7 @@ function Card() {
     //Load funtion on page load
     useEffect(() => {
         handleFriends()
-     }, [])
-
+    }, [])
 
     //Function to load all user on page load
     const handleFriends = () => {
@@ -52,7 +51,7 @@ function Card() {
 
     function openModal() {
         setIsOpen(true);
-     }
+    }
 
     function openModal2() {
         set2IsOpen(true);
@@ -65,7 +64,55 @@ function Card() {
     function closeModal2() {
         set2IsOpen(false);
     }
-
+    // const modal1 = () => {
+    //     return (
+    //         <>
+    // <Modal
+    //     isOpen={modalIsOpen}
+    //     onRequestClose={closeModal}
+    //     style={customStyles}
+    //     contentLabel="Send Money Modal"
+    // >
+    //      {friendResult.map(item => {
+    //             return (
+    //     <div className="modal-card">
+    //         <header className="modal-card-head">
+    //             <p className="modal-card-title" data-newfriend={item._id}>Send Money to {item.name}</p>
+    //             <button className="delete" aria-label="close" onClick={closeModal}></button>
+    //         </header>
+    //         <section className="modal-card-body">
+    //             <p className='subtitle'>How much would you like to transfer</p>
+    //             <div class="field has-addons">
+    //                 <p class="control">
+    //                     <span class="select">
+    //                         <select>
+    //                             <option>$</option>
+    //                             <option>£</option>
+    //                             <option>€</option>
+    //                         </select>
+    //                     </span>
+    //                 </p>
+    //                 <p class="control is-expanded">
+    //                     <input class="input" type="text" placeholder="Amount of money" />
+    //                 </p>
+    //             </div>
+    //             <p className='subtitle'>Leave a messeage for your friend</p>
+    //             <div class="field">
+    //                 <div class="control">
+    //                     <textarea class="textarea" placeholder="For the fluffy rainbow unicorn"></textarea>
+    //                 </div>
+    //             </div>
+    //         </section>
+    //         <footer className="modal-card-foot">
+    //             <button className="button is-success">Submit Payment</button>
+    //         </footer>
+    //     </div>
+    //             )}
+    //      )}
+    // </Modal>
+    //         </>
+    //     );
+    // }
     //Render all the logged in user Friends
     return (
         <>
@@ -89,86 +136,86 @@ function Card() {
                                     </div>
                                     <br />
                                     <div>
-                                    <a className="button is-light saveBtn" id="seltzer" data-newfriend={item._id} onClick={openModal} >Send Money</a>
-                                    <a className="button is-light" id="seltzer" onClick={openModal2}>Remove Friend</a>
-                                     
+                                        <a className="button is-light saveBtn" id="seltzer" data-newfriend={item._id} onClick={openModal} >Send Money</a>
+                                        <a className="button is-light" id="seltzer" onClick={openModal2}>Remove Friend</a>
+
                                     </div>
                                     <hr />
-                                
-                                    <Modal
-                                        isOpen={modalIsOpen}
-                                        onRequestClose={closeModal}
-                                        style={customStyles}
-                                        contentLabel="Send Money Modal"
-                                    >
-                                        
-                                        <div className="modal-card">
-                                            <header className="modal-card-head">
-                                                <p className="modal-card-title" data-newfriend={item._id}>Send Money to {item.name}</p>
-                                                <button className="delete" aria-label="close" onClick={closeModal}></button>
-                                            </header>
-                                            <section className="modal-card-body">
-                                                <p className='subtitle'>How much would you like to transfer</p>
-                                                <div class="field has-addons">
-                                                    <p class="control">
-                                                        <span class="select">
-                                                            <select>
-                                                                <option>$</option>
-                                                                <option>£</option>
-                                                                <option>€</option>
-                                                            </select>
-                                                        </span>
-                                                    </p>
-                                                    <p class="control is-expanded">
-                                                        <input class="input" type="text" placeholder="Amount of money" />
-                                                    </p>
-                                                </div>
-                                                <p className='subtitle'>Leave a messeage for your friend</p>
-                                                <div class="field">
-                                                    <div class="control">
-                                                        <textarea class="textarea" placeholder="For the fluffy rainbow unicorn"></textarea>
-                                                    </div>
-                                                </div>
-                                            </section>
-                                            <footer className="modal-card-foot">
-                                                <button className="button is-success">Submit Payment</button>
-                                            </footer>
-                                        </div>
-                                    </Modal>
-                                    <Modal
-                                        isOpen={modal2IsOpen}
-                                        onRequestClose={closeModal2}
-                                        style={customStyles}
-                                        contentLabel="Remove Friend Modal"
-                                    >
-                                        <div className="modal-card">
-                                            <header className="modal-card-head">
-                                                <p className="modal-card-title">Remove Friend</p>
-                                                <button className="delete" aria-label="close" onClick={closeModal2}></button>
-                                            </header>
-                                            <section className="modal-card-body">
-
-                                            </section>
-                                            <footer className="modal-card-foot">
-                                                <button className="button is-success">I'm sure</button>
-                                                <button className="button" onClick={closeModal2}>Never Mind</button>
-                                            </footer>
-                                        </div>
-                                        
-                                    </Modal>
-                                   
                                 </article>
-                                 
                             </div>
-                                 
                         )
                     }
                     )}
+                    <Modal
+                        isOpen={modalIsOpen}
+                        onRequestClose={closeModal}
+                        style={customStyles}
+                        contentLabel="Send Money Modal"
+                    >
+                        {friendResult.map(item => {
+                            return (
+                                <div className="modal-card">
+                                    <header className="modal-card-head">
+                                        <p className="modal-card-title" data-newfriend={item._id}>Send Money to {item.name}</p>
+                                        <button className="delete" aria-label="close" onClick={closeModal}></button>
+                                    </header>
+                                    <section className="modal-card-body">
+                                        <p className='subtitle'>How much would you like to transfer</p>
+                                        <div class="field has-addons">
+                                            <p class="control">
+                                                <span class="select">
+                                                    <select>
+                                                        <option>$</option>
+                                                        <option>£</option>
+                                                        <option>€</option>
+                                                    </select>
+                                                </span>
+                                            </p>
+                                            <p class="control is-expanded">
+                                                <input class="input" type="text" placeholder="Amount of money" />
+                                            </p>
+                                        </div>
+                                        <p className='subtitle'>Leave a messeage for your friend</p>
+                                        <div class="field">
+                                            <div class="control">
+                                                <textarea class="textarea" placeholder="For the fluffy rainbow unicorn"></textarea>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <footer className="modal-card-foot">
+                                        <button className="button is-success">Submit Payment</button>
+                                    </footer>
+                                </div>
+                            )
+                        }
+                        )}
+                    </Modal>
+                    <Modal
+                        isOpen={modal2IsOpen}
+                        onRequestClose={closeModal2}
+                        style={customStyles}
+                        contentLabel="Remove Friend Modal"
+                    >
+                        <div className="modal-card">
+                            <header className="modal-card-head">
+                                <p className="modal-card-title">Remove Friend</p>
+                                <button className="delete" aria-label="close" onClick={closeModal2}></button>
+                            </header>
+                            <section className="modal-card-body">
+
+                            </section>
+                            <footer className="modal-card-foot">
+                                <button className="button is-success">I'm sure</button>
+                                <button className="button" onClick={closeModal2}>Never Mind</button>
+                            </footer>
+                        </div>
+                    </Modal>
+
                 </div>
             </div>
         </>
     );
+
 }
 
 export default withRouter(Card);
- 

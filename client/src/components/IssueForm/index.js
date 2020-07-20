@@ -11,12 +11,13 @@ function IssueForm () {
     })
     
     return (
+        <>
+        <div id="terry"></div>
         <div className="tile is-ancestor">
-
             <div className="tile is vertical is-7 box" id="tile">
-
                 <div className="tile is-parent">
                     <article className="tile is-child notification is-dark">
+                    <p className="title" id="formTitle">Report an issue</p>
                         <form action="https://formspree.io/xlenawyq" method="POST" target="_blank" id='myForm'>
                             <div className="field" id="contact_me">
                                 <p className="control has-icons-left">
@@ -38,7 +39,7 @@ function IssueForm () {
                             </div>
                             <div className="field">
                                 <p className="control has-icons-left">
-                                    <input className="input" type="text" name="message" placeholder="Is your issue in the app or dashboard?"/>
+                                    <input className="input" type="text" name="message" placeholder="Is your issue in the mobile app or web dashboard?"/>
                                     <span className="icon is-small is-left">
                                     <i className="fas fa-question-circle"></i>
                                     </span>
@@ -61,6 +62,7 @@ function IssueForm () {
                 </div>
             </div>
         </div>
+        </>
     );
 }
 
