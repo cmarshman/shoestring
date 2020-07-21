@@ -112,15 +112,15 @@ function Card() {
                 httpClient.InsertUpdate({
                     _id: friendToSendTo._id,
                     receivedTransactions: [...friendToSendTo.receivedTransactions, { name: currentUserObj.name, amount: values.amount, message: values.message }],
-                    balance: parseInt(friendToSendTo.balance) + parseInt(values.amount),
+                    balance: parseFloat(friendToSendTo.balance) + parseFloat(values.amount),
                 })
-                    .then(
-                        httpClient.InsertUpdate({
+                .then(
+                    httpClient.InsertUpdate({
                             _id: currentUserObj._id,
                             sentTransactions: [...currentUserObj.sentTransactions, { name: friendToSendTo.name, amount: values.amount, message: values.message }],
-                            balance: parseInt(currentUserObj.balance) - parseInt(values.amount),
+                            balance: parseFloat(currentUserObj.balance) - parseFloat(values.amount),
 
-                        }), window.location.replace('/home'))
+                    }), window.location.replace('/home'))
                     .catch(err => console.log('err', err))
             })
 
@@ -215,7 +215,7 @@ function Card() {
                                                             </span>
                                                         </p>
                                                         <p class="control is-expanded">
-                                                            <input class="input" type= "number" placeholder="Amount of money"
+                                                            <input class="input" type= "text" placeholder="Amount of money"
                                                                 onChange={handleChange}
                                                                 name="amount"
                                                                 value={values.amount}

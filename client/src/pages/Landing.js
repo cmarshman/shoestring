@@ -16,10 +16,25 @@ function Landing() {
     const [currentUserObj, setCurrentUserObj] = useState({
         currentUser: httpClient.getCurrentUser()
     })
+    
+    //Load funtion on page load
+    useEffect(() => {
+        handleFriends()
 
-    var createdDate = currentUserObj.currentUser.date
-    console.log(createdDate)
-    createdDate = moment().format('LL');
+    }, [])
+        //Function to load all user on page load
+        const handleFriends = () => {
+            httpClient.FindAllUser()
+                .then(serverResponse => {
+                    let currentUserId = currentUserObj.currentUser._id
+                    let findFriend = serverResponse.data.find(item => item._id === currentUserId)
+                    setCurrentUserObj(findFriend)
+                })
+                .catch(err => { console.log(err) })
+        }
+    let createdDate1 = currentUserObj.date
+    console.log(createdDate1)
+    let createdDate = moment(createdDate1).format('LL');
 
     // Render the  all  the  pages on the landing pages
     return (
@@ -37,7 +52,7 @@ function Landing() {
                                             <AddImage />
                                             <br />
                                             <Plaid />
-                                            <p id="funds">Funds Available: {currentUserObj.currentUser.amount}</p>
+                                            <p id="funds">Funds Available: {currentUserObj.balance}</p>
                                             <p id="member">Member Since: {createdDate}</p>
                                         </div>
                                     </div>
