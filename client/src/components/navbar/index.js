@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import Image from '../../images/Logos/vector/default-monochrome-black.svg'
 
 
-const Navbar = (props) => {
+const Navbar = () => {
 
 const [isActive, setisActive] = React.useState(false);
 
@@ -12,7 +12,7 @@ const location = useLocation();
 
   return (
     <div>
-      <nav className="navbar" role="navigation" aria-label="main navigation" id="opening-nav">
+      <nav className="navbar is-fixed-top" role="navigation" aria-label="main navigation" id="opening-nav">
         <div className="navbar-brand">
           <Link to="/" className="navbar-item">
             <img src={Image} alt="logo" width="112" height="28"/>
