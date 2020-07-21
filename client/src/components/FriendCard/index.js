@@ -62,7 +62,7 @@ function Card() {
     //Load funtion on page load
     useEffect(() => {
         handleFriends()
-         
+
     }, [])
 
 
@@ -75,21 +75,22 @@ function Card() {
                 let findFriend = serverResponse.data.find(item => item._id === currentUserId)
                 let friendsArray = findFriend.friends.slice(1)
                 setFriendResult(friendsArray)
+                setCurrentUserObj(findFriend)
             })
             .catch(err => { console.log(err) })
     }
 
 
     //    //update the database with a new friend added 
-       const sendMoneytofriend = (evt) => {
+    const sendMoneytofriend = (evt) => {
         const friendId = evt.target.dataset.newfriend
         let friendToAdd = friendResult.find(item => item._id === friendId)
-         if(friendToAdd !=null){
-            openModal() 
+        if (friendToAdd != null) {
+            openModal()
             setSendMoney(friendToAdd)
-      }    
-      
-     }
+        }
+
+    }
 
     // //update the database with a   friend balance and current user balance 
     const transferMoney = () => {
@@ -100,28 +101,27 @@ function Card() {
         httpClient.FindAllUser()
             .then(serverResponse => {
                 const data = serverResponse.data
-                let findCurrentUser = data.find(item => item._id === currentUser._id)
-                let friendToSendTo = data.find(item => item._id  === sendMoney._id)
-                let friendArray = findCurrentUser.friends
-                setFriendResult(findCurrentUser.friends)
-                
-                if(sendMoney !=null)
-                {
+                //let findCurrentUser = data.find(item => item._id === currentUser._id)
+                let friendToSendTo = data.find(item => item._id === sendMoney._id)
+                //let friendArray = findCurrentUser.friends
+                setFriendResult(currentUserObj.friends)
+
+                if (sendMoney != null) {
                     setSendMoney(friendToSendTo)
                 }
                 httpClient.InsertUpdate({
                     _id: friendToSendTo._id,
-                    receivedTransactions:[...friendToSendTo.receivedTransactions, { name: findCurrentUser.name, amount: values.amount, message: values.message }],
+                    receivedTransactions: [...friendToSendTo.receivedTransactions, { name: currentUserObj.name, amount: values.amount, message: values.message }],
                     balance: parseInt(friendToSendTo.balance) + parseInt(values.amount),
                 })
-                .then(
-                     httpClient.InsertUpdate({
-                            _id: findCurrentUser._id,
-                            sentTransactions: [...findCurrentUser.sentTransactions, { name: friendToSendTo.name, amount: values.amount, message: values.message }],
-                            balance: parseInt(findCurrentUser.balance) - parseInt(values.amount),
+                    .then(
+                        httpClient.InsertUpdate({
+                            _id: currentUserObj._id,
+                            sentTransactions: [...currentUserObj.sentTransactions, { name: friendToSendTo.name, amount: values.amount, message: values.message }],
+                            balance: parseInt(currentUserObj.balance) - parseInt(values.amount),
 
-                }),window.location.replace('/home'))
-                .catch(err => console.log('err', err))
+                        }), window.location.replace('/home'))
+                    .catch(err => console.log('err', err))
             })
 
     }
@@ -179,7 +179,7 @@ function Card() {
                     //     )
                     // }
                     // )} */}
-                                  
+
 
                                     <form onSubmit={handleSubmit}>
                                         <Modal
@@ -187,20 +187,20 @@ function Card() {
                                             onRequestClose={closeModal}
                                             style={customStyles}
                                             contentLabel="Send Money Modal"
-                                            
+
                                         >
-                                    {/* {friendResult.map(item => { */}
-                                    
-                                        {/* return ( */}
+                                            {/* {friendResult.map(item => { */}
+
+                                            {/* return ( */}
 
 
                                             <div className="modal-card">
-                                            
+
                                                 <header className="modal-card-head">
                                                     <p className="modal-card-title" >Send Money to {sendMoney.name}</p>
                                                     <button className="delete" aria-label="close" onClick={closeModal}></button>
                                                 </header>
-                                                
+
                                                 <section className="modal-card-body">
                                                     <p className='subtitle'>How much would you like to transfer</p>
                                                     <div id='errormsg'></div>
@@ -215,14 +215,17 @@ function Card() {
                                                             </span>
                                                         </p>
                                                         <p class="control is-expanded">
-                                                            <input class="input" type="text" placeholder="Amount of money"
+                                                            <input class="input" type= "number" placeholder="Amount of money"
                                                                 onChange={handleChange}
                                                                 name="amount"
                                                                 value={values.amount}
                                                                 onBlur={handleBlur}
                                                             />
+                                                            {values.amount<0 || currentUserObj.balance < values.amount && touched.amount && 'errors' ? (
+                                                                <p className="errMsg">Invalid entery. Please check your account balance or your amount.</p>
+                                                            ) : ''}
                                                         </p>
-                                                       
+
                                                     </div>
                                                     <p className='subtitle'>Leave a messeage for your friend</p>
                                                     <div class="field">
@@ -233,18 +236,22 @@ function Card() {
                                                                 value={values.message}
                                                                 onBlur={handleBlur}
                                                             ></textarea>
-                                                            
+
                                                         </div>
                                                     </div>
                                                 </section>
                                                 <footer className="modal-card-foot">
-                                                    <button className="button is-success"  type="submit"  onClick={transferMoney}>Submit Payment</button>
+                                                    <button className="button is-success" type="submit"
+                                                      onClick={transferMoney}
+                                                      disabled={currentUserObj.balance < values.amount || values.amount<=0}
+                                                      //disabled={values.amount<=0}
+                                                 >Submit Payment</button>
                                                 </footer>
                                             </div>
-                              {/* ) */}
-                     {/* }
+                                            {/* ) */}
+                                            {/* }
                     )}   */}
-                                   </Modal>
+                                        </Modal>
                                         <Modal
                                             isOpen={modal2IsOpen}
                                             onRequestClose={closeModal2}
@@ -267,15 +274,15 @@ function Card() {
 
                                         </Modal>
                                     </form>
-                                </article> 
+                                </article>
 
                             </div>
 
                         )
                     }
                     )}
-                </div> 
-            </div> 
+                </div>
+            </div>
 
         </>
     );
