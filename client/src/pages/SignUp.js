@@ -106,13 +106,13 @@ function SignUp(user) {
     <>
       <Navbar />
       <form onSubmit={handleSubmit}>
-      <div id='errorMsg'  ></div>
+      <div id='errorMsg'></div>
       <div className="tile is-ancestor">
         <div className="tile is vertical is-7 box" id="tile">
 
           <div className="tile is-parent">
             <article className="tile is-child notification is-dark">
-
+              <p className="title" id="formTitle">Sign Up</p>
               <div className="field">
                 <label className="label">Name</label>
                 <div className="control has-icons-left">
@@ -148,7 +148,7 @@ function SignUp(user) {
                               <p className="errMsg">Please enter a valid Phone</p>
                             ): ''}
                   <span className="icon is-small is-left">
-                    <i class="fas fa-mobile-alt"></i>
+                    <i className="fas fa-mobile-alt"></i>
                   </span>
                 </div>
               </div>
@@ -166,7 +166,7 @@ function SignUp(user) {
                         <p className="errMsg">Please enter a valid City</p>
                     ): ''}
                   <span className="icon is-small is-left">
-                    <i class="fas fa-city"></i>
+                    <i className="fas fa-city"></i>
                   </span>
                 </div>
               </div>
@@ -184,7 +184,7 @@ function SignUp(user) {
                     <p className="errMsg">Please enter a valid State</p>
                     ): ''}
                   <span className="icon is-small is-left">
-                    <i class="far fa-compass"></i>
+                    <i className="far fa-compass"></i>
                   </span>
                 </div>
               </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import NavBarAdmin from '../components/NavBarAdmin';
 import './design/AdminSummary.css';
-import SummaryTransactions from '../components/Graphs/Transactions/Summary'
+
 
 const AdminSummary = () => {
     return (
@@ -17,7 +17,6 @@ const AdminSummary = () => {
                                     <p className="title"><a href="/transaction-history" rel="noopener noreferrer" className="pageLinks">Transactions</a></p>
                                     <p className="subtitle">All transactions through Shoestring</p>
                                     <div className="content">
-                                    <SummaryTransactions/>    
                                         <p></p>
                                     </div>
                                 </article>
