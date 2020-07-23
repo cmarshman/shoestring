@@ -24,7 +24,7 @@ function FindNewFriends(currentUser) {
 
     // Load the all users from the database on page load
     useEffect(() => {
-        handleSearch();
+        //handleSearch();
         handleFriends()
 
     }, [])
@@ -58,107 +58,117 @@ function FindNewFriends(currentUser) {
                 let currentUserId = currentUserObj.currentUser._id
                 let findFriend = serverResponse.data.find(item => item._id === currentUserId)
                 setCurrentUserObj(findFriend)
+                setFriendResult(serverResponse.data)
             })
             .catch(err => { console.log(err) })
     }
 
-    //update the database with a new friend added 
+     //update the database with a new friend added 
     const addfriend = (evt) => {
         const friendId = evt.target.dataset.newfriend
         let friendToAdd = friendResult.find(item => item._id === friendId)
         if (friendToAdd != null) {
             httpClient.InsertUpdate({
                 _id: currentUserObj._id,
-                friends: [...currentUserObj.friends, { friends: friendToAdd }]
+                friends: [...currentUserObj.friends, {friendToAdd}]
 
             })
-        }
-        onSuccess();
+            .then(
+                httpClient.InsertUpdate({
+                 _id: friendToAdd._id,
+                 friends: [...friendToAdd.friends, {currentUserObj}],
+
+                }),onSuccess())
+                .catch(err => console.log('err', err))
+        
     }
 
     // const addfriend = (evt) => {
-        // const friendId = evt.target.dataset.newfriend
-        // httpClient.FindAllUser()
-        //     .then(serverResponse => {
-        //         const data = serverResponse.data
-        //         let friendToAdd = data.find(item => item._id === friendId)
-        //         //let friendArray = findCurrentUser.friends
-        //         setFriendResult(currentUserObj.friends)
-        //         if (friendToAdd != null) {
-        //             newFriendAdded(friendToAdd)
-        //         }
-        //         httpClient.InsertUpdate({
-        //             _id: friendToAdd._id,
-        //             friends:[...friendToAdd.friends,  {friends: currentUserObj}],
-        //         })
-        //         .then(
-        //                 httpClient.InsertUpdate({
-        //                     _id: currentUserObj._id,
-        //                     friends: [...currentUserObj.friends, {friendToAdd}],
- 
-        //                 }), window.location.replace('/home'))
-        //             .catch(err => console.log('err', err))
-        //     })
-        // }
-        //Function to load all user on page load
-        const handleSearch = () => {
-            httpClient.FindAllUser()
-                .then(serverResponse => {
-                    setFriendResult(serverResponse.data);
-                })
-                .catch(err => setIsLoading(true))
-        }
+    //     const friendId = evt.target.dataset.newfriend
+    //     httpClient.FindAllUser()
+    //         .then(serverResponse => {
+    //             const data = serverResponse.data
+    //             let friendToAdd = data.find(item => item._id === friendId)
+    //             //let friendArray = findCurrentUser.friends
+    //             setFriendResult(currentUserObj.friends)
+    //             if (friendToAdd ===null) {
+    //                 //newFriendAdded(friendToAdd)
+    //                 return
+    //             }
+    //             httpClient.InsertUpdate({
+    //                 _id: currentUserObj._id,
+    //                 friends:[...currentUserObj.friends,  {friendToAdd}],
+    //             })
+    //             .then(
+    //                     httpClient.InsertUpdate({
+    //                         _id: friendToAdd._id,
+    //                         friends: [...friendToAdd.friends, {currentUserObj}],
 
+    //                     }), window.location.replace('/home'))
+    //                 .catch(err => console.log('err', err))
+    //         })
+}
 
-        //Maping data to the friends page
-        const searchResult = () => {
-            return (
-                <>
-                    {friendResult.map(item => {
-                        return (
-                            <div key={item._id} className="column is-one-third" id="blue">
-                                <article className="tile is-child notification has-text-centered" id="block">
-                                    <figure className="image is-square">
+//Function to load all user on page load
+const handleSearch = () => {
+    httpClient.FindAllUser()
+        .then(serverResponse => {
+            setFriendResult(serverResponse.data);
+        })
+        .catch(err => setIsLoading(true))
+}
 
-                                        <img className="is-rounded is-256x256" src={item.image} alt={item.name} />
+console.log("friends", friendResult)
 
-                                    </figure>
-                                    <p className="subtitle" >{item.name}</p>
-                                    <p className="" >{item.city}, {item.state}</p>
-                                    <hr />
-                                    <button className="button is-fullwidth is-dark is-medium saveBtn" id="friend" data-newfriend={item._id} onClick={addfriend}>
-                                        Add Friend
+//Maping data to the friends page
+const searchResult = () => {
+    return (
+        <>
+            {friendResult.map(item => {
+                return (
+                    <div key={item._id} className="column is-one-third" id="blue">
+                        <article className="tile is-child notification has-text-centered" id="block">
+                            <figure className="image is-square">
+
+                                <img className="is-rounded is-256x256" src={item.image} alt={item.name} />
+
+                            </figure>
+                            <p className="subtitle" >{item.name}</p>
+                            <p className="" >{item.city}, {item.state}</p>
+                            <hr />
+                            <button className="button is-fullwidth is-dark is-medium saveBtn" id="friend" data-newfriend={item._id} onClick={addfriend}>
+                                Add Friend
                                     </button>
-                                </article>
-                            </div>
-                        )
-                    }
-                    )}
-                </>
-            );
-        }
-
-        return (
-            <>
-                <div className="field">
-                    <div className="control" >
-                        <label htmlFor="findFriends"></label>
-                        <input className="input" type="text"
-                            name="search"
-                            onChange={handleInputChange}
-                            placeholder="Find new friends . . . "
-                            value={friendResult.search} />
+                        </article>
                     </div>
-                </div>
-                <div id="successMsg"></div>
-                <br />
-                <div className="tile is-child columns is-multiline box has-text-centered">
-                    {
-                        isLoading ? <Spinner /> : searchResult()
-                    }
-                </div>
-            </>
-        );
+                )
+            }
+            )}
+        </>
+    );
+}
+
+return (
+    <>
+        <div className="field">
+            <div className="control" >
+                <label htmlFor="findFriends"></label>
+                <input className="input" type="text"
+                    name="search"
+                    onChange={handleInputChange}
+                    placeholder="Find new friends . . . "
+                    value={friendResult.search} />
+            </div>
+        </div>
+        <div id="successMsg"></div>
+        <br />
+        <div className="tile is-child columns is-multiline box has-text-centered">
+            {
+                isLoading ? <Spinner /> : searchResult()
+            }
+        </div>
+    </>
+);
     }
 
-    export default FindNewFriends; 
+export default FindNewFriends; 

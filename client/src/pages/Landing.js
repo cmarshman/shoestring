@@ -22,7 +22,7 @@ function Landing() {
         handleFriends()
 
     }, [])
-        //Function to load all user on page load
+        //Function to load all currentuser on page load
         const handleFriends = () => {
             httpClient.FindAllUser()
                 .then(serverResponse => {
@@ -39,7 +39,7 @@ function Landing() {
     // Render the  all  the  pages on the landing pages
     return (
         <>
-            {(currentUserObj.currentUser !== null) ? (
+            {(currentUserObj !== null) ? (
                 <div>
                     <NavBarAuth />
                     <div className="outerTile">
