@@ -61,6 +61,7 @@ function TransferMoneyCard() {
         })
     }
     let currentUserfriends = currentUserObj.currentUser.friends
+    
     const transferMoney =() => {
         const userEmail = values.email
         const userName = values.name
