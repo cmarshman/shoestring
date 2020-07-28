@@ -84,6 +84,8 @@ function Card() {
             .catch(err => { console.log(err) })
     }
 
+    // console.log("id", currentUserObj.currentUser._id)
+    // console.log("friend", friendResult)
 
     //    //update the database with a new friend added 
     const sendMoneytofriend = (evt) => {
@@ -147,55 +149,7 @@ function Card() {
     function closeModal2() {
         set2IsOpen(false);
     }
-    // const modal1 = () => {
-    //     return (
-    //         <>
-    // <Modal
-    //     isOpen={modalIsOpen}
-    //     onRequestClose={closeModal}
-    //     style={customStyles}
-    //     contentLabel="Send Money Modal"
-    // >
-    //      {friendResult.map(item => {
-    //             return (
-    //     <div className="modal-card">
-    //         <header className="modal-card-head">
-    //             <p className="modal-card-title" data-newfriend={item._id}>Send Money to {item.name}</p>
-    //             <button className="delete" aria-label="close" onClick={closeModal}></button>
-    //         </header>
-    //         <section className="modal-card-body">
-    //             <p className='subtitle'>How much would you like to transfer</p>
-    //             <div class="field has-addons">
-    //                 <p class="control">
-    //                     <span class="select">
-    //                         <select>
-    //                             <option>$</option>
-    //                             <option>£</option>
-    //                             <option>€</option>
-    //                         </select>
-    //                     </span>
-    //                 </p>
-    //                 <p class="control is-expanded">
-    //                     <input class="input" type="text" placeholder="Amount of money" />
-    //                 </p>
-    //             </div>
-    //             <p className='subtitle'>Leave a messeage for your friend</p>
-    //             <div class="field">
-    //                 <div class="control">
-    //                     <textarea class="textarea" placeholder="For the fluffy rainbow unicorn"></textarea>
-    //                 </div>
-    //             </div>
-    //         </section>
-    //         <footer className="modal-card-foot">
-    //             <button className="button is-success">Submit Payment</button>
-    //         </footer>
-    //     </div>
-    //             )}
-    //      )}
-    // </Modal>
-    //         </>
-    //     );
-    // }
+    
     //Render all the logged in user Friends
     return (
         <>
