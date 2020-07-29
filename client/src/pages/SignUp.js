@@ -44,9 +44,9 @@ function SignUp(user) {
       plaidToken: "",
       institution : "",
       accountType: "",
-      balance: 0,
+      balance: 0.0,
       message: "",
-      amount: 0,
+      amount: 0.0,
       message: '',
       checked: false,
 
