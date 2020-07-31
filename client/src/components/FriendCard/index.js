@@ -3,7 +3,6 @@ import './style.css';
 import { Link, withRouter } from 'react-router-dom';
 import Modal from 'react-modal';
 import httpClient from "../../httpClient.js";
-
 import * as Yup from 'yup';
 import { useFormik, yupToFormErrors } from 'formik';
 import $, { data } from 'jquery';
@@ -62,14 +61,29 @@ function Card() {
     const [sendMoney, setSendMoney] = useState([{}]);
     const [deleteFriend, setdeleteFriend] = useState([{}]);
 
+    const [modalIsOpen, setIsOpen] = useState(false);
+    const [modal2IsOpen, set2IsOpen] = useState(false);
+
     //Load funtion on page load
     useEffect(() => {
         handleFriends();
-        //removeFriend();
-
-
+        
     }, [])
+   
+    function openModal() {
+        setIsOpen(true);
+    }
 
+    function openModal2() {
+        set2IsOpen(true);
+    }
+    function closeModal() {
+        setIsOpen(false);
+    }
+
+    function closeModal2() {
+        set2IsOpen(false);
+    }
     //Function to load all user on page load
     const handleFriends = () => {
         httpClient.FindAllUser()
@@ -84,10 +98,7 @@ function Card() {
             .catch(err => { console.log(err) })
     }
 
-    // console.log("id", currentUserObj.currentUser._id)
-    // console.log("friend", friendResult)
-
-    //    //update the database with a new friend added 
+    //update the database with a new friend added 
     const sendMoneytofriend = (evt) => {
         const friendId = evt.target.dataset.newfriend
         let friendToAdd = friendResult.find(item => item._id === friendId)
@@ -110,18 +121,11 @@ function Card() {
 
     // //update the database with a   friend balance and current user balance 
     const transferMoney = () => {
-        const userEmail = sendMoney.email
-        const userName = sendMoney.name
-        let currentUser = currentUserObj.currentUser
-        let userAmount = values.amount
         httpClient.FindAllUser()
             .then(serverResponse => {
                 const data = serverResponse.data
-                //let findCurrentUser = data.find(item => item._id === currentUser._id)
-                let friendToSendTo = data.find(item => item._id === sendMoney._id)
-                //let friendArray = findCurrentUser.friends
-                setFriendResult(currentUserObj.friends)
-
+                 let friendToSendTo = data.find(item => item._id === sendMoney._id)
+                 setFriendResult(currentUserObj.friends)
                 if (sendMoney != null) {
                     setSendMoney(friendToSendTo)
                 }
@@ -130,97 +134,40 @@ function Card() {
                     receivedTransactions: [...friendToSendTo.receivedTransactions, { name: currentUserObj.name, amount: values.amount, message: values.message }],
                     balance: parseFloat(friendToSendTo.balance) + parseFloat(values.amount),
                 })
-                    .then(
+                 .then(
                         httpClient.InsertUpdate({
                             _id: currentUserObj._id,
                             sentTransactions: [...currentUserObj.sentTransactions, { name: friendToSendTo.name, amount: values.amount, message: values.message }],
                             balance: parseFloat(currentUserObj.balance) - parseFloat(values.amount),
-
                         }), window.location.replace('/home'))
                     .catch(err => console.log('err', err))
-            })
+               })
 
     }
-
-    const [modalIsOpen, setIsOpen] = useState(false);
-    const [modal2IsOpen, set2IsOpen] = useState(false);
-
-    function openModal() {
-        setIsOpen(true);
-    }
-
-    function openModal2() {
-        set2IsOpen(true);
-    }
-    function closeModal() {
-        setIsOpen(false);
-    }
-
-    function closeModal2() {
-        set2IsOpen(false);
-    }
-
-
-    // // Function to add a friend and upate the database
-    // const removeFriend = (evt) => {
-    //     const friendId = evt.target.dataset.removefriend
-    //     httpClient.FindAllUser()
-    //         .then(serverResponse => {
-    //             const data = serverResponse.data
-    //             let friendToAdd = data.find(item => item._id === sendMoney._id)
-    //             if (friendToAdd != null) {
-    //                 httpClient.removeUser ({
-    //                     _id: currentUserObj._id,
-    //                     friends: [...currentUserObj.friends, {...friendToAdd }]
-    //             })
-    //             .then(
-    //                 httpClient.removeUser ({
-    //                     _id: friendToAdd._id,
-    //                     friends: [...friendToAdd.friends, { ...currentUserObj }],
-    //             }),window.location.replace('/home'))
-    //             .catch(err => console.log('err', err))
-    //             }
-    //         })
-    // }
-
+   //Function to remove a friend from friend list
     const removeFriend = (evt) => {
-        let currentUserFriends = currentUserObj.friends.slice(1);
-        const friendId = evt.target.dataset.removefriend
+        let currentUserFriends = currentUserObj.friends;
+        let newFriends = [];
         httpClient.FindAllUser()
             .then(serverResponse => {
                 const data = serverResponse.data
-                let friendToRemove = data.find(item => item._id === deleteFriend._id) 
-                
-               let index = currentUserFriends.indexOf(item => item === friendToRemove)
-               // console.log("index", index)
-                // let filteredFriends = currentUserFriends.filter(item => item !=friendToRemove){
-                //     console.log("filtedArr", filteredFriends)
-                //     setFriendResult(filteredFriends)
-                // })
-                //items.filter(item => !valuesToRemove.includes(item))
-                let filteredFriends = currentUserFriends.splice(index, 1)
-                console.log("filtedArr", filteredFriends)
-                setFriendResult(filteredFriends)
-                //window.location.replace('/home')
-
-                // if (sendMoney != null) {
-                //     //setSendMoney(friendToRemove)
-                // }
-                //     httpClient.removeUser({
-                //         _id: currentUserObj._id,
-                //         friends: [{friendToRemove }]
-                //     })
-                //     .then(
-                //         httpClient.removeUser({
-                //          _id: friendToRemove._id,
-                //          friends: [{currentUserObj}],
-                //       }), window.location.replace('/home'))
-                //     .catch(err => console.log('err', err))
+                const friendToRemove = data.find(item => item._id === deleteFriend._id)
+                for (var i = 0; i < currentUserFriends.length; i++) {
+                    const itemIndex = currentUserFriends[i]._id
+                    if (itemIndex !== friendToRemove._id) {
+                        newFriends.push(currentUserFriends[i])
+                    }
+                    setFriendResult(newFriends)  
+                }
+                httpClient.InsertUpdate({
+                    _id: currentUserObj._id,
+                    friends: [...newFriends]
+                })
+                closeModal2() 
+                 
             })
     }
-    console.log('rest', friendResult)
-    console.log('thisUser', currentUserObj.friends)
-
+     
     //Render all the logged in user Friends
     return (
         <>
@@ -250,7 +197,7 @@ function Card() {
 
                                     </div>
                                     <hr />
-                                  
+
                                     <form onSubmit={handleSubmit}>
                                         <Modal
                                             isOpen={modalIsOpen}
@@ -288,7 +235,7 @@ function Card() {
                                                                 onBlur={handleBlur}
                                                             />
                                                             {values.amount < 0 || currentUserObj.balance < values.amount && touched.amount && 'errors' ? (
-                                                                <p className="errMsg">Invalid entery. Please check your account balance or your amount.</p>
+                                                                <p className="errMsg">Please check your account balance or your amount.</p>
                                                             ) : ''}
                                                         </p>
 
@@ -324,14 +271,14 @@ function Card() {
                                         >
                                             <div className="modal-card">
                                                 <header className="modal-card-head">
-                                                <p className="modal-card-title" >Are you sure you want to remove {deleteFriend.name}</p>
-                                                <button className="delete" aria-label="close" onClick={closeModal2}></button>
+                                                    <p className="modal-card-title" >Are you sure you want to remove {deleteFriend.name}</p>
+                                                    <button className="delete" aria-label="close" onClick={closeModal2}></button>
                                                 </header>
                                                 <section className="modal-card-body">
 
                                                 </section>
                                                 <footer className="modal-card-foot">
-                                                    <button className="button is-success" type = "submit" onClick={removeFriend}>I'm sure</button>
+                                                    <button className="button is-success" type="submit" onClick={removeFriend}>I'm sure</button>
                                                     <button className="button" onClick={closeModal2}>Never Mind</button>
                                                 </footer>
                                             </div>
@@ -341,7 +288,6 @@ function Card() {
                                 </article>
 
                             </div>
-
 
                         )
                     }
