@@ -1,26 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import httpClient from '../../httpClient';
 
-const Name = () => {
+function Name(currentUser) {
     
     const [currentUserObj, setCurrentUserObj] = useState({
         currentUser: httpClient.getCurrentUser()
     })
     
+    currentUser =[
+        {
+        name:currentUserObj.currentUser.name,
+        phone: currentUserObj.currentUser.phone,
+        email: currentUserObj.currentUser.email,
+        password: currentUserObj.currentUser.password,
+    }]
+
     return (
         <>
+            {currentUserObj.currentUser !==null ?(
             <div className="box">
                 <form id="name">
                     <p className="subtitle" id="formTitle">Edit your name</p>
                     <div className="field">
-                    {/* <label className="label"></label> */}
+                    <label className="label">{currentUser[0].name}</label>
                         <div className="control has-icons-left">
                             <input className="input"
                                 type="text"
                                 // onChange={handleChange}
                                 // onBlur={handleBlur}
                                 name="name"
-                                placeholder={currentUserObj.name}
+                                placeholder="Update your name"
                             // value={values.name}
                             />
                             {/* {values.name.length < 1 && touched.name && 'errors' ? (
@@ -44,6 +53,7 @@ const Name = () => {
                     </div>
                 </form>
             </div>
+            ): window.location.replace("/")}
         </>
     );
 }
