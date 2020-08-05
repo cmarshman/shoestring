@@ -35,7 +35,6 @@ const currentuserCheck = () => {
     currentUser =[
         {
         name:currentUserObj.currentUser.name,
-        // lastName: currentUserObj.currentUser.lastName,
         phone: currentUserObj.currentUser.phone,
         email: currentUserObj.currentUser.email,
         password: currentUserObj.currentUser.password,
