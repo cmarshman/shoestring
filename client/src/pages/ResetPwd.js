@@ -4,7 +4,6 @@ import httpClient from '../httpClient';
 import './design/reset.css';
 import Nav from '../components/navbar';
 import '../pages/design/login.css';
-import * as EmailValidator from 'email-validator';
 import * as Yup from 'yup';
 import { useFormik} from 'formik';
 import $ from 'jquery'
