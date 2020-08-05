@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import NavBarSettings from '../components/NavBarSettings';
 import '../pages/design/signup.css';
 import EditSettings from '../components/EditSettings';
 import $ from 'jquery'
+import httpClient from '../httpClient';
 
 function Settings() {
 
@@ -18,8 +19,14 @@ function Settings() {
         })
     })
 
+    const [currentUserObj, setCurrentUserObj] = useState({
+        currentUser: httpClient.getCurrentUser()
+    })
+
     return (
         <>
+        {(currentUserObj !== null) ? (
+            <div>
             <NavBarSettings />
             <div className="tile is-ancestor" >
                 <div className="tile is-vertical is-11" id="tile">
@@ -63,6 +70,8 @@ function Settings() {
                     </article>
                         </div>
             </div>
+            </div>
+        ) : window.location.replace("/")}
     </>
     )
 }

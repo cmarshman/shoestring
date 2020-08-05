@@ -1,20 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import httpClient from '../../httpClient';
 
 const Name = () => {
+    
+    const [currentUserObj, setCurrentUserObj] = useState({
+        currentUser: httpClient.getCurrentUser()
+    })
+    
     return (
         <>
             <div className="box">
                 <form id="name">
                     <p className="subtitle" id="formTitle">Edit your name</p>
                     <div className="field">
-                        <label className="label">Show current name here</label>
+                    {/* <label className="label"></label> */}
                         <div className="control has-icons-left">
                             <input className="input"
                                 type="text"
                                 // onChange={handleChange}
                                 // onBlur={handleBlur}
                                 name="name"
-                                placeholder="Update your name"
+                                placeholder={currentUserObj.name}
                             // value={values.name}
                             />
                             {/* {values.name.length < 1 && touched.name && 'errors' ? (
@@ -34,7 +40,6 @@ const Name = () => {
                                     id="twofish"
                                 >Submit</button>
                             </div>
-
                         </div>
                     </div>
                 </form>

@@ -1,18 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import httpClient from '../../httpClient';
 
 const PhoneNumber = () => {
+   
+    const [currentUserObj, setCurrentUserObj] = useState({
+        currentUser: httpClient.getCurrentUser()
+    })
+   
     return (
         <div className="box">
             <form id="phone-number">
                 <p className="subtitle" id="formTitle">Edit your phone number</p>
                 <div className="field">
-                    <label className="label">Show current number here</label>
+                    {/* <label className="label"></label> */}
                     <div className="control has-icons-left">
                   <input className="input" type="text"
                 //    onChange={handleChange}
                 //    onBlur={handleBlur}
                    name="phone"
-                   placeholder="555-555-5555"
+                   placeholder={currentUserObj.phone}
                 //    value={values.phone}
                   />
                   {/* {!values.phone.match(phoneno) &&  touched.phone && 'errors' ? (
