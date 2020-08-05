@@ -163,9 +163,13 @@ function Card() {
                     _id: currentUserObj._id,
                     friends: [...newFriends]
                 })
-                closeModal2() 
-                 
-            })
+                .then(
+                    closeModal2(),
+                    window.location.replace('/home'))
+                .catch(err => console.log('err', err))
+                
+                })
+            
     }
      
     //Render all the logged in user Friends
@@ -228,7 +232,7 @@ function Card() {
                                                             </span>
                                                         </p>
                                                         <p class="control is-expanded">
-                                                            <input class="input" type="text" placeholder="Amount of money"
+                                                            <input class="input" type="text" placeholder="Amount of money to send"
                                                                 onChange={handleChange}
                                                                 name="amount"
                                                                 value={values.amount}
@@ -257,8 +261,7 @@ function Card() {
                                                     <button className="button is-success" type="submit"
                                                         onClick={transferMoney}
                                                         disabled={currentUserObj.balance < values.amount || values.amount <= 0}
-                                                    //disabled={values.amount<=0}
-                                                    >Submit Payment</button>
+                                                     >Submit Payment</button>
                                                 </footer>
                                             </div>
 
