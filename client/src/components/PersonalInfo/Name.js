@@ -10,19 +10,15 @@ function Name(currentUser) {
     currentUser = [
         {
         name:currentUserObj.currentUser.name,
-        phone: currentUserObj.currentUser.phone,
-        email: currentUserObj.currentUser.email,
-        password: currentUserObj.currentUser.password,
     }]
 
     return (
         <>
             {currentUserObj.currentUser !==null ?(
-            <div className="box">
-                <form id="name">
+            <div className="box" >
+                <form>
                     <p className="subtitle" id="formTitle">Edit your name</p>
                     <div className="field">
-                    {/* <label className="label"></label> */}
                         <div className="control has-icons-left">
                             <input className="input"
                                 type="text"

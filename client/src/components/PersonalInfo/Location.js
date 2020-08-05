@@ -9,21 +9,18 @@ function Location (currentUser) {
 
 currentUser =[
     {
-    name:currentUserObj.currentUser.name,
-    phone: currentUserObj.currentUser.phone,
-    email: currentUserObj.currentUser.email,
-    password: currentUserObj.currentUser.password,
+    city: currentUserObj.currentUser.city,
+    state: currentUserObj.currentUser.state
 }]
 
   return (
     <>
     {currentUserObj.currentUser !==null ?(
-        <div className="box">
-            <form id="location">
+        <div className="box"  >
+            <form>
                 <p className="subtitle" id="formTitle">Edit your location</p>
                 <div className="field">
-                    {/* <label className="label">, </label> */}
-                    <div className="control has-icons-left">
+                  <div className="control has-icons-left">
                   <input className="input" type="text"
                     //  onChange={handleChange}
                     // onBlur={handleBlur}
