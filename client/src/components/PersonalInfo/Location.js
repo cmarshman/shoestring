@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import httpClient from '../../httpClient';
 
-const Location = (currentUser) => {
+function Location (currentUser) {
     
   const [currentUserObj, setCurrentUserObj] = useState({
     currentUser: httpClient.getCurrentUser()
@@ -43,7 +43,7 @@ currentUser =[
                     // onChange={handleChange}
                     // onBlur={handleBlur}
                     name="state"
-                    placeholder={currentUserObj.state}
+                    placeholder={currentUser[0].state}
                     // value={values.state}
                   />
                    {/* {values.state.length < 2 &&  touched.state && 'errors' ? (

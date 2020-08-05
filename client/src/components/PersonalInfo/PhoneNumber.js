@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import httpClient from '../../httpClient';
 
-const PhoneNumber = (currentUser) => {
+function PhoneNumber (currentUser) {
    
     const [currentUserObj, setCurrentUserObj] = useState({
         currentUser: httpClient.getCurrentUser()
@@ -28,7 +28,7 @@ const PhoneNumber = (currentUser) => {
                 //    onChange={handleChange}
                 //    onBlur={handleBlur}
                    name="phone"
-                   placeholder={currentUserObj.phone}
+                   placeholder={currentUser[0].phone}
                 //    value={values.phone}
                   />
                   {/* {!values.phone.match(phoneno) &&  touched.phone && 'errors' ? (

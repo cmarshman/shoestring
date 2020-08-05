@@ -7,7 +7,7 @@ function Name(currentUser) {
         currentUser: httpClient.getCurrentUser()
     })
     
-    currentUser =[
+    currentUser = [
         {
         name:currentUserObj.currentUser.name,
         phone: currentUserObj.currentUser.phone,

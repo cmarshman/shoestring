@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import httpClient from '../../httpClient';
 
-const Email = (currentUser) => {
+function Email (currentUser) {
     
     const [currentUserObj, setCurrentUserObj] = useState({
         currentUser: httpClient.getCurrentUser()
@@ -28,7 +28,7 @@ const Email = (currentUser) => {
                     // onChange={handleChange}
                     // onBlur={handleBlur}
                     name="email"
-                    placeholder={currentUserObj.email}
+                    placeholder={currentUser[0].email}
                     // value={values.email} 
                     />
                     {/* {!values.email.match(emailVal) &&  touched.email && 'errors' ? (
