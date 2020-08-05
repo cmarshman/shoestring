@@ -22,14 +22,14 @@ function Name(currentUser) {
                 <form id="name">
                     <p className="subtitle" id="formTitle">Edit your name</p>
                     <div className="field">
-                    <label className="label">{currentUser[0].name}</label>
+                    {/* <label className="label"></label> */}
                         <div className="control has-icons-left">
                             <input className="input"
                                 type="text"
                                 // onChange={handleChange}
                                 // onBlur={handleBlur}
                                 name="name"
-                                placeholder="Update your name"
+                                placeholder={currentUser[0].name}
                             // value={values.name}
                             />
                             {/* {values.name.length < 1 && touched.name && 'errors' ? (

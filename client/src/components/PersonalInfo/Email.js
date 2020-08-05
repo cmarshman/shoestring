@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import httpClient from '../../httpClient';
 
-const Email = () => {
+const Email = (currentUser) => {
     
     const [currentUserObj, setCurrentUserObj] = useState({
         currentUser: httpClient.getCurrentUser()
     })
     
+    currentUser =[
+        {
+        name:currentUserObj.currentUser.name,
+        phone: currentUserObj.currentUser.phone,
+        email: currentUserObj.currentUser.email,
+        password: currentUserObj.currentUser.password,
+    }]
+    
     return (
+        <>
+            {currentUserObj.currentUser !==null ?(
         <div className="box" id="email">
             <form >
                 <p className="subtitle" id="formTitle">Edit your email</p>
@@ -43,6 +53,8 @@ const Email = () => {
                 </div>
             </form>
         </div>
+        ): window.location.replace("/")}
+        </>
     )
 }
 
