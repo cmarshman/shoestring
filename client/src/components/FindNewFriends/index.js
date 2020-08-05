@@ -57,11 +57,11 @@ function FindNewFriends(currentUser) {
                 let currentUserId = currentUserObj.currentUser._id
                 let findFriend = serverResponse.data.find(item => item._id === currentUserId)
                 setCurrentUserObj(findFriend)
-             })
+            })
             .catch(err => { console.log(err) })
     }
 
-    // Function to add a friend and upate the database
+    // // Function to add a friend and upate the database
     const addfriend = (evt) => {
         const friendId = evt.target.dataset.newfriend
         httpClient.FindAllUser()
@@ -71,16 +71,14 @@ function FindNewFriends(currentUser) {
                 if (friendToAdd != null) {
                     httpClient.InsertUpdate({
                         _id: currentUserObj._id,
-                        friends: [...currentUserObj.friends, { ...friendToAdd }]
-
-                    })
-                        .then(
-                            httpClient.InsertUpdate({
-                                _id: friendToAdd._id,
-                                friends: [...friendToAdd.friends, { ...currentUserObj }],
-                            }),
-                            onSuccess())
-                        .catch(err => console.log('err', err))
+                        friends: [...currentUserObj.friends, {...friendToAdd }]
+                })
+                .then(
+                    httpClient.InsertUpdate({
+                        _id: friendToAdd._id,
+                        friends: [...friendToAdd.friends, { ...currentUserObj }],
+                }),onSuccess())
+                .catch(err => console.log('err', err))
                 }
             })
     }
