@@ -1,18 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import httpClient from '../../httpClient';
 
 const Email = () => {
+    
+    const [currentUserObj, setCurrentUserObj] = useState({
+        currentUser: httpClient.getCurrentUser()
+    })
+    
     return (
         <div className="box" id="email">
             <form >
-                <p className="subtitle" id="formTitle">Email</p>
+                <p className="subtitle" id="formTitle">Edit your email</p>
                 <div className="field">
-                    <label className="label">Show current location here</label>
+                    {/* <label className="label"></label> */}
                     <div className="control has-icons-left has-icons-right">
                   <input className="input " type="email"
                     // onChange={handleChange}
                     // onBlur={handleBlur}
                     name="email"
-                    placeholder="Email"
+                    placeholder={currentUserObj.email}
                     // value={values.email} 
                     />
                     {/* {!values.email.match(emailVal) &&  touched.email && 'errors' ? (

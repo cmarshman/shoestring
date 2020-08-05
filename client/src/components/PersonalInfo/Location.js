@@ -1,18 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import httpClient from '../../httpClient';
 
 const Location = () => {
-    return (
+    
+  const [currentUserObj, setCurrentUserObj] = useState({
+    currentUser: httpClient.getCurrentUser()
+  })
+  
+  return (
         <div className="box">
             <form id="location">
-                <p className="subtitle" id="formTitle">Location</p>
+                <p className="subtitle" id="formTitle">Edit your location</p>
                 <div className="field">
-                    <label className="label">Show current location here</label>
+                    {/* <label className="label">, </label> */}
                     <div className="control has-icons-left">
                   <input className="input" type="text"
                     //  onChange={handleChange}
                     // onBlur={handleBlur}
                     name="city"
-                    placeholder="City"
+                    placeholder={currentUserObj.city}
                     // value={values.city}
                   />
                    {/* {values.city.length <2 &&  touched.city && 'errors' ? (
@@ -27,7 +33,7 @@ const Location = () => {
                     // onChange={handleChange}
                     // onBlur={handleBlur}
                     name="state"
-                    placeholder="State"
+                    placeholder={currentUserObj.state}
                     // value={values.state}
                   />
                    {/* {values.state.length < 2 &&  touched.state && 'errors' ? (
