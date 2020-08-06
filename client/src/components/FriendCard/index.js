@@ -145,13 +145,15 @@ function Card() {
 
     }
    //Function to remove a friend from friend list
-    const removeFriend = (evt) => {
+    const removeFriend = () => {
         let currentUserFriends = currentUserObj.friends;
         let newFriends = [];
         httpClient.FindAllUser()
             .then(serverResponse => {
                 const data = serverResponse.data
                 const friendToRemove = data.find(item => item._id === deleteFriend._id)
+                const friendArr = friendToRemove.friends
+                let filterArr = friendArr.filter(item => item._id !=currentUserObj._id)
                 for (var i = 0; i < currentUserFriends.length; i++) {
                     const itemIndex = currentUserFriends[i]._id
                     if (itemIndex !== friendToRemove._id) {
@@ -162,6 +164,10 @@ function Card() {
                 httpClient.InsertUpdate({
                     _id: currentUserObj._id,
                     friends: [...newFriends]
+                })
+                httpClient.InsertUpdate({
+                    _id: friendToRemove._id,
+                    friends: [...filterArr]
                 })
                 .then(
                     closeModal2(),

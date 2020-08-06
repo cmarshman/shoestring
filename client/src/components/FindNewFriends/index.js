@@ -61,6 +61,12 @@ function FindNewFriends(currentUser) {
             .catch(err => { console.log(err) })
     }
 
+   //set the add friend event listner
+   //let addFriendBtn = document.querySelectors('.addBtn')
+   //let addFriendText = addFriendBtn.textContent
+   //console.log('addFriendText', addFriendText)
+
+   
     // // Function to add a friend and upate the database
     const addfriend = (evt) => {
         const friendId = evt.target.dataset.newfriend
@@ -99,7 +105,7 @@ function FindNewFriends(currentUser) {
                                 <p className="subtitle" >{item.name}</p>
                                 <p className="" >{item.city}, {item.state}</p>
                                 <hr />
-                                <button className="button is-fullwidth is-dark is-medium saveBtn" id="friend" data-newfriend={item._id} onClick={addfriend}>
+                                <button className="button is-fullwidth is-dark is-medium addBtn" id="friend" data-newfriend={item._id} onClick={addfriend}>
                                     Add Friend
                                     </button>
                             </article>
