@@ -10,9 +10,9 @@ import Wrapper from './components/wrapper';
 import Footer from './components/footer';
 import Landing from './pages/Landing';
 import FindAFriend from './pages/FindAFriend';
-import TransferMoney from './pages/TransferMoney';
+// import TransferMoney from './pages/TransferMoney';
 import MyWallet from './pages/MyWallet';
-import CurrencyConverter from './pages/CurrencyConverter';
+// import CurrencyConverter from './pages/CurrencyConverter';
 import Reset from '../src/pages/ResetPwd'
 import CancelAccount from './pages/CancelAccount';
 import RequestData from './pages/RequestData';
@@ -41,9 +41,9 @@ function App(item) {
         <Route exact path="/home" component={Landing}/>
         <Route exact path="/reset" component={Reset}/>
         <Route exact path="/findafriend" component={FindAFriend}/>
-        <Route exact path="/transfermoney" component={TransferMoney}/>
+        {/* <Route exact path="/transfermoney" component={TransferMoney}/> */}
         <Route exact path="/mywallet" component={MyWallet}/>
-        <Route exact path="/currencyconverter" component={CurrencyConverter}/>
+        {/* <Route exact path="/currencyconverter" component={CurrencyConverter}/> */}
         <Route exact path="/cancelaccount" component={CancelAccount}/>
         <Route exact path="/requestdata" component={RequestData}/>
         <Route exact path="/admin-12152011" component={AdminLogin}/>

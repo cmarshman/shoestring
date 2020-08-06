@@ -10,6 +10,7 @@ function Name(currentUser) {
     currentUser = [
         {
         name:currentUserObj.currentUser.name,
+        
     }]
 
     return (

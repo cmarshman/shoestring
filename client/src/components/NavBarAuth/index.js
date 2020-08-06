@@ -68,17 +68,17 @@ useEffect(() => {
               Friends
             </Link>
 
-            <Link to="/transfermoney" className={location.pathname === "/transfermoney" ? "navbar-item is-active" : "navbar-item"}>
+            {/* <Link to="/transfermoney" className={location.pathname === "/transfermoney" ? "navbar-item is-active" : "navbar-item"}>
               Transfer Money
-            </Link>
+            </Link> */}
 
             <Link to="/mywallet" className={location.pathname === "/mywallet" ? "navbar-item is-active" : "navbar-item"}>
               My Wallet
             </Link>
 
-            <Link to="/currencyconverter" className={location.pathname === "/currencyconverter" ? "navbar-item is-active" : "navbar-item"}>
+            {/* <Link to="/currencyconverter" className={location.pathname === "/currencyconverter" ? "navbar-item is-active" : "navbar-item"}>
               Currency Converter
-            </Link>
+            </Link> */}
           
           <div className="navbar-item has-dropdown is-hoverable" >
               <Link to="#" className="navbar-link" id="navitems">
