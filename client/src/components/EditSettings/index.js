@@ -3,7 +3,7 @@ import Password from "../PersonalInfo/Password";
 import AddImage from "../AddImage";
 import httpClient from "../../httpClient";
 import PersonalInfo from '../PersonalInfo/PersonalInfo';
-// import BankInformation from '../PersonalInfo/BankInformation';
+import Plaid from '../plaidLink';
 
 function EditSettings(currentUser) {
   const [currentUserObj, setCurrentUserObj] = useState({
@@ -44,7 +44,11 @@ function EditSettings(currentUser) {
               <AddImage />
             </div>
           </div>
-          <div id="edit-bank-informaion">{/* <BankInformation/> */}</div>
+          <div id="edit-bank-informaion">
+              <div className="box">
+                <Plaid/>
+              </div>
+          </div>
         </div>
       ) : (
         window.location.replace("/")
