@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import httpClient from "../httpClient";
+import { Link } from 'react-router-dom';
 import "./design/Landing.css";
 import Friends from "../components/FriendCard";
 import NavBarAuth from "../components/NavBarAuth";
@@ -53,36 +54,38 @@ function Landing() {
                     <div className="is-centered">
                       <UserNameCard />
                       <ProfileImage />
-                      <br />
-                      <div className="columns">
-                        <div className="column">
-                          <button
+                      <div className="columns is-10">
+                        <div className="column is-one-quarter">
+                          <Link 
+                            to="/settings/#edit-bank-informaion"
                             type="button"
                             className="button"
                             id="fluffyduck"
                           >
                             Connect your bank account
-                          </button>
+                          </Link>
                         </div>
-                        <div className="column">
-                          <button
+                        <div className="column is-one-quarter">
+                          <Link
+                            to="/settings/#edit-photo"
                             type="button"
                             className="button"
                             id="fluffyduck"
                           >
                             Add a Photo
-                          </button>
+                          </Link>
                         </div>
-                        <div className="column">
-                          <button
+                        <div className="column is-one-quarter">
+                          <Link
+                            to="/findafriend"
                             type="button"
                             className="button"
                             id="fluffyduck"
                           >
                             Find a Friend
-                          </button>
+                          </Link>
                         </div>
-                        <div className="column">
+                        <div className="column is-one-quarter">
                           <button
                             type="button"
                             className="button"
