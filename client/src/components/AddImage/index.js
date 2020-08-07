@@ -81,13 +81,15 @@ function AddImage() {
                                         </figure>
                                     )}
                                 <br />
-
-                                <input type="file"
+                                <div className="is centered">    
+                                <input 
+                                    type="file"
                                     name="file"
                                     placeholder="Upload image"
                                     onChange={uploadImage}
                                      
                                 />
+                                </div>
                             </div>
                           )
                           } 

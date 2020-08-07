@@ -44,9 +44,12 @@ function EditSettings(currentUser) {
               <AddImage />
             </div>
           </div>
+          <br/>
           <div id="edit-bank-informaion">
               <div className="box">
+                <div className="is-centered">
                 <Plaid/>
+                </div>
               </div>
           </div>
         </div>
