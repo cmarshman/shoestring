@@ -134,11 +134,6 @@ httpClient.password_reset = function(userInfo,  ) {
 		})
 }
 
-
-
-
-
-
 httpClient.logOut = function() {
 	localStorage.removeItem('token')
 	delete this.defaults.headers.common.token
