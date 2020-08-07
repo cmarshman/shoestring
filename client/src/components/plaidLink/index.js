@@ -28,7 +28,6 @@ const Plaid = () => {
     <>
 
     <button type="button" className="button" id="fluffyduck" onClick={() => open()} disabled={!ready}>
-
       Connect your bank account
     </button>
     <div id='successMsg'  ></div>

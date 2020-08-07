@@ -93,7 +93,6 @@ function MyImage(currentUser) {
             <h3>Loading...</h3>
         ) : (
                 <figure className="image">
-                    {/* <placeholder>Here we are</placeholder> */}
                     <img id="lamp" className="is-rounded" src={my_image} />
                 </figure>
             )}
