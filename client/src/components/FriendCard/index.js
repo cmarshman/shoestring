@@ -144,7 +144,7 @@ function Card() {
                })
 
     }
-   //Function to remove a friend from friend list
+   //Function to remove a friend from friends list
     const removeFriend = () => {
         let currentUserFriends = currentUserObj.friends;
         httpClient.FindAllUser()

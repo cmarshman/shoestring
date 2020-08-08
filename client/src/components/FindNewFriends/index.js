@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import httpClient from '../../httpClient';
 import Spinner from '../Spinner';
 import './style.css';
-import $ from 'jquery';
+import $, { each } from 'jquery';
 
 //Main function to handle friends page
 function FindNewFriends(currentUser) {
@@ -43,35 +43,49 @@ function FindNewFriends(currentUser) {
             })
             .catch(err => { console.log(err) })
     }
-
+    
     //Friend added message
     function onSuccess() {
-        $("#successMsg").text("Your new friend has been added!")
+        setTimeout(function () {
+            $(".addBtn").each(e =>{
+              e.text("Conncting...")
+            })
+          },2000);
+         window.location.reload()  
     }
-
+  
+ 
     //Function to load all user on page load
     const loadFriends = () => {
-        httpClient.FindAllUser()
+        let i=0;
+        let newFriends = [];
+         httpClient.FindAllUser()
             .then(serverResponse => {
                 setFriendResult(serverResponse.data)
                 let currentUserId = currentUserObj.currentUser._id
-                let findFriend = serverResponse.data.find(item => item._id === currentUserId)
-                setCurrentUserObj(findFriend)
+                const data = serverResponse.data
+                let findCurrentUser = data.find(item => item._id === currentUserId)
+                setCurrentUserObj(findCurrentUser)
+                let FriendArr= findCurrentUser.friends
+                if(i <=FriendArr.length){
+                    i++
+                   let removeCurrentFriends = data.filter(item => item._id !==FriendArr[i]._id)
+                    newFriends.push(...removeCurrentFriends )
+                    setFriendResult(newFriends)
+                    
+                }else{
+                    setFriendResult(data)
+                }
+                
             })
             .catch(err => { console.log(err) })
     }
 
-   //set the add friend event listner
-   //let addFriendBtn = document.querySelectors('.addBtn')
-   //let addFriendText = addFriendBtn.textContent
-   //console.log('addFriendText', addFriendText)
-
-   
-    // // Function to add a friend and upate the database
+     // // Function to add a friend and upate the database
     const addfriend = (evt) => {
         const friendId = evt.target.dataset.newfriend
-        httpClient.FindAllUser()
-            .then(serverResponse => {
+         httpClient.FindAllUser()
+              .then(serverResponse => {
                 const data = serverResponse.data
                 let friendToAdd = data.find(item => item._id === friendId)
                 if (friendToAdd != null) {
@@ -86,9 +100,10 @@ function FindNewFriends(currentUser) {
                 }),onSuccess())
                 .catch(err => console.log('err', err))
                 }
+
             })
     }
-
+ 
     //Mapping data to the friends page
     const searchResult = () => {
         return (
@@ -105,9 +120,13 @@ function FindNewFriends(currentUser) {
                                 <p className="subtitle" >{item.name}</p>
                                 <p className="" >{item.city}, {item.state}</p>
                                 <hr />
-                                <button className="button is-fullwidth is-dark is-medium addBtn" id="friend" data-newfriend={item._id} onClick={addfriend}>
-                                    Add Friend
-                                    </button>
+                                <button className="button is-fullwidth is-dark is-medium addBtn" id="friend" data-newfriend={item._id} 
+                                onClick={addfriend}
+                                disabled={item === currentUserObj}
+                                >
+                                 Connect
+                                </button>
+                                 
                             </article>
                         </div>
                     )
