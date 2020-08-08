@@ -144,41 +144,35 @@ function Card() {
                })
 
     }
-   //Function to remove a friend from friend list
+   //Function to remove a friend from friends list
     const removeFriend = () => {
         let currentUserFriends = currentUserObj.friends;
-        let newFriends = [];
         httpClient.FindAllUser()
             .then(serverResponse => {
                 const data = serverResponse.data
                 const friendToRemove = data.find(item => item._id === deleteFriend._id)
-                const friendArr = friendToRemove.friends
-                let filterArr = friendArr.filter(item => item._id !=currentUserObj._id)
-                for (var i = 0; i < currentUserFriends.length; i++) {
-                    const itemIndex = currentUserFriends[i]._id
-                    if (itemIndex !== friendToRemove._id) {
-                        newFriends.push(currentUserFriends[i])
-                    }
-                    setFriendResult(newFriends)  
-                }
+                const removefriendArr = friendToRemove.friends
+                let filterCurrentUserOut = removefriendArr.filter(item => item._id !=currentUserObj._id)
+                let newFriends = currentUserFriends.filter(item => item._id !=friendToRemove._id)
+                setFriendResult(newFriends)
+                //update the database with the remaining friends
                 httpClient.InsertUpdate({
                     _id: currentUserObj._id,
                     friends: [...newFriends]
                 })
                 httpClient.InsertUpdate({
                     _id: friendToRemove._id,
-                    friends: [...filterArr]
+                    friends: [...filterCurrentUserOut]
                 })
                 .then(
                     closeModal2(),
                     window.location.replace('/home'))
+                    
                 .catch(err => console.log('err', err))
-                
-                })
-            
-    }
-     
-    //Render all the logged in user Friends
+            })
+   
+}
+//Render all the logged in user Friends
     return (
         <>
             <br />
