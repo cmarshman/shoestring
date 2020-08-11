@@ -96,6 +96,25 @@ httpClient.InsertUpdate = function(userInfo , _id) {
 		})
 }
 
+///Find and Remove  user
+httpClient.removeUser = function(userInfo , _id) {
+	return this({ method: 'delete', url: '/api/users/' + userInfo._id, data: userInfo})
+		.then((serverResponse) => {
+			console.log("serverResponse", serverResponse)
+			const token = serverResponse.data.token
+			if(token) {
+				// sets token as an included header for all subsequent api requests
+				console.log("result")
+				console.log(this.defaults)
+				this.defaults.headers.common.token = this.setToken(token)
+				console.log(this.defaults)
+				return jwtDecode(token)
+			} else {
+				return false
+			}
+		})
+}
+
 ///Find and Update user
 httpClient.password_reset = function(userInfo,  ) {
 	return this({ method: 'post', url: '/api/pwd_reset/' , data: userInfo})
