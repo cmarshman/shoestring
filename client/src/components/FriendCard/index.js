@@ -262,8 +262,8 @@ function Card() {
                                                             <span class="select">
                                                                 <select>
                                                                     <option>$</option>
-                                                                    <option>£</option>
-                                                                    <option>€</option>
+                                                                    {/* <option>£</option>
+                                                                    <option>€</option> */}
                                                                 </select>
                                                             </span>
                                                         </p>
@@ -354,9 +354,9 @@ function Card() {
                                             <p class="control">
                                                 <span class="select">
                                                     <select>
-                                                        <option>$</option>
+                                                        {/* <option>$</option>
                                                         <option>£</option>
-                                                        <option>€</option>
+                                                        <option>€</option> */}
                                                     </select>
                                                 </span>
                                             </p>
