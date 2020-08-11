@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import httpClient from "../httpClient";
-import { Link } from 'react-router-dom';
 import "./design/Landing.css";
 import Friends from "../components/FriendCard";
+import ProfileBtns from "../components/ProfileBtns";
 import NavBarAuth from "../components/NavBarAuth";
 import UserNameCard from "../components/UserNameCard";
 import ProfileImage from "../components/ProfileImage";
@@ -54,47 +54,8 @@ function Landing() {
                     <div className="is-centered">
                       <UserNameCard />
                       <ProfileImage />
-                      <div className="columns is-10">
-                        <div className="column is-one-quarter">
-                          <Link 
-                            to="/settings/#edit-bank-informaion"
-                            type="button"
-                            className="button"
-                            id="fluffyduck"
-                          >
-                            Connect your bank account
-                          </Link>
-                        </div>
-                        <div className="column is-one-quarter">
-                          <Link
-                            to="/settings/#edit-photo"
-                            type="button"
-                            className="button"
-                            id="fluffyduck"
-                          >
-                            Add a Photo
-                          </Link>
-                        </div>
-                        <div className="column is-one-quarter">
-                          <Link
-                            to="/findafriend"
-                            type="button"
-                            className="button"
-                            id="fluffyduck"
-                          >
-                            Find a Friend
-                          </Link>
-                        </div>
-                        <div className="column is-one-quarter">
-                          <button
-                            type="button"
-                            className="button"
-                            id="fluffyduck"
-                          >
-                            My Wallet
-                          </button>
-                        </div>
-                      </div>
+                      <br />
+                      <ProfileBtns />
                       <p id="funds">
                         Funds Available: $ {currentUserObj.balance}
                       </p>
