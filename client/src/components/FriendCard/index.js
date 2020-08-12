@@ -293,6 +293,7 @@ function Card() {
                         )
                     }
                     )}
+
                 </div>
             </div>
         </>
