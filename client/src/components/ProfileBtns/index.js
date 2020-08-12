@@ -3,6 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import Modal from "react-modal";
 import ImportMoney from '../Wallet/ImportMoney';
 import ExportMoney from '../Wallet/ExportMoney';
+import './style.css';
 // import httpClient from "../../httpClient.js";
 
 const customStyles = {
