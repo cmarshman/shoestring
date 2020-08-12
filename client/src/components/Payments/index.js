@@ -44,7 +44,7 @@ function Payments() {
                                         <img className="is-rounded" src={currentUserObj.image} alt={currentUserObj.name} />
                                     </p>
                                 </figure>
-                                <div className="transactionInfo">{currentUserObj.name} just paid {item.name} for {item.message}</div>
+                                <div className="transactionInfo">You just paid {item.name} for: {item.message}</div>
 
                                 <hr />
                             </article>

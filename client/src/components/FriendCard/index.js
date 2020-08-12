@@ -3,7 +3,6 @@ import './style.css';
 import { Link, withRouter } from 'react-router-dom';
 import Modal from 'react-modal';
 import httpClient from "../../httpClient.js";
-
 import * as Yup from 'yup';
 import { useFormik, yupToFormErrors } from 'formik';
 import $, { data } from 'jquery';
@@ -60,79 +59,17 @@ function Card() {
     const [friendResult, setFriendResult] = useState([{}]);
 
     const [sendMoney, setSendMoney] = useState([{}]);
-
-    //Load funtion on page load
-    useEffect(() => {
-        handleFriends()
-
-
-    }, [])
-
-
-
-    //Function to load all user on page load
-    const handleFriends = () => {
-        httpClient.FindAllUser()
-            .then(serverResponse => {
-                setFriendResult(serverResponse.data);
-                let currentUserId = currentUserObj.currentUser._id
-                let findFriend = serverResponse.data.find(item => item._id === currentUserId)
-                let friendsArray = findFriend.friends.slice(1)
-                setFriendResult(friendsArray)
-                setCurrentUserObj(findFriend)
-            })
-            .catch(err => { console.log(err) })
-    }
-
-
-    //    //update the database with a new friend added 
-    const sendMoneytofriend = (evt) => {
-        const friendId = evt.target.dataset.newfriend
-        let friendToAdd = friendResult.find(item => item._id === friendId)
-        if (friendToAdd != null) {
-            openModal()
-            setSendMoney(friendToAdd)
-        }
-
-    }
-
-    // //update the database with a   friend balance and current user balance 
-    const transferMoney = () => {
-        const userEmail = sendMoney.email
-        const userName = sendMoney.name
-        let currentUser = currentUserObj.currentUser
-        let userAmount = values.amount
-        httpClient.FindAllUser()
-            .then(serverResponse => {
-                const data = serverResponse.data
-                //let findCurrentUser = data.find(item => item._id === currentUser._id)
-                let friendToSendTo = data.find(item => item._id === sendMoney._id)
-                //let friendArray = findCurrentUser.friends
-                setFriendResult(currentUserObj.friends)
-
-                if (sendMoney != null) {
-                    setSendMoney(friendToSendTo)
-                }
-                httpClient.InsertUpdate({
-                    _id: friendToSendTo._id,
-                    receivedTransactions: [...friendToSendTo.receivedTransactions, { name: currentUserObj.name, amount: values.amount, message: values.message }],
-                    balance: parseFloat(friendToSendTo.balance) + parseFloat(values.amount),
-                })
-                .then(
-                    httpClient.InsertUpdate({
-                            _id: currentUserObj._id,
-                            sentTransactions: [...currentUserObj.sentTransactions, { name: friendToSendTo.name, amount: values.amount, message: values.message }],
-                            balance: parseFloat(currentUserObj.balance) - parseFloat(values.amount),
-
-                    }), window.location.replace('/home'))
-                    .catch(err => console.log('err', err))
-            })
-
-    }
+    const [deleteFriend, setdeleteFriend] = useState([{}]);
 
     const [modalIsOpen, setIsOpen] = useState(false);
     const [modal2IsOpen, set2IsOpen] = useState(false);
 
+    //Load funtion on page load
+    useEffect(() => {
+        handleFriends();
+        
+    }, [])
+   
     function openModal() {
         setIsOpen(true);
     }
@@ -147,56 +84,95 @@ function Card() {
     function closeModal2() {
         set2IsOpen(false);
     }
-    // const modal1 = () => {
-    //     return (
-    //         <>
-    // <Modal
-    //     isOpen={modalIsOpen}
-    //     onRequestClose={closeModal}
-    //     style={customStyles}
-    //     contentLabel="Send Money Modal"
-    // >
-    //      {friendResult.map(item => {
-    //             return (
-    //     <div className="modal-card">
-    //         <header className="modal-card-head">
-    //             <p className="modal-card-title" data-newfriend={item._id}>Send Money to {item.name}</p>
-    //             <button className="delete" aria-label="close" onClick={closeModal}></button>
-    //         </header>
-    //         <section className="modal-card-body">
-    //             <p className='subtitle'>How much would you like to transfer</p>
-    //             <div class="field has-addons">
-    //                 <p class="control">
-    //                     <span class="select">
-    //                         <select>
-    //                             <option>$</option>
-    //                             <option>£</option>
-    //                             <option>€</option>
-    //                         </select>
-    //                     </span>
-    //                 </p>
-    //                 <p class="control is-expanded">
-    //                     <input class="input" type="text" placeholder="Amount of money" />
-    //                 </p>
-    //             </div>
-    //             <p className='subtitle'>Leave a messeage for your friend</p>
-    //             <div class="field">
-    //                 <div class="control">
-    //                     <textarea class="textarea" placeholder="For the fluffy rainbow unicorn"></textarea>
-    //                 </div>
-    //             </div>
-    //         </section>
-    //         <footer className="modal-card-foot">
-    //             <button className="button is-success">Submit Payment</button>
-    //         </footer>
-    //     </div>
-    //             )}
-    //      )}
-    // </Modal>
-    //         </>
-    //     );
-    // }
-    //Render all the logged in user Friends
+    //Function to load all user on page load
+    const handleFriends = () => {
+        httpClient.FindAllUser()
+            .then(serverResponse => {
+                setFriendResult(serverResponse.data);
+                let currentUserId = currentUserObj.currentUser._id
+                let findFriend = serverResponse.data.find(item => item._id === currentUserId)
+                let friendsArray = findFriend.friends.slice(1)
+                setFriendResult(friendsArray)
+                setCurrentUserObj(findFriend)
+            })
+            .catch(err => { console.log(err) })
+    }
+
+    //update the database with a new friend added 
+    const sendMoneytofriend = (evt) => {
+        const friendId = evt.target.dataset.newfriend
+        let friendToAdd = friendResult.find(item => item._id === friendId)
+        if (friendToAdd != null) {
+            openModal()
+            setSendMoney(friendToAdd)
+        }
+    }
+
+    //update the database with a new friend added 
+    const removeAfriend = (evt) => {
+        const friendId = evt.target.dataset.removefriend
+        let friendToRemove = friendResult.find(item => item._id === friendId)
+        if (friendToRemove != null) {
+            openModal2()
+            setdeleteFriend(friendToRemove)
+        }
+
+    }
+
+    // //update the database with a   friend balance and current user balance 
+    const transferMoney = () => {
+        httpClient.FindAllUser()
+            .then(serverResponse => {
+                const data = serverResponse.data
+                 let friendToSendTo = data.find(item => item._id === sendMoney._id)
+                 setFriendResult(currentUserObj.friends)
+                if (sendMoney != null) {
+                    setSendMoney(friendToSendTo)
+                }
+                httpClient.InsertUpdate({
+                    _id: friendToSendTo._id,
+                    receivedTransactions: [...friendToSendTo.receivedTransactions, { name: currentUserObj.name, amount: values.amount, message: values.message }],
+                    balance: parseFloat(friendToSendTo.balance) + parseFloat(values.amount),
+                })
+                 .then(
+                        httpClient.InsertUpdate({
+                            _id: currentUserObj._id,
+                            sentTransactions: [...currentUserObj.sentTransactions, { name: friendToSendTo.name, amount: values.amount, message: values.message }],
+                            balance: parseFloat(currentUserObj.balance) - parseFloat(values.amount),
+                        }), window.location.replace('/home'))
+                    .catch(err => console.log('err', err))
+               })
+
+    }
+   //Function to remove a friend from friends list
+    const removeFriend = () => {
+        let currentUserFriends = currentUserObj.friends;
+        httpClient.FindAllUser()
+            .then(serverResponse => {
+                const data = serverResponse.data
+                const friendToRemove = data.find(item => item._id === deleteFriend._id)
+                const removefriendArr = friendToRemove.friends
+                let filterCurrentUserOut = removefriendArr.filter(item => item._id !=currentUserObj._id)
+                let newFriends = currentUserFriends.filter(item => item._id !=friendToRemove._id)
+                setFriendResult(newFriends)
+                //update the database with the remaining friends
+                httpClient.InsertUpdate({
+                    _id: currentUserObj._id,
+                    friends: [...newFriends]
+                })
+                httpClient.InsertUpdate({
+                    _id: friendToRemove._id,
+                    friends: [...filterCurrentUserOut]
+                })
+                .then(
+                    closeModal2(),
+                    window.location.replace('/home'))
+                    
+                .catch(err => console.log('err', err))
+            })
+   
+}
+//Render all the logged in user Friends
     return (
         <>
             <br />
@@ -221,18 +197,10 @@ function Card() {
                                     <div>
                                         <a className="button is-light saveBtn" id="seltzer" data-newfriend={item._id} onClick={sendMoneytofriend} >Send Money</a>
 
-                                        <a className="button is-light" id="seltzer" onClick={openModal2}>Remove Friend</a>
+                                        <a className="button is-light" id="seltzer" data-removefriend={item._id} onClick={removeAfriend}>Remove Friend</a>
 
                                     </div>
                                     <hr />
-                                    {/* </article>
-
-                            </div>
-
-                    //     )
-                    // }
-                    // )} */}
-
 
                                     <form onSubmit={handleSubmit}>
                                         <Modal
@@ -242,10 +210,6 @@ function Card() {
                                             contentLabel="Send Money Modal"
 
                                         >
-                                            {/* {friendResult.map(item => { */}
-
-                                            {/* return ( */}
-
 
                                             <div className="modal-card">
 
@@ -268,14 +232,14 @@ function Card() {
                                                             </span>
                                                         </p>
                                                         <p class="control is-expanded">
-                                                            <input class="input" type= "text" placeholder="Amount of money"
+                                                            <input class="input" type="text" placeholder="Amount of money to send"
                                                                 onChange={handleChange}
                                                                 name="amount"
                                                                 value={values.amount}
                                                                 onBlur={handleBlur}
                                                             />
-                                                            {values.amount<0 || currentUserObj.balance < values.amount && touched.amount && 'errors' ? (
-                                                                <p className="errMsg">Invalid entery. Please check your account balance or your amount.</p>
+                                                            {values.amount < 0 || currentUserObj.balance < values.amount && touched.amount && 'errors' ? (
+                                                                <p className="errMsg">Please check your account balance or your amount.</p>
                                                             ) : ''}
                                                         </p>
 
@@ -295,15 +259,12 @@ function Card() {
                                                 </section>
                                                 <footer className="modal-card-foot">
                                                     <button className="button is-success" type="submit"
-                                                      onClick={transferMoney}
-                                                      disabled={currentUserObj.balance < values.amount || values.amount<=0}
-                                                      //disabled={values.amount<=0}
-                                                 >Submit Payment</button>
+                                                        onClick={transferMoney}
+                                                        disabled={currentUserObj.balance < values.amount || values.amount <= 0}
+                                                     >Submit Payment</button>
                                                 </footer>
                                             </div>
-                                            {/* ) */}
-                                            {/* }
-                    )}   */}
+
                                         </Modal>
                                         <Modal
                                             isOpen={modal2IsOpen}
@@ -313,14 +274,14 @@ function Card() {
                                         >
                                             <div className="modal-card">
                                                 <header className="modal-card-head">
-                                                    <p className="modal-card-title">Remove Friend</p>
+                                                    <p className="modal-card-title" >Are you sure you want to remove {deleteFriend.name}</p>
                                                     <button className="delete" aria-label="close" onClick={closeModal2}></button>
                                                 </header>
                                                 <section className="modal-card-body">
 
                                                 </section>
                                                 <footer className="modal-card-foot">
-                                                    <button className="button is-success">I'm sure</button>
+                                                    <button className="button is-success" type="submit" onClick={removeFriend}>I'm sure</button>
                                                     <button className="button" onClick={closeModal2}>Never Mind</button>
                                                 </footer>
                                             </div>
@@ -331,81 +292,14 @@ function Card() {
 
                             </div>
 
-
                         )
                     }
                     )}
-                    <Modal
-                        isOpen={modalIsOpen}
-                        onRequestClose={closeModal}
-                        style={customStyles}
-                        contentLabel="Send Money Modal"
-                    >
-                        {friendResult.map(item => {
-                            return (
-                                <div className="modal-card">
-                                    <header className="modal-card-head">
-                                        <p className="modal-card-title" data-newfriend={item._id}>Send Money to {item.name}</p>
-                                        <button className="delete" aria-label="close" onClick={closeModal}></button>
-                                    </header>
-                                    <section className="modal-card-body">
-                                        <p className='subtitle'>How much would you like to transfer</p>
-                                        <div class="field has-addons">
-                                            <p class="control">
-                                                <span class="select">
-                                                    <select>
-                                                        {/* <option>$</option>
-                                                        <option>£</option>
-                                                        <option>€</option> */}
-                                                    </select>
-                                                </span>
-                                            </p>
-                                            <p class="control is-expanded">
-                                                <input class="input" type="text" placeholder="Amount of money" />
-                                            </p>
-                                        </div>
-                                        <p className='subtitle'>Leave a messeage for your friend</p>
-                                        <div class="field">
-                                            <div class="control">
-                                                <textarea class="textarea" placeholder="For the fluffy rainbow unicorn"></textarea>
-                                            </div>
-                                        </div>
-                                    </section>
-                                    <footer className="modal-card-foot">
-                                        <button className="button is-success">Submit Payment</button>
-                                    </footer>
-                                </div>
-                            )
-                        }
-                        )}
-                    </Modal>
-                    <Modal
-                        isOpen={modal2IsOpen}
-                        onRequestClose={closeModal2}
-                        style={customStyles}
-                        contentLabel="Remove Friend Modal"
-                    >
-                        <div className="modal-card">
-                            <header className="modal-card-head">
-                                <p className="modal-card-title">Remove Friend</p>
-                                <button className="delete" aria-label="close" onClick={closeModal2}></button>
-                            </header>
-                            <section className="modal-card-body">
-
-                            </section>
-                            <footer className="modal-card-foot">
-                                <button className="button is-success">I'm sure</button>
-                                <button className="button" onClick={closeModal2}>Never Mind</button>
-                            </footer>
-                        </div>
-                    </Modal>
-
+                
                 </div>
             </div>
-
         </>
     );
 
 }
-
 export default withRouter(Card);

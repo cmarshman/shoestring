@@ -96,7 +96,6 @@ useEffect(() => {
               </div>
             </div>
           </div>
-          
 
           <div className="navbar-end">
             <div className="navbar-item">
