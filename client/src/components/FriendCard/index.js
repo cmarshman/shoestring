@@ -5,9 +5,7 @@ import Modal from 'react-modal';
 import httpClient from "../../httpClient.js";
 import * as Yup from 'yup';
 import { useFormik, yupToFormErrors } from 'formik';
-import $, { data } from 'jquery';
-import moment from 'moment';
-
+ 
 
 const customStyles = {
     content: {
@@ -119,7 +117,7 @@ function Card() {
 
     }
 
-    // //update the database with a   friend balance and current user balance 
+    //update the database with a friend balance and current user balance 
     const transferMoney = () => {
         httpClient.FindAllUser()
             .then(serverResponse => {
@@ -226,8 +224,8 @@ function Card() {
                                                             <span class="select">
                                                                 <select>
                                                                     <option>$</option>
-                                                                    {/* <option>£</option>
-                                                                    <option>€</option> */}
+                                                                    <option>£</option>
+                                                                    <option>€</option>
                                                                 </select>
                                                             </span>
                                                         </p>
@@ -295,7 +293,7 @@ function Card() {
                         )
                     }
                     )}
-                
+
                 </div>
             </div>
         </>
@@ -303,3 +301,4 @@ function Card() {
 
 }
 export default withRouter(Card);
+
