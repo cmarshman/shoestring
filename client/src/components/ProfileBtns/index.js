@@ -48,7 +48,7 @@ function ProfileBtns() {
             className="button"
             id="fatcat"
           >
-            Connect your bank account
+            My Bank Account
           </Link>
         </div>
         <div className="column is-one-quarter">
@@ -62,7 +62,11 @@ function ProfileBtns() {
           </Link>
         </div>
         <div className="column is-one-quarter">
-          <Link to="/findafriend" type="button" className="button" id="fatcat">
+          <Link 
+            to="/findafriend" 
+            type="button" 
+            className="button" 
+            id="fatcat">
             Find a Friend
           </Link>
         </div>
@@ -84,7 +88,7 @@ function ProfileBtns() {
             >
               <div className="modal-card">
                 <header className="modal-card-head">
-                  <button className="button" id="fatcat" onClick={handleWalletToggle}>{pickWalletUpdate ? "Add money to your wallet" : "Deposit money to my bank account"}</button>
+                  <button className="button" id="skinyCat" onClick={handleWalletToggle}>{pickWalletUpdate ? "Click to deposit money in your bank account" : "Click to add money to your wallet"}</button>
                   {!pickWalletUpdate ?
                     <ImportMoney />
                     :
@@ -99,13 +103,10 @@ function ProfileBtns() {
 
                 <footer className="modal-card-foot">
                   <button
-                    className="button is-success"
-                    type="submit"
-                    // onClick={transferMoney}
-                    // disabled={currentUserObj.balance < values.amount || values.amount <= 0}
-                    //disabled={values.amount<=0}
+                    className="button is-light"
+                    onClick={closeWalletModal}
                   >
-                    Submit Payment
+                    Cancel
                   </button>
                 </footer>
               </div>

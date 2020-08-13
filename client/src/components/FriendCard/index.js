@@ -195,7 +195,7 @@ function Card() {
                                     <div>
                                         <a className="button is-light saveBtn" id="seltzer" data-newfriend={item._id} onClick={sendMoneytofriend} >Send Money</a>
 
-                                        <a className="button is-light" id="seltzer" data-removefriend={item._id} onClick={removeAfriend}>Remove Friend</a>
+                                        <a className="button is-light" id="seltzer2" data-removefriend={item._id} onClick={removeAfriend}>Remove Friend</a>
 
                                     </div>
                                     <hr />
