@@ -6,7 +6,7 @@
 
 #unicornDuck{
     height: 420px!important;
-    width: 412px!important; 
+    width: 600px!important;
     overflow-y: scroll;
     position: relative;
 }
@@ -62,3 +62,9 @@
   /* text-align: center;   */
   font-size: large;
   }
+
+  @media only screen and (max-width: 600px ) {
+    #unicornDuck{
+        width: 350px!important;
+    }
+}

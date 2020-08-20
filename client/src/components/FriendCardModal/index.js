@@ -171,8 +171,8 @@ function FriendsCard() {
     return (
         <>
             <br />
-            <div className="tile container column is-fluid" id="craftCoffee">
-                <div className="tile is-child box has-text-centered" id="unicornDuck">
+            <div className="is-fluid" id="craftCoffee">
+                <div className="tile is-child has-text-centered" id="unicornDuck">
                     {friendResult.map(item => {
                         return (
                             <div>
