@@ -73,21 +73,24 @@ function AddImage() {
                     { friendResult.map(item =>{ 
                          return (
                             <div key={item._id}> 
+                                <p className="subtitle" id="formTitle">
+                                Update your Photo
+                                </p>
                                 {loading ? (
                                     <h3>Loading...</h3>
                                 ) : (
-                                        <figure className="image is-centered">
+                                        <figure className="image">
                                             <img id="myPhoto" className="is-rounded"  src={item.image} alt="myPhoto" />
                                         </figure>
                                     )}
                                 <br />
-                                <div className="is centered">    
+                                <div className="column is-centered has-text-centered">    
                                 <input 
+                                    id="addFile"
                                     type="file"
                                     name="file"
                                     placeholder="Upload image"
                                     onChange={uploadImage}
-                                     
                                 />
                                 </div>
                             </div>
