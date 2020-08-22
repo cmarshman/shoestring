@@ -16,11 +16,6 @@ const validationSchenma = Yup.object({
 
 function PersonalInfo() {
 
-  // const [currentUserObj, setCurrentUserObj] = useState({
-  //   currentUser: httpClient.getCurrentUser(),
-  // });
-  // let currentUser = currentUserObj.currentUser
-
    const { values, touched, errors, handleChange, handleBlur, handleSubmit } = useFormik({
     initialValues: {
       name: "",
@@ -37,10 +32,10 @@ function PersonalInfo() {
     }
 });
  
-// useEffect(() => {
-//   updateUser()
+useEffect(() => {
+  changeCurrentState()
   
-// }, [])
+}, [])
 
     const [currentUserObj, setCurrentUserObj] = useState({
         currentUser: httpClient.getCurrentUser(),
@@ -49,30 +44,27 @@ function PersonalInfo() {
     //setup results state
     const [friendResult, setFriendResult] = useState([{}]);
 
-      // currentUser = [
-      //   {
-      //     name: currentUserObj.currentUser.name,
-      //     email: currentUserObj.currentUser.email,
-      //     city: currentUserObj.currentUser.city,
-      //     state: currentUserObj.currentUser.state,
-      //     phone: currentUserObj.currentUser.phone,
-      //   },
-      // ];
+       //declare some variables
       let currentUser = currentUserObj.currentUser
       let phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
       let emailVal = /.+@.+\..+/;
       
+      //Function to update the  current user state
+      const changeCurrentState = () =>{
+        httpClient.FindAllUser()
+        .then(serverResponse => {
+            const data = serverResponse.data
+            let findCurrentUser = data.find(item => item._id === currentUser._id)
+            
+            if(findCurrentUser !=null){
+              setFriendResult(findCurrentUser)
+              console.log("findCurrentUser", findCurrentUser)
+            }
+     })
+    }
+
+    //Function to  insert the update information into the database
       const updateUser =() => {
-      //let currentUser = currentUserObj.currentUser
-        //httpClient.FindAllUser()
-        // .then(serverResponse => {
-        //     const data = serverResponse.data
-        //     let findCurrentUser = data.find(item => item._id === currentUser._id)
-        //     setFriendResult(findCurrentUser)
-        //     if(findCurrentUser !=null){
-        //      console.log("findCurrentUser", findCurrentUser)
-        //     }
-        //let newVal = values= ''
             httpClient.InsertUpdate({
               _id: currentUser._id,
               name:  values.name,
@@ -84,11 +76,11 @@ function PersonalInfo() {
              .catch(err => console.log('err', err))
             }
    
+  //Display  all  the  data on the page 
     return (
         <>
           {currentUserObj.currentUser !== null ? (
            <div>
-          {/* <form onSubmit={handleSubmit}> */}
            <div id="name">
               <div>
               <form onSubmit={handleSubmit}>
@@ -101,7 +93,7 @@ function PersonalInfo() {
                         className="input"
                         type="text"
                         name="name"
-                        placeholder={currentUser.name}
+                        placeholder={friendResult.name}
                         onChange={handleChange}
                         value={values.name}
                         onBlur={handleBlur} 
@@ -129,7 +121,7 @@ function PersonalInfo() {
                         className="input"
                         type="text"
                         name="phone"
-                        placeholder={currentUser.phone}
+                        placeholder={friendResult.phone}
                         onChange={handleChange}
                         value={values.phone}
                         onBlur={handleBlur} 
@@ -157,7 +149,7 @@ function PersonalInfo() {
                         className="input"
                         type="text"
                         name="city"
-                        placeholder={currentUser.city}
+                        placeholder={friendResult.city}
                         onChange={handleChange}
                         value={values.city}
                         onBlur={handleBlur} 
@@ -174,7 +166,7 @@ function PersonalInfo() {
                         className="input"
                         type="text"
                         name="state"
-                        placeholder={currentUser.state}
+                        placeholder={friendResult.state}
                         onChange={handleChange}
                         value={values.state}
                         onBlur={handleBlur} 
@@ -202,7 +194,7 @@ function PersonalInfo() {
                         className="input "
                         type="email"
                         name="email"
-                        placeholder={currentUser.email}
+                        placeholder={friendResult.email}
                         onChange={handleChange}
                         value={values.email}
                         onBlur={handleBlur} 
