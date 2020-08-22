@@ -1,28 +1,97 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
 import httpClient from "../../httpClient";
+import * as Yup from 'yup';
+import { useFormik } from 'formik';
 
-function PersonalInfo(currentUser) {
+
+//Setup  validation condition on the schema using Yup
+const validationSchenma = Yup.object({
+  email: Yup.string().required(),
+  name: Yup.string().required(),
+  phone: Yup.number().required(),
+  city: Yup.string(),
+  state: Yup.string(),
+
+});
+
+function PersonalInfo() {
+
+  // const [currentUserObj, setCurrentUserObj] = useState({
+  //   currentUser: httpClient.getCurrentUser(),
+  // });
+  // let currentUser = currentUserObj.currentUser
+
+   const { values, touched, errors, handleChange, handleBlur, handleSubmit } = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      city: "",
+      state: "",
+      phone: "",
+
+    },
+    validationSchenma,
+    onSubmit(values) {
+        console.log('values', values)
+        updateUser(values)
+    }
+});
+ 
+// useEffect(() => {
+//   updateUser()
+  
+// }, [])
 
     const [currentUserObj, setCurrentUserObj] = useState({
         currentUser: httpClient.getCurrentUser(),
       });
     
-      currentUser = [
-        {
-          name: currentUserObj.currentUser.name,
-          email: currentUserObj.currentUser.email,
-          city: currentUserObj.currentUser.city,
-          state: currentUserObj.currentUser.state,
-          phone: currentUserObj.currentUser.phone,
-        },
-      ];
-      return (
+    //setup results state
+    const [friendResult, setFriendResult] = useState([{}]);
+
+      // currentUser = [
+      //   {
+      //     name: currentUserObj.currentUser.name,
+      //     email: currentUserObj.currentUser.email,
+      //     city: currentUserObj.currentUser.city,
+      //     state: currentUserObj.currentUser.state,
+      //     phone: currentUserObj.currentUser.phone,
+      //   },
+      // ];
+      let currentUser = currentUserObj.currentUser
+      let phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+      let emailVal = /.+@.+\..+/;
+      
+      const updateUser =() => {
+      //let currentUser = currentUserObj.currentUser
+        //httpClient.FindAllUser()
+        // .then(serverResponse => {
+        //     const data = serverResponse.data
+        //     let findCurrentUser = data.find(item => item._id === currentUser._id)
+        //     setFriendResult(findCurrentUser)
+        //     if(findCurrentUser !=null){
+        //      console.log("findCurrentUser", findCurrentUser)
+        //     }
+        //let newVal = values= ''
+            httpClient.InsertUpdate({
+              _id: currentUser._id,
+              name:  values.name,
+              email: values.email,
+              phone: values.phone,
+              city:  values.city,
+              state: values.state,
+             },window.location.replace(''))
+             .catch(err => console.log('err', err))
+            }
+   
+    return (
         <>
           {currentUserObj.currentUser !== null ? (
            <div>
+          {/* <form onSubmit={handleSubmit}> */}
            <div id="name">
               <div>
-                <form>
+              <form onSubmit={handleSubmit}>
                   <p className="subtitle" id="formTitle">
                     Edit your name
                   </p>
@@ -32,7 +101,10 @@ function PersonalInfo(currentUser) {
                         className="input"
                         type="text"
                         name="name"
-                        placeholder={currentUser[0].name}
+                        placeholder={currentUser.name}
+                        onChange={handleChange}
+                        value={values.name}
+                        onBlur={handleBlur} 
                       />
                       {/* {values.name.length < 1 && touched.name && 'errors' ? (
                     <p className="errMsg">Please enter your name</p>
@@ -57,11 +129,14 @@ function PersonalInfo(currentUser) {
                         className="input"
                         type="text"
                         name="phone"
-                        placeholder={currentUser[0].phone}
+                        placeholder={currentUser.phone}
+                        onChange={handleChange}
+                        value={values.phone}
+                        onBlur={handleBlur} 
                       />
-                      {/* {!values.phone.match(phoneno) &&  touched.phone && 'errors' ? (
+                      {!values.phone.match(phoneno) &&  touched.phone && 'errors' ? (
                               <p className="errMsg">Please enter a valid Phone</p>
-                            ): ''} */}
+                            ): ''}
                       <span className="icon is-small is-left">
                         <i className="fas fa-mobile-alt"></i>
                       </span>
@@ -82,11 +157,14 @@ function PersonalInfo(currentUser) {
                         className="input"
                         type="text"
                         name="city"
-                        placeholder={currentUser[0].city}
+                        placeholder={currentUser.city}
+                        onChange={handleChange}
+                        value={values.city}
+                        onBlur={handleBlur} 
                       />
-                      {/* {values.city.length <2 &&  touched.city && 'errors' ? (
+                      {values.city.length <2 &&  touched.city && 'errors' ? (
                         <p className="errMsg">Please enter a valid City</p>
-                    ): ''} */}
+                    ): ''}
                       <span className="icon is-small is-left">
                         <i className="fas fa-city"></i>
                       </span>
@@ -96,11 +174,14 @@ function PersonalInfo(currentUser) {
                         className="input"
                         type="text"
                         name="state"
-                        placeholder={currentUser[0].state}
+                        placeholder={currentUser.state}
+                        onChange={handleChange}
+                        value={values.state}
+                        onBlur={handleBlur} 
                       />
-                      {/* {values.state.length < 2 &&  touched.state && 'errors' ? (
+                      {values.state.length < 2 &&  touched.state && 'errors' ? (
                     <p className="errMsg">Please enter a valid State</p>
-                    ): ''} */}
+                    ): ''}
                       <span className="icon is-small is-left">
                         <i className="far fa-compass"></i>
                       </span>
@@ -121,18 +202,23 @@ function PersonalInfo(currentUser) {
                         className="input "
                         type="email"
                         name="email"
-                        placeholder={currentUser[0].email}
+                        placeholder={currentUser.email}
+                        onChange={handleChange}
+                        value={values.email}
+                        onBlur={handleBlur} 
                       />
-                      {/* {!values.email.match(emailVal) &&  touched.email && 'errors' ? (
+                      {!values.email.match(emailVal) &&  touched.email && 'errors' ? (
                         <p className="errMsg">Please enter a valid Email</p>
-                      ): ''} */}
+                      ): ''}
                       <span className="icon is-small is-left">
                         <i className="fas fa-envelope"></i>
                       </span>
                     </div>
                     <div className="field is-grouped">
                       <div className="control">
-                        <button className="button is-light" id="twofish">
+                        <button className="button is-light" id="twofish" 
+                         onClick={updateUser}
+                         >
                           Submit
                         </button>
                       </div>
@@ -141,6 +227,7 @@ function PersonalInfo(currentUser) {
                 </form>
               </div>
             </div>
+            
             </div>
 ) : (
     window.location.replace("/")
