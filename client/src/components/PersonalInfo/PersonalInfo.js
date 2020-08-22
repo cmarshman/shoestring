@@ -19,10 +19,11 @@ function PersonalInfo() {
    const { values, touched, errors, handleChange, handleBlur, handleSubmit } = useFormik({
     initialValues: {
       name: "",
-      email: "",
+      phone: "",
       city: "",
       state: "",
-      phone: "",
+      email: "",
+      
 
     },
     validationSchenma,
@@ -62,16 +63,16 @@ useEffect(() => {
             }
      })
     }
-
-    //Function to  insert the update information into the database
+     let fields = values
+    //Function to  insert the update information into the data
       const updateUser =() => {
             httpClient.InsertUpdate({
               _id: currentUser._id,
-              name:  values.name,
-              email: values.email,
-              phone: values.phone,
-              city:  values.city,
-              state: values.state,
+              name:  values.name? values.name : friendResult.name,
+              phone: values.phone? values.phone : friendResult.phone,
+              city:  values.city ? values.city : friendResult.city,
+              state: values.state ? values.state : friendResult.state,
+              email: values.email? values.email : friendResult.email,
              },window.location.replace(''))
              .catch(err => console.log('err', err))
             }
