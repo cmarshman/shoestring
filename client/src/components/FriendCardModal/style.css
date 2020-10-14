@@ -4,14 +4,14 @@
     margin: 0 auto;
 }
 
-#pinkDuck{
-    height: 920px!important;
-    width: 412px!important; 
+#unicornDuck{
+    height: 420px!important;
+    width: 600px!important;
     overflow-y: scroll;
     position: relative;
 }
 
-#craftBrew{
+#craftCoffee{
     margin-bottom: 10px;
     margin-top: 52px;
     padding-left: 0px;
@@ -19,7 +19,7 @@
 
 #seltzer{
     width: 45%!important;
-    color: #f5f5f5!important;
+    color: #f5f5f5;
     background-color: #3bd389;
     margin: 0px 5px 0px 5px;
     font-size: 15px;
@@ -63,8 +63,8 @@
   font-size: large;
   }
 
-  @media screen and (max-width: 768px){
-    #craftBrew{
-        display: none;
+  @media only screen and (max-width: 600px ) {
+    #unicornDuck{
+        width: 350px!important;
     }
 }

@@ -1,6 +1,6 @@
 #fatcat {
     color: #3bd389;
-    border-color: #3bd389;
+    border-color: #3bd389!important;
     border: 3px solid;
     background-color: #f5f5f5;
     margin-bottom: 15px;
@@ -11,5 +11,49 @@
 
 #fatcat:hover{
     background-color: #3bd389;
-    color: #f5f5f5;
+    color: #f5f5f5!important;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+#cat{
+    color: #3bd389;
+    border-color: #3bd389!important;
+    border: 3px solid;
+    background-color: #f5f5f5;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    border-radius: 5px;
+    width: 100%!important;
+}
+
+#cat:hover{
+    background-color: #3bd389;
+    color: #f5f5f5!important;
+}
+
+
+
+#skinyCat{
+    color: #363636;
+    background-color: #f5f5f5;
+    border: 3px solid #363636;
+    width: 95%!important;
+    padding-right: 2%;
+    margin: 0 auto;
+}
+
+#funnyCat{
+    margin: 10px;
+}
+
+#sillyCat {
+    margin: 0 auto;
+}
+
+@media only screen and (max-width: 768px) {
+    #fatcat{
+        margin-bottom: 0px;
+        margin-top: 0px;
+    }
 }

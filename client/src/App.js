@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -32,6 +32,8 @@ function App(item) {
     <Router>
     <div>
       <Wrapper>
+        {/* Unathenticated Pages */}
+        <div>
         <Route exact path="/" component={Home}/>
         <Route exact path="/about" component={About}/>
         <Route exact path="/contact" component={Contact}/>
@@ -40,12 +42,21 @@ function App(item) {
         <Route exact path="/sign-up" component={SignUp}/>
         <Route exact path="/home" component={Landing}/>
         <Route exact path="/reset" component={Reset}/>
+        </div>
+
+        {/* Authenticated Pages */}
+        <div>
         <Route exact path="/findafriend" component={FindAFriend}/>
         {/* <Route exact path="/transfermoney" component={TransferMoney}/> */}
         <Route exact path="/mywallet" component={MyWallet}/>
         {/* <Route exact path="/currencyconverter" component={CurrencyConverter}/> */}
         <Route exact path="/cancelaccount" component={CancelAccount}/>
         <Route exact path="/requestdata" component={RequestData}/>
+        <Route exact path="/settings" component={Settings}/>
+        </div>
+
+        {/* Admin routes */}
+        <div>
         <Route exact path="/admin-12152011" component={AdminLogin}/>
         <Route exact path="/admin-sign-up-02121986" component={AdminSignUp}/>
         <Route exact path="/admin-summary" component={AdminSummary}/>
@@ -53,7 +64,7 @@ function App(item) {
         <Route exact path="/all-users" component={AllUsers}/>
         <Route exact path="/new-users-last-month" component={NewUsers}/>
         <Route exact path="/total-income" component={TotalIncome}/> 
-        <Route exact path="/settings" component={Settings}/>
+        </div>
       </Wrapper>
     </div>
     </Router>

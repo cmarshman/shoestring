@@ -2,7 +2,9 @@
     color: #3bd389;
     border-color: white;
     background-color: #f5f5f5;
-    margin-bottom: 15px;
+    position: relative;
+    margin: 0 auto;
+    height: 50px;
 }
 
 #fluffyduck:hover{

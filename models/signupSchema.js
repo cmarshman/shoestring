@@ -17,6 +17,8 @@ const userSchema = new Schema({
   plaidToken: {type: String, required: false},
   institution :{type: String, required: false},
   accountType:{type: String, required: false},
+  link_session_id: {type: String, required: false},
+  access_token:{type: String, required: false},
   image: {type: String, required: false },
   checked: {type: Boolean, required: true},
   amount:{type: Number, require: false, trim: true},

@@ -14,7 +14,8 @@ usersRouter.post('/authenticate', usersCtrl.authenticate)
 usersRouter.route('/:id').patch(usersCtrl.update)
 usersRouter.route('/:id').delete(usersCtrl.destroy)
 usersRouter.route('/pwd_reset').post(usersCtrl.reset_password)
- 
+//usersRouter.route('/plaid_exchange').post(usersCtrl.show)
+
 usersRouter.use(verifyToken)
 
 usersRouter.route('/:id').get(usersCtrl.show)

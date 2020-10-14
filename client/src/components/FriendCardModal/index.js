@@ -6,7 +6,6 @@ import httpClient from "../../httpClient.js";
 import * as Yup from 'yup';
 import { useFormik, yupToFormErrors } from 'formik';
  
-
 const customStyles = {
     content: {
         top: '50%',
@@ -29,10 +28,9 @@ const validationSchenma = Yup.object({
     name: Yup.string().required(),
     amount: Yup.number().required(),
     message: Yup.string(),
-
 });
 
-function Card() {
+function FriendsCard() {
 
     const { values, touched, errors, handleChange, handleBlur, handleSubmit } = useFormik({
         initialValues: {
@@ -40,7 +38,6 @@ function Card() {
             name: '',
             amount: 0,
             message: '',
-
         },
         validationSchenma,
         onSubmit(values) {
@@ -174,8 +171,8 @@ function Card() {
     return (
         <>
             <br />
-            <div className="tile is-3 container column is-fluid" id="craftBrew">
-                <div className="tile is-child box has-text-centered" id="pinkDuck">
+            <div className="is-fluid" id="craftCoffee">
+                <div className="tile is-child has-text-centered" id="unicornDuck">
                     {friendResult.map(item => {
                         return (
                             <div>
@@ -300,5 +297,5 @@ function Card() {
     );
 
 }
-export default withRouter(Card);
+export default withRouter(FriendsCard);
 
