@@ -15,7 +15,7 @@ const Plaid = () => {
     clientName: "Shoestring",
     env: "development",
     product: ["auth", "transactions"],
-    publicKey: "a470a31fd930e601383597d010adba",
+    publicKey: "",
     onSuccess,
   };
 
