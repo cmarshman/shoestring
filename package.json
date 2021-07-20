@@ -41,7 +41,7 @@
     "react-bootstrap": "^1.0.0",
     "react-helmet": "^6.1.0",
     "react-modal": "^3.11.2",
-    "react-native": "^0.62.2",
+    "react-native": "^0.62.3",
     "react-plaid-link": "^2.1.0",
     "styled-components": "^5.1.1",
     "yarn": "^1.22.4",
