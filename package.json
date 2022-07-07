@@ -32,7 +32,7 @@
     "logkitty": "^0.7.1",
     "mdi-react": "^7.3.0",
     "modal": "^1.2.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "mongoose": "^5.9.7",
     "morgan": "^1.9.1",
     "plaid": "^4.10.0",
